@@ -190,6 +190,7 @@
 
   function getPrescoutForTeam(teamNumber) {
     return prescoutData[teamNumber] || {
+      tier: '',
       primaryRole: '',
       autoStrength: '',
       climbAbility: '',
@@ -236,6 +237,7 @@
   function savePrescoutFromForm() {
     if (!currentTeamNumber) return;
     const data = {
+      tier: '',
       primaryRole: '',
       autoStrength: '',
       climbAbility: '',
@@ -246,7 +248,7 @@
       summary: $('#f-presct-summary')?.value.trim() || '',
     };
     // Get seg-control values
-    ['presct.primaryRole', 'presct.autoStrength', 'presct.climbAbility', 'presct.reliability'].forEach(field => {
+    ['presct.tier', 'presct.primaryRole', 'presct.autoStrength', 'presct.climbAbility', 'presct.reliability'].forEach(field => {
       const ctrl = $(`.seg-control[data-field="${field}"]`);
       if (!ctrl) return;
       const selected = ctrl.querySelector('.seg-btn.selected');
@@ -483,7 +485,7 @@
     $('#f-presct-summary').value = presct.summary || '';
 
     // Pre-scout segmented controls
-    ['presct.primaryRole', 'presct.autoStrength', 'presct.climbAbility', 'presct.reliability'].forEach(field => {
+    ['presct.tier', 'presct.primaryRole', 'presct.autoStrength', 'presct.climbAbility', 'presct.reliability'].forEach(field => {
       const ctrl = $(`.seg-control[data-field="${field}"]`);
       if (!ctrl) return;
       const key = field.split('.')[1];

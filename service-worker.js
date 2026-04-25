@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pit-scout-v6';
+const CACHE_NAME = 'pit-scout-v7';
 const ASSETS = [
   './',
   './index.html',

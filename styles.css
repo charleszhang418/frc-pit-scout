@@ -688,6 +688,13 @@ input, textarea { font-family: inherit; font-size: 1rem; }
   color: var(--text-dim);
 }
 
+/* Tier buttons */
+.seg-btn.tier-s.selected { background: #6c63ff; color: #fff; }
+.seg-btn.tier-a.selected { background: #3b82f6; color: #fff; }
+.seg-btn.tier-b.selected { background: #22c55e; color: #fff; }
+.seg-btn.tier-c.selected { background: #f59e0b; color: #fff; }
+.seg-btn.tier-d.selected { background: #ef4444; color: #fff; }
+
 /* Pre-scout export card */
 .export-card.presct-export {
   background: var(--blue-dim);
