@@ -497,10 +497,13 @@
     renderMatchNotesList(team);
     $('#f-match-number').value = '';
     $('#f-match-notes').value = '';
+    $('#f-match-alliancePoints').value = '';
     const matchRole = $('#match-note-form .seg-control[data-field="matchEntry.observedRole"]');
     const matchPerf = $('#match-note-form .seg-control[data-field="matchEntry.performance"]');
+    const matchDriver = $('#match-note-form .seg-control[data-field="matchEntry.driverSkill"]');
     matchRole?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
     matchPerf?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
+    matchDriver?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
 
     showAutosave('Saved');
     switchView('form');
@@ -652,11 +655,13 @@
         <div class="match-note-card" data-idx="${realIdx}">
           <div class="match-note-header">
             <strong>${n.matchNumber || 'No match #'}</strong>
+            ${n.alliancePoints ? `<span class="match-note-points">${n.alliancePoints} pts</span>` : ''}
             <span class="match-note-time">${n.timestamp ? new Date(n.timestamp).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : ''}</span>
             <button class="match-note-delete" data-idx="${realIdx}" aria-label="Delete">&times;</button>
           </div>
           ${n.observedRole ? `<div class="match-note-tag">${n.observedRole.replace(/_/g, ' ')}</div>` : ''}
           ${n.performance ? `<div class="match-note-tag perf-${n.performance}">${n.performance}</div>` : ''}
+          ${n.driverSkill ? `<div class="match-note-tag driver-${n.driverSkill}">Driver: ${n.driverSkill}</div>` : ''}
           ${n.notes ? `<div class="match-note-body">${n.notes}</div>` : ''}
         </div>`;
       })
@@ -668,8 +673,11 @@
     const matchNum = $('#f-match-number').value.trim();
     const role = $('#match-note-form .seg-control[data-field="matchEntry.observedRole"]');
     const perf = $('#match-note-form .seg-control[data-field="matchEntry.performance"]');
+    const driver = $('#match-note-form .seg-control[data-field="matchEntry.driverSkill"]');
     const roleVal = role?.querySelector('.seg-btn.selected')?.dataset.val || '';
     const perfVal = perf?.querySelector('.seg-btn.selected')?.dataset.val || '';
+    const driverVal = driver?.querySelector('.seg-btn.selected')?.dataset.val || '';
+    const alliancePoints = $('#f-match-alliancePoints').value.trim();
     const notes = $('#f-match-notes').value.trim();
 
     if (!matchNum && !notes) {
@@ -681,6 +689,8 @@
       matchNumber: matchNum,
       observedRole: roleVal,
       performance: perfVal,
+      driverSkill: driverVal,
+      alliancePoints: alliancePoints ? parseInt(alliancePoints, 10) : null,
       notes: notes,
       timestamp: new Date().toISOString(),
     };
@@ -695,8 +705,10 @@
     // Reset form
     $('#f-match-number').value = '';
     $('#f-match-notes').value = '';
+    $('#f-match-alliancePoints').value = '';
     role?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
     perf?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
+    driver?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
 
     renderMatchNotesList(team);
     showAutosave('Saved');

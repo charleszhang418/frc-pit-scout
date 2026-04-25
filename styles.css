@@ -643,6 +643,18 @@ input, textarea { font-family: inherit; font-size: 1rem; }
 .match-note-tag.perf-poor { background: var(--red-dim); color: var(--red); }
 .match-note-tag.perf-disabled { background: var(--red-dim); color: var(--red); }
 
+.match-note-tag.driver-elite { background: var(--green-dim); color: var(--green); }
+.match-note-tag.driver-good { background: var(--blue-dim); color: var(--blue); }
+.match-note-tag.driver-average { background: var(--orange-dim); color: var(--orange); }
+.match-note-tag.driver-poor { background: var(--red-dim); color: var(--red); }
+
+.match-note-points {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-left: 8px;
+}
+
 .match-note-body {
   font-size: 0.85rem;
   color: var(--text);
