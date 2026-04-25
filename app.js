@@ -196,6 +196,7 @@
       climbAbility: '',
       reliability: '',
       driverAbility: '',
+      inactiveBehavior: '',
       summary: '',
     };
   }
@@ -241,10 +242,11 @@
       climbAbility: '',
       reliability: '',
       driverAbility: '',
+      inactiveBehavior: '',
       summary: $('#f-presct-summary')?.value.trim() || '',
     };
     // Get seg-control values
-    ['presct.tier', 'presct.primaryRole', 'presct.climbAbility', 'presct.reliability', 'presct.driverAbility'].forEach(field => {
+    ['presct.tier', 'presct.primaryRole', 'presct.climbAbility', 'presct.reliability', 'presct.driverAbility', 'presct.inactiveBehavior'].forEach(field => {
       const ctrl = $(`.seg-control[data-field="${field}"]`);
       if (!ctrl) return;
       const selected = ctrl.querySelector('.seg-btn.selected');
@@ -479,7 +481,7 @@
     $('#f-presct-summary').value = presct.summary || '';
 
     // Pre-scout segmented controls
-    ['presct.tier', 'presct.primaryRole', 'presct.climbAbility', 'presct.reliability', 'presct.driverAbility'].forEach(field => {
+    ['presct.tier', 'presct.primaryRole', 'presct.climbAbility', 'presct.reliability', 'presct.driverAbility', 'presct.inactiveBehavior'].forEach(field => {
       const ctrl = $(`.seg-control[data-field="${field}"]`);
       if (!ctrl) return;
       const key = field.split('.')[1];
