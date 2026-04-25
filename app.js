@@ -144,10 +144,14 @@
 
   async function seedTeams(teamList) {
     const existing = await dbGetAll();
-    const existingNums = new Set(existing.map(t => t.teamNumber));
+    const existingMap = new Map(existing.map(t => [t.teamNumber, t]));
     for (const t of teamList) {
-      if (!existingNums.has(t.teamNumber)) {
+      const rec = existingMap.get(t.teamNumber);
+      if (!rec) {
         await dbPut(makeDefaultRecord(t));
+      } else if (!rec.division && t.division) {
+        rec.division = t.division;
+        await dbPut(rec);
       }
     }
   }
