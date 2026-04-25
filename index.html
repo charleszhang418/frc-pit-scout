@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#1a1a2e">
+  <title>FRC Pit Scout — Hopper 2026</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="app">
+
+    <!-- ===== NAV BAR ===== -->
+    <nav id="bottom-nav">
+      <button class="nav-btn active" data-view="dashboard">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+        <span>Dashboard</span>
+      </button>
+      <button class="nav-btn" data-view="teamlist">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zm0-10v2h14V7H7z"/></svg>
+        <span>Teams</span>
+      </button>
+      <button class="nav-btn" data-view="form" id="nav-form-btn" style="display:none">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"/></svg>
+        <span>Form</span>
+      </button>
+      <button class="nav-btn" data-view="export">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        <span>Data</span>
+      </button>
+    </nav>
+
+    <!-- ===== DASHBOARD VIEW ===== -->
+    <section id="view-dashboard" class="view active">
+      <header class="view-header">
+        <h1>Hopper Pit Scout</h1>
+        <p class="subtitle">FRC Championship 2026</p>
+      </header>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" id="stat-total">0</div>
+          <div class="stat-label">Total Teams</div>
+        </div>
+        <div class="stat-card accent-green">
+          <div class="stat-number" id="stat-completed">0</div>
+          <div class="stat-label">Completed</div>
+        </div>
+        <div class="stat-card accent-orange">
+          <div class="stat-number" id="stat-recheck">0</div>
+          <div class="stat-label">Needs Recheck</div>
+        </div>
+        <div class="stat-card accent-blue">
+          <div class="stat-number" id="stat-verified">0</div>
+          <div class="stat-label">Verified</div>
+        </div>
+      </div>
+
+      <div class="search-bar">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="text" id="search-input" placeholder="Search team # or name…" autocomplete="off">
+      </div>
+
+      <div class="filter-row">
+        <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="unscouted">Unscouted</button>
+        <button class="filter-chip" data-filter="completed">Completed</button>
+        <button class="filter-chip" data-filter="recheck">Recheck</button>
+        <button class="filter-chip" data-filter="verified">Verified</button>
+      </div>
+
+      <div id="dashboard-team-list" class="team-list"></div>
+    </section>
+
+    <!-- ===== TEAM LIST VIEW ===== -->
+    <section id="view-teamlist" class="view">
+      <header class="view-header">
+        <h1>All Teams</h1>
+      </header>
+      <div class="search-bar">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <input type="text" id="teamlist-search" placeholder="Search team # or name…" autocomplete="off">
+      </div>
+      <div id="teamlist-container" class="team-list"></div>
+    </section>
+
+    <!-- ===== FORM VIEW ===== -->
+    <section id="view-form" class="view">
+      <header class="form-sticky-header" id="form-header">
+        <button id="form-back-btn" class="icon-btn" aria-label="Back">
+          <svg viewBox="0 0 24 24" width="24" height="24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        </button>
+        <div class="form-header-info">
+          <span id="form-team-number" class="form-team-num"></span>
+          <span id="form-team-name" class="form-team-name"></span>
+        </div>
+        <div id="autosave-indicator" class="autosave-indicator">Saved</div>
+      </header>
+
+      <div class="form-tabs" id="form-tabs">
+        <button class="form-tab active" data-section="info">Info</button>
+        <button class="form-tab" data-section="robot">Robot</button>
+        <button class="form-tab" data-section="fuel">Fuel</button>
+        <button class="form-tab" data-section="auto">Auto</button>
+        <button class="form-tab" data-section="climb">Climb</button>
+        <button class="form-tab" data-section="defense">Defense</button>
+        <button class="form-tab" data-section="verify">Verify</button>
+      </div>
+
+      <div class="form-body" id="form-body">
+
+        <!-- INFO SECTION -->
+        <div class="form-section active" data-section="info">
+          <div class="field-group">
+            <label class="field-label">Scout Name</label>
+            <input type="text" id="f-scoutName" class="field-input" placeholder="Your name" autocomplete="off">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Robot Photo</label>
+            <div class="photo-area" id="photo-area">
+              <img id="photo-preview" class="photo-preview" style="display:none" alt="Robot photo">
+              <div id="photo-placeholder" class="photo-placeholder">
+                <svg viewBox="0 0 24 24" width="48" height="48"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+                <svg viewBox="0 0 24 24" width="48" height="48"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="none"/><circle cx="12" cy="12" r="3.2"/><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+                <span>Tap to take or upload photo</span>
+              </div>
+              <input type="file" id="photo-input" accept="image/*" capture="environment" style="display:none">
+            </div>
+            <button id="photo-remove-btn" class="btn-small btn-danger" style="display:none">Remove Photo</button>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Completed</label>
+            <div class="toggle-row">
+              <label class="toggle">
+                <input type="checkbox" id="f-completed">
+                <span class="toggle-slider"></span>
+              </label>
+              <span class="toggle-label">Mark as complete</span>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">General Notes</label>
+            <textarea id="f-notes" class="field-textarea" rows="3" placeholder="Anything notable about this team…"></textarea>
+          </div>
+        </div>
+
+        <!-- ROBOT SECTION -->
+        <div class="form-section" data-section="robot">
+          <div class="field-group">
+            <label class="field-label">Drivetrain</label>
+            <div class="seg-control" data-field="robot.drivetrain">
+              <button class="seg-btn" data-val="swerve">Swerve</button>
+              <button class="seg-btn" data-val="tank">Tank</button>
+              <button class="seg-btn" data-val="other">Other</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">BUMP Ability</label>
+            <div class="seg-control" data-field="robot.bumpAbility">
+              <button class="seg-btn" data-val="yes">Yes</button>
+              <button class="seg-btn" data-val="no">No</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">TRENCH Ability</label>
+            <div class="seg-control" data-field="robot.trenchAbility">
+              <button class="seg-btn" data-val="yes">Yes</button>
+              <button class="seg-btn" data-val="no">No</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Ground Intake</label>
+            <div class="seg-control" data-field="robot.groundIntake">
+              <button class="seg-btn" data-val="yes">Yes</button>
+              <button class="seg-btn" data-val="no">No</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Outpost/Depot Intake</label>
+            <div class="seg-control" data-field="robot.depotIntake">
+              <button class="seg-btn" data-val="yes">Yes</button>
+              <button class="seg-btn" data-val="no">No</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Jam/Reliability Notes</label>
+            <textarea id="f-robot-jamNotes" class="field-textarea" rows="2" placeholder="Jamming issues, reliability concerns…"></textarea>
+          </div>
+        </div>
+
+        <!-- FUEL / SCORING SECTION -->
+        <div class="form-section" data-section="fuel">
+          <div class="field-group">
+            <label class="field-label">Preferred Scoring Range/Location</label>
+            <input type="text" id="f-fuel-scoringRange" class="field-input" placeholder="e.g., close range, far, speaker…" autocomplete="off">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Scoring Consistency</label>
+            <div class="seg-control" data-field="fuel.scoringConsistency">
+              <button class="seg-btn" data-val="high">High</button>
+              <button class="seg-btn" data-val="medium">Medium</button>
+              <button class="seg-btn" data-val="low">Low</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Estimated Teleop Role</label>
+            <div class="seg-control wide" data-field="fuel.teleopRole">
+              <button class="seg-btn" data-val="primary_scorer">Primary Scorer</button>
+              <button class="seg-btn" data-val="secondary_scorer">Secondary</button>
+              <button class="seg-btn" data-val="collector_ferry">Collector/Ferry</button>
+              <button class="seg-btn" data-val="defense">Defense</button>
+              <button class="seg-btn" data-val="climb_specialist">Climb Specialist</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Inactive HUB Behavior</label>
+            <div class="seg-control wide" data-field="fuel.inactiveHubBehavior">
+              <button class="seg-btn" data-val="collects">Collects</button>
+              <button class="seg-btn" data-val="defends">Defends</button>
+              <button class="seg-btn" data-val="waits">Waits</button>
+              <button class="seg-btn" data-val="shoots_anyway">Shoots Anyway</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- AUTO SECTION -->
+        <div class="form-section" data-section="auto">
+          <div class="field-group">
+            <label class="field-label">Main Auto Start Location</label>
+            <input type="text" id="f-auto-startLocation" class="field-input" placeholder="e.g., left, center, right…" autocomplete="off">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Auto Path / Description</label>
+            <textarea id="f-auto-pathDescription" class="field-textarea" rows="2" placeholder="Describe their auto routine…"></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Auto Fuel Estimate</label>
+            <div class="seg-control" data-field="auto.fuelEstimate">
+              <button class="seg-btn" data-val="0">0</button>
+              <button class="seg-btn" data-val="1-10">1–10</button>
+              <button class="seg-btn" data-val="11-25">11–25</button>
+              <button class="seg-btn" data-val="26-50">26–50</button>
+              <button class="seg-btn" data-val="50+">50+</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Auto Climbs Tower Level 1</label>
+            <div class="seg-control" data-field="auto.climbsL1">
+              <button class="seg-btn" data-val="yes">Yes</button>
+              <button class="seg-btn" data-val="no">No</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Center-Line Risk (Post-Championship Update)</label>
+            <div class="seg-control" data-field="auto.centerLineRisk">
+              <button class="seg-btn" data-val="safe">Safe</button>
+              <button class="seg-btn" data-val="risky">Risky</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Partner Conflicts / Preferred Spacing</label>
+            <textarea id="f-auto-partnerConflicts" class="field-textarea" rows="2" placeholder="Any auto spacing issues with partners…"></textarea>
+          </div>
+        </div>
+
+        <!-- CLIMB / ENDGAME SECTION -->
+        <div class="form-section" data-section="climb">
+          <div class="field-group">
+            <label class="field-label">Max Climb</label>
+            <div class="seg-control" data-field="climb.maxClimb">
+              <button class="seg-btn" data-val="none">None</button>
+              <button class="seg-btn" data-val="L1">L1</button>
+              <button class="seg-btn" data-val="L2">L2</button>
+              <button class="seg-btn" data-val="L3">L3</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Typical Climb</label>
+            <div class="seg-control" data-field="climb.typicalClimb">
+              <button class="seg-btn" data-val="none">None</button>
+              <button class="seg-btn" data-val="L1">L1</button>
+              <button class="seg-btn" data-val="L2">L2</button>
+              <button class="seg-btn" data-val="L3">L3</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Climb Time</label>
+            <div class="seg-control" data-field="climb.climbTime">
+              <button class="seg-btn" data-val="<10s">&lt;10s</button>
+              <button class="seg-btn" data-val="10-20s">10–20s</button>
+              <button class="seg-btn" data-val="20-30s">20–30s</button>
+              <button class="seg-btn" data-val="30+s">30+s</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Claimed Success Rate</label>
+            <div class="seg-control wide" data-field="climb.claimedSuccessRate">
+              <button class="seg-btn" data-val="rare">Rare</button>
+              <button class="seg-btn" data-val="sometimes">Sometimes</button>
+              <button class="seg-btn" data-val="usually">Usually</button>
+              <button class="seg-btn" data-val="almost_always">Almost Always</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Partner Spacing Issues</label>
+            <textarea id="f-climb-partnerSpacing" class="field-textarea" rows="2" placeholder="Issues with climb partner spacing…"></textarea>
+          </div>
+        </div>
+
+        <!-- DEFENSE / RELIABILITY SECTION -->
+        <div class="form-section" data-section="defense">
+          <div class="field-group">
+            <label class="field-label">Can Play Defense</label>
+            <div class="seg-control" data-field="defense.canPlayDefense">
+              <button class="seg-btn" data-val="yes">Yes</button>
+              <button class="seg-btn" data-val="no">No</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Can Handle Defense</label>
+            <div class="seg-control" data-field="defense.canHandleDefense">
+              <button class="seg-btn" data-val="well">Well</button>
+              <button class="seg-btn" data-val="okay">Okay</button>
+              <button class="seg-btn" data-val="poorly">Poorly</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Foul/Card Risk</label>
+            <div class="seg-control" data-field="defense.foulRisk">
+              <button class="seg-btn" data-val="low">Low</button>
+              <button class="seg-btn" data-val="medium">Medium</button>
+              <button class="seg-btn" data-val="high">High</button>
+              <button class="seg-btn" data-val="unknown">Unknown</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Known Mechanical/Electrical Issues</label>
+            <textarea id="f-defense-knownIssues" class="field-textarea" rows="2" placeholder="Broken sensors, motor problems…"></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Freeform Notes</label>
+            <textarea id="f-defense-notes" class="field-textarea" rows="3" placeholder="Anything else about defense/reliability…"></textarea>
+          </div>
+        </div>
+
+        <!-- VERIFICATION SECTION -->
+        <div class="form-section" data-section="verify">
+          <div class="field-group">
+            <label class="field-label">Evidence Level</label>
+            <div class="seg-control wide" data-field="verification.evidenceLevel">
+              <button class="seg-btn" data-val="pit_claim">Pit Claim</button>
+              <button class="seg-btn" data-val="practice_seen">Practice Seen</button>
+              <button class="seg-btn" data-val="match_seen">Match Seen</button>
+              <button class="seg-btn" data-val="video_seen">Video Seen</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Verification Status</label>
+            <div class="seg-control wide" data-field="verification.status">
+              <button class="seg-btn" data-val="self_reported">Self-Reported</button>
+              <button class="seg-btn" data-val="practice_verified">Practice Verified</button>
+              <button class="seg-btn" data-val="match_verified">Match Verified</button>
+              <button class="seg-btn" data-val="disproved">Disproved</button>
+              <button class="seg-btn" data-val="needs_recheck">Needs Recheck</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Verification Notes</label>
+            <textarea id="f-verify-notes" class="field-textarea" rows="2" placeholder="What did you verify and how…"></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Match Evidence Notes</label>
+            <textarea id="f-verify-matchEvidenceNotes" class="field-textarea" rows="2" placeholder="Which match confirmed/disproved claims…"></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Last Verified Match</label>
+            <input type="text" id="f-verify-lastVerifiedMatch" class="field-input" placeholder="e.g., Q42, SF2-1…" autocomplete="off">
+          </div>
+          <div class="field-group">
+            <label class="field-label">Confidence Score (1–5)</label>
+            <div class="seg-control" data-field="verification.confidenceScore">
+              <button class="seg-btn" data-val="1">1</button>
+              <button class="seg-btn" data-val="2">2</button>
+              <button class="seg-btn" data-val="3">3</button>
+              <button class="seg-btn" data-val="4">4</button>
+              <button class="seg-btn" data-val="5">5</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Needs Recheck</label>
+            <div class="toggle-row">
+              <label class="toggle">
+                <input type="checkbox" id="f-needsRecheck">
+                <span class="toggle-slider"></span>
+              </label>
+              <span class="toggle-label">Flag for recheck</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-footer">
+        <button id="form-save-btn" class="btn btn-primary btn-block">Save &amp; Back to List</button>
+      </div>
+    </section>
+
+    <!-- ===== EXPORT VIEW ===== -->
+    <section id="view-export" class="view">
+      <header class="view-header">
+        <h1>Data &amp; Export</h1>
+      </header>
+
+      <div class="export-cards">
+        <div class="export-card">
+          <h3>Export CSV</h3>
+          <p>Flat spreadsheet of all scouted teams (no photos).</p>
+          <button id="btn-export-csv" class="btn btn-primary btn-block">Download CSV</button>
+        </div>
+
+        <div class="export-card">
+          <h3>Export JSON Backup</h3>
+          <p>Full backup including photos. Use to merge across devices.</p>
+          <button id="btn-export-json" class="btn btn-primary btn-block">Download JSON</button>
+        </div>
+
+        <div class="export-card">
+          <h3>Import JSON Backup</h3>
+          <p>Merge data from another device. Newer records overwrite older ones.</p>
+          <input type="file" id="import-json-input" accept=".json" style="display:none">
+          <button id="btn-import-json" class="btn btn-secondary btn-block">Import JSON</button>
+        </div>
+
+        <div class="export-card">
+          <h3>Import Team List</h3>
+          <p>Load a CSV of teams (columns: teamNumber, teamName).</p>
+          <input type="file" id="import-teams-input" accept=".csv" style="display:none">
+          <button id="btn-import-teams" class="btn btn-secondary btn-block">Import Teams CSV</button>
+        </div>
+
+        <div class="export-card danger-zone">
+          <h3>Clear All Data</h3>
+          <p>Permanently delete all scouting data from this device.</p>
+          <button id="btn-clear-data" class="btn btn-danger btn-block">Clear All Data</button>
+        </div>
+
+        <div class="export-meta">
+          <p id="last-export-time">No exports yet</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

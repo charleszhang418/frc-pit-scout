@@ -1,0 +1,787 @@
+/* ========================================================
+   FRC Pit Scouting App — Hopper Division 2026
+   Offline-first, IndexedDB-backed, zero-dependency
+   ======================================================== */
+
+(function () {
+  'use strict';
+
+  // ───── Hopper Division Team List (2026 placeholder) ─────
+  const DEFAULT_TEAMS = [
+    { teamNumber: 11118, teamName: 'The Baybies' },
+    { teamNumber: 254, teamName: 'The Cheesy Poofs' },
+    { teamNumber: 1678, teamName: 'Citrus Circuits' },
+    { teamNumber: 971, teamName: 'Spartan Robotics' },
+    { teamNumber: 2056, teamName: 'OP Robotics' },
+    { teamNumber: 4414, teamName: 'HighTide' },
+    { teamNumber: 6328, teamName: 'Mechanical Advantage' },
+    { teamNumber: 148, teamName: 'Robowranglers' },
+    { teamNumber: 1323, teamName: 'MadTown Robotics' },
+    { teamNumber: 2910, teamName: 'Jack in the Bot' },
+    { teamNumber: 3310, teamName: 'Black Hawk Robotics' },
+    { teamNumber: 5406, teamName: 'Celt-X' },
+    { teamNumber: 1114, teamName: 'Simbotics' },
+    { teamNumber: 2767, teamName: 'Stryke Force' },
+    { teamNumber: 118, teamName: 'Robonauts' },
+    { teamNumber: 1619, teamName: 'Up-A-Creek Robotics' },
+    { teamNumber: 2471, teamName: 'Team Mean Machine' },
+    { teamNumber: 4481, teamName: 'Team Rembrandts' },
+    { teamNumber: 5940, teamName: 'BREAD' },
+    { teamNumber: 6036, teamName: 'Peninsula Robotics' },
+    { teamNumber: 33, teamName: 'Killer Bees' },
+    { teamNumber: 1241, teamName: 'THEORY6' },
+    { teamNumber: 2614, teamName: 'Mountaineers' },
+    { teamNumber: 3005, teamName: 'RoboChargers' },
+    { teamNumber: 4096, teamName: 'Ctrl-Z' },
+    { teamNumber: 4911, teamName: 'CyberKnights' },
+    { teamNumber: 6672, teamName: 'Fusion Corps' },
+    { teamNumber: 7461, teamName: 'Sushi Squad' },
+    { teamNumber: 8033, teamName: 'Highlanders' },
+    { teamNumber: 9072, teamName: 'Boba Bots' },
+  ];
+
+  // ───── IndexedDB Setup ─────
+  const DB_NAME = 'frcPitScout';
+  const DB_VERSION = 1;
+  const STORE = 'teams';
+  let db = null;
+
+  function openDB() {
+    return new Promise((resolve, reject) => {
+      const req = indexedDB.open(DB_NAME, DB_VERSION);
+      req.onupgradeneeded = (e) => {
+        const d = e.target.result;
+        if (!d.objectStoreNames.contains(STORE)) {
+          d.createObjectStore(STORE, { keyPath: 'teamNumber' });
+        }
+      };
+      req.onsuccess = (e) => { db = e.target.result; resolve(db); };
+      req.onerror = (e) => reject(e.target.error);
+    });
+  }
+
+  function txStore(mode) {
+    return db.transaction(STORE, mode).objectStore(STORE);
+  }
+
+  function dbGet(key) {
+    return new Promise((resolve, reject) => {
+      const req = txStore('readonly').get(key);
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function dbPut(record) {
+    return new Promise((resolve, reject) => {
+      const req = txStore('readwrite').put(record);
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function dbGetAll() {
+    return new Promise((resolve, reject) => {
+      const req = txStore('readonly').getAll();
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function dbClear() {
+    return new Promise((resolve, reject) => {
+      const req = txStore('readwrite').clear();
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function makeDefaultRecord(team) {
+    return {
+      teamNumber: team.teamNumber,
+      teamName: team.teamName || '',
+      assignedScout: '',
+      updatedAt: '',
+      completed: false,
+      needsRecheck: false,
+      photoDataUrl: '',
+      robot: {
+        drivetrain: '',
+        bumpAbility: '',
+        trenchAbility: '',
+        groundIntake: '',
+        depotIntake: '',
+        jamNotes: '',
+      },
+      fuel: {
+        scoringRange: '',
+        scoringConsistency: '',
+        teleopRole: '',
+        inactiveHubBehavior: '',
+      },
+      auto: {
+        startLocation: '',
+        pathDescription: '',
+        fuelEstimate: '',
+        climbsL1: '',
+        centerLineRisk: '',
+        partnerConflicts: '',
+      },
+      climb: {
+        maxClimb: '',
+        typicalClimb: '',
+        climbTime: '',
+        claimedSuccessRate: '',
+        partnerSpacing: '',
+      },
+      defense: {
+        canPlayDefense: '',
+        canHandleDefense: '',
+        foulRisk: '',
+        knownIssues: '',
+        notes: '',
+      },
+      verification: {
+        evidenceLevel: '',
+        status: '',
+        notes: '',
+        matchEvidenceNotes: '',
+        lastVerifiedMatch: '',
+        confidenceScore: '',
+      },
+      notes: '',
+    };
+  }
+
+  async function seedTeams(teamList) {
+    const existing = await dbGetAll();
+    const existingNums = new Set(existing.map(t => t.teamNumber));
+    for (const t of teamList) {
+      if (!existingNums.has(t.teamNumber)) {
+        await dbPut(makeDefaultRecord(t));
+      }
+    }
+  }
+
+  // ───── State ─────
+  let allTeams = [];
+  let currentFilter = 'all';
+  let currentSearch = '';
+  let currentTeamNumber = null;
+  let autosaveTimer = null;
+
+  // ───── DOM Refs ─────
+  const $ = (sel) => document.querySelector(sel);
+  const $$ = (sel) => document.querySelectorAll(sel);
+
+  // ───── Navigation ─────
+  function switchView(name) {
+    $$('.view').forEach(v => v.classList.remove('active'));
+    $$('.nav-btn').forEach(b => b.classList.remove('active'));
+    const view = $(`#view-${name}`);
+    if (view) view.classList.add('active');
+    const navBtn = $(`.nav-btn[data-view="${name}"]`);
+    if (navBtn) navBtn.classList.add('active');
+    if (name === 'form') {
+      $('#nav-form-btn').style.display = '';
+    }
+    window.scrollTo(0, 0);
+  }
+
+  // ───── Toast ─────
+  let toastEl = null;
+  let toastTimeout = null;
+  function showToast(msg, type = '') {
+    if (!toastEl) {
+      toastEl = document.createElement('div');
+      toastEl.className = 'toast';
+      document.body.appendChild(toastEl);
+    }
+    toastEl.textContent = msg;
+    toastEl.className = 'toast' + (type ? ` toast-${type}` : '');
+    clearTimeout(toastTimeout);
+    requestAnimationFrame(() => {
+      toastEl.classList.add('show');
+      toastTimeout = setTimeout(() => toastEl.classList.remove('show'), 2500);
+    });
+  }
+
+  // ───── Confirm Dialog ─────
+  function confirmDialog(title, message) {
+    return new Promise((resolve) => {
+      const overlay = document.createElement('div');
+      overlay.className = 'dialog-overlay';
+      overlay.innerHTML = `
+        <div class="dialog-box">
+          <h3>${title}</h3>
+          <p>${message}</p>
+          <div class="dialog-actions">
+            <button class="btn btn-secondary" data-action="cancel">Cancel</button>
+            <button class="btn btn-danger" data-action="confirm">Confirm</button>
+          </div>
+        </div>`;
+      document.body.appendChild(overlay);
+      overlay.addEventListener('click', (e) => {
+        const action = e.target.dataset.action;
+        if (action) {
+          document.body.removeChild(overlay);
+          resolve(action === 'confirm');
+        }
+      });
+    });
+  }
+
+  // ───── Team List Rendering ─────
+  function getStatusInfo(team) {
+    if (team.needsRecheck) return { label: 'Recheck', cls: 'chip-recheck' };
+    const vs = team.verification?.status;
+    if (vs === 'match_verified' || vs === 'practice_verified')
+      return { label: 'Verified', cls: 'chip-verified' };
+    if (team.completed) return { label: 'Done', cls: 'chip-completed' };
+    return { label: 'Unscouted', cls: 'chip-unscouted' };
+  }
+
+  function matchesFilter(team) {
+    const status = getStatusInfo(team);
+    switch (currentFilter) {
+      case 'unscouted': return status.label === 'Unscouted';
+      case 'completed': return team.completed;
+      case 'recheck': return team.needsRecheck;
+      case 'verified': return status.label === 'Verified';
+      default: return true;
+    }
+  }
+
+  function matchesSearch(team) {
+    if (!currentSearch) return true;
+    const q = currentSearch.toLowerCase();
+    return (
+      String(team.teamNumber).includes(q) ||
+      (team.teamName || '').toLowerCase().includes(q)
+    );
+  }
+
+  function getIndicators(team) {
+    const inds = [];
+    if (team.auto?.fuelEstimate || team.auto?.startLocation) inds.push({ cls: 'ind-auto', text: 'AUTO' });
+    if (team.climb?.maxClimb && team.climb.maxClimb !== 'none' && team.climb.maxClimb !== 'unknown')
+      inds.push({ cls: 'ind-climb', text: team.climb.maxClimb.toUpperCase() });
+    if (team.fuel?.scoringConsistency && team.fuel.scoringConsistency !== 'unknown')
+      inds.push({ cls: 'ind-fuel', text: 'FUEL' });
+    if (team.needsRecheck) inds.push({ cls: 'ind-recheck', text: 'RECHECK' });
+    return inds;
+  }
+
+  function renderTeamRow(team) {
+    const status = getStatusInfo(team);
+    const indicators = getIndicators(team);
+    const indHTML = indicators.map(i => `<span class="indicator ${i.cls}">${i.text}</span>`).join('');
+    return `
+      <div class="team-row" data-team="${team.teamNumber}">
+        <div class="team-row-num">${team.teamNumber}</div>
+        <div class="team-row-info">
+          <div class="team-row-name">${team.teamName || 'Unknown'}</div>
+          <div class="team-row-indicators">${indHTML}</div>
+        </div>
+        <span class="status-chip ${status.cls}">${status.label}</span>
+      </div>`;
+  }
+
+  function renderTeamList(containerId) {
+    const filtered = allTeams
+      .filter(t => matchesFilter(t) && matchesSearch(t))
+      .sort((a, b) => a.teamNumber - b.teamNumber);
+    const container = $(`#${containerId}`);
+    if (filtered.length === 0) {
+      container.innerHTML = '<div class="empty-state">No teams match your filter.</div>';
+    } else {
+      container.innerHTML = filtered.map(renderTeamRow).join('');
+    }
+  }
+
+  async function refreshData() {
+    allTeams = await dbGetAll();
+    updateStats();
+    renderTeamList('dashboard-team-list');
+    renderTeamList('teamlist-container');
+  }
+
+  function updateStats() {
+    const total = allTeams.length;
+    const completed = allTeams.filter(t => t.completed).length;
+    const recheck = allTeams.filter(t => t.needsRecheck).length;
+    const verified = allTeams.filter(t => {
+      const vs = t.verification?.status;
+      return vs === 'match_verified' || vs === 'practice_verified';
+    }).length;
+    $('#stat-total').textContent = total;
+    $('#stat-completed').textContent = completed;
+    $('#stat-recheck').textContent = recheck;
+    $('#stat-verified').textContent = verified;
+  }
+
+  // ───── Form Logic ─────
+  async function openTeamForm(teamNumber) {
+    const team = await dbGet(teamNumber);
+    if (!team) return;
+    currentTeamNumber = teamNumber;
+
+    $('#form-team-number').textContent = `#${team.teamNumber}`;
+    $('#form-team-name').textContent = team.teamName || '';
+
+    // Populate inputs
+    $('#f-scoutName').value = team.assignedScout || '';
+    $('#f-completed').checked = !!team.completed;
+    $('#f-notes').value = team.notes || '';
+    $('#f-needsRecheck').checked = !!team.needsRecheck;
+
+    // Photo
+    if (team.photoDataUrl) {
+      $('#photo-preview').src = team.photoDataUrl;
+      $('#photo-preview').style.display = '';
+      $('#photo-placeholder').style.display = 'none';
+      $('#photo-remove-btn').style.display = '';
+    } else {
+      $('#photo-preview').style.display = 'none';
+      $('#photo-placeholder').style.display = '';
+      $('#photo-remove-btn').style.display = 'none';
+    }
+
+    // Text fields mapped to nested objects
+    const textFields = {
+      'f-robot-jamNotes': ['robot', 'jamNotes'],
+      'f-fuel-scoringRange': ['fuel', 'scoringRange'],
+      'f-auto-startLocation': ['auto', 'startLocation'],
+      'f-auto-pathDescription': ['auto', 'pathDescription'],
+      'f-auto-partnerConflicts': ['auto', 'partnerConflicts'],
+      'f-climb-partnerSpacing': ['climb', 'partnerSpacing'],
+      'f-defense-knownIssues': ['defense', 'knownIssues'],
+      'f-defense-notes': ['defense', 'notes'],
+      'f-verify-notes': ['verification', 'notes'],
+      'f-verify-matchEvidenceNotes': ['verification', 'matchEvidenceNotes'],
+      'f-verify-lastVerifiedMatch': ['verification', 'lastVerifiedMatch'],
+    };
+    for (const [id, path] of Object.entries(textFields)) {
+      const el = $(`#${id}`);
+      if (el) el.value = (team[path[0]] && team[path[0]][path[1]]) || '';
+    }
+
+    // Segmented controls
+    $$('.seg-control').forEach(ctrl => {
+      const field = ctrl.dataset.field;
+      const [section, key] = field.split('.');
+      const val = team[section] && team[section][key];
+      ctrl.querySelectorAll('.seg-btn').forEach(btn => {
+        btn.classList.toggle('selected', btn.dataset.val === val);
+      });
+    });
+
+    // Activate first tab
+    $$('.form-tab').forEach(t => t.classList.toggle('active', t.dataset.section === 'info'));
+    $$('.form-section').forEach(s => s.classList.toggle('active', s.dataset.section === 'info'));
+
+    showAutosave('Saved');
+    switchView('form');
+  }
+
+  function collectFormData() {
+    const data = {};
+    data.assignedScout = $('#f-scoutName').value.trim();
+    data.completed = $('#f-completed').checked;
+    data.needsRecheck = $('#f-needsRecheck').checked;
+    data.notes = $('#f-notes').value.trim();
+    data.updatedAt = new Date().toISOString();
+
+    // Segmented controls
+    $$('.seg-control').forEach(ctrl => {
+      const field = ctrl.dataset.field;
+      const [section, key] = field.split('.');
+      if (!data[section]) data[section] = {};
+      const selected = ctrl.querySelector('.seg-btn.selected');
+      data[section][key] = selected ? selected.dataset.val : '';
+    });
+
+    // Text fields
+    const textFields = {
+      'f-robot-jamNotes': ['robot', 'jamNotes'],
+      'f-fuel-scoringRange': ['fuel', 'scoringRange'],
+      'f-auto-startLocation': ['auto', 'startLocation'],
+      'f-auto-pathDescription': ['auto', 'pathDescription'],
+      'f-auto-partnerConflicts': ['auto', 'partnerConflicts'],
+      'f-climb-partnerSpacing': ['climb', 'partnerSpacing'],
+      'f-defense-knownIssues': ['defense', 'knownIssues'],
+      'f-defense-notes': ['defense', 'notes'],
+      'f-verify-notes': ['verification', 'notes'],
+      'f-verify-matchEvidenceNotes': ['verification', 'matchEvidenceNotes'],
+      'f-verify-lastVerifiedMatch': ['verification', 'lastVerifiedMatch'],
+    };
+    for (const [id, path] of Object.entries(textFields)) {
+      const el = $(`#${id}`);
+      if (el) {
+        if (!data[path[0]]) data[path[0]] = {};
+        data[path[0]][path[1]] = el.value.trim();
+      }
+    }
+
+    return data;
+  }
+
+  async function saveForm() {
+    if (!currentTeamNumber) return;
+    const existing = await dbGet(currentTeamNumber);
+    if (!existing) return;
+    const formData = collectFormData();
+
+    // Merge nested objects
+    for (const key of ['robot', 'fuel', 'auto', 'climb', 'defense', 'verification']) {
+      existing[key] = { ...existing[key], ...formData[key] };
+    }
+    existing.assignedScout = formData.assignedScout;
+    existing.completed = formData.completed;
+    existing.needsRecheck = formData.needsRecheck;
+    existing.notes = formData.notes;
+    existing.updatedAt = formData.updatedAt;
+
+    await dbPut(existing);
+    showAutosave('Saved');
+  }
+
+  function showAutosave(text) {
+    const el = $('#autosave-indicator');
+    el.textContent = text;
+    el.classList.toggle('saving', text !== 'Saved');
+  }
+
+  function scheduleAutosave() {
+    showAutosave('Saving…');
+    clearTimeout(autosaveTimer);
+    autosaveTimer = setTimeout(async () => {
+      await saveForm();
+    }, 800);
+  }
+
+  // ───── Photo Handling ─────
+  function compressImage(file, maxDim, quality) {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let w = img.width, h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
+            else { w = Math.round(w * maxDim / h); h = maxDim; }
+          }
+          canvas.width = w;
+          canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          resolve(canvas.toDataURL('image/jpeg', quality));
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function handlePhoto(file) {
+    if (!file || !currentTeamNumber) return;
+    const dataUrl = await compressImage(file, 800, 0.7);
+    const team = await dbGet(currentTeamNumber);
+    if (!team) return;
+    team.photoDataUrl = dataUrl;
+    team.updatedAt = new Date().toISOString();
+    await dbPut(team);
+    $('#photo-preview').src = dataUrl;
+    $('#photo-preview').style.display = '';
+    $('#photo-placeholder').style.display = 'none';
+    $('#photo-remove-btn').style.display = '';
+    showAutosave('Saved');
+    showToast('Photo saved', 'success');
+  }
+
+  async function removePhoto() {
+    if (!currentTeamNumber) return;
+    const team = await dbGet(currentTeamNumber);
+    if (!team) return;
+    team.photoDataUrl = '';
+    team.updatedAt = new Date().toISOString();
+    await dbPut(team);
+    $('#photo-preview').style.display = 'none';
+    $('#photo-placeholder').style.display = '';
+    $('#photo-remove-btn').style.display = 'none';
+    showToast('Photo removed');
+  }
+
+  // ───── CSV Export ─────
+  function flattenForCSV(team) {
+    const row = {};
+    row.teamNumber = team.teamNumber;
+    row.teamName = team.teamName;
+    row.scout = team.assignedScout;
+    row.updatedAt = team.updatedAt;
+    row.completed = team.completed;
+    row.needsRecheck = team.needsRecheck;
+    row.notes = team.notes;
+    for (const section of ['robot', 'fuel', 'auto', 'climb', 'defense', 'verification']) {
+      if (team[section]) {
+        for (const [k, v] of Object.entries(team[section])) {
+          row[`${section}_${k}`] = v;
+        }
+      }
+    }
+    row.hasPhoto = !!team.photoDataUrl;
+    return row;
+  }
+
+  function toCSV(teams) {
+    if (!teams.length) return '';
+    const rows = teams.map(flattenForCSV);
+    const headers = Object.keys(rows[0]);
+    const escape = (v) => {
+      const s = String(v ?? '');
+      return s.includes(',') || s.includes('"') || s.includes('\n')
+        ? `"${s.replace(/"/g, '""')}"` : s;
+    };
+    const lines = [headers.join(',')];
+    for (const r of rows) {
+      lines.push(headers.map(h => escape(r[h])).join(','));
+    }
+    return lines.join('\n');
+  }
+
+  function downloadFile(content, filename, mime) {
+    const blob = new Blob([content], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  async function exportCSV() {
+    const teams = await dbGetAll();
+    const csv = toCSV(teams);
+    const ts = new Date().toISOString().slice(0, 16).replace(/[:.]/g, '-');
+    downloadFile(csv, `hopper-pit-scout-${ts}.csv`, 'text/csv');
+    updateExportTimestamp();
+    showToast('CSV exported', 'success');
+  }
+
+  async function exportJSON() {
+    const teams = await dbGetAll();
+    const json = JSON.stringify(teams, null, 2);
+    const ts = new Date().toISOString().slice(0, 16).replace(/[:.]/g, '-');
+    downloadFile(json, `hopper-pit-scout-${ts}.json`, 'application/json');
+    updateExportTimestamp();
+    showToast('JSON backup exported', 'success');
+  }
+
+  async function importJSON(file) {
+    try {
+      const text = await file.text();
+      const records = JSON.parse(text);
+      if (!Array.isArray(records)) throw new Error('Expected array');
+      let imported = 0;
+      for (const rec of records) {
+        if (!rec.teamNumber) continue;
+        const existing = await dbGet(rec.teamNumber);
+        if (!existing || !existing.updatedAt || (rec.updatedAt && rec.updatedAt > existing.updatedAt)) {
+          await dbPut(rec);
+          imported++;
+        }
+      }
+      await refreshData();
+      showToast(`Imported ${imported} team(s)`, 'success');
+    } catch (err) {
+      showToast('Import failed: ' + err.message, 'error');
+    }
+  }
+
+  async function importTeamsCSV(file) {
+    try {
+      const text = await file.text();
+      const lines = text.trim().split('\n');
+      if (lines.length < 2) throw new Error('No data rows');
+      const header = lines[0].split(',').map(h => h.trim().toLowerCase());
+      const numIdx = header.findIndex(h => h.includes('number') || h === 'teamnumber' || h === 'team');
+      const nameIdx = header.findIndex(h => h.includes('name') || h === 'teamname');
+      if (numIdx === -1) throw new Error('No teamNumber column found');
+      const teams = [];
+      for (let i = 1; i < lines.length; i++) {
+        const cols = lines[i].split(',').map(c => c.trim().replace(/^"|"$/g, ''));
+        const num = parseInt(cols[numIdx], 10);
+        if (isNaN(num)) continue;
+        teams.push({ teamNumber: num, teamName: nameIdx >= 0 ? cols[nameIdx] : '' });
+      }
+      await seedTeams(teams);
+      await refreshData();
+      showToast(`Added ${teams.length} team(s)`, 'success');
+    } catch (err) {
+      showToast('Team import failed: ' + err.message, 'error');
+    }
+  }
+
+  function updateExportTimestamp() {
+    const ts = new Date().toLocaleString();
+    localStorage.setItem('lastExport', ts);
+    $('#last-export-time').textContent = `Last export: ${ts}`;
+  }
+
+  // ───── Event Wiring ─────
+  function wireEvents() {
+    // Navigation
+    $$('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const view = btn.dataset.view;
+        if (view === 'form' && !currentTeamNumber) return;
+        switchView(view);
+        if (view !== 'form') refreshData();
+      });
+    });
+
+    // Dashboard search & filters
+    $('#search-input').addEventListener('input', (e) => {
+      currentSearch = e.target.value.trim();
+      renderTeamList('dashboard-team-list');
+    });
+
+    $$('.filter-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        $$('.filter-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        currentFilter = chip.dataset.filter;
+        renderTeamList('dashboard-team-list');
+      });
+    });
+
+    // Team list search
+    $('#teamlist-search').addEventListener('input', (e) => {
+      currentSearch = e.target.value.trim();
+      renderTeamList('teamlist-container');
+    });
+
+    // Team row clicks (delegated)
+    document.addEventListener('click', (e) => {
+      const row = e.target.closest('.team-row');
+      if (row) {
+        const num = parseInt(row.dataset.team, 10);
+        if (num) openTeamForm(num);
+      }
+    });
+
+    // Form back
+    $('#form-back-btn').addEventListener('click', async () => {
+      clearTimeout(autosaveTimer);
+      await saveForm();
+      await refreshData();
+      switchView('teamlist');
+    });
+
+    // Form save button
+    $('#form-save-btn').addEventListener('click', async () => {
+      clearTimeout(autosaveTimer);
+      await saveForm();
+      await refreshData();
+      switchView('teamlist');
+      showToast('Saved!', 'success');
+    });
+
+    // Form tabs
+    $$('.form-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        $$('.form-tab').forEach(t => t.classList.remove('active'));
+        $$('.form-section').forEach(s => s.classList.remove('active'));
+        tab.classList.add('active');
+        const section = $(`.form-section[data-section="${tab.dataset.section}"]`);
+        if (section) section.classList.add('active');
+      });
+    });
+
+    // Segmented control clicks
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.seg-btn');
+      if (!btn) return;
+      const ctrl = btn.closest('.seg-control');
+      if (!ctrl) return;
+      ctrl.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      scheduleAutosave();
+    });
+
+    // Autosave on text inputs within form
+    $$('#view-form .field-input, #view-form .field-textarea').forEach(el => {
+      el.addEventListener('input', scheduleAutosave);
+    });
+    $('#f-scoutName').addEventListener('input', scheduleAutosave);
+    $('#f-notes').addEventListener('input', scheduleAutosave);
+    $('#f-completed').addEventListener('change', scheduleAutosave);
+    $('#f-needsRecheck').addEventListener('change', scheduleAutosave);
+
+    // Photo
+    $('#photo-area').addEventListener('click', () => $('#photo-input').click());
+    $('#photo-input').addEventListener('change', (e) => {
+      if (e.target.files[0]) handlePhoto(e.target.files[0]);
+    });
+    $('#photo-remove-btn').addEventListener('click', removePhoto);
+
+    // Export/Import
+    $('#btn-export-csv').addEventListener('click', exportCSV);
+    $('#btn-export-json').addEventListener('click', exportJSON);
+    $('#btn-import-json').addEventListener('click', () => $('#import-json-input').click());
+    $('#import-json-input').addEventListener('change', (e) => {
+      if (e.target.files[0]) importJSON(e.target.files[0]);
+      e.target.value = '';
+    });
+    $('#btn-import-teams').addEventListener('click', () => $('#import-teams-input').click());
+    $('#import-teams-input').addEventListener('change', (e) => {
+      if (e.target.files[0]) importTeamsCSV(e.target.files[0]);
+      e.target.value = '';
+    });
+
+    // Clear data
+    $('#btn-clear-data').addEventListener('click', async () => {
+      const yes = await confirmDialog(
+        'Clear All Data',
+        'This will permanently delete all scouting data on this device. This cannot be undone. Export a backup first!'
+      );
+      if (yes) {
+        await dbClear();
+        await seedTeams(DEFAULT_TEAMS);
+        await refreshData();
+        showToast('All data cleared', 'success');
+      }
+    });
+
+    // Load last export timestamp
+    const lastExport = localStorage.getItem('lastExport');
+    if (lastExport) {
+      $('#last-export-time').textContent = `Last export: ${lastExport}`;
+    }
+  }
+
+  // ───── Service Worker Registration ─────
+  function registerSW() {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js').catch(() => {});
+    }
+  }
+
+  // ───── Init ─────
+  async function init() {
+    await openDB();
+    await seedTeams(DEFAULT_TEAMS);
+    await refreshData();
+    wireEvents();
+    registerSW();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
