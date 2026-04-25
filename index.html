@@ -171,13 +171,8 @@
           </div>
 
           <div class="field-group">
-            <label class="field-label">Auto Strength</label>
-            <div class="seg-control" data-field="presct.autoStrength">
-              <button class="seg-btn" data-val="none">None</button>
-              <button class="seg-btn" data-val="basic">Basic</button>
-              <button class="seg-btn" data-val="good">Good</button>
-              <button class="seg-btn" data-val="elite">Elite</button>
-            </div>
+            <label class="field-label">Auto Notes</label>
+            <input type="text" id="f-presct-autoNotes" class="field-input" placeholder="Auto paths, consistency, game pieces…" autocomplete="off">
           </div>
 
           <div class="field-group">
@@ -198,21 +193,6 @@
               <button class="seg-btn" data-val="solid">Solid</button>
               <button class="seg-btn" data-val="unknown">Unknown</button>
             </div>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label">Why Pick Them</label>
-            <textarea id="f-presct-whyPick" class="field-textarea" rows="2" placeholder="Strengths, good alliance fit…"></textarea>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label">Why Avoid Them</label>
-            <textarea id="f-presct-whyAvoid" class="field-textarea" rows="2" placeholder="Red flags, concerns, weaknesses…"></textarea>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label">Video Links / Notes</label>
-            <textarea id="f-presct-videoNotes" class="field-textarea" rows="2" placeholder="TBA links, match numbers to watch…"></textarea>
           </div>
 
           <div class="field-group">
@@ -475,13 +455,12 @@
               <input type="text" id="f-match-number" class="field-input" placeholder="e.g., Q12, SF1-2…" autocomplete="off">
             </div>
             <div class="field-group">
-              <label class="field-label">Observed Role</label>
-              <div class="seg-control wide" data-field="matchEntry.observedRole">
-                <button class="seg-btn" data-val="primary_scorer">Primary Scorer</button>
-                <button class="seg-btn" data-val="secondary_scorer">Secondary</button>
-                <button class="seg-btn" data-val="collector_ferry">Collector/Ferry</button>
+              <label class="field-label">Observed Roles (select multiple)</label>
+              <div class="seg-control wide multi" data-field="matchEntry.observedRoles">
+                <button class="seg-btn" data-val="scorer">Scorer</button>
+                <button class="seg-btn" data-val="feeder">Feeder</button>
                 <button class="seg-btn" data-val="defense">Defense</button>
-                <button class="seg-btn" data-val="climb_specialist">Climb Specialist</button>
+                <button class="seg-btn" data-val="climber">Climber</button>
                 <button class="seg-btn" data-val="inactive">Inactive</button>
               </div>
             </div>

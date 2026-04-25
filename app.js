@@ -192,12 +192,9 @@
     return prescoutData[teamNumber] || {
       tier: '',
       primaryRole: '',
-      autoStrength: '',
+      autoNotes: '',
       climbAbility: '',
       reliability: '',
-      whyPick: '',
-      whyAvoid: '',
-      videoNotes: '',
       summary: '',
     };
   }
@@ -239,16 +236,13 @@
     const data = {
       tier: '',
       primaryRole: '',
-      autoStrength: '',
+      autoNotes: $('#f-presct-autoNotes')?.value.trim() || '',
       climbAbility: '',
       reliability: '',
-      whyPick: $('#f-presct-whyPick')?.value.trim() || '',
-      whyAvoid: $('#f-presct-whyAvoid')?.value.trim() || '',
-      videoNotes: $('#f-presct-videoNotes')?.value.trim() || '',
       summary: $('#f-presct-summary')?.value.trim() || '',
     };
     // Get seg-control values
-    ['presct.tier', 'presct.primaryRole', 'presct.autoStrength', 'presct.climbAbility', 'presct.reliability'].forEach(field => {
+    ['presct.tier', 'presct.primaryRole', 'presct.climbAbility', 'presct.reliability'].forEach(field => {
       const ctrl = $(`.seg-control[data-field="${field}"]`);
       if (!ctrl) return;
       const selected = ctrl.querySelector('.seg-btn.selected');
@@ -479,13 +473,11 @@
 
     // Populate pre-scout form fields
     const presct = getPrescoutForTeam(teamNumber);
-    $('#f-presct-whyPick').value = presct.whyPick || '';
-    $('#f-presct-whyAvoid').value = presct.whyAvoid || '';
-    $('#f-presct-videoNotes').value = presct.videoNotes || '';
+    $('#f-presct-autoNotes').value = presct.autoNotes || '';
     $('#f-presct-summary').value = presct.summary || '';
 
     // Pre-scout segmented controls
-    ['presct.tier', 'presct.primaryRole', 'presct.autoStrength', 'presct.climbAbility', 'presct.reliability'].forEach(field => {
+    ['presct.tier', 'presct.primaryRole', 'presct.climbAbility', 'presct.reliability'].forEach(field => {
       const ctrl = $(`.seg-control[data-field="${field}"]`);
       if (!ctrl) return;
       const key = field.split('.')[1];
@@ -500,10 +492,10 @@
     $('#f-match-number').value = '';
     $('#f-match-notes').value = '';
     $('#f-match-alliancePoints').value = '';
-    const matchRole = $('#match-note-form .seg-control[data-field="matchEntry.observedRole"]');
+    const matchRoles = $('#match-note-form .seg-control[data-field="matchEntry.observedRoles"]');
     const matchPerf = $('#match-note-form .seg-control[data-field="matchEntry.performance"]');
     const matchDriver = $('#match-note-form .seg-control[data-field="matchEntry.driverSkill"]');
-    matchRole?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
+    matchRoles?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
     matchPerf?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
     matchDriver?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
 
@@ -653,6 +645,9 @@
       .reverse()
       .map((n, idx) => {
         const realIdx = notes.length - 1 - idx;
+        // Handle both old single role and new multi-role format
+        const roles = n.observedRoles || (n.observedRole ? [n.observedRole] : []);
+        const rolesTags = roles.map(r => `<div class="match-note-tag">${r.replace(/_/g, ' ')}</div>`).join('');
         return `
         <div class="match-note-card" data-idx="${realIdx}">
           <div class="match-note-header">
@@ -661,7 +656,7 @@
             <span class="match-note-time">${n.timestamp ? new Date(n.timestamp).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : ''}</span>
             <button class="match-note-delete" data-idx="${realIdx}" aria-label="Delete">&times;</button>
           </div>
-          ${n.observedRole ? `<div class="match-note-tag">${n.observedRole.replace(/_/g, ' ')}</div>` : ''}
+          ${rolesTags}
           ${n.performance ? `<div class="match-note-tag perf-${n.performance}">${n.performance}</div>` : ''}
           ${n.driverSkill ? `<div class="match-note-tag driver-${n.driverSkill}">Driver: ${n.driverSkill}</div>` : ''}
           ${n.notes ? `<div class="match-note-body">${n.notes}</div>` : ''}
@@ -673,10 +668,11 @@
   async function addMatchNote() {
     if (!currentTeamNumber) return;
     const matchNum = $('#f-match-number').value.trim();
-    const role = $('#match-note-form .seg-control[data-field="matchEntry.observedRole"]');
+    const rolesCtrl = $('#match-note-form .seg-control[data-field="matchEntry.observedRoles"]');
     const perf = $('#match-note-form .seg-control[data-field="matchEntry.performance"]');
     const driver = $('#match-note-form .seg-control[data-field="matchEntry.driverSkill"]');
-    const roleVal = role?.querySelector('.seg-btn.selected')?.dataset.val || '';
+    // Multi-select: get all selected roles
+    const rolesVal = Array.from(rolesCtrl?.querySelectorAll('.seg-btn.selected') || []).map(b => b.dataset.val);
     const perfVal = perf?.querySelector('.seg-btn.selected')?.dataset.val || '';
     const driverVal = driver?.querySelector('.seg-btn.selected')?.dataset.val || '';
     const alliancePoints = $('#f-match-alliancePoints').value.trim();
@@ -689,7 +685,7 @@
 
     const entry = {
       matchNumber: matchNum,
-      observedRole: roleVal,
+      observedRoles: rolesVal,
       performance: perfVal,
       driverSkill: driverVal,
       alliancePoints: alliancePoints ? parseInt(alliancePoints, 10) : null,
@@ -708,7 +704,7 @@
     $('#f-match-number').value = '';
     $('#f-match-notes').value = '';
     $('#f-match-alliancePoints').value = '';
-    role?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
+    rolesCtrl?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
     perf?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
     driver?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
 
@@ -945,8 +941,16 @@
       if (!btn) return;
       const ctrl = btn.closest('.seg-control');
       if (!ctrl) return;
-      ctrl.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
+      
+      // Check if multi-select
+      if (ctrl.classList.contains('multi')) {
+        // Toggle the clicked button
+        btn.classList.toggle('selected');
+      } else {
+        // Single select: deselect others
+        ctrl.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      }
       
       const field = ctrl.dataset.field;
       // Pre-scout fields save to localStorage
@@ -1022,7 +1026,7 @@
     });
 
     // Pre-scout text field autosave
-    ['f-presct-whyPick', 'f-presct-whyAvoid', 'f-presct-videoNotes', 'f-presct-summary'].forEach(id => {
+    ['f-presct-autoNotes', 'f-presct-summary'].forEach(id => {
       const el = $(`#${id}`);
       if (el) el.addEventListener('input', savePrescoutFromForm);
     });

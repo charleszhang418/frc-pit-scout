@@ -655,6 +655,12 @@ input, textarea { font-family: inherit; font-size: 1rem; }
   margin-left: 8px;
 }
 
+/* Multi-select seg control */
+.seg-control.multi .seg-btn.selected {
+  background: var(--accent);
+  color: #fff;
+}
+
 .match-note-body {
   font-size: 0.85rem;
   color: var(--text);
