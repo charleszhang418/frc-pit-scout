@@ -676,37 +676,6 @@ input, textarea { font-family: inherit; font-size: 1rem; }
   color: var(--text-dim);
 }
 
-.presct-stats {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 12px;
-  margin-bottom: 16px;
-}
-
-.presct-stat-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6px 0;
-  border-bottom: 1px solid var(--border);
-}
-.presct-stat-row:last-child { border-bottom: none; }
-
-.presct-stat-label {
-  font-size: 0.85rem;
-  color: var(--text-dim);
-}
-
-.presct-stat-value {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text);
-}
-.presct-stat-value.good { color: var(--green); }
-.presct-stat-value.mid { color: var(--orange); }
-.presct-stat-value.low { color: var(--red); }
-
 /* Pre-scout export card */
 .export-card.presct-export {
   background: var(--blue-dim);

@@ -173,34 +173,7 @@
   }
 
   // ───── Pre-Scout Data (separate from pit scouting) ─────
-  let statboticsData = {}; // { teamNumber: { epa, rank, auto, teleop, endgame, winrate } }
   let prescoutData = {};   // { teamNumber: { primaryRole, autoStrength, climbAbility, reliability, whyPick, whyAvoid, videoNotes, summary } }
-
-  async function loadStatboticsData() {
-    try {
-      const resp = await fetch('analysis/hopper_raw_data.json');
-      if (!resp.ok) return;
-      const data = await resp.json();
-      const sorted = [...data].sort((a, b) => (b['epa.breakdown.total_points'] || 0) - (a['epa.breakdown.total_points'] || 0));
-      sorted.forEach((t, idx) => {
-        const teamNum = t.team;
-        const wins = t['record.wins'] || 0;
-        const losses = t['record.losses'] || 0;
-        const totalMatches = wins + losses;
-        statboticsData[teamNum] = {
-          epa: t['epa.breakdown.total_points'] || 0,
-          rank: idx + 1,
-          total: sorted.length,
-          auto: t['epa.breakdown.auto_points'] || 0,
-          teleop: t['epa.breakdown.teleop_points'] || 0,
-          endgame: t['epa.breakdown.endgame_points'] || 0,
-          winrate: totalMatches > 0 ? ((wins / totalMatches) * 100).toFixed(0) : null,
-        };
-      });
-    } catch (e) {
-      console.warn('Could not load Statbotics data:', e);
-    }
-  }
 
   function loadPrescoutData() {
     try {
@@ -501,26 +474,6 @@
     // Activate first tab (pre-scout)
     $$('.form-tab').forEach(t => t.classList.toggle('active', t.dataset.section === 'presct'));
     $$('.form-section').forEach(s => s.classList.toggle('active', s.dataset.section === 'presct'));
-
-    // Populate pre-scout stats from Statbotics
-    const stats = statboticsData[teamNumber];
-    if (stats) {
-      $('#presct-epa').textContent = stats.epa.toFixed(1);
-      $('#presct-epa').className = 'presct-stat-value ' + (stats.epa >= 150 ? 'good' : stats.epa >= 80 ? 'mid' : 'low');
-      $('#presct-rank').textContent = `${stats.rank} / ${stats.total}`;
-      $('#presct-auto').textContent = stats.auto.toFixed(1);
-      $('#presct-teleop').textContent = stats.teleop.toFixed(1);
-      $('#presct-endgame').textContent = stats.endgame.toFixed(1);
-      $('#presct-winrate').textContent = stats.winrate ? `${stats.winrate}%` : '—';
-    } else {
-      $('#presct-epa').textContent = '—';
-      $('#presct-epa').className = 'presct-stat-value';
-      $('#presct-rank').textContent = '—';
-      $('#presct-auto').textContent = '—';
-      $('#presct-teleop').textContent = '—';
-      $('#presct-endgame').textContent = '—';
-      $('#presct-winrate').textContent = '—';
-    }
 
     // Populate pre-scout form fields
     const presct = getPrescoutForTeam(teamNumber);
@@ -1096,7 +1049,6 @@
     
     // Load pre-scout data (separate from pit scouting)
     loadPrescoutData();
-    await loadStatboticsData();
     
     await refreshData();
     wireEvents();
