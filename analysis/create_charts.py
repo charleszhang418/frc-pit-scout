@@ -283,14 +283,8 @@ def main():
         ax.text(0.02, 1 - (y_pos + 0.02), f"{tier_name} ({len(tier_df)} teams)", 
                 transform=ax.transAxes, fontsize=11, fontweight='bold', color=color, va='top')
         
-        # Wrap team numbers, highlighting your team
-        teams_list = []
-        for _, row in tier_df.iterrows():
-            team_num = int(row['team'])
-            if team_num == YOUR_TEAM:
-                teams_list.append(f"[{team_num}]")
-            else:
-                teams_list.append(f"{team_num}")
+        # Wrap team numbers (simple list, no inline highlighting)
+        teams_list = [f"{int(row['team'])}" for _, row in tier_df.iterrows()]
         
         line = ""
         lines = []
@@ -304,23 +298,8 @@ def main():
             lines.append(line.rstrip(', '))
         
         for i, line_text in enumerate(lines):
-            # Check if your team is in this line and color it
-            if f"[{YOUR_TEAM}]" in line_text:
-                # Split and color differently
-                parts = line_text.split(f"[{YOUR_TEAM}]")
-                x_offset = 0.02
-                for j, part in enumerate(parts):
-                    if j > 0:
-                        # Add your team in red
-                        ax.text(x_offset, 1 - (y_pos + 0.05 + i*0.03), f">>>{YOUR_TEAM}<<<",
-                                transform=ax.transAxes, fontsize=9, color='#ef4444', va='top', fontweight='bold')
-                        x_offset += 0.08  # approximate width
-                    if part:
-                        ax.text(x_offset, 1 - (y_pos + 0.05 + i*0.03), part,
-                                transform=ax.transAxes, fontsize=9, color='#ccc', va='top')
-            else:
-                ax.text(0.02, 1 - (y_pos + 0.05 + i*0.03), line_text,
-                        transform=ax.transAxes, fontsize=9, color='#ccc', va='top')
+            ax.text(0.02, 1 - (y_pos + 0.05 + i*0.03), line_text,
+                    transform=ax.transAxes, fontsize=9, color='#ccc', va='top')
         
         y_pos += 0.05 + len(lines) * 0.03 + 0.03
     
