@@ -1,0 +1,100 @@
+======================================================================
+HOPPER DIVISION 2026 - PRE-SCOUTING ANALYSIS
+======================================================================
+
+Total teams: 75
+EPA Range: 6.0 - 316.5
+Mean EPA: 128.9
+Median EPA: 125.5
+
+----------------------------------------------------------------------
+TOP 15 TEAMS TO WATCH
+----------------------------------------------------------------------
+
+ 1. Team  2056 - OP Robotics
+    EPA: 316.5 | Auto: 79.2 | Teleop: 183.4 | Endgame: 53.8
+    Record: 48W-5L
+
+ 2. Team  3467 - Windham Windup
+    EPA: 270.2 | Auto: 58.5 | Teleop: 156.5 | Endgame: 55.2
+    Record: 67W-4L
+
+ 3. Team  6329 - The Bucks' Wrath
+    EPA: 254.2 | Auto: 57.3 | Teleop: 139.0 | Endgame: 57.9
+    Record: 46W-10L
+
+ 4. Team  6328 - Mechanical Advantage
+    EPA: 227.1 | Auto: 47.2 | Teleop: 137.6 | Endgame: 42.2
+    Record: 44W-8L
+
+ 5. Team  8044 - Denham Venom
+    EPA: 223.1 | Auto: 51.3 | Teleop: 119.6 | Endgame: 52.2
+    Record: 41W-4L
+
+ 6. Team  1706 - Ratchet Rockers
+    EPA: 211.2 | Auto: 36.3 | Teleop: 128.3 | Endgame: 46.6
+    Record: 31W-0L
+
+ 7. Team   581 - Blazing Bulldogs
+    EPA: 209.9 | Auto: 44.1 | Teleop: 117.9 | Endgame: 47.9
+    Record: 36W-14L
+
+ 8. Team  5000 - HAMMERHEADS
+    EPA: 204.4 | Auto: 40.2 | Teleop: 112.4 | Endgame: 51.9
+    Record: 33W-19L
+
+ 9. Team  3015 - Ranger Robotics
+    EPA: 203.0 | Auto: 52.0 | Teleop: 111.8 | Endgame: 39.2
+    Record: 37W-4L
+
+10. Team  8214 - Cyber Unicorn
+    EPA: 201.0 | Auto: 42.0 | Teleop: 108.3 | Endgame: 50.7
+    Record: 12W-0L
+
+11. Team   238 - Crusaders
+    EPA: 192.3 | Auto: 38.5 | Teleop: 104.2 | Endgame: 49.6
+    Record: 40W-11L
+
+12. Team  9785 - Alectrona
+    EPA: 191.7 | Auto: 42.9 | Teleop: 109.5 | Endgame: 39.3
+    Record: 42W-15L
+
+13. Team  4698 - Raider Robotics
+    EPA: 190.0 | Auto: 45.0 | Teleop: 89.9 | Endgame: 55.1
+    Record: 32W-18L
+
+14. Team 10131 - Royal Turtles
+    EPA: 187.9 | Auto: 23.1 | Teleop: 115.2 | Endgame: 49.6
+    Record: 30W-9L
+
+15. Team  3539 - Byting Bulldogs
+    EPA: 179.4 | Auto: 37.1 | Teleop: 99.6 | Endgame: 42.7
+    Record: 38W-10L
+
+----------------------------------------------------------------------
+TIER SUMMARY
+----------------------------------------------------------------------
+
+S Tier (Elite): 10 teams
+  Teams: 2056, 3467, 6329, 6328, 8044, 1706, 581, 5000, 3015, 8214
+
+A Tier (Strong): 15 teams
+  Teams: 238, 9785, 4698, 10131, 3539, 1732, 5406, 8513, 1701, 2102, 503, 2659, 1986, 6152, 8749
+
+B Tier (Above Avg): 27 teams
+  Teams: 4201, 1710, 4143, 494, 1787, 1296, 2383, 3512, 4174, 3641, 1259, 5086, 401, 761, 8267, 3035, 1625, 2199, 11270, 6517, 540, 3506, 8005, 188, 3175, 6121, 2607
+
+C Tier (Average): 11 teams
+  Teams: 3297, 2486, 5454, 910, 5348, 1287, 2220, 9449, 11118, 9692, 573
+
+D Tier (Below Avg): 12 teams
+  Teams: 1014, 11493, 2834, 6639, 4613, 7451, 7287, 11303, 11024, 10907, 4191, 6200
+
+----------------------------------------------------------------------
+YOUR TEAM: 11118 - The Baybies
+----------------------------------------------------------------------
+Rank in Division: 61 / 75
+Total EPA: 72.7
+Auto EPA: 11.8 | Teleop EPA: 39.8 | Endgame EPA: 21.1
+
+Teams with similar EPA (±20): 5454, 910, 5348, 1287, 2220, 9449, 9692, 573, 1014, 11493

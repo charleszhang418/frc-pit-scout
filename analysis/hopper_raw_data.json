@@ -1,0 +1,6452 @@
+[
+  {
+    "team": 188,
+    "year": 2026,
+    "name": "Blizzard",
+    "country": "Canada",
+    "state": "ON",
+    "district": "ont",
+    "rookie_year": 1998,
+    "epa": {
+      "total_points": {
+        "mean": 107.02,
+        "sd": 30.43
+      },
+      "unitless": 1668.0,
+      "norm": 1616.0,
+      "conf": [
+        -0.92,
+        0.83
+      ],
+      "breakdown": {
+        "total_points": 107.02,
+        "auto_points": 20.62,
+        "teleop_points": 57.05,
+        "endgame_points": 29.35,
+        "energized_rp": 0.2912,
+        "supercharged_rp": 0.0881,
+        "traversal_rp": -0.34015,
+        "tiebreaker_points": 107.02,
+        "auto_fuel": 20.37,
+        "auto_tower": 0.26,
+        "transition_fuel": 3.77,
+        "first_shift_fuel": 28.21,
+        "second_shift_fuel": 25.07,
+        "teleop_fuel": 57.05,
+        "endgame_fuel": 29.88,
+        "endgame_tower": -0.53,
+        "total_fuel": 107.3,
+        "total_tower": -0.28,
+        "rp_1": 0.2912,
+        "rp_2": 0.0881,
+        "rp_3": -0.34015
+      },
+      "stats": {
+        "start": 70.38,
+        "pre_champs": 107.02,
+        "max": 145.12
+      },
+      "ranks": {
+        "total": {
+          "rank": 494,
+          "percentile": 0.8673,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 36,
+          "percentile": 0.8054,
+          "team_count": 185
+        },
+        "state": {
+          "rank": 32,
+          "percentile": 0.7311,
+          "team_count": 119
+        },
+        "district": {
+          "rank": 32,
+          "percentile": 0.7311,
+          "team_count": 119
+        }
+      }
+    },
+    "record": {
+      "wins": 30,
+      "losses": 20,
+      "ties": 0,
+      "count": 50,
+      "winrate": 0.6
+    },
+    "district_points": 201,
+    "district_rank": 20,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 238,
+    "year": 2026,
+    "name": "Crusaders",
+    "country": "USA",
+    "state": "NH",
+    "district": "ne",
+    "rookie_year": 1999,
+    "epa": {
+      "total_points": {
+        "mean": 192.32,
+        "sd": 24.28
+      },
+      "unitless": 1895.0,
+      "norm": 1749.0,
+      "conf": [
+        -0.8,
+        0.95
+      ],
+      "breakdown": {
+        "total_points": 192.32,
+        "auto_points": 38.53,
+        "teleop_points": 104.23,
+        "endgame_points": 49.56,
+        "energized_rp": 0.5209,
+        "supercharged_rp": 0.3936,
+        "traversal_rp": -0.34013,
+        "tiebreaker_points": 192.32,
+        "auto_fuel": 38.74,
+        "auto_tower": -0.21,
+        "transition_fuel": 10.26,
+        "first_shift_fuel": 48.51,
+        "second_shift_fuel": 45.46,
+        "teleop_fuel": 104.23,
+        "endgame_fuel": 49.66,
+        "endgame_tower": -0.1,
+        "total_fuel": 192.64,
+        "total_tower": -0.32,
+        "rp_1": 0.5209,
+        "rp_2": 0.3936,
+        "rp_3": -0.34013
+      },
+      "stats": {
+        "start": 40.06,
+        "pre_champs": 192.32,
+        "max": 192.32
+      },
+      "ranks": {
+        "total": {
+          "rank": 79,
+          "percentile": 0.9788,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 62,
+          "percentile": 0.9789,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 3,
+          "percentile": 0.94,
+          "team_count": 50
+        },
+        "district": {
+          "rank": 11,
+          "percentile": 0.945,
+          "team_count": 200
+        }
+      }
+    },
+    "record": {
+      "wins": 40,
+      "losses": 11,
+      "ties": 0,
+      "count": 51,
+      "winrate": 0.7843
+    },
+    "district_points": 235,
+    "district_rank": 13,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 401,
+    "year": 2026,
+    "name": "Copperhead Robotics",
+    "country": "USA",
+    "state": "VA",
+    "district": "fch",
+    "rookie_year": 2000,
+    "epa": {
+      "total_points": {
+        "mean": 125.55,
+        "sd": 24.64
+      },
+      "unitless": 1717.0,
+      "norm": 1647.0,
+      "conf": [
+        -0.78,
+        0.98
+      ],
+      "breakdown": {
+        "total_points": 125.55,
+        "auto_points": 30.88,
+        "teleop_points": 72.38,
+        "endgame_points": 22.29,
+        "energized_rp": 0.301,
+        "supercharged_rp": 0.06,
+        "traversal_rp": -0.34004,
+        "tiebreaker_points": 125.55,
+        "auto_fuel": 30.58,
+        "auto_tower": 0.31,
+        "transition_fuel": 10.18,
+        "first_shift_fuel": 33.66,
+        "second_shift_fuel": 28.54,
+        "teleop_fuel": 72.38,
+        "endgame_fuel": 21.93,
+        "endgame_tower": 0.36,
+        "total_fuel": 124.88,
+        "total_tower": 0.67,
+        "rp_1": 0.301,
+        "rp_2": 0.06,
+        "rp_3": -0.34004
+      },
+      "stats": {
+        "start": 55.79,
+        "pre_champs": 125.55,
+        "max": 128.26
+      },
+      "ranks": {
+        "total": {
+          "rank": 348,
+          "percentile": 0.9066,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 289,
+          "percentile": 0.9018,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 10,
+          "percentile": 0.8611,
+          "team_count": 72
+        },
+        "district": {
+          "rank": 17,
+          "percentile": 0.8547,
+          "team_count": 117
+        }
+      }
+    },
+    "record": {
+      "wins": 33,
+      "losses": 22,
+      "ties": 0,
+      "count": 55,
+      "winrate": 0.6
+    },
+    "district_points": 233,
+    "district_rank": 8,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 494,
+    "year": 2026,
+    "name": "Martians",
+    "country": "USA",
+    "state": "MI",
+    "district": "fim",
+    "rookie_year": 2001,
+    "epa": {
+      "total_points": {
+        "mean": 147.95,
+        "sd": 27.62
+      },
+      "unitless": 1777.0,
+      "norm": 1673.0,
+      "conf": [
+        -0.91,
+        0.85
+      ],
+      "breakdown": {
+        "total_points": 147.95,
+        "auto_points": 26.03,
+        "teleop_points": 85.68,
+        "endgame_points": 36.23,
+        "energized_rp": 0.5687,
+        "supercharged_rp": 0.2654,
+        "traversal_rp": -0.34041,
+        "tiebreaker_points": 147.95,
+        "auto_fuel": 25.51,
+        "auto_tower": 0.52,
+        "transition_fuel": 5.76,
+        "first_shift_fuel": 44.27,
+        "second_shift_fuel": 35.65,
+        "teleop_fuel": 85.68,
+        "endgame_fuel": 37.81,
+        "endgame_tower": -1.58,
+        "total_fuel": 149.01,
+        "total_tower": -1.06,
+        "rp_1": 0.5687,
+        "rp_2": 0.2654,
+        "rp_3": -0.34041
+      },
+      "stats": {
+        "start": 70.47,
+        "pre_champs": 147.95,
+        "max": 157.07
+      },
+      "ranks": {
+        "total": {
+          "rank": 211,
+          "percentile": 0.9433,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 175,
+          "percentile": 0.9406,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 30,
+          "percentile": 0.9434,
+          "team_count": 530
+        },
+        "district": {
+          "rank": 30,
+          "percentile": 0.9434,
+          "team_count": 530
+        }
+      }
+    },
+    "record": {
+      "wins": 30,
+      "losses": 18,
+      "ties": 0,
+      "count": 48,
+      "winrate": 0.625
+    },
+    "district_points": 177,
+    "district_rank": 67,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 503,
+    "year": 2026,
+    "name": "Frog Force",
+    "country": "USA",
+    "state": "MI",
+    "district": "fim",
+    "rookie_year": 2001,
+    "epa": {
+      "total_points": {
+        "mean": 162.05,
+        "sd": 26.98
+      },
+      "unitless": 1815.0,
+      "norm": 1695.0,
+      "conf": [
+        -0.9,
+        0.85
+      ],
+      "breakdown": {
+        "total_points": 162.05,
+        "auto_points": 29.06,
+        "teleop_points": 90.63,
+        "endgame_points": 42.36,
+        "energized_rp": 0.692,
+        "supercharged_rp": 0.2172,
+        "traversal_rp": -0.27598,
+        "tiebreaker_points": 162.05,
+        "auto_fuel": 29.03,
+        "auto_tower": 0.04,
+        "transition_fuel": 13.86,
+        "first_shift_fuel": 43.15,
+        "second_shift_fuel": 33.62,
+        "teleop_fuel": 90.63,
+        "endgame_fuel": 39.09,
+        "endgame_tower": 3.26,
+        "total_fuel": 158.75,
+        "total_tower": 3.3,
+        "rp_1": 0.692,
+        "rp_2": 0.2172,
+        "rp_3": -0.27598
+      },
+      "stats": {
+        "start": 61.83,
+        "pre_champs": 162.05,
+        "max": 175.96
+      },
+      "ranks": {
+        "total": {
+          "rank": 162,
+          "percentile": 0.9565,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 131,
+          "percentile": 0.9555,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 23,
+          "percentile": 0.9566,
+          "team_count": 530
+        },
+        "district": {
+          "rank": 23,
+          "percentile": 0.9566,
+          "team_count": 530
+        }
+      }
+    },
+    "record": {
+      "wins": 44,
+      "losses": 22,
+      "ties": 0,
+      "count": 66,
+      "winrate": 0.6667
+    },
+    "district_points": 222,
+    "district_rank": 33,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 540,
+    "year": 2026,
+    "name": "TALON 540 Godwin Robotics",
+    "country": "USA",
+    "state": "VA",
+    "district": "fch",
+    "rookie_year": 2001,
+    "epa": {
+      "total_points": {
+        "mean": 115.64,
+        "sd": 22.32
+      },
+      "unitless": 1691.0,
+      "norm": 1632.0,
+      "conf": [
+        -0.83,
+        0.93
+      ],
+      "breakdown": {
+        "total_points": 115.64,
+        "auto_points": 19.2,
+        "teleop_points": 64.16,
+        "endgame_points": 32.27,
+        "energized_rp": 0.4735,
+        "supercharged_rp": 0.1262,
+        "traversal_rp": -0.34009,
+        "tiebreaker_points": 115.64,
+        "auto_fuel": 19.27,
+        "auto_tower": -0.07,
+        "transition_fuel": 11.64,
+        "first_shift_fuel": 25.13,
+        "second_shift_fuel": 27.39,
+        "teleop_fuel": 64.16,
+        "endgame_fuel": 32.3,
+        "endgame_tower": -0.02,
+        "total_fuel": 115.73,
+        "total_tower": -0.09,
+        "rp_1": 0.4735,
+        "rp_2": 0.1262,
+        "rp_3": -0.34009
+      },
+      "stats": {
+        "start": 37.74,
+        "pre_champs": 115.64,
+        "max": 124.21
+      },
+      "ranks": {
+        "total": {
+          "rank": 417,
+          "percentile": 0.888,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 350,
+          "percentile": 0.8811,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 13,
+          "percentile": 0.8194,
+          "team_count": 72
+        },
+        "district": {
+          "rank": 22,
+          "percentile": 0.812,
+          "team_count": 117
+        }
+      }
+    },
+    "record": {
+      "wins": 30,
+      "losses": 21,
+      "ties": 0,
+      "count": 51,
+      "winrate": 0.5882
+    },
+    "district_points": 187,
+    "district_rank": 18,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 573,
+    "year": 2026,
+    "name": "Mech Warriors",
+    "country": "USA",
+    "state": "MI",
+    "district": "fim",
+    "rookie_year": 2001,
+    "epa": {
+      "total_points": {
+        "mean": 61.65,
+        "sd": 24.61
+      },
+      "unitless": 1547.0,
+      "norm": 1533.0,
+      "conf": [
+        -1.01,
+        0.73
+      ],
+      "breakdown": {
+        "total_points": 61.65,
+        "auto_points": 4.95,
+        "teleop_points": 32.11,
+        "endgame_points": 24.58,
+        "energized_rp": 0.1786,
+        "supercharged_rp": -0.1341,
+        "traversal_rp": -0.27409,
+        "tiebreaker_points": 61.65,
+        "auto_fuel": 5.87,
+        "auto_tower": -0.92,
+        "transition_fuel": 3.22,
+        "first_shift_fuel": 15.36,
+        "second_shift_fuel": 13.53,
+        "teleop_fuel": 32.11,
+        "endgame_fuel": 23.12,
+        "endgame_tower": 1.46,
+        "total_fuel": 61.1,
+        "total_tower": 0.54,
+        "rp_1": 0.1786,
+        "rp_2": -0.1341,
+        "rp_3": -0.27409
+      },
+      "stats": {
+        "start": 50.12,
+        "pre_champs": 61.65,
+        "max": 87.27
+      },
+      "ranks": {
+        "total": {
+          "rank": 1074,
+          "percentile": 0.7116,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 893,
+          "percentile": 0.6967,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 167,
+          "percentile": 0.6849,
+          "team_count": 530
+        },
+        "district": {
+          "rank": 167,
+          "percentile": 0.6849,
+          "team_count": 530
+        }
+      }
+    },
+    "record": {
+      "wins": 20,
+      "losses": 24,
+      "ties": 0,
+      "count": 44,
+      "winrate": 0.4545
+    },
+    "district_points": 138,
+    "district_rank": 94,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 581,
+    "year": 2026,
+    "name": "Blazing Bulldogs",
+    "country": "USA",
+    "state": "CA",
+    "district": "ca",
+    "rookie_year": 2001,
+    "epa": {
+      "total_points": {
+        "mean": 209.89,
+        "sd": 23.94
+      },
+      "unitless": 1942.0,
+      "norm": 1780.0,
+      "conf": [
+        -0.87,
+        0.89
+      ],
+      "breakdown": {
+        "total_points": 209.89,
+        "auto_points": 44.1,
+        "teleop_points": 117.87,
+        "endgame_points": 47.92,
+        "energized_rp": 0.6702,
+        "supercharged_rp": 0.5047,
+        "traversal_rp": -0.34004,
+        "tiebreaker_points": 209.89,
+        "auto_fuel": 44.02,
+        "auto_tower": 0.08,
+        "transition_fuel": 17.41,
+        "first_shift_fuel": 52.59,
+        "second_shift_fuel": 47.88,
+        "teleop_fuel": 117.87,
+        "endgame_fuel": 48.1,
+        "endgame_tower": -0.18,
+        "total_fuel": 209.99,
+        "total_tower": -0.1,
+        "rp_1": 0.6702,
+        "rp_2": 0.5047,
+        "rp_3": -0.34004
+      },
+      "stats": {
+        "start": 94.6,
+        "pre_champs": 209.89,
+        "max": 212.53
+      },
+      "ranks": {
+        "total": {
+          "rank": 49,
+          "percentile": 0.9868,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 38,
+          "percentile": 0.9871,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 8,
+          "percentile": 0.9725,
+          "team_count": 291
+        },
+        "district": {
+          "rank": 8,
+          "percentile": 0.9725,
+          "team_count": 291
+        }
+      }
+    },
+    "record": {
+      "wins": 36,
+      "losses": 14,
+      "ties": 0,
+      "count": 50,
+      "winrate": 0.72
+    },
+    "district_points": 225,
+    "district_rank": 18,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 761,
+    "year": 2026,
+    "name": "TechPUPS",
+    "country": "USA",
+    "state": "IN",
+    "district": "fin",
+    "rookie_year": 2002,
+    "epa": {
+      "total_points": {
+        "mean": 125.5,
+        "sd": 17.56
+      },
+      "unitless": 1717.0,
+      "norm": 1647.0,
+      "conf": [
+        -0.79,
+        0.96
+      ],
+      "breakdown": {
+        "total_points": 125.5,
+        "auto_points": 23.75,
+        "teleop_points": 69.69,
+        "endgame_points": 32.06,
+        "energized_rp": 0.3889,
+        "supercharged_rp": -0.0606,
+        "traversal_rp": -0.34015,
+        "tiebreaker_points": 125.5,
+        "auto_fuel": 23.59,
+        "auto_tower": 0.16,
+        "transition_fuel": 7.16,
+        "first_shift_fuel": 36.26,
+        "second_shift_fuel": 26.27,
+        "teleop_fuel": 69.69,
+        "endgame_fuel": 32.73,
+        "endgame_tower": -0.67,
+        "total_fuel": 126.01,
+        "total_tower": -0.51,
+        "rp_1": 0.3889,
+        "rp_2": -0.0606,
+        "rp_3": -0.34015
+      },
+      "stats": {
+        "start": 23.74,
+        "pre_champs": 125.5,
+        "max": 125.5
+      },
+      "ranks": {
+        "total": {
+          "rank": 350,
+          "percentile": 0.906,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 291,
+          "percentile": 0.9012,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 10,
+          "percentile": 0.8529,
+          "team_count": 68
+        },
+        "district": {
+          "rank": 10,
+          "percentile": 0.8529,
+          "team_count": 68
+        }
+      }
+    },
+    "record": {
+      "wins": 32,
+      "losses": 19,
+      "ties": 0,
+      "count": 51,
+      "winrate": 0.6275
+    },
+    "district_points": 224,
+    "district_rank": 7,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 910,
+    "year": 2026,
+    "name": "The Foley Freeze",
+    "country": "USA",
+    "state": "MI",
+    "district": "fim",
+    "rookie_year": 2002,
+    "epa": {
+      "total_points": {
+        "mean": 89.67,
+        "sd": 20.29
+      },
+      "unitless": 1622.0,
+      "norm": 1585.0,
+      "conf": [
+        -0.87,
+        0.88
+      ],
+      "breakdown": {
+        "total_points": 89.67,
+        "auto_points": 14.42,
+        "teleop_points": 47.05,
+        "endgame_points": 28.2,
+        "energized_rp": 0.3881,
+        "supercharged_rp": -0.0502,
+        "traversal_rp": -0.34009,
+        "tiebreaker_points": 89.67,
+        "auto_fuel": 13.36,
+        "auto_tower": 1.06,
+        "transition_fuel": 0.86,
+        "first_shift_fuel": 19.13,
+        "second_shift_fuel": 27.06,
+        "teleop_fuel": 47.05,
+        "endgame_fuel": 28.57,
+        "endgame_tower": -0.38,
+        "total_fuel": 88.99,
+        "total_tower": 0.68,
+        "rp_1": 0.3881,
+        "rp_2": -0.0502,
+        "rp_3": -0.34009
+      },
+      "stats": {
+        "start": 77.83,
+        "pre_champs": 89.67,
+        "max": 104.54
+      },
+      "ranks": {
+        "total": {
+          "rank": 660,
+          "percentile": 0.8228,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 554,
+          "percentile": 0.8118,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 106,
+          "percentile": 0.8,
+          "team_count": 530
+        },
+        "district": {
+          "rank": 106,
+          "percentile": 0.8,
+          "team_count": 530
+        }
+      }
+    },
+    "record": {
+      "wins": 30,
+      "losses": 17,
+      "ties": 0,
+      "count": 47,
+      "winrate": 0.6383
+    },
+    "district_points": 149,
+    "district_rank": 87,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 1014,
+    "year": 2026,
+    "name": "Bad Robots",
+    "country": "USA",
+    "state": "OH",
+    "district": null,
+    "rookie_year": 2003,
+    "epa": {
+      "total_points": {
+        "mean": 57.71,
+        "sd": 12.3
+      },
+      "unitless": 1537.0,
+      "norm": 1525.0,
+      "conf": [
+        -0.82,
+        0.96
+      ],
+      "breakdown": {
+        "total_points": 57.71,
+        "auto_points": 10.33,
+        "teleop_points": 38.63,
+        "endgame_points": 8.74,
+        "energized_rp": 0.3734,
+        "supercharged_rp": -0.2388,
+        "traversal_rp": -0.33757,
+        "tiebreaker_points": 57.71,
+        "auto_fuel": 10.34,
+        "auto_tower": -0.01,
+        "transition_fuel": 3.75,
+        "first_shift_fuel": 20.4,
+        "second_shift_fuel": 14.49,
+        "teleop_fuel": 38.63,
+        "endgame_fuel": 8.06,
+        "endgame_tower": 0.68,
+        "total_fuel": 57.04,
+        "total_tower": 0.67,
+        "rp_1": 0.3734,
+        "rp_2": -0.2388,
+        "rp_3": -0.33757
+      },
+      "stats": {
+        "start": 36.62,
+        "pre_champs": 57.71,
+        "max": 57.71
+      },
+      "ranks": {
+        "total": {
+          "rank": 1166,
+          "percentile": 0.6869,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 970,
+          "percentile": 0.6705,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 18,
+          "percentile": 0.7,
+          "team_count": 60
+        },
+        "district": {
+          "rank": 418,
+          "percentile": 0.7405,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 10,
+      "losses": 14,
+      "ties": 0,
+      "count": 24,
+      "winrate": 0.4167
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 1259,
+    "year": 2026,
+    "name": "Paradigm Shift",
+    "country": "USA",
+    "state": "WI",
+    "district": "win",
+    "rookie_year": 2004,
+    "epa": {
+      "total_points": {
+        "mean": 140.13,
+        "sd": 27.36
+      },
+      "unitless": 1756.0,
+      "norm": 1664.0,
+      "conf": [
+        -0.93,
+        0.83
+      ],
+      "breakdown": {
+        "total_points": 140.13,
+        "auto_points": 20.89,
+        "teleop_points": 82.04,
+        "endgame_points": 37.2,
+        "energized_rp": 0.6646,
+        "supercharged_rp": 0.0743,
+        "traversal_rp": -0.34003,
+        "tiebreaker_points": 140.13,
+        "auto_fuel": 20.95,
+        "auto_tower": -0.07,
+        "transition_fuel": 6.67,
+        "first_shift_fuel": 39.93,
+        "second_shift_fuel": 35.45,
+        "teleop_fuel": 82.04,
+        "endgame_fuel": 36.49,
+        "endgame_tower": 0.72,
+        "total_fuel": 139.48,
+        "total_tower": 0.65,
+        "rp_1": 0.6646,
+        "rp_2": 0.0743,
+        "rp_3": -0.34003
+      },
+      "stats": {
+        "start": 52.31,
+        "pre_champs": 140.13,
+        "max": 151.89
+      },
+      "ranks": {
+        "total": {
+          "rank": 261,
+          "percentile": 0.9299,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 222,
+          "percentile": 0.9246,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 4,
+          "percentile": 0.9437,
+          "team_count": 71
+        },
+        "district": {
+          "rank": 4,
+          "percentile": 0.9437,
+          "team_count": 71
+        }
+      }
+    },
+    "record": {
+      "wins": 37,
+      "losses": 13,
+      "ties": 0,
+      "count": 50,
+      "winrate": 0.74
+    },
+    "district_points": 252,
+    "district_rank": 6,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 1287,
+    "year": 2026,
+    "name": "Aluminum Assault",
+    "country": "USA",
+    "state": "SC",
+    "district": "fsc",
+    "rookie_year": 2004,
+    "epa": {
+      "total_points": {
+        "mean": 83.53,
+        "sd": 17.43
+      },
+      "unitless": 1605.0,
+      "norm": 1573.0,
+      "conf": [
+        -0.76,
+        0.99
+      ],
+      "breakdown": {
+        "total_points": 83.53,
+        "auto_points": 18.78,
+        "teleop_points": 47.84,
+        "endgame_points": 16.91,
+        "energized_rp": 0.2705,
+        "supercharged_rp": -0.24,
+        "traversal_rp": -0.34003,
+        "tiebreaker_points": 83.53,
+        "auto_fuel": 18.8,
+        "auto_tower": -0.02,
+        "transition_fuel": 4.79,
+        "first_shift_fuel": 23.9,
+        "second_shift_fuel": 19.16,
+        "teleop_fuel": 47.84,
+        "endgame_fuel": 16.85,
+        "endgame_tower": 0.06,
+        "total_fuel": 83.49,
+        "total_tower": 0.04,
+        "rp_1": 0.2705,
+        "rp_2": -0.24,
+        "rp_3": -0.34003
+      },
+      "stats": {
+        "start": 56.27,
+        "pre_champs": 83.53,
+        "max": 84.44
+      },
+      "ranks": {
+        "total": {
+          "rank": 723,
+          "percentile": 0.8059,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 605,
+          "percentile": 0.7945,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 4,
+          "percentile": 0.8947,
+          "team_count": 38
+        },
+        "district": {
+          "rank": 4,
+          "percentile": 0.8947,
+          "team_count": 38
+        }
+      }
+    },
+    "record": {
+      "wins": 40,
+      "losses": 9,
+      "ties": 0,
+      "count": 49,
+      "winrate": 0.8163
+    },
+    "district_points": 285,
+    "district_rank": 4,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 1296,
+    "year": 2026,
+    "name": "Full Metal Jackets",
+    "country": "USA",
+    "state": "TX",
+    "district": "fit",
+    "rookie_year": 2004,
+    "epa": {
+      "total_points": {
+        "mean": 144.35,
+        "sd": 29.5
+      },
+      "unitless": 1767.0,
+      "norm": 1669.0,
+      "conf": [
+        -0.88,
+        0.87
+      ],
+      "breakdown": {
+        "total_points": 144.35,
+        "auto_points": 26.34,
+        "teleop_points": 88.68,
+        "endgame_points": 29.33,
+        "energized_rp": 0.6099,
+        "supercharged_rp": 0.0389,
+        "traversal_rp": -0.3403,
+        "tiebreaker_points": 144.35,
+        "auto_fuel": 26.63,
+        "auto_tower": -0.29,
+        "transition_fuel": 5.3,
+        "first_shift_fuel": 44.04,
+        "second_shift_fuel": 39.34,
+        "teleop_fuel": 88.68,
+        "endgame_fuel": 28.61,
+        "endgame_tower": 0.72,
+        "total_fuel": 143.92,
+        "total_tower": 0.43,
+        "rp_1": 0.6099,
+        "rp_2": 0.0389,
+        "rp_3": -0.3403
+      },
+      "stats": {
+        "start": 65.09,
+        "pre_champs": 144.35,
+        "max": 154.04
+      },
+      "ranks": {
+        "total": {
+          "rank": 235,
+          "percentile": 0.9369,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 199,
+          "percentile": 0.9324,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 13,
+          "percentile": 0.9222,
+          "team_count": 167
+        },
+        "district": {
+          "rank": 13,
+          "percentile": 0.9274,
+          "team_count": 179
+        }
+      }
+    },
+    "record": {
+      "wins": 34,
+      "losses": 17,
+      "ties": 0,
+      "count": 51,
+      "winrate": 0.6667
+    },
+    "district_points": 251,
+    "district_rank": 10,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 1625,
+    "year": 2026,
+    "name": "Winnovation",
+    "country": "USA",
+    "state": "IL",
+    "district": null,
+    "rookie_year": 2005,
+    "epa": {
+      "total_points": {
+        "mean": 123.62,
+        "sd": 14.79
+      },
+      "unitless": 1712.0,
+      "norm": 1645.0,
+      "conf": [
+        -0.76,
+        1.0
+      ],
+      "breakdown": {
+        "total_points": 123.62,
+        "auto_points": 29.06,
+        "teleop_points": 66.14,
+        "endgame_points": 28.41,
+        "energized_rp": 0.6149,
+        "supercharged_rp": -0.0722,
+        "traversal_rp": -0.33789,
+        "tiebreaker_points": 123.62,
+        "auto_fuel": 29.51,
+        "auto_tower": -0.44,
+        "transition_fuel": 4.5,
+        "first_shift_fuel": 34.23,
+        "second_shift_fuel": 27.41,
+        "teleop_fuel": 66.14,
+        "endgame_fuel": 28.52,
+        "endgame_tower": -0.11,
+        "total_fuel": 124.17,
+        "total_tower": -0.55,
+        "rp_1": 0.6149,
+        "rp_2": -0.0722,
+        "rp_3": -0.33789
+      },
+      "stats": {
+        "start": 68.22,
+        "pre_champs": 123.62,
+        "max": 123.81
+      },
+      "ranks": {
+        "total": {
+          "rank": 360,
+          "percentile": 0.9033,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 301,
+          "percentile": 0.8978,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 9,
+          "percentile": 0.8364,
+          "team_count": 55
+        },
+        "district": {
+          "rank": 104,
+          "percentile": 0.9354,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 19,
+      "losses": 12,
+      "ties": 0,
+      "count": 31,
+      "winrate": 0.6129
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 1701,
+    "year": 2026,
+    "name": "Robocubs",
+    "country": "USA",
+    "state": "MI",
+    "district": "fim",
+    "rookie_year": 2005,
+    "epa": {
+      "total_points": {
+        "mean": 167.6,
+        "sd": 20.62
+      },
+      "unitless": 1829.0,
+      "norm": 1705.0,
+      "conf": [
+        -0.91,
+        0.84
+      ],
+      "breakdown": {
+        "total_points": 167.6,
+        "auto_points": 43.6,
+        "teleop_points": 91.19,
+        "endgame_points": 32.81,
+        "energized_rp": 0.6371,
+        "supercharged_rp": 0.2601,
+        "traversal_rp": -0.34068,
+        "tiebreaker_points": 167.6,
+        "auto_fuel": 42.46,
+        "auto_tower": 1.15,
+        "transition_fuel": 3.41,
+        "first_shift_fuel": 56.34,
+        "second_shift_fuel": 31.45,
+        "teleop_fuel": 91.19,
+        "endgame_fuel": 32.8,
+        "endgame_tower": 0.01,
+        "total_fuel": 166.45,
+        "total_tower": 1.16,
+        "rp_1": 0.6371,
+        "rp_2": 0.2601,
+        "rp_3": -0.34068
+      },
+      "stats": {
+        "start": 91.72,
+        "pre_champs": 167.6,
+        "max": 172.9
+      },
+      "ranks": {
+        "total": {
+          "rank": 143,
+          "percentile": 0.9616,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 115,
+          "percentile": 0.9609,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 21,
+          "percentile": 0.9604,
+          "team_count": 530
+        },
+        "district": {
+          "rank": 21,
+          "percentile": 0.9604,
+          "team_count": 530
+        }
+      }
+    },
+    "record": {
+      "wins": 43,
+      "losses": 15,
+      "ties": 0,
+      "count": 58,
+      "winrate": 0.7414
+    },
+    "district_points": 291,
+    "district_rank": 12,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 1706,
+    "year": 2026,
+    "name": "Ratchet Rockers",
+    "country": "USA",
+    "state": "MO",
+    "district": null,
+    "rookie_year": 2005,
+    "epa": {
+      "total_points": {
+        "mean": 211.2,
+        "sd": 21.85
+      },
+      "unitless": 1946.0,
+      "norm": 1782.0,
+      "conf": [
+        -0.89,
+        0.88
+      ],
+      "breakdown": {
+        "total_points": 211.2,
+        "auto_points": 36.28,
+        "teleop_points": 128.33,
+        "endgame_points": 46.59,
+        "energized_rp": 0.7782,
+        "supercharged_rp": -0.0067,
+        "traversal_rp": -0.33775,
+        "tiebreaker_points": 211.2,
+        "auto_fuel": 34.66,
+        "auto_tower": 1.61,
+        "transition_fuel": 11.21,
+        "first_shift_fuel": 64.77,
+        "second_shift_fuel": 52.34,
+        "teleop_fuel": 128.33,
+        "endgame_fuel": 44.61,
+        "endgame_tower": 1.98,
+        "total_fuel": 207.6,
+        "total_tower": 3.6,
+        "rp_1": 0.7782,
+        "rp_2": -0.0067,
+        "rp_3": -0.33775
+      },
+      "stats": {
+        "start": 113.3,
+        "pre_champs": 211.2,
+        "max": 218.77
+      },
+      "ranks": {
+        "total": {
+          "rank": 46,
+          "percentile": 0.9876,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 35,
+          "percentile": 0.9881,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 3,
+          "percentile": 0.9538,
+          "team_count": 65
+        },
+        "district": {
+          "rank": 15,
+          "percentile": 0.9907,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 31,
+      "losses": 0,
+      "ties": 0,
+      "count": 31,
+      "winrate": 1.0
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 1710,
+    "year": 2026,
+    "name": "The Ravonics Revolution",
+    "country": "USA",
+    "state": "KS",
+    "district": null,
+    "rookie_year": 2006,
+    "epa": {
+      "total_points": {
+        "mean": 148.91,
+        "sd": 25.89
+      },
+      "unitless": 1780.0,
+      "norm": 1674.0,
+      "conf": [
+        -0.85,
+        0.93
+      ],
+      "breakdown": {
+        "total_points": 148.91,
+        "auto_points": 29.2,
+        "teleop_points": 84.35,
+        "endgame_points": 35.36,
+        "energized_rp": 0.6356,
+        "supercharged_rp": -0.0287,
+        "traversal_rp": -0.33771,
+        "tiebreaker_points": 148.91,
+        "auto_fuel": 29.7,
+        "auto_tower": -0.51,
+        "transition_fuel": 9.01,
+        "first_shift_fuel": 40.52,
+        "second_shift_fuel": 34.81,
+        "teleop_fuel": 84.35,
+        "endgame_fuel": 34.94,
+        "endgame_tower": 0.42,
+        "total_fuel": 148.99,
+        "total_tower": -0.08,
+        "rp_1": 0.6356,
+        "rp_2": -0.0287,
+        "rp_3": -0.33771
+      },
+      "stats": {
+        "start": 64.89,
+        "pre_champs": 148.91,
+        "max": 155.74
+      },
+      "ranks": {
+        "total": {
+          "rank": 208,
+          "percentile": 0.9441,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 172,
+          "percentile": 0.9416,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 1,
+          "percentile": 0.9583,
+          "team_count": 24
+        },
+        "district": {
+          "rank": 55,
+          "percentile": 0.9659,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 19,
+      "losses": 11,
+      "ties": 0,
+      "count": 30,
+      "winrate": 0.6333
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 1732,
+    "year": 2026,
+    "name": "Hilltopper Robotics",
+    "country": "USA",
+    "state": "WI",
+    "district": "win",
+    "rookie_year": 2006,
+    "epa": {
+      "total_points": {
+        "mean": 178.37,
+        "sd": 25.76
+      },
+      "unitless": 1858.0,
+      "norm": 1724.0,
+      "conf": [
+        -0.86,
+        0.89
+      ],
+      "breakdown": {
+        "total_points": 178.37,
+        "auto_points": 45.73,
+        "teleop_points": 105.52,
+        "endgame_points": 27.12,
+        "energized_rp": 0.7025,
+        "supercharged_rp": 0.0126,
+        "traversal_rp": -0.34005,
+        "tiebreaker_points": 178.37,
+        "auto_fuel": 45.97,
+        "auto_tower": -0.24,
+        "transition_fuel": 16.69,
+        "first_shift_fuel": 50.35,
+        "second_shift_fuel": 38.49,
+        "teleop_fuel": 105.52,
+        "endgame_fuel": 27.57,
+        "endgame_tower": -0.44,
+        "total_fuel": 179.05,
+        "total_tower": -0.68,
+        "rp_1": 0.7025,
+        "rp_2": 0.0126,
+        "rp_3": -0.34005
+      },
+      "stats": {
+        "start": 93.16,
+        "pre_champs": 178.37,
+        "max": 189.57
+      },
+      "ranks": {
+        "total": {
+          "rank": 112,
+          "percentile": 0.9699,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 90,
+          "percentile": 0.9694,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 1,
+          "percentile": 0.9859,
+          "team_count": 71
+        },
+        "district": {
+          "rank": 1,
+          "percentile": 0.9859,
+          "team_count": 71
+        }
+      }
+    },
+    "record": {
+      "wins": 45,
+      "losses": 8,
+      "ties": 1,
+      "count": 54,
+      "winrate": 0.8426
+    },
+    "district_points": 337,
+    "district_rank": 1,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 1787,
+    "year": 2026,
+    "name": "The Flying Circuits",
+    "country": "USA",
+    "state": "OH",
+    "district": null,
+    "rookie_year": 2006,
+    "epa": {
+      "total_points": {
+        "mean": 146.32,
+        "sd": 26.07
+      },
+      "unitless": 1773.0,
+      "norm": 1671.0,
+      "conf": [
+        -0.79,
+        1.0
+      ],
+      "breakdown": {
+        "total_points": 146.32,
+        "auto_points": 32.57,
+        "teleop_points": 77.62,
+        "endgame_points": 36.12,
+        "energized_rp": 0.4816,
+        "supercharged_rp": -0.0377,
+        "traversal_rp": -0.33741,
+        "tiebreaker_points": 146.32,
+        "auto_fuel": 32.28,
+        "auto_tower": 0.29,
+        "transition_fuel": 7.51,
+        "first_shift_fuel": 35.14,
+        "second_shift_fuel": 34.98,
+        "teleop_fuel": 77.62,
+        "endgame_fuel": 35.36,
+        "endgame_tower": 0.76,
+        "total_fuel": 145.27,
+        "total_tower": 1.05,
+        "rp_1": 0.4816,
+        "rp_2": -0.0377,
+        "rp_3": -0.33741
+      },
+      "stats": {
+        "start": 75.6,
+        "pre_champs": 146.32,
+        "max": 148.17
+      },
+      "ranks": {
+        "total": {
+          "rank": 222,
+          "percentile": 0.9404,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 186,
+          "percentile": 0.9368,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 5,
+          "percentile": 0.9167,
+          "team_count": 60
+        },
+        "district": {
+          "rank": 60,
+          "percentile": 0.9628,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 22,
+      "losses": 8,
+      "ties": 0,
+      "count": 30,
+      "winrate": 0.7333
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 1986,
+    "year": 2026,
+    "name": "Team Titanium",
+    "country": "USA",
+    "state": "MO",
+    "district": null,
+    "rookie_year": 2007,
+    "epa": {
+      "total_points": {
+        "mean": 156.46,
+        "sd": 13.85
+      },
+      "unitless": 1800.0,
+      "norm": 1685.0,
+      "conf": [
+        -0.83,
+        0.95
+      ],
+      "breakdown": {
+        "total_points": 156.46,
+        "auto_points": 31.71,
+        "teleop_points": 95.34,
+        "endgame_points": 29.41,
+        "energized_rp": 0.6676,
+        "supercharged_rp": -0.0893,
+        "traversal_rp": -0.33757,
+        "tiebreaker_points": 156.46,
+        "auto_fuel": 31.78,
+        "auto_tower": -0.07,
+        "transition_fuel": 8.9,
+        "first_shift_fuel": 49.15,
+        "second_shift_fuel": 37.28,
+        "teleop_fuel": 95.34,
+        "endgame_fuel": 29.55,
+        "endgame_tower": -0.14,
+        "total_fuel": 156.66,
+        "total_tower": -0.21,
+        "rp_1": 0.6676,
+        "rp_2": -0.0893,
+        "rp_3": -0.33757
+      },
+      "stats": {
+        "start": 65.34,
+        "pre_champs": 156.46,
+        "max": 158.11
+      },
+      "ranks": {
+        "total": {
+          "rank": 177,
+          "percentile": 0.9525,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 145,
+          "percentile": 0.9507,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 4,
+          "percentile": 0.9385,
+          "team_count": 65
+        },
+        "district": {
+          "rank": 46,
+          "percentile": 0.9714,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 27,
+      "losses": 3,
+      "ties": 0,
+      "count": 30,
+      "winrate": 0.9
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 2056,
+    "year": 2026,
+    "name": "OP Robotics",
+    "country": "Canada",
+    "state": "ON",
+    "district": "ont",
+    "rookie_year": 2007,
+    "epa": {
+      "total_points": {
+        "mean": 316.49,
+        "sd": 35.43
+      },
+      "unitless": 2226.0,
+      "norm": 1967.0,
+      "conf": [
+        -0.83,
+        0.93
+      ],
+      "breakdown": {
+        "total_points": 316.49,
+        "auto_points": 79.25,
+        "teleop_points": 183.44,
+        "endgame_points": 53.8,
+        "energized_rp": 0.791,
+        "supercharged_rp": 0.9147,
+        "traversal_rp": -0.34002,
+        "tiebreaker_points": 316.49,
+        "auto_fuel": 78.54,
+        "auto_tower": 0.72,
+        "transition_fuel": 29.78,
+        "first_shift_fuel": 87.03,
+        "second_shift_fuel": 66.62,
+        "teleop_fuel": 183.44,
+        "endgame_fuel": 54.44,
+        "endgame_tower": -0.65,
+        "total_fuel": 316.42,
+        "total_tower": 0.07,
+        "rp_1": 0.791,
+        "rp_2": 0.9147,
+        "rp_3": -0.34002
+      },
+      "stats": {
+        "start": 142.29,
+        "pre_champs": 316.49,
+        "max": 331.13
+      },
+      "ranks": {
+        "total": {
+          "rank": 6,
+          "percentile": 0.9984,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 2,
+          "percentile": 0.9892,
+          "team_count": 185
+        },
+        "state": {
+          "rank": 2,
+          "percentile": 0.9832,
+          "team_count": 119
+        },
+        "district": {
+          "rank": 2,
+          "percentile": 0.9832,
+          "team_count": 119
+        }
+      }
+    },
+    "record": {
+      "wins": 48,
+      "losses": 5,
+      "ties": 0,
+      "count": 53,
+      "winrate": 0.9057
+    },
+    "district_points": 396,
+    "district_rank": 1,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 2102,
+    "year": 2026,
+    "name": "Team Paradox",
+    "country": "USA",
+    "state": "CA",
+    "district": "ca",
+    "rookie_year": 2007,
+    "epa": {
+      "total_points": {
+        "mean": 166.52,
+        "sd": 15.63
+      },
+      "unitless": 1827.0,
+      "norm": 1703.0,
+      "conf": [
+        -0.89,
+        0.86
+      ],
+      "breakdown": {
+        "total_points": 166.52,
+        "auto_points": 25.96,
+        "teleop_points": 89.94,
+        "endgame_points": 50.62,
+        "energized_rp": 0.5943,
+        "supercharged_rp": 0.1654,
+        "traversal_rp": -0.34004,
+        "tiebreaker_points": 166.52,
+        "auto_fuel": 26.14,
+        "auto_tower": -0.19,
+        "transition_fuel": 5.94,
+        "first_shift_fuel": 46.28,
+        "second_shift_fuel": 37.72,
+        "teleop_fuel": 89.94,
+        "endgame_fuel": 50.49,
+        "endgame_tower": 0.13,
+        "total_fuel": 166.57,
+        "total_tower": -0.06,
+        "rp_1": 0.5943,
+        "rp_2": 0.1654,
+        "rp_3": -0.34004
+      },
+      "stats": {
+        "start": 55.91,
+        "pre_champs": 166.52,
+        "max": 172.72
+      },
+      "ranks": {
+        "total": {
+          "rank": 150,
+          "percentile": 0.9597,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 119,
+          "percentile": 0.9596,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 23,
+          "percentile": 0.921,
+          "team_count": 291
+        },
+        "district": {
+          "rank": 23,
+          "percentile": 0.921,
+          "team_count": 291
+        }
+      }
+    },
+    "record": {
+      "wins": 33,
+      "losses": 15,
+      "ties": 0,
+      "count": 48,
+      "winrate": 0.6875
+    },
+    "district_points": 212,
+    "district_rank": 21,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 2199,
+    "year": 2026,
+    "name": "Robo-Lions",
+    "country": "USA",
+    "state": "MD",
+    "district": "fch",
+    "rookie_year": 2007,
+    "epa": {
+      "total_points": {
+        "mean": 123.31,
+        "sd": 22.36
+      },
+      "unitless": 1711.0,
+      "norm": 1645.0,
+      "conf": [
+        -0.83,
+        0.92
+      ],
+      "breakdown": {
+        "total_points": 123.31,
+        "auto_points": 23.62,
+        "teleop_points": 62.81,
+        "endgame_points": 36.89,
+        "energized_rp": 0.5012,
+        "supercharged_rp": 0.0637,
+        "traversal_rp": -0.34004,
+        "tiebreaker_points": 123.31,
+        "auto_fuel": 23.03,
+        "auto_tower": 0.59,
+        "transition_fuel": 4.03,
+        "first_shift_fuel": 28.01,
+        "second_shift_fuel": 30.76,
+        "teleop_fuel": 62.81,
+        "endgame_fuel": 36.97,
+        "endgame_tower": -0.08,
+        "total_fuel": 122.8,
+        "total_tower": 0.51,
+        "rp_1": 0.5012,
+        "rp_2": 0.0637,
+        "rp_3": -0.34004
+      },
+      "stats": {
+        "start": 57.89,
+        "pre_champs": 123.31,
+        "max": 135.57
+      },
+      "ranks": {
+        "total": {
+          "rank": 363,
+          "percentile": 0.9025,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 304,
+          "percentile": 0.8967,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 8,
+          "percentile": 0.7778,
+          "team_count": 36
+        },
+        "district": {
+          "rank": 18,
+          "percentile": 0.8462,
+          "team_count": 117
+        }
+      }
+    },
+    "record": {
+      "wins": 35,
+      "losses": 12,
+      "ties": 0,
+      "count": 47,
+      "winrate": 0.7447
+    },
+    "district_points": 210,
+    "district_rank": 13,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 2220,
+    "year": 2026,
+    "name": "Blue Twilight",
+    "country": "USA",
+    "state": "MN",
+    "district": null,
+    "rookie_year": 2007,
+    "epa": {
+      "total_points": {
+        "mean": 81.23,
+        "sd": 14.56
+      },
+      "unitless": 1599.0,
+      "norm": 1569.0,
+      "conf": [
+        -0.75,
+        1.01
+      ],
+      "breakdown": {
+        "total_points": 81.23,
+        "auto_points": 8.01,
+        "teleop_points": 49.09,
+        "endgame_points": 24.13,
+        "energized_rp": 0.4678,
+        "supercharged_rp": -0.1699,
+        "traversal_rp": -0.33789,
+        "tiebreaker_points": 81.23,
+        "auto_fuel": 8.37,
+        "auto_tower": -0.36,
+        "transition_fuel": 3.47,
+        "first_shift_fuel": 18.31,
+        "second_shift_fuel": 27.3,
+        "teleop_fuel": 49.09,
+        "endgame_fuel": 24.33,
+        "endgame_tower": -0.2,
+        "total_fuel": 81.79,
+        "total_tower": -0.56,
+        "rp_1": 0.4678,
+        "rp_2": -0.1699,
+        "rp_3": -0.33789
+      },
+      "stats": {
+        "start": 57.84,
+        "pre_champs": 81.23,
+        "max": 81.43
+      },
+      "ranks": {
+        "total": {
+          "rank": 750,
+          "percentile": 0.7986,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 628,
+          "percentile": 0.7867,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 28,
+          "percentile": 0.8503,
+          "team_count": 187
+        },
+        "district": {
+          "rank": 248,
+          "percentile": 0.8461,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 17,
+      "losses": 13,
+      "ties": 0,
+      "count": 30,
+      "winrate": 0.5667
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 2383,
+    "year": 2026,
+    "name": "Ninjineers",
+    "country": "USA",
+    "state": "FL",
+    "district": null,
+    "rookie_year": 2008,
+    "epa": {
+      "total_points": {
+        "mean": 143.35,
+        "sd": 26.51
+      },
+      "unitless": 1765.0,
+      "norm": 1668.0,
+      "conf": [
+        -0.76,
+        1.01
+      ],
+      "breakdown": {
+        "total_points": 143.35,
+        "auto_points": 26.54,
+        "teleop_points": 82.44,
+        "endgame_points": 34.37,
+        "energized_rp": 0.5665,
+        "supercharged_rp": -0.1007,
+        "traversal_rp": -0.33774,
+        "tiebreaker_points": 143.35,
+        "auto_fuel": 26.29,
+        "auto_tower": 0.25,
+        "transition_fuel": 9.78,
+        "first_shift_fuel": 37.26,
+        "second_shift_fuel": 35.4,
+        "teleop_fuel": 82.44,
+        "endgame_fuel": 32.82,
+        "endgame_tower": 1.55,
+        "total_fuel": 141.55,
+        "total_tower": 1.8,
+        "rp_1": 0.5665,
+        "rp_2": -0.1007,
+        "rp_3": -0.33774
+      },
+      "stats": {
+        "start": 63.18,
+        "pre_champs": 143.35,
+        "max": 143.35
+      },
+      "ranks": {
+        "total": {
+          "rank": 242,
+          "percentile": 0.935,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 206,
+          "percentile": 0.93,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 5,
+          "percentile": 0.9432,
+          "team_count": 88
+        },
+        "district": {
+          "rank": 63,
+          "percentile": 0.9609,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 19,
+      "losses": 9,
+      "ties": 0,
+      "count": 28,
+      "winrate": 0.6786
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 2486,
+    "year": 2026,
+    "name": "CocoNuts",
+    "country": "USA",
+    "state": "AZ",
+    "district": null,
+    "rookie_year": 2008,
+    "epa": {
+      "total_points": {
+        "mean": 94.08,
+        "sd": 25.98
+      },
+      "unitless": 1633.0,
+      "norm": 1593.0,
+      "conf": [
+        -0.83,
+        0.93
+      ],
+      "breakdown": {
+        "total_points": 94.08,
+        "auto_points": 23.02,
+        "teleop_points": 51.04,
+        "endgame_points": 20.02,
+        "energized_rp": 0.5465,
+        "supercharged_rp": -0.1788,
+        "traversal_rp": -0.33996,
+        "tiebreaker_points": 94.08,
+        "auto_fuel": 23.05,
+        "auto_tower": -0.03,
+        "transition_fuel": 3.65,
+        "first_shift_fuel": 25.92,
+        "second_shift_fuel": 21.47,
+        "teleop_fuel": 51.04,
+        "endgame_fuel": 20.51,
+        "endgame_tower": -0.49,
+        "total_fuel": 94.6,
+        "total_tower": -0.52,
+        "rp_1": 0.5465,
+        "rp_2": -0.1788,
+        "rp_3": -0.33996
+      },
+      "stats": {
+        "start": 64.48,
+        "pre_champs": 94.08,
+        "max": 104.89
+      },
+      "ranks": {
+        "total": {
+          "rank": 608,
+          "percentile": 0.8367,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 510,
+          "percentile": 0.8268,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 3,
+          "percentile": 0.9231,
+          "team_count": 39
+        },
+        "district": {
+          "rank": 192,
+          "percentile": 0.8808,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 24,
+      "losses": 16,
+      "ties": 0,
+      "count": 40,
+      "winrate": 0.6
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 2607,
+    "year": 2026,
+    "name": "The Fighting RoboVikings",
+    "country": "USA",
+    "state": "PA",
+    "district": "fma",
+    "rookie_year": 2008,
+    "epa": {
+      "total_points": {
+        "mean": 100.6,
+        "sd": 37.86
+      },
+      "unitless": 1651.0,
+      "norm": 1605.0,
+      "conf": [
+        -1.0,
+        0.74
+      ],
+      "breakdown": {
+        "total_points": 100.6,
+        "auto_points": 24.56,
+        "teleop_points": 48.4,
+        "endgame_points": 27.64,
+        "energized_rp": 0.4664,
+        "supercharged_rp": -0.0638,
+        "traversal_rp": -0.34006,
+        "tiebreaker_points": 100.6,
+        "auto_fuel": 23.69,
+        "auto_tower": 0.86,
+        "transition_fuel": 5.36,
+        "first_shift_fuel": 21.48,
+        "second_shift_fuel": 21.56,
+        "teleop_fuel": 48.4,
+        "endgame_fuel": 28.29,
+        "endgame_tower": -0.65,
+        "total_fuel": 100.38,
+        "total_tower": 0.21,
+        "rp_1": 0.4664,
+        "rp_2": -0.0638,
+        "rp_3": -0.34006
+      },
+      "stats": {
+        "start": 83.28,
+        "pre_champs": 100.6,
+        "max": 124.97
+      },
+      "ranks": {
+        "total": {
+          "rank": 553,
+          "percentile": 0.8515,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 461,
+          "percentile": 0.8434,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 16,
+          "percentile": 0.7922,
+          "team_count": 77
+        },
+        "district": {
+          "rank": 23,
+          "percentile": 0.8369,
+          "team_count": 141
+        }
+      }
+    },
+    "record": {
+      "wins": 43,
+      "losses": 8,
+      "ties": 0,
+      "count": 51,
+      "winrate": 0.8431
+    },
+    "district_points": 273,
+    "district_rank": 6,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 2659,
+    "year": 2026,
+    "name": "RoboWarriors",
+    "country": "USA",
+    "state": "CA",
+    "district": "ca",
+    "rookie_year": 2008,
+    "epa": {
+      "total_points": {
+        "mean": 160.67,
+        "sd": 23.25
+      },
+      "unitless": 1811.0,
+      "norm": 1693.0,
+      "conf": [
+        -0.8,
+        0.96
+      ],
+      "breakdown": {
+        "total_points": 160.67,
+        "auto_points": 26.87,
+        "teleop_points": 89.38,
+        "endgame_points": 44.42,
+        "energized_rp": 0.4788,
+        "supercharged_rp": 0.4154,
+        "traversal_rp": -0.34,
+        "tiebreaker_points": 160.67,
+        "auto_fuel": 26.99,
+        "auto_tower": -0.12,
+        "transition_fuel": 10.82,
+        "first_shift_fuel": 42.35,
+        "second_shift_fuel": 36.22,
+        "teleop_fuel": 89.38,
+        "endgame_fuel": 45.03,
+        "endgame_tower": -0.62,
+        "total_fuel": 161.4,
+        "total_tower": -0.73,
+        "rp_1": 0.4788,
+        "rp_2": 0.4154,
+        "rp_3": -0.34
+      },
+      "stats": {
+        "start": 55.07,
+        "pre_champs": 160.67,
+        "max": 163.42
+      },
+      "ranks": {
+        "total": {
+          "rank": 165,
+          "percentile": 0.9557,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 134,
+          "percentile": 0.9545,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 29,
+          "percentile": 0.9003,
+          "team_count": 291
+        },
+        "district": {
+          "rank": 29,
+          "percentile": 0.9003,
+          "team_count": 291
+        }
+      }
+    },
+    "record": {
+      "wins": 31,
+      "losses": 19,
+      "ties": 0,
+      "count": 50,
+      "winrate": 0.62
+    },
+    "district_points": 190,
+    "district_rank": 30,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 2834,
+    "year": 2026,
+    "name": "Bionic Black Hawks",
+    "country": "USA",
+    "state": "MI",
+    "district": "fim",
+    "rookie_year": 2009,
+    "epa": {
+      "total_points": {
+        "mean": 51.52,
+        "sd": 13.07
+      },
+      "unitless": 1520.0,
+      "norm": 1513.0,
+      "conf": [
+        -0.94,
+        0.82
+      ],
+      "breakdown": {
+        "total_points": 51.52,
+        "auto_points": 10.69,
+        "teleop_points": 25.68,
+        "endgame_points": 15.14,
+        "energized_rp": 0.3,
+        "supercharged_rp": -0.2331,
+        "traversal_rp": -0.33819,
+        "tiebreaker_points": 51.52,
+        "auto_fuel": 10.7,
+        "auto_tower": -0.01,
+        "transition_fuel": 1.19,
+        "first_shift_fuel": 12.03,
+        "second_shift_fuel": 12.46,
+        "teleop_fuel": 25.68,
+        "endgame_fuel": 13.92,
+        "endgame_tower": 1.22,
+        "total_fuel": 50.31,
+        "total_tower": 1.21,
+        "rp_1": 0.3,
+        "rp_2": -0.2331,
+        "rp_3": -0.33819
+      },
+      "stats": {
+        "start": 68.74,
+        "pre_champs": 51.52,
+        "max": 56.71
+      },
+      "ranks": {
+        "total": {
+          "rank": 1292,
+          "percentile": 0.6531,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 1064,
+          "percentile": 0.6386,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 196,
+          "percentile": 0.6302,
+          "team_count": 530
+        },
+        "district": {
+          "rank": 196,
+          "percentile": 0.6302,
+          "team_count": 530
+        }
+      }
+    },
+    "record": {
+      "wins": 13,
+      "losses": 16,
+      "ties": 0,
+      "count": 29,
+      "winrate": 0.4483
+    },
+    "district_points": 59,
+    "district_rank": 194,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 3015,
+    "year": 2026,
+    "name": "Ranger Robotics",
+    "country": "USA",
+    "state": "NY",
+    "district": null,
+    "rookie_year": 2009,
+    "epa": {
+      "total_points": {
+        "mean": 203.0,
+        "sd": 29.01
+      },
+      "unitless": 1924.0,
+      "norm": 1767.0,
+      "conf": [
+        -0.83,
+        0.94
+      ],
+      "breakdown": {
+        "total_points": 203.0,
+        "auto_points": 51.99,
+        "teleop_points": 111.82,
+        "endgame_points": 39.2,
+        "energized_rp": 0.7468,
+        "supercharged_rp": 0.1376,
+        "traversal_rp": -0.33839,
+        "tiebreaker_points": 203.0,
+        "auto_fuel": 52.28,
+        "auto_tower": -0.29,
+        "transition_fuel": 18.05,
+        "first_shift_fuel": 50.78,
+        "second_shift_fuel": 43.0,
+        "teleop_fuel": 111.82,
+        "endgame_fuel": 39.29,
+        "endgame_tower": -0.09,
+        "total_fuel": 203.39,
+        "total_tower": -0.38,
+        "rp_1": 0.7468,
+        "rp_2": 0.1376,
+        "rp_3": -0.33839
+      },
+      "stats": {
+        "start": 71.46,
+        "pre_champs": 203.0,
+        "max": 207.87
+      },
+      "ranks": {
+        "total": {
+          "rank": 61,
+          "percentile": 0.9836,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 50,
+          "percentile": 0.983,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 4,
+          "percentile": 0.9737,
+          "team_count": 152
+        },
+        "district": {
+          "rank": 19,
+          "percentile": 0.9882,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 37,
+      "losses": 4,
+      "ties": 0,
+      "count": 41,
+      "winrate": 0.9024
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 3035,
+    "year": 2026,
+    "name": "Droid Rage",
+    "country": "USA",
+    "state": "TX",
+    "district": "fit",
+    "rookie_year": 2009,
+    "epa": {
+      "total_points": {
+        "mean": 124.19,
+        "sd": 21.72
+      },
+      "unitless": 1714.0,
+      "norm": 1646.0,
+      "conf": [
+        -0.74,
+        1.0
+      ],
+      "breakdown": {
+        "total_points": 124.19,
+        "auto_points": 19.12,
+        "teleop_points": 71.03,
+        "endgame_points": 34.04,
+        "energized_rp": 0.5814,
+        "supercharged_rp": 0.0707,
+        "traversal_rp": -0.34037,
+        "tiebreaker_points": 124.19,
+        "auto_fuel": 18.56,
+        "auto_tower": 0.56,
+        "transition_fuel": 4.12,
+        "first_shift_fuel": 34.53,
+        "second_shift_fuel": 32.38,
+        "teleop_fuel": 71.03,
+        "endgame_fuel": 34.54,
+        "endgame_tower": -0.5,
+        "total_fuel": 124.13,
+        "total_tower": 0.06,
+        "rp_1": 0.5814,
+        "rp_2": 0.0707,
+        "rp_3": -0.34037
+      },
+      "stats": {
+        "start": 56.92,
+        "pre_champs": 124.19,
+        "max": 124.19
+      },
+      "ranks": {
+        "total": {
+          "rank": 358,
+          "percentile": 0.9039,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 299,
+          "percentile": 0.8984,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 21,
+          "percentile": 0.8743,
+          "team_count": 167
+        },
+        "district": {
+          "rank": 21,
+          "percentile": 0.8827,
+          "team_count": 179
+        }
+      }
+    },
+    "record": {
+      "wins": 37,
+      "losses": 12,
+      "ties": 0,
+      "count": 49,
+      "winrate": 0.7551
+    },
+    "district_points": 208,
+    "district_rank": 22,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 3175,
+    "year": 2026,
+    "name": "Knight Vision",
+    "country": "USA",
+    "state": "MI",
+    "district": "fim",
+    "rookie_year": 2010,
+    "epa": {
+      "total_points": {
+        "mean": 106.85,
+        "sd": 18.43
+      },
+      "unitless": 1668.0,
+      "norm": 1616.0,
+      "conf": [
+        -0.77,
+        0.98
+      ],
+      "breakdown": {
+        "total_points": 106.85,
+        "auto_points": 20.52,
+        "teleop_points": 57.97,
+        "endgame_points": 28.36,
+        "energized_rp": 0.7223,
+        "supercharged_rp": -0.0316,
+        "traversal_rp": -0.34032,
+        "tiebreaker_points": 106.85,
+        "auto_fuel": 20.41,
+        "auto_tower": 0.11,
+        "transition_fuel": 1.63,
+        "first_shift_fuel": 34.04,
+        "second_shift_fuel": 22.3,
+        "teleop_fuel": 57.97,
+        "endgame_fuel": 28.28,
+        "endgame_tower": 0.08,
+        "total_fuel": 106.66,
+        "total_tower": 0.19,
+        "rp_1": 0.7223,
+        "rp_2": -0.0316,
+        "rp_3": -0.34032
+      },
+      "stats": {
+        "start": 80.03,
+        "pre_champs": 106.85,
+        "max": 109.14
+      },
+      "ranks": {
+        "total": {
+          "rank": 495,
+          "percentile": 0.8671,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 414,
+          "percentile": 0.8594,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 70,
+          "percentile": 0.8679,
+          "team_count": 530
+        },
+        "district": {
+          "rank": 70,
+          "percentile": 0.8679,
+          "team_count": 530
+        }
+      }
+    },
+    "record": {
+      "wins": 31,
+      "losses": 16,
+      "ties": 0,
+      "count": 47,
+      "winrate": 0.6596
+    },
+    "district_points": 159,
+    "district_rank": 77,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 3297,
+    "year": 2026,
+    "name": "Full Metal Jackets",
+    "country": "USA",
+    "state": "MN",
+    "district": null,
+    "rookie_year": 2010,
+    "epa": {
+      "total_points": {
+        "mean": 94.75,
+        "sd": 18.71
+      },
+      "unitless": 1635.0,
+      "norm": 1594.0,
+      "conf": [
+        -0.8,
+        0.97
+      ],
+      "breakdown": {
+        "total_points": 94.75,
+        "auto_points": 18.48,
+        "teleop_points": 57.88,
+        "endgame_points": 18.39,
+        "energized_rp": 0.4756,
+        "supercharged_rp": -0.2311,
+        "traversal_rp": -0.33757,
+        "tiebreaker_points": 94.75,
+        "auto_fuel": 19.39,
+        "auto_tower": -0.91,
+        "transition_fuel": 5.89,
+        "first_shift_fuel": 28.77,
+        "second_shift_fuel": 23.22,
+        "teleop_fuel": 57.88,
+        "endgame_fuel": 16.68,
+        "endgame_tower": 1.71,
+        "total_fuel": 93.95,
+        "total_tower": 0.8,
+        "rp_1": 0.4756,
+        "rp_2": -0.2311,
+        "rp_3": -0.33757
+      },
+      "stats": {
+        "start": 59.64,
+        "pre_champs": 94.75,
+        "max": 98.05
+      },
+      "ranks": {
+        "total": {
+          "rank": 601,
+          "percentile": 0.8386,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 503,
+          "percentile": 0.8291,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 19,
+          "percentile": 0.8984,
+          "team_count": 187
+        },
+        "district": {
+          "rank": 190,
+          "percentile": 0.8821,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 26,
+      "losses": 8,
+      "ties": 0,
+      "count": 34,
+      "winrate": 0.7647
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 3467,
+    "year": 2026,
+    "name": "Windham Windup",
+    "country": "USA",
+    "state": "NH",
+    "district": "ne",
+    "rookie_year": 2011,
+    "epa": {
+      "total_points": {
+        "mean": 270.2,
+        "sd": 37.9
+      },
+      "unitless": 2103.0,
+      "norm": 1886.0,
+      "conf": [
+        -1.02,
+        0.71
+      ],
+      "breakdown": {
+        "total_points": 270.2,
+        "auto_points": 58.49,
+        "teleop_points": 156.51,
+        "endgame_points": 55.2,
+        "energized_rp": 0.6787,
+        "supercharged_rp": 0.9415,
+        "traversal_rp": -0.34194,
+        "tiebreaker_points": 270.2,
+        "auto_fuel": 58.31,
+        "auto_tower": 0.18,
+        "transition_fuel": 27.4,
+        "first_shift_fuel": 74.69,
+        "second_shift_fuel": 54.42,
+        "teleop_fuel": 156.51,
+        "endgame_fuel": 55.68,
+        "endgame_tower": -0.48,
+        "total_fuel": 270.5,
+        "total_tower": -0.3,
+        "rp_1": 0.6787,
+        "rp_2": 0.9415,
+        "rp_3": -0.34194
+      },
+      "stats": {
+        "start": 95.34,
+        "pre_champs": 270.2,
+        "max": 313.49
+      },
+      "ranks": {
+        "total": {
+          "rank": 15,
+          "percentile": 0.996,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 12,
+          "percentile": 0.9959,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 1,
+          "percentile": 0.98,
+          "team_count": 50
+        },
+        "district": {
+          "rank": 3,
+          "percentile": 0.985,
+          "team_count": 200
+        }
+      }
+    },
+    "record": {
+      "wins": 67,
+      "losses": 4,
+      "ties": 0,
+      "count": 71,
+      "winrate": 0.9437
+    },
+    "district_points": 362,
+    "district_rank": 3,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 3506,
+    "year": 2026,
+    "name": "YETI Robotics",
+    "country": "USA",
+    "state": "NC",
+    "district": "fnc",
+    "rookie_year": 2011,
+    "epa": {
+      "total_points": {
+        "mean": 112.97,
+        "sd": 9.44
+      },
+      "unitless": 1684.0,
+      "norm": 1627.0,
+      "conf": [
+        -0.86,
+        0.9
+      ],
+      "breakdown": {
+        "total_points": 112.97,
+        "auto_points": 22.37,
+        "teleop_points": 63.35,
+        "endgame_points": 27.26,
+        "energized_rp": 0.4523,
+        "supercharged_rp": -0.2417,
+        "traversal_rp": -0.34005,
+        "tiebreaker_points": 112.97,
+        "auto_fuel": 22.5,
+        "auto_tower": -0.13,
+        "transition_fuel": 5.01,
+        "first_shift_fuel": 32.88,
+        "second_shift_fuel": 25.45,
+        "teleop_fuel": 63.35,
+        "endgame_fuel": 27.35,
+        "endgame_tower": -0.09,
+        "total_fuel": 113.19,
+        "total_tower": -0.22,
+        "rp_1": 0.4523,
+        "rp_2": -0.2417,
+        "rp_3": -0.34005
+      },
+      "stats": {
+        "start": 52.15,
+        "pre_champs": 112.97,
+        "max": 114.96
+      },
+      "ranks": {
+        "total": {
+          "rank": 441,
+          "percentile": 0.8816,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 370,
+          "percentile": 0.8743,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 7,
+          "percentile": 0.9213,
+          "team_count": 89
+        },
+        "district": {
+          "rank": 7,
+          "percentile": 0.9213,
+          "team_count": 89
+        }
+      }
+    },
+    "record": {
+      "wins": 40,
+      "losses": 9,
+      "ties": 0,
+      "count": 49,
+      "winrate": 0.8163
+    },
+    "district_points": 243,
+    "district_rank": 6,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 3512,
+    "year": 2026,
+    "name": "Spartatroniks",
+    "country": "USA",
+    "state": "CA",
+    "district": "ca",
+    "rookie_year": 2011,
+    "epa": {
+      "total_points": {
+        "mean": 141.53,
+        "sd": 25.11
+      },
+      "unitless": 1760.0,
+      "norm": 1666.0,
+      "conf": [
+        -0.91,
+        0.85
+      ],
+      "breakdown": {
+        "total_points": 141.53,
+        "auto_points": 19.87,
+        "teleop_points": 80.69,
+        "endgame_points": 40.96,
+        "energized_rp": 0.4284,
+        "supercharged_rp": 0.2219,
+        "traversal_rp": -0.34005,
+        "tiebreaker_points": 141.53,
+        "auto_fuel": 19.42,
+        "auto_tower": 0.45,
+        "transition_fuel": 10.21,
+        "first_shift_fuel": 42.71,
+        "second_shift_fuel": 27.77,
+        "teleop_fuel": 80.69,
+        "endgame_fuel": 40.07,
+        "endgame_tower": 0.89,
+        "total_fuel": 140.19,
+        "total_tower": 1.34,
+        "rp_1": 0.4284,
+        "rp_2": 0.2219,
+        "rp_3": -0.34005
+      },
+      "stats": {
+        "start": 53.95,
+        "pre_champs": 141.53,
+        "max": 158.21
+      },
+      "ranks": {
+        "total": {
+          "rank": 252,
+          "percentile": 0.9323,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 214,
+          "percentile": 0.9273,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 37,
+          "percentile": 0.8729,
+          "team_count": 291
+        },
+        "district": {
+          "rank": 37,
+          "percentile": 0.8729,
+          "team_count": 291
+        }
+      }
+    },
+    "record": {
+      "wins": 31,
+      "losses": 15,
+      "ties": 0,
+      "count": 46,
+      "winrate": 0.6739
+    },
+    "district_points": 166,
+    "district_rank": 38,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 3539,
+    "year": 2026,
+    "name": "Byting Bulldogs",
+    "country": "USA",
+    "state": "MI",
+    "district": "fim",
+    "rookie_year": 2011,
+    "epa": {
+      "total_points": {
+        "mean": 179.45,
+        "sd": 37.14
+      },
+      "unitless": 1861.0,
+      "norm": 1726.0,
+      "conf": [
+        -0.91,
+        0.84
+      ],
+      "breakdown": {
+        "total_points": 179.45,
+        "auto_points": 37.11,
+        "teleop_points": 99.61,
+        "endgame_points": 42.73,
+        "energized_rp": 0.5926,
+        "supercharged_rp": 0.0759,
+        "traversal_rp": -0.34018,
+        "tiebreaker_points": 179.45,
+        "auto_fuel": 28.43,
+        "auto_tower": 8.68,
+        "transition_fuel": 9.37,
+        "first_shift_fuel": 50.4,
+        "second_shift_fuel": 39.84,
+        "teleop_fuel": 99.61,
+        "endgame_fuel": 36.3,
+        "endgame_tower": 6.43,
+        "total_fuel": 164.34,
+        "total_tower": 15.11,
+        "rp_1": 0.5926,
+        "rp_2": 0.0759,
+        "rp_3": -0.34018
+      },
+      "stats": {
+        "start": 76.57,
+        "pre_champs": 179.45,
+        "max": 200.04
+      },
+      "ranks": {
+        "total": {
+          "rank": 103,
+          "percentile": 0.9723,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 81,
+          "percentile": 0.9725,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 12,
+          "percentile": 0.9774,
+          "team_count": 530
+        },
+        "district": {
+          "rank": 12,
+          "percentile": 0.9774,
+          "team_count": 530
+        }
+      }
+    },
+    "record": {
+      "wins": 38,
+      "losses": 10,
+      "ties": 0,
+      "count": 48,
+      "winrate": 0.7917
+    },
+    "district_points": 234,
+    "district_rank": 29,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 3641,
+    "year": 2026,
+    "name": "The Flying Toasters",
+    "country": "USA",
+    "state": "MI",
+    "district": "fim",
+    "rookie_year": 2011,
+    "epa": {
+      "total_points": {
+        "mean": 141.32,
+        "sd": 28.43
+      },
+      "unitless": 1759.0,
+      "norm": 1665.0,
+      "conf": [
+        -0.89,
+        0.86
+      ],
+      "breakdown": {
+        "total_points": 141.32,
+        "auto_points": 37.27,
+        "teleop_points": 75.87,
+        "endgame_points": 28.18,
+        "energized_rp": 0.5982,
+        "supercharged_rp": -0.026,
+        "traversal_rp": -0.27406,
+        "tiebreaker_points": 141.32,
+        "auto_fuel": 36.96,
+        "auto_tower": 0.31,
+        "transition_fuel": 9.52,
+        "first_shift_fuel": 33.73,
+        "second_shift_fuel": 32.62,
+        "teleop_fuel": 75.87,
+        "endgame_fuel": 27.67,
+        "endgame_tower": 0.51,
+        "total_fuel": 140.5,
+        "total_tower": 0.82,
+        "rp_1": 0.5982,
+        "rp_2": -0.026,
+        "rp_3": -0.27406
+      },
+      "stats": {
+        "start": 46.77,
+        "pre_champs": 141.32,
+        "max": 157.82
+      },
+      "ranks": {
+        "total": {
+          "rank": 254,
+          "percentile": 0.9318,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 216,
+          "percentile": 0.9266,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 40,
+          "percentile": 0.9245,
+          "team_count": 530
+        },
+        "district": {
+          "rank": 40,
+          "percentile": 0.9245,
+          "team_count": 530
+        }
+      }
+    },
+    "record": {
+      "wins": 35,
+      "losses": 17,
+      "ties": 0,
+      "count": 52,
+      "winrate": 0.6731
+    },
+    "district_points": 253,
+    "district_rank": 23,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 4143,
+    "year": 2026,
+    "name": "MARS/WARS",
+    "country": "USA",
+    "state": "IL",
+    "district": null,
+    "rookie_year": 2012,
+    "epa": {
+      "total_points": {
+        "mean": 148.52,
+        "sd": 23.11
+      },
+      "unitless": 1779.0,
+      "norm": 1674.0,
+      "conf": [
+        -0.74,
+        1.01
+      ],
+      "breakdown": {
+        "total_points": 148.52,
+        "auto_points": 28.45,
+        "teleop_points": 84.1,
+        "endgame_points": 35.97,
+        "energized_rp": 0.6467,
+        "supercharged_rp": -0.1685,
+        "traversal_rp": -0.33807,
+        "tiebreaker_points": 148.52,
+        "auto_fuel": 28.04,
+        "auto_tower": 0.41,
+        "transition_fuel": 13.35,
+        "first_shift_fuel": 32.52,
+        "second_shift_fuel": 38.24,
+        "teleop_fuel": 84.1,
+        "endgame_fuel": 36.04,
+        "endgame_tower": -0.07,
+        "total_fuel": 148.18,
+        "total_tower": 0.34,
+        "rp_1": 0.6467,
+        "rp_2": -0.1685,
+        "rp_3": -0.33807
+      },
+      "stats": {
+        "start": 72.65,
+        "pre_champs": 148.52,
+        "max": 148.52
+      },
+      "ranks": {
+        "total": {
+          "rank": 210,
+          "percentile": 0.9436,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 174,
+          "percentile": 0.9409,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 5,
+          "percentile": 0.9091,
+          "team_count": 55
+        },
+        "district": {
+          "rank": 56,
+          "percentile": 0.9652,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 31,
+      "losses": 3,
+      "ties": 0,
+      "count": 34,
+      "winrate": 0.9118
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 4174,
+    "year": 2026,
+    "name": "Mustang Robotics",
+    "country": "USA",
+    "state": "MN",
+    "district": null,
+    "rookie_year": 2012,
+    "epa": {
+      "total_points": {
+        "mean": 141.5,
+        "sd": 22.85
+      },
+      "unitless": 1760.0,
+      "norm": 1666.0,
+      "conf": [
+        -0.86,
+        0.91
+      ],
+      "breakdown": {
+        "total_points": 141.5,
+        "auto_points": 22.72,
+        "teleop_points": 79.68,
+        "endgame_points": 39.11,
+        "energized_rp": 0.6001,
+        "supercharged_rp": -0.2319,
+        "traversal_rp": -0.33782,
+        "tiebreaker_points": 141.5,
+        "auto_fuel": 22.56,
+        "auto_tower": 0.16,
+        "transition_fuel": 12.05,
+        "first_shift_fuel": 37.47,
+        "second_shift_fuel": 30.16,
+        "teleop_fuel": 79.68,
+        "endgame_fuel": 39.87,
+        "endgame_tower": -0.76,
+        "total_fuel": 142.1,
+        "total_tower": -0.6,
+        "rp_1": 0.6001,
+        "rp_2": -0.2319,
+        "rp_3": -0.33782
+      },
+      "stats": {
+        "start": 57.08,
+        "pre_champs": 141.5,
+        "max": 147.39
+      },
+      "ranks": {
+        "total": {
+          "rank": 253,
+          "percentile": 0.9321,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 215,
+          "percentile": 0.927,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 4,
+          "percentile": 0.9786,
+          "team_count": 187
+        },
+        "district": {
+          "rank": 68,
+          "percentile": 0.9578,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 25,
+      "losses": 5,
+      "ties": 0,
+      "count": 30,
+      "winrate": 0.8333
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 4191,
+    "year": 2026,
+    "name": "IMC",
+    "country": "T\u00fcrkiye",
+    "state": null,
+    "district": null,
+    "rookie_year": 2012,
+    "epa": {
+      "total_points": {
+        "mean": 6.64,
+        "sd": 15.29
+      },
+      "unitless": 1400.0,
+      "norm": 1369.0,
+      "conf": [
+        -1.0,
+        0.76
+      ],
+      "breakdown": {
+        "total_points": 6.64,
+        "auto_points": 2.17,
+        "teleop_points": 3.22,
+        "endgame_points": 1.25,
+        "energized_rp": -0.019,
+        "supercharged_rp": -0.2515,
+        "traversal_rp": -0.33806,
+        "tiebreaker_points": 6.64,
+        "auto_fuel": 2.24,
+        "auto_tower": -0.07,
+        "transition_fuel": 0.8,
+        "first_shift_fuel": -1.0,
+        "second_shift_fuel": 3.42,
+        "teleop_fuel": 3.22,
+        "endgame_fuel": 1.72,
+        "endgame_tower": -0.47,
+        "total_fuel": 7.17,
+        "total_tower": -0.54,
+        "rp_1": -0.019,
+        "rp_2": -0.2515,
+        "rp_3": -0.33806
+      },
+      "stats": {
+        "start": 7.92,
+        "pre_champs": 6.64,
+        "max": 12.65
+      },
+      "ranks": {
+        "total": {
+          "rank": 3611,
+          "percentile": 0.0303,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 191,
+          "percentile": 0.0498,
+          "team_count": 201
+        },
+        "state": {
+          "rank": 566,
+          "percentile": 0.0487,
+          "team_count": 595
+        },
+        "district": {
+          "rank": 1543,
+          "percentile": 0.0422,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 10,
+      "losses": 21,
+      "ties": 0,
+      "count": 31,
+      "winrate": 0.3226
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 4201,
+    "year": 2026,
+    "name": "The Vitruvian Bots",
+    "country": "USA",
+    "state": "CA",
+    "district": "ca",
+    "rookie_year": 2012,
+    "epa": {
+      "total_points": {
+        "mean": 149.24,
+        "sd": 24.76
+      },
+      "unitless": 1781.0,
+      "norm": 1675.0,
+      "conf": [
+        -0.84,
+        0.92
+      ],
+      "breakdown": {
+        "total_points": 149.24,
+        "auto_points": 27.36,
+        "teleop_points": 78.65,
+        "endgame_points": 43.23,
+        "energized_rp": 0.5691,
+        "supercharged_rp": 0.2184,
+        "traversal_rp": -0.33988,
+        "tiebreaker_points": 149.24,
+        "auto_fuel": 27.39,
+        "auto_tower": -0.03,
+        "transition_fuel": 10.22,
+        "first_shift_fuel": 34.55,
+        "second_shift_fuel": 33.89,
+        "teleop_fuel": 78.65,
+        "endgame_fuel": 43.44,
+        "endgame_tower": -0.21,
+        "total_fuel": 149.48,
+        "total_tower": -0.24,
+        "rp_1": 0.5691,
+        "rp_2": 0.2184,
+        "rp_3": -0.33988
+      },
+      "stats": {
+        "start": 48.97,
+        "pre_champs": 149.24,
+        "max": 151.06
+      },
+      "ranks": {
+        "total": {
+          "rank": 204,
+          "percentile": 0.9452,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 170,
+          "percentile": 0.9423,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 32,
+          "percentile": 0.89,
+          "team_count": 291
+        },
+        "district": {
+          "rank": 32,
+          "percentile": 0.89,
+          "team_count": 291
+        }
+      }
+    },
+    "record": {
+      "wins": 35,
+      "losses": 15,
+      "ties": 0,
+      "count": 50,
+      "winrate": 0.7
+    },
+    "district_points": 218,
+    "district_rank": 19,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 4613,
+    "year": 2026,
+    "name": "Barker Redbacks",
+    "country": "Australia",
+    "state": null,
+    "district": null,
+    "rookie_year": 2013,
+    "epa": {
+      "total_points": {
+        "mean": 40.32,
+        "sd": 14.29
+      },
+      "unitless": 1490.0,
+      "norm": 1489.0,
+      "conf": [
+        -1.13,
+        0.96
+      ],
+      "breakdown": {
+        "total_points": 40.32,
+        "auto_points": 7.88,
+        "teleop_points": 21.33,
+        "endgame_points": 11.11,
+        "energized_rp": 0.2092,
+        "supercharged_rp": -0.223,
+        "traversal_rp": -0.33593,
+        "tiebreaker_points": 40.32,
+        "auto_fuel": 6.76,
+        "auto_tower": 1.11,
+        "transition_fuel": 2.23,
+        "first_shift_fuel": 10.75,
+        "second_shift_fuel": 8.34,
+        "teleop_fuel": 21.33,
+        "endgame_fuel": 11.27,
+        "endgame_tower": -0.16,
+        "total_fuel": 39.37,
+        "total_tower": 0.95,
+        "rp_1": 0.2092,
+        "rp_2": -0.223,
+        "rp_3": -0.33593
+      },
+      "stats": {
+        "start": 86.45,
+        "pre_champs": 40.32,
+        "max": 42.82
+      },
+      "ranks": {
+        "total": {
+          "rank": 1683,
+          "percentile": 0.5481,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 9,
+          "percentile": 0.7692,
+          "team_count": 39
+        },
+        "state": {
+          "rank": 197,
+          "percentile": 0.6689,
+          "team_count": 595
+        },
+        "district": {
+          "rank": 611,
+          "percentile": 0.6207,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 8,
+      "losses": 6,
+      "ties": 0,
+      "count": 14,
+      "winrate": 0.5714
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 4698,
+    "year": 2026,
+    "name": "Raider Robotics",
+    "country": "USA",
+    "state": "CA",
+    "district": "ca",
+    "rookie_year": 2013,
+    "epa": {
+      "total_points": {
+        "mean": 190.0,
+        "sd": 28.55
+      },
+      "unitless": 1889.0,
+      "norm": 1744.0,
+      "conf": [
+        -0.86,
+        0.9
+      ],
+      "breakdown": {
+        "total_points": 190.0,
+        "auto_points": 44.99,
+        "teleop_points": 89.92,
+        "endgame_points": 55.1,
+        "energized_rp": 0.6656,
+        "supercharged_rp": 0.2522,
+        "traversal_rp": -0.34003,
+        "tiebreaker_points": 190.0,
+        "auto_fuel": 45.19,
+        "auto_tower": -0.21,
+        "transition_fuel": 6.49,
+        "first_shift_fuel": 48.96,
+        "second_shift_fuel": 34.46,
+        "teleop_fuel": 89.92,
+        "endgame_fuel": 54.85,
+        "endgame_tower": 0.24,
+        "total_fuel": 189.97,
+        "total_tower": 0.04,
+        "rp_1": 0.6656,
+        "rp_2": 0.2522,
+        "rp_3": -0.34003
+      },
+      "stats": {
+        "start": 54.38,
+        "pre_champs": 190.0,
+        "max": 195.46
+      },
+      "ranks": {
+        "total": {
+          "rank": 86,
+          "percentile": 0.9769,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 68,
+          "percentile": 0.9769,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 13,
+          "percentile": 0.9553,
+          "team_count": 291
+        },
+        "district": {
+          "rank": 13,
+          "percentile": 0.9553,
+          "team_count": 291
+        }
+      }
+    },
+    "record": {
+      "wins": 32,
+      "losses": 18,
+      "ties": 0,
+      "count": 50,
+      "winrate": 0.64
+    },
+    "district_points": 202,
+    "district_rank": 28,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 5000,
+    "year": 2026,
+    "name": "HAMMERHEADS",
+    "country": "USA",
+    "state": "MA",
+    "district": "ne",
+    "rookie_year": 2014,
+    "epa": {
+      "total_points": {
+        "mean": 204.44,
+        "sd": 26.33
+      },
+      "unitless": 1928.0,
+      "norm": 1770.0,
+      "conf": [
+        -0.75,
+        1.0
+      ],
+      "breakdown": {
+        "total_points": 204.44,
+        "auto_points": 40.18,
+        "teleop_points": 112.36,
+        "endgame_points": 51.89,
+        "energized_rp": 0.6516,
+        "supercharged_rp": 0.425,
+        "traversal_rp": -0.3401,
+        "tiebreaker_points": 204.44,
+        "auto_fuel": 39.35,
+        "auto_tower": 0.83,
+        "transition_fuel": 10.57,
+        "first_shift_fuel": 45.37,
+        "second_shift_fuel": 56.43,
+        "teleop_fuel": 112.36,
+        "endgame_fuel": 52.36,
+        "endgame_tower": -0.47,
+        "total_fuel": 204.07,
+        "total_tower": 0.37,
+        "rp_1": 0.6516,
+        "rp_2": 0.425,
+        "rp_3": -0.3401
+      },
+      "stats": {
+        "start": 56.24,
+        "pre_champs": 204.44,
+        "max": 204.44
+      },
+      "ranks": {
+        "total": {
+          "rank": 59,
+          "percentile": 0.9842,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 48,
+          "percentile": 0.9837,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 4,
+          "percentile": 0.9437,
+          "team_count": 71
+        },
+        "district": {
+          "rank": 8,
+          "percentile": 0.96,
+          "team_count": 200
+        }
+      }
+    },
+    "record": {
+      "wins": 33,
+      "losses": 19,
+      "ties": 0,
+      "count": 52,
+      "winrate": 0.6346
+    },
+    "district_points": 257,
+    "district_rank": 8,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 5086,
+    "year": 2026,
+    "name": "Cadillac Connectors",
+    "country": "USA",
+    "state": "MI",
+    "district": "fim",
+    "rookie_year": 2014,
+    "epa": {
+      "total_points": {
+        "mean": 132.1,
+        "sd": 27.07
+      },
+      "unitless": 1735.0,
+      "norm": 1655.0,
+      "conf": [
+        -0.95,
+        0.81
+      ],
+      "breakdown": {
+        "total_points": 132.1,
+        "auto_points": 23.25,
+        "teleop_points": 68.34,
+        "endgame_points": 40.51,
+        "energized_rp": 0.749,
+        "supercharged_rp": 0.3232,
+        "traversal_rp": -0.34013,
+        "tiebreaker_points": 132.1,
+        "auto_fuel": 22.54,
+        "auto_tower": 0.71,
+        "transition_fuel": 3.38,
+        "first_shift_fuel": 32.84,
+        "second_shift_fuel": 32.12,
+        "teleop_fuel": 68.34,
+        "endgame_fuel": 40.7,
+        "endgame_tower": -0.19,
+        "total_fuel": 131.58,
+        "total_tower": 0.52,
+        "rp_1": 0.749,
+        "rp_2": 0.3232,
+        "rp_3": -0.34013
+      },
+      "stats": {
+        "start": 39.39,
+        "pre_champs": 132.1,
+        "max": 153.32
+      },
+      "ranks": {
+        "total": {
+          "rank": 307,
+          "percentile": 0.9176,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 258,
+          "percentile": 0.9124,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 48,
+          "percentile": 0.9094,
+          "team_count": 530
+        },
+        "district": {
+          "rank": 48,
+          "percentile": 0.9094,
+          "team_count": 530
+        }
+      }
+    },
+    "record": {
+      "wins": 32,
+      "losses": 15,
+      "ties": 0,
+      "count": 47,
+      "winrate": 0.6809
+    },
+    "district_points": 194,
+    "district_rank": 49,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 5348,
+    "year": 2026,
+    "name": "Charger Robotics",
+    "country": "USA",
+    "state": "MN",
+    "district": null,
+    "rookie_year": 2014,
+    "epa": {
+      "total_points": {
+        "mean": 85.81,
+        "sd": 15.7
+      },
+      "unitless": 1611.0,
+      "norm": 1578.0,
+      "conf": [
+        -0.81,
+        0.96
+      ],
+      "breakdown": {
+        "total_points": 85.81,
+        "auto_points": 15.04,
+        "teleop_points": 48.93,
+        "endgame_points": 21.84,
+        "energized_rp": 0.4976,
+        "supercharged_rp": -0.1664,
+        "traversal_rp": -0.33772,
+        "tiebreaker_points": 85.81,
+        "auto_fuel": 15.28,
+        "auto_tower": -0.24,
+        "transition_fuel": 7.12,
+        "first_shift_fuel": 22.54,
+        "second_shift_fuel": 19.27,
+        "teleop_fuel": 48.93,
+        "endgame_fuel": 16.64,
+        "endgame_tower": 5.2,
+        "total_fuel": 80.85,
+        "total_tower": 4.97,
+        "rp_1": 0.4976,
+        "rp_2": -0.1664,
+        "rp_3": -0.33772
+      },
+      "stats": {
+        "start": 57.64,
+        "pre_champs": 85.81,
+        "max": 86.31
+      },
+      "ranks": {
+        "total": {
+          "rank": 702,
+          "percentile": 0.8115,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 585,
+          "percentile": 0.8013,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 25,
+          "percentile": 0.8663,
+          "team_count": 187
+        },
+        "district": {
+          "rank": 230,
+          "percentile": 0.8572,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 21,
+      "losses": 9,
+      "ties": 0,
+      "count": 30,
+      "winrate": 0.7
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 5406,
+    "year": 2026,
+    "name": "Celt-X",
+    "country": "Canada",
+    "state": "ON",
+    "district": "ont",
+    "rookie_year": 2015,
+    "epa": {
+      "total_points": {
+        "mean": 174.56,
+        "sd": 38.66
+      },
+      "unitless": 1848.0,
+      "norm": 1717.0,
+      "conf": [
+        -1.02,
+        0.71
+      ],
+      "breakdown": {
+        "total_points": 174.56,
+        "auto_points": 33.66,
+        "teleop_points": 103.52,
+        "endgame_points": 37.38,
+        "energized_rp": 0.635,
+        "supercharged_rp": 0.2731,
+        "traversal_rp": -0.34002,
+        "tiebreaker_points": 174.56,
+        "auto_fuel": 34.65,
+        "auto_tower": -0.99,
+        "transition_fuel": 18.4,
+        "first_shift_fuel": 44.07,
+        "second_shift_fuel": 41.05,
+        "teleop_fuel": 103.52,
+        "endgame_fuel": 37.01,
+        "endgame_tower": 0.37,
+        "total_fuel": 175.18,
+        "total_tower": -0.62,
+        "rp_1": 0.635,
+        "rp_2": 0.2731,
+        "rp_3": -0.34002
+      },
+      "stats": {
+        "start": 89.26,
+        "pre_champs": 174.56,
+        "max": 201.31
+      },
+      "ranks": {
+        "total": {
+          "rank": 125,
+          "percentile": 0.9664,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 15,
+          "percentile": 0.9189,
+          "team_count": 185
+        },
+        "state": {
+          "rank": 15,
+          "percentile": 0.8739,
+          "team_count": 119
+        },
+        "district": {
+          "rank": 15,
+          "percentile": 0.8739,
+          "team_count": 119
+        }
+      }
+    },
+    "record": {
+      "wins": 39,
+      "losses": 11,
+      "ties": 0,
+      "count": 50,
+      "winrate": 0.78
+    },
+    "district_points": 273,
+    "district_rank": 10,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 5454,
+    "year": 2026,
+    "name": "Obsidian",
+    "country": "USA",
+    "state": "AR",
+    "district": null,
+    "rookie_year": 2015,
+    "epa": {
+      "total_points": {
+        "mean": 90.4,
+        "sd": 28.58
+      },
+      "unitless": 1624.0,
+      "norm": 1586.0,
+      "conf": [
+        -0.74,
+        1.01
+      ],
+      "breakdown": {
+        "total_points": 90.4,
+        "auto_points": 15.98,
+        "teleop_points": 54.29,
+        "endgame_points": 20.12,
+        "energized_rp": 0.3191,
+        "supercharged_rp": -0.0924,
+        "traversal_rp": -0.33816,
+        "tiebreaker_points": 90.4,
+        "auto_fuel": 15.59,
+        "auto_tower": 0.39,
+        "transition_fuel": 7.44,
+        "first_shift_fuel": 31.77,
+        "second_shift_fuel": 15.09,
+        "teleop_fuel": 54.29,
+        "endgame_fuel": 17.42,
+        "endgame_tower": 2.7,
+        "total_fuel": 87.31,
+        "total_tower": 3.1,
+        "rp_1": 0.3191,
+        "rp_2": -0.0924,
+        "rp_3": -0.33816
+      },
+      "stats": {
+        "start": 49.18,
+        "pre_champs": 90.4,
+        "max": 94.27
+      },
+      "ranks": {
+        "total": {
+          "rank": 651,
+          "percentile": 0.8252,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 546,
+          "percentile": 0.8145,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 3,
+          "percentile": 0.625,
+          "team_count": 8
+        },
+        "district": {
+          "rank": 209,
+          "percentile": 0.8703,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 20,
+      "losses": 11,
+      "ties": 0,
+      "count": 31,
+      "winrate": 0.6452
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 6121,
+    "year": 2026,
+    "name": "RoboVikes",
+    "country": "USA",
+    "state": "MI",
+    "district": "fim",
+    "rookie_year": 2016,
+    "epa": {
+      "total_points": {
+        "mean": 104.01,
+        "sd": 32.77
+      },
+      "unitless": 1660.0,
+      "norm": 1611.0,
+      "conf": [
+        -0.89,
+        0.86
+      ],
+      "breakdown": {
+        "total_points": 104.01,
+        "auto_points": 12.92,
+        "teleop_points": 60.63,
+        "endgame_points": 30.46,
+        "energized_rp": 0.4243,
+        "supercharged_rp": 0.0739,
+        "traversal_rp": -0.34006,
+        "tiebreaker_points": 104.01,
+        "auto_fuel": 13.34,
+        "auto_tower": -0.42,
+        "transition_fuel": 5.91,
+        "first_shift_fuel": 29.83,
+        "second_shift_fuel": 24.88,
+        "teleop_fuel": 60.63,
+        "endgame_fuel": 31.09,
+        "endgame_tower": -0.63,
+        "total_fuel": 105.06,
+        "total_tower": -1.05,
+        "rp_1": 0.4243,
+        "rp_2": 0.0739,
+        "rp_3": -0.34006
+      },
+      "stats": {
+        "start": 53.25,
+        "pre_champs": 104.01,
+        "max": 110.38
+      },
+      "ranks": {
+        "total": {
+          "rank": 515,
+          "percentile": 0.8617,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 433,
+          "percentile": 0.8529,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 74,
+          "percentile": 0.8604,
+          "team_count": 530
+        },
+        "district": {
+          "rank": 74,
+          "percentile": 0.8604,
+          "team_count": 530
+        }
+      }
+    },
+    "record": {
+      "wins": 30,
+      "losses": 16,
+      "ties": 0,
+      "count": 46,
+      "winrate": 0.6522
+    },
+    "district_points": 185,
+    "district_rank": 59,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 6152,
+    "year": 2026,
+    "name": "Robo-Falcons",
+    "country": "USA",
+    "state": "MI",
+    "district": "fim",
+    "rookie_year": 2016,
+    "epa": {
+      "total_points": {
+        "mean": 152.72,
+        "sd": 15.87
+      },
+      "unitless": 1790.0,
+      "norm": 1679.0,
+      "conf": [
+        -0.8,
+        0.96
+      ],
+      "breakdown": {
+        "total_points": 152.72,
+        "auto_points": 28.91,
+        "teleop_points": 83.5,
+        "endgame_points": 40.31,
+        "energized_rp": 0.5437,
+        "supercharged_rp": 0.3347,
+        "traversal_rp": -0.34004,
+        "tiebreaker_points": 152.72,
+        "auto_fuel": 28.97,
+        "auto_tower": -0.06,
+        "transition_fuel": 10.1,
+        "first_shift_fuel": 37.74,
+        "second_shift_fuel": 35.66,
+        "teleop_fuel": 83.5,
+        "endgame_fuel": 39.64,
+        "endgame_tower": 0.66,
+        "total_fuel": 152.12,
+        "total_tower": 0.6,
+        "rp_1": 0.5437,
+        "rp_2": 0.3347,
+        "rp_3": -0.34004
+      },
+      "stats": {
+        "start": 42.0,
+        "pre_champs": 152.72,
+        "max": 154.44
+      },
+      "ranks": {
+        "total": {
+          "rank": 191,
+          "percentile": 0.9487,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 157,
+          "percentile": 0.9467,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 26,
+          "percentile": 0.9509,
+          "team_count": 530
+        },
+        "district": {
+          "rank": 26,
+          "percentile": 0.9509,
+          "team_count": 530
+        }
+      }
+    },
+    "record": {
+      "wins": 31,
+      "losses": 18,
+      "ties": 0,
+      "count": 49,
+      "winrate": 0.6327
+    },
+    "district_points": 181,
+    "district_rank": 64,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 6200,
+    "year": 2026,
+    "name": "PrepaTec - XRAMS",
+    "country": "Mexico",
+    "state": null,
+    "district": null,
+    "rookie_year": 2016,
+    "epa": {
+      "total_points": {
+        "mean": 6.0,
+        "sd": 19.22
+      },
+      "unitless": 1399.0,
+      "norm": 1366.0,
+      "conf": [
+        -1.18,
+        0.87
+      ],
+      "breakdown": {
+        "total_points": 6.0,
+        "auto_points": 4.86,
+        "teleop_points": 1.84,
+        "endgame_points": -0.7,
+        "energized_rp": -0.0831,
+        "supercharged_rp": -0.228,
+        "traversal_rp": -0.33593,
+        "tiebreaker_points": 6.0,
+        "auto_fuel": 3.92,
+        "auto_tower": 0.94,
+        "transition_fuel": -0.23,
+        "first_shift_fuel": -0.46,
+        "second_shift_fuel": 2.53,
+        "teleop_fuel": 1.84,
+        "endgame_fuel": -0.73,
+        "endgame_tower": 0.04,
+        "total_fuel": 5.03,
+        "total_tower": 0.97,
+        "rp_1": -0.0831,
+        "rp_2": -0.228,
+        "rp_3": -0.33593
+      },
+      "stats": {
+        "start": 26.15,
+        "pre_champs": 6.0,
+        "max": 16.3
+      },
+      "ranks": {
+        "total": {
+          "rank": 3630,
+          "percentile": 0.0252,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 84,
+          "percentile": 0.0562,
+          "team_count": 89
+        },
+        "state": {
+          "rank": 570,
+          "percentile": 0.042,
+          "team_count": 595
+        },
+        "district": {
+          "rank": 1552,
+          "percentile": 0.0366,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 9,
+      "losses": 7,
+      "ties": 0,
+      "count": 16,
+      "winrate": 0.5625
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 6328,
+    "year": 2026,
+    "name": "Mechanical Advantage",
+    "country": "USA",
+    "state": "MA",
+    "district": "ne",
+    "rookie_year": 2017,
+    "epa": {
+      "total_points": {
+        "mean": 227.05,
+        "sd": 38.31
+      },
+      "unitless": 1988.0,
+      "norm": 1810.0,
+      "conf": [
+        -1.02,
+        0.71
+      ],
+      "breakdown": {
+        "total_points": 227.05,
+        "auto_points": 47.24,
+        "teleop_points": 137.64,
+        "endgame_points": 42.16,
+        "energized_rp": 0.6982,
+        "supercharged_rp": 0.5097,
+        "traversal_rp": -0.34014,
+        "tiebreaker_points": 227.05,
+        "auto_fuel": 47.25,
+        "auto_tower": -0.01,
+        "transition_fuel": 21.51,
+        "first_shift_fuel": 69.69,
+        "second_shift_fuel": 46.45,
+        "teleop_fuel": 137.64,
+        "endgame_fuel": 42.54,
+        "endgame_tower": -0.38,
+        "total_fuel": 227.44,
+        "total_tower": -0.39,
+        "rp_1": 0.6982,
+        "rp_2": 0.5097,
+        "rp_3": -0.34014
+      },
+      "stats": {
+        "start": 93.85,
+        "pre_champs": 227.05,
+        "max": 264.9
+      },
+      "ranks": {
+        "total": {
+          "rank": 33,
+          "percentile": 0.9911,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 26,
+          "percentile": 0.9912,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 2,
+          "percentile": 0.9718,
+          "team_count": 71
+        },
+        "district": {
+          "rank": 5,
+          "percentile": 0.975,
+          "team_count": 200
+        }
+      }
+    },
+    "record": {
+      "wins": 44,
+      "losses": 8,
+      "ties": 0,
+      "count": 52,
+      "winrate": 0.8462
+    },
+    "district_points": 341,
+    "district_rank": 5,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 6329,
+    "year": 2026,
+    "name": "The Bucks' Wrath",
+    "country": "USA",
+    "state": "ME",
+    "district": "ne",
+    "rookie_year": 2017,
+    "epa": {
+      "total_points": {
+        "mean": 254.16,
+        "sd": 26.39
+      },
+      "unitless": 2060.0,
+      "norm": 1858.0,
+      "conf": [
+        -0.91,
+        0.84
+      ],
+      "breakdown": {
+        "total_points": 254.16,
+        "auto_points": 57.26,
+        "teleop_points": 139.0,
+        "endgame_points": 57.9,
+        "energized_rp": 0.6562,
+        "supercharged_rp": 0.8199,
+        "traversal_rp": -0.34012,
+        "tiebreaker_points": 254.16,
+        "auto_fuel": 57.66,
+        "auto_tower": -0.4,
+        "transition_fuel": 23.04,
+        "first_shift_fuel": 63.16,
+        "second_shift_fuel": 52.79,
+        "teleop_fuel": 139.0,
+        "endgame_fuel": 57.35,
+        "endgame_tower": 0.56,
+        "total_fuel": 254.0,
+        "total_tower": 0.16,
+        "rp_1": 0.6562,
+        "rp_2": 0.8199,
+        "rp_3": -0.34012
+      },
+      "stats": {
+        "start": 97.5,
+        "pre_champs": 254.16,
+        "max": 269.48
+      },
+      "ranks": {
+        "total": {
+          "rank": 18,
+          "percentile": 0.9952,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 14,
+          "percentile": 0.9952,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 2,
+          "percentile": 0.875,
+          "team_count": 16
+        },
+        "district": {
+          "rank": 4,
+          "percentile": 0.98,
+          "team_count": 200
+        }
+      }
+    },
+    "record": {
+      "wins": 46,
+      "losses": 10,
+      "ties": 1,
+      "count": 57,
+      "winrate": 0.8158
+    },
+    "district_points": 353,
+    "district_rank": 4,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 6517,
+    "year": 2026,
+    "name": "So-Kno Robo",
+    "country": "USA",
+    "state": "TN",
+    "district": null,
+    "rookie_year": 2017,
+    "epa": {
+      "total_points": {
+        "mean": 116.01,
+        "sd": 15.55
+      },
+      "unitless": 1692.0,
+      "norm": 1633.0,
+      "conf": [
+        -0.83,
+        0.95
+      ],
+      "breakdown": {
+        "total_points": 116.01,
+        "auto_points": 21.08,
+        "teleop_points": 67.03,
+        "endgame_points": 27.91,
+        "energized_rp": 0.6479,
+        "supercharged_rp": -0.0939,
+        "traversal_rp": -0.33765,
+        "tiebreaker_points": 116.01,
+        "auto_fuel": 20.64,
+        "auto_tower": 0.44,
+        "transition_fuel": 6.8,
+        "first_shift_fuel": 31.66,
+        "second_shift_fuel": 28.57,
+        "teleop_fuel": 67.03,
+        "endgame_fuel": 28.07,
+        "endgame_tower": -0.16,
+        "total_fuel": 115.74,
+        "total_tower": 0.27,
+        "rp_1": 0.6479,
+        "rp_2": -0.0939,
+        "rp_3": -0.33765
+      },
+      "stats": {
+        "start": 57.21,
+        "pre_champs": 116.01,
+        "max": 116.1
+      },
+      "ranks": {
+        "total": {
+          "rank": 415,
+          "percentile": 0.8886,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 348,
+          "percentile": 0.8818,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 3,
+          "percentile": 0.8889,
+          "team_count": 27
+        },
+        "district": {
+          "rank": 125,
+          "percentile": 0.9224,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 20,
+      "losses": 10,
+      "ties": 0,
+      "count": 30,
+      "winrate": 0.6667
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 6639,
+    "year": 2026,
+    "name": "The Mechanical Minds",
+    "country": "USA",
+    "state": "NC",
+    "district": "fnc",
+    "rookie_year": 2017,
+    "epa": {
+      "total_points": {
+        "mean": 51.1,
+        "sd": 21.71
+      },
+      "unitless": 1519.0,
+      "norm": 1512.0,
+      "conf": [
+        -0.78,
+        0.97
+      ],
+      "breakdown": {
+        "total_points": 51.1,
+        "auto_points": 8.91,
+        "teleop_points": 28.49,
+        "endgame_points": 13.7,
+        "energized_rp": -0.0969,
+        "supercharged_rp": -0.1788,
+        "traversal_rp": -0.34,
+        "tiebreaker_points": 51.1,
+        "auto_fuel": 9.03,
+        "auto_tower": -0.11,
+        "transition_fuel": 3.11,
+        "first_shift_fuel": 14.83,
+        "second_shift_fuel": 10.56,
+        "teleop_fuel": 28.49,
+        "endgame_fuel": 13.81,
+        "endgame_tower": -0.11,
+        "total_fuel": 51.32,
+        "total_tower": -0.22,
+        "rp_1": -0.0969,
+        "rp_2": -0.1788,
+        "rp_3": -0.34
+      },
+      "stats": {
+        "start": 44.32,
+        "pre_champs": 51.1,
+        "max": 53.51
+      },
+      "ranks": {
+        "total": {
+          "rank": 1307,
+          "percentile": 0.649,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 1075,
+          "percentile": 0.6349,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 26,
+          "percentile": 0.7079,
+          "team_count": 89
+        },
+        "district": {
+          "rank": 26,
+          "percentile": 0.7079,
+          "team_count": 89
+        }
+      }
+    },
+    "record": {
+      "wins": 22,
+      "losses": 21,
+      "ties": 0,
+      "count": 43,
+      "winrate": 0.5116
+    },
+    "district_points": 122,
+    "district_rank": 26,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 7287,
+    "year": 2026,
+    "name": "Esquimalt Atom Smashers",
+    "country": "Canada",
+    "state": "BC",
+    "district": null,
+    "rookie_year": 2018,
+    "epa": {
+      "total_points": {
+        "mean": 31.46,
+        "sd": 13.27
+      },
+      "unitless": 1467.0,
+      "norm": 1467.0,
+      "conf": [
+        -0.74,
+        1.31
+      ],
+      "breakdown": {
+        "total_points": 31.46,
+        "auto_points": 6.4,
+        "teleop_points": 17.4,
+        "endgame_points": 7.66,
+        "energized_rp": 0.0855,
+        "supercharged_rp": -0.228,
+        "traversal_rp": -0.33593,
+        "tiebreaker_points": 31.46,
+        "auto_fuel": 5.78,
+        "auto_tower": 0.62,
+        "transition_fuel": 2.32,
+        "first_shift_fuel": 5.34,
+        "second_shift_fuel": 9.75,
+        "teleop_fuel": 17.4,
+        "endgame_fuel": 7.85,
+        "endgame_tower": -0.19,
+        "total_fuel": 31.03,
+        "total_tower": 0.43,
+        "rp_1": 0.0855,
+        "rp_2": -0.228,
+        "rp_3": -0.33593
+      },
+      "stats": {
+        "start": 27.08,
+        "pre_champs": 31.46,
+        "max": 31.46
+      },
+      "ranks": {
+        "total": {
+          "rank": 2150,
+          "percentile": 0.4227,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 121,
+          "percentile": 0.3459,
+          "team_count": 185
+        },
+        "state": {
+          "rank": 7,
+          "percentile": 0.7083,
+          "team_count": 24
+        },
+        "district": {
+          "rank": 820,
+          "percentile": 0.491,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 6,
+      "losses": 4,
+      "ties": 0,
+      "count": 10,
+      "winrate": 0.6
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 7451,
+    "year": 2026,
+    "name": "AvengerRobotics",
+    "country": "USA",
+    "state": "GA",
+    "district": "pch",
+    "rookie_year": 2019,
+    "epa": {
+      "total_points": {
+        "mean": 39.25,
+        "sd": 12.06
+      },
+      "unitless": 1487.0,
+      "norm": 1486.0,
+      "conf": [
+        -0.9,
+        0.86
+      ],
+      "breakdown": {
+        "total_points": 39.25,
+        "auto_points": 11.48,
+        "teleop_points": 22.33,
+        "endgame_points": 5.43,
+        "energized_rp": 0.0606,
+        "supercharged_rp": -0.246,
+        "traversal_rp": -0.34005,
+        "tiebreaker_points": 39.25,
+        "auto_fuel": 11.68,
+        "auto_tower": -0.2,
+        "transition_fuel": 1.81,
+        "first_shift_fuel": 10.4,
+        "second_shift_fuel": 10.12,
+        "teleop_fuel": 22.33,
+        "endgame_fuel": 5.56,
+        "endgame_tower": -0.13,
+        "total_fuel": 39.58,
+        "total_tower": -0.33,
+        "rp_1": 0.0606,
+        "rp_2": -0.246,
+        "rp_3": -0.34005
+      },
+      "stats": {
+        "start": 58.16,
+        "pre_champs": 39.25,
+        "max": 56.92
+      },
+      "ranks": {
+        "total": {
+          "rank": 1743,
+          "percentile": 0.532,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 1438,
+          "percentile": 0.5115,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 34,
+          "percentile": 0.5405,
+          "team_count": 74
+        },
+        "district": {
+          "rank": 34,
+          "percentile": 0.5405,
+          "team_count": 74
+        }
+      }
+    },
+    "record": {
+      "wins": 22,
+      "losses": 19,
+      "ties": 1,
+      "count": 42,
+      "winrate": 0.5357
+    },
+    "district_points": 140,
+    "district_rank": 21,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 8005,
+    "year": 2026,
+    "name": "Mega MeadowBots",
+    "country": "USA",
+    "state": "NV",
+    "district": null,
+    "rookie_year": 2020,
+    "epa": {
+      "total_points": {
+        "mean": 107.64,
+        "sd": 20.39
+      },
+      "unitless": 1670.0,
+      "norm": 1617.0,
+      "conf": [
+        -1.02,
+        0.72
+      ],
+      "breakdown": {
+        "total_points": 107.64,
+        "auto_points": 25.87,
+        "teleop_points": 60.34,
+        "endgame_points": 21.43,
+        "energized_rp": 0.6316,
+        "supercharged_rp": -0.1137,
+        "traversal_rp": -0.34008,
+        "tiebreaker_points": 107.64,
+        "auto_fuel": 25.88,
+        "auto_tower": -0.01,
+        "transition_fuel": 3.94,
+        "first_shift_fuel": 29.17,
+        "second_shift_fuel": 27.23,
+        "teleop_fuel": 60.34,
+        "endgame_fuel": 21.45,
+        "endgame_tower": -0.02,
+        "total_fuel": 107.66,
+        "total_tower": -0.03,
+        "rp_1": 0.6316,
+        "rp_2": -0.1137,
+        "rp_3": -0.34008
+      },
+      "stats": {
+        "start": 40.83,
+        "pre_champs": 107.64,
+        "max": 125.25
+      },
+      "ranks": {
+        "total": {
+          "rank": 491,
+          "percentile": 0.8682,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 412,
+          "percentile": 0.8601,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 4,
+          "percentile": 0.8182,
+          "team_count": 22
+        },
+        "district": {
+          "rank": 150,
+          "percentile": 0.9069,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 32,
+      "losses": 19,
+      "ties": 0,
+      "count": 51,
+      "winrate": 0.6275
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 8044,
+    "year": 2026,
+    "name": "Denham Venom",
+    "country": "USA",
+    "state": "LA",
+    "district": null,
+    "rookie_year": 2020,
+    "epa": {
+      "total_points": {
+        "mean": 223.07,
+        "sd": 26.61
+      },
+      "unitless": 1977.0,
+      "norm": 1803.0,
+      "conf": [
+        -0.81,
+        0.95
+      ],
+      "breakdown": {
+        "total_points": 223.07,
+        "auto_points": 51.27,
+        "teleop_points": 119.61,
+        "endgame_points": 52.19,
+        "energized_rp": 0.6236,
+        "supercharged_rp": 0.3391,
+        "traversal_rp": -0.33955,
+        "tiebreaker_points": 223.07,
+        "auto_fuel": 49.97,
+        "auto_tower": 1.3,
+        "transition_fuel": 13.74,
+        "first_shift_fuel": 63.61,
+        "second_shift_fuel": 42.25,
+        "teleop_fuel": 119.61,
+        "endgame_fuel": 52.13,
+        "endgame_tower": 0.06,
+        "total_fuel": 221.71,
+        "total_tower": 1.36,
+        "rp_1": 0.6236,
+        "rp_2": 0.3391,
+        "rp_3": -0.33955
+      },
+      "stats": {
+        "start": 89.71,
+        "pre_champs": 223.07,
+        "max": 227.87
+      },
+      "ranks": {
+        "total": {
+          "rank": 37,
+          "percentile": 0.9901,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 28,
+          "percentile": 0.9905,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 1,
+          "percentile": 0.9737,
+          "team_count": 38
+        },
+        "district": {
+          "rank": 11,
+          "percentile": 0.9932,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 41,
+      "losses": 4,
+      "ties": 0,
+      "count": 45,
+      "winrate": 0.9111
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 8214,
+    "year": 2026,
+    "name": "Cyber Unicorn",
+    "country": "China",
+    "state": null,
+    "district": null,
+    "rookie_year": 2020,
+    "epa": {
+      "total_points": {
+        "mean": 200.99,
+        "sd": 38.82
+      },
+      "unitless": 1918.0,
+      "norm": 1764.0,
+      "conf": [
+        -0.97,
+        1.28
+      ],
+      "breakdown": {
+        "total_points": 200.99,
+        "auto_points": 42.03,
+        "teleop_points": 108.28,
+        "endgame_points": 50.68,
+        "energized_rp": 0.3901,
+        "supercharged_rp": 0.32,
+        "traversal_rp": -0.33523,
+        "tiebreaker_points": 200.99,
+        "auto_fuel": 41.95,
+        "auto_tower": 0.08,
+        "transition_fuel": 1.73,
+        "first_shift_fuel": 56.66,
+        "second_shift_fuel": 49.89,
+        "teleop_fuel": 108.28,
+        "endgame_fuel": 49.6,
+        "endgame_tower": 1.08,
+        "total_fuel": 199.83,
+        "total_tower": 1.16,
+        "rp_1": 0.3901,
+        "rp_2": 0.32,
+        "rp_3": -0.33523
+      },
+      "stats": {
+        "start": 61.51,
+        "pre_champs": 200.99,
+        "max": 200.99
+      },
+      "ranks": {
+        "total": {
+          "rank": 65,
+          "percentile": 0.9825,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 1,
+          "percentile": 0.9792,
+          "team_count": 48
+        },
+        "state": {
+          "rank": 4,
+          "percentile": 0.9933,
+          "team_count": 595
+        },
+        "district": {
+          "rank": 20,
+          "percentile": 0.9876,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 12,
+      "losses": 0,
+      "ties": 0,
+      "count": 12,
+      "winrate": 1.0
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 8267,
+    "year": 2026,
+    "name": "Riptide Robotics 8267",
+    "country": "USA",
+    "state": "NY",
+    "district": null,
+    "rookie_year": 2020,
+    "epa": {
+      "total_points": {
+        "mean": 124.23,
+        "sd": 21.97
+      },
+      "unitless": 1714.0,
+      "norm": 1646.0,
+      "conf": [
+        -0.81,
+        0.97
+      ],
+      "breakdown": {
+        "total_points": 124.23,
+        "auto_points": 28.83,
+        "teleop_points": 67.1,
+        "endgame_points": 28.3,
+        "energized_rp": 0.4334,
+        "supercharged_rp": -0.1693,
+        "traversal_rp": -0.3375,
+        "tiebreaker_points": 124.23,
+        "auto_fuel": 28.29,
+        "auto_tower": 0.53,
+        "transition_fuel": 1.58,
+        "first_shift_fuel": 37.13,
+        "second_shift_fuel": 28.39,
+        "teleop_fuel": 67.1,
+        "endgame_fuel": 28.54,
+        "endgame_tower": -0.23,
+        "total_fuel": 123.92,
+        "total_tower": 0.3,
+        "rp_1": 0.4334,
+        "rp_2": -0.1693,
+        "rp_3": -0.3375
+      },
+      "stats": {
+        "start": 42.02,
+        "pre_champs": 124.23,
+        "max": 128.82
+      },
+      "ranks": {
+        "total": {
+          "rank": 357,
+          "percentile": 0.9041,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 298,
+          "percentile": 0.8988,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 9,
+          "percentile": 0.9408,
+          "team_count": 152
+        },
+        "district": {
+          "rank": 102,
+          "percentile": 0.9367,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 19,
+      "losses": 11,
+      "ties": 0,
+      "count": 30,
+      "winrate": 0.6333
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 8513,
+    "year": 2026,
+    "name": "Sisters 1st",
+    "country": "USA",
+    "state": "NJ",
+    "district": "fma",
+    "rookie_year": 2021,
+    "epa": {
+      "total_points": {
+        "mean": 173.3,
+        "sd": 16.48
+      },
+      "unitless": 1845.0,
+      "norm": 1715.0,
+      "conf": [
+        -0.94,
+        0.82
+      ],
+      "breakdown": {
+        "total_points": 173.3,
+        "auto_points": 50.84,
+        "teleop_points": 97.76,
+        "endgame_points": 24.69,
+        "energized_rp": 0.6448,
+        "supercharged_rp": 0.3955,
+        "traversal_rp": -0.34005,
+        "tiebreaker_points": 173.3,
+        "auto_fuel": 50.65,
+        "auto_tower": 0.19,
+        "transition_fuel": 21.17,
+        "first_shift_fuel": 41.71,
+        "second_shift_fuel": 34.88,
+        "teleop_fuel": 97.76,
+        "endgame_fuel": 23.98,
+        "endgame_tower": 0.71,
+        "total_fuel": 172.4,
+        "total_tower": 0.9,
+        "rp_1": 0.6448,
+        "rp_2": 0.3955,
+        "rp_3": -0.34005
+      },
+      "stats": {
+        "start": 69.21,
+        "pre_champs": 173.3,
+        "max": 178.88
+      },
+      "ranks": {
+        "total": {
+          "rank": 127,
+          "percentile": 0.9659,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 101,
+          "percentile": 0.9657,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 3,
+          "percentile": 0.967,
+          "team_count": 91
+        },
+        "district": {
+          "rank": 5,
+          "percentile": 0.9645,
+          "team_count": 141
+        }
+      }
+    },
+    "record": {
+      "wins": 42,
+      "losses": 9,
+      "ties": 0,
+      "count": 51,
+      "winrate": 0.8235
+    },
+    "district_points": 306,
+    "district_rank": 3,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 8749,
+    "year": 2026,
+    "name": "Farmersville  Robotics",
+    "country": "USA",
+    "state": "TX",
+    "district": "fit",
+    "rookie_year": 2022,
+    "epa": {
+      "total_points": {
+        "mean": 150.19,
+        "sd": 36.42
+      },
+      "unitless": 1783.0,
+      "norm": 1676.0,
+      "conf": [
+        -0.79,
+        0.97
+      ],
+      "breakdown": {
+        "total_points": 150.19,
+        "auto_points": 27.1,
+        "teleop_points": 86.59,
+        "endgame_points": 36.5,
+        "energized_rp": 0.37,
+        "supercharged_rp": 0.1412,
+        "traversal_rp": -0.34013,
+        "tiebreaker_points": 150.19,
+        "auto_fuel": 27.68,
+        "auto_tower": -0.58,
+        "transition_fuel": 11.46,
+        "first_shift_fuel": 46.16,
+        "second_shift_fuel": 28.97,
+        "teleop_fuel": 86.59,
+        "endgame_fuel": 35.93,
+        "endgame_tower": 0.57,
+        "total_fuel": 150.2,
+        "total_tower": -0.01,
+        "rp_1": 0.37,
+        "rp_2": 0.1412,
+        "rp_3": -0.34013
+      },
+      "stats": {
+        "start": 62.41,
+        "pre_champs": 150.19,
+        "max": 152.56
+      },
+      "ranks": {
+        "total": {
+          "rank": 201,
+          "percentile": 0.946,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 167,
+          "percentile": 0.9433,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 11,
+          "percentile": 0.9341,
+          "team_count": 167
+        },
+        "district": {
+          "rank": 11,
+          "percentile": 0.9385,
+          "team_count": 179
+        }
+      }
+    },
+    "record": {
+      "wins": 28,
+      "losses": 21,
+      "ties": 0,
+      "count": 49,
+      "winrate": 0.5714
+    },
+    "district_points": 238,
+    "district_rank": 13,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 9449,
+    "year": 2026,
+    "name": "Yellowjackets",
+    "country": "Canada",
+    "state": "AB",
+    "district": null,
+    "rookie_year": 2024,
+    "epa": {
+      "total_points": {
+        "mean": 76.91,
+        "sd": 19.96
+      },
+      "unitless": 1588.0,
+      "norm": 1561.0,
+      "conf": [
+        -0.72,
+        1.03
+      ],
+      "breakdown": {
+        "total_points": 76.91,
+        "auto_points": 9.72,
+        "teleop_points": 51.01,
+        "endgame_points": 16.18,
+        "energized_rp": 0.3595,
+        "supercharged_rp": -0.1703,
+        "traversal_rp": -0.33796,
+        "tiebreaker_points": 76.91,
+        "auto_fuel": 8.88,
+        "auto_tower": 0.84,
+        "transition_fuel": 3.5,
+        "first_shift_fuel": 25.82,
+        "second_shift_fuel": 21.69,
+        "teleop_fuel": 51.01,
+        "endgame_fuel": 15.79,
+        "endgame_tower": 0.39,
+        "total_fuel": 75.68,
+        "total_tower": 1.23,
+        "rp_1": 0.3595,
+        "rp_2": -0.1703,
+        "rp_3": -0.33796
+      },
+      "stats": {
+        "start": 22.19,
+        "pre_champs": 76.91,
+        "max": 78.33
+      },
+      "ranks": {
+        "total": {
+          "rank": 809,
+          "percentile": 0.7828,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 54,
+          "percentile": 0.7081,
+          "team_count": 185
+        },
+        "state": {
+          "rank": 2,
+          "percentile": 0.7143,
+          "team_count": 7
+        },
+        "district": {
+          "rank": 271,
+          "percentile": 0.8318,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 19,
+      "losses": 11,
+      "ties": 0,
+      "count": 30,
+      "winrate": 0.6333
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 9692,
+    "year": 2026,
+    "name": "Sigma",
+    "country": "India",
+    "state": null,
+    "district": null,
+    "rookie_year": 2024,
+    "epa": {
+      "total_points": {
+        "mean": 64.13,
+        "sd": 31.22
+      },
+      "unitless": 1554.0,
+      "norm": 1537.0,
+      "conf": [
+        -0.93,
+        0.87
+      ],
+      "breakdown": {
+        "total_points": 64.13,
+        "auto_points": 10.01,
+        "teleop_points": 37.53,
+        "endgame_points": 16.59,
+        "energized_rp": 0.4066,
+        "supercharged_rp": -0.2332,
+        "traversal_rp": -0.33727,
+        "tiebreaker_points": 64.13,
+        "auto_fuel": 9.99,
+        "auto_tower": 0.01,
+        "transition_fuel": 2.89,
+        "first_shift_fuel": 16.84,
+        "second_shift_fuel": 17.8,
+        "teleop_fuel": 37.53,
+        "endgame_fuel": 16.82,
+        "endgame_tower": -0.22,
+        "total_fuel": 64.34,
+        "total_tower": -0.21,
+        "rp_1": 0.4066,
+        "rp_2": -0.2332,
+        "rp_3": -0.33727
+      },
+      "stats": {
+        "start": 63.31,
+        "pre_champs": 64.13,
+        "max": 75.56
+      },
+      "ranks": {
+        "total": {
+          "rank": 1023,
+          "percentile": 0.7253,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 3,
+          "percentile": 0.4,
+          "team_count": 5
+        },
+        "state": {
+          "rank": 107,
+          "percentile": 0.8202,
+          "team_count": 595
+        },
+        "district": {
+          "rank": 359,
+          "percentile": 0.7772,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 15,
+      "losses": 12,
+      "ties": 0,
+      "count": 27,
+      "winrate": 0.5556
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 9785,
+    "year": 2026,
+    "name": "Alectrona",
+    "country": "Canada",
+    "state": "ON",
+    "district": "ont",
+    "rookie_year": 2024,
+    "epa": {
+      "total_points": {
+        "mean": 191.73,
+        "sd": 33.9
+      },
+      "unitless": 1894.0,
+      "norm": 1747.0,
+      "conf": [
+        -0.82,
+        0.94
+      ],
+      "breakdown": {
+        "total_points": 191.73,
+        "auto_points": 42.92,
+        "teleop_points": 109.55,
+        "endgame_points": 39.26,
+        "energized_rp": 0.6735,
+        "supercharged_rp": 0.2328,
+        "traversal_rp": -0.3401,
+        "tiebreaker_points": 191.73,
+        "auto_fuel": 43.55,
+        "auto_tower": -0.63,
+        "transition_fuel": 14.89,
+        "first_shift_fuel": 53.02,
+        "second_shift_fuel": 41.64,
+        "teleop_fuel": 109.55,
+        "endgame_fuel": 39.14,
+        "endgame_tower": 0.12,
+        "total_fuel": 192.24,
+        "total_tower": -0.51,
+        "rp_1": 0.6735,
+        "rp_2": 0.2328,
+        "rp_3": -0.3401
+      },
+      "stats": {
+        "start": 68.89,
+        "pre_champs": 191.73,
+        "max": 194.9
+      },
+      "ranks": {
+        "total": {
+          "rank": 82,
+          "percentile": 0.978,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 12,
+          "percentile": 0.9351,
+          "team_count": 185
+        },
+        "state": {
+          "rank": 12,
+          "percentile": 0.8992,
+          "team_count": 119
+        },
+        "district": {
+          "rank": 12,
+          "percentile": 0.8992,
+          "team_count": 119
+        }
+      }
+    },
+    "record": {
+      "wins": 42,
+      "losses": 15,
+      "ties": 0,
+      "count": 57,
+      "winrate": 0.7368
+    },
+    "district_points": 332,
+    "district_rank": 5,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 10131,
+    "year": 2026,
+    "name": "Royal Turtles",
+    "country": "China",
+    "state": null,
+    "district": null,
+    "rookie_year": 2025,
+    "epa": {
+      "total_points": {
+        "mean": 187.9,
+        "sd": 37.54
+      },
+      "unitless": 1884.0,
+      "norm": 1741.0,
+      "conf": [
+        -0.95,
+        0.81
+      ],
+      "breakdown": {
+        "total_points": 187.9,
+        "auto_points": 23.05,
+        "teleop_points": 115.24,
+        "endgame_points": 49.61,
+        "energized_rp": 0.7029,
+        "supercharged_rp": 0.2694,
+        "traversal_rp": -0.33839,
+        "tiebreaker_points": 187.9,
+        "auto_fuel": 23.11,
+        "auto_tower": -0.06,
+        "transition_fuel": 13.39,
+        "first_shift_fuel": 48.1,
+        "second_shift_fuel": 53.75,
+        "teleop_fuel": 115.24,
+        "endgame_fuel": 49.67,
+        "endgame_tower": -0.06,
+        "total_fuel": 188.02,
+        "total_tower": -0.12,
+        "rp_1": 0.7029,
+        "rp_2": 0.2694,
+        "rp_3": -0.33839
+      },
+      "stats": {
+        "start": 24.22,
+        "pre_champs": 187.9,
+        "max": 200.8
+      },
+      "ranks": {
+        "total": {
+          "rank": 90,
+          "percentile": 0.9758,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 2,
+          "percentile": 0.9583,
+          "team_count": 48
+        },
+        "state": {
+          "rank": 8,
+          "percentile": 0.9866,
+          "team_count": 595
+        },
+        "district": {
+          "rank": 27,
+          "percentile": 0.9832,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 30,
+      "losses": 9,
+      "ties": 0,
+      "count": 39,
+      "winrate": 0.7692
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 10907,
+    "year": 2026,
+    "name": "ROBOLYNX",
+    "country": "T\u00fcrkiye",
+    "state": null,
+    "district": null,
+    "rookie_year": 2026,
+    "epa": {
+      "total_points": {
+        "mean": 22.24,
+        "sd": 21.37
+      },
+      "unitless": 1442.0,
+      "norm": 1439.0,
+      "conf": [
+        -0.72,
+        1.14
+      ],
+      "breakdown": {
+        "total_points": 22.24,
+        "auto_points": 4.07,
+        "teleop_points": 5.7,
+        "endgame_points": 12.46,
+        "energized_rp": -0.0452,
+        "supercharged_rp": -0.2333,
+        "traversal_rp": -0.33645,
+        "tiebreaker_points": 22.24,
+        "auto_fuel": 4.07,
+        "auto_tower": -0.0,
+        "transition_fuel": 1.25,
+        "first_shift_fuel": 0.36,
+        "second_shift_fuel": 4.1,
+        "teleop_fuel": 5.7,
+        "endgame_fuel": 12.7,
+        "endgame_tower": -0.23,
+        "total_fuel": 22.47,
+        "total_tower": -0.23,
+        "rp_1": -0.0452,
+        "rp_2": -0.2333,
+        "rp_3": -0.33645
+      },
+      "stats": {
+        "start": 23.74,
+        "pre_champs": 22.24,
+        "max": 22.24
+      },
+      "ranks": {
+        "total": {
+          "rank": 2815,
+          "percentile": 0.2441,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 119,
+          "percentile": 0.408,
+          "team_count": 201
+        },
+        "state": {
+          "rank": 400,
+          "percentile": 0.3277,
+          "team_count": 595
+        },
+        "district": {
+          "rank": 1128,
+          "percentile": 0.2998,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 10,
+      "losses": 8,
+      "ties": 0,
+      "count": 18,
+      "winrate": 0.5556
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 11024,
+    "year": 2026,
+    "name": "HYPERNOVA",
+    "country": "USA",
+    "state": "CA",
+    "district": "ca",
+    "rookie_year": 2026,
+    "epa": {
+      "total_points": {
+        "mean": 25.26,
+        "sd": 17.37
+      },
+      "unitless": 1450.0,
+      "norm": 1449.0,
+      "conf": [
+        -0.91,
+        0.85
+      ],
+      "breakdown": {
+        "total_points": 25.26,
+        "auto_points": 9.19,
+        "teleop_points": 9.41,
+        "endgame_points": 6.67,
+        "energized_rp": -0.0655,
+        "supercharged_rp": -0.2449,
+        "traversal_rp": -0.34004,
+        "tiebreaker_points": 25.26,
+        "auto_fuel": 9.31,
+        "auto_tower": -0.11,
+        "transition_fuel": -0.61,
+        "first_shift_fuel": 6.46,
+        "second_shift_fuel": 3.56,
+        "teleop_fuel": 9.41,
+        "endgame_fuel": 6.73,
+        "endgame_tower": -0.06,
+        "total_fuel": 25.44,
+        "total_tower": -0.18,
+        "rp_1": -0.0655,
+        "rp_2": -0.2449,
+        "rp_3": -0.34004
+      },
+      "stats": {
+        "start": 24.37,
+        "pre_champs": 25.26,
+        "max": 41.26
+      },
+      "ranks": {
+        "total": {
+          "rank": 2563,
+          "percentile": 0.3118,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 2081,
+          "percentile": 0.2931,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 217,
+          "percentile": 0.2543,
+          "team_count": 291
+        },
+        "district": {
+          "rank": 217,
+          "percentile": 0.2543,
+          "team_count": 291
+        }
+      }
+    },
+    "record": {
+      "wins": 17,
+      "losses": 29,
+      "ties": 0,
+      "count": 46,
+      "winrate": 0.3696
+    },
+    "district_points": 105,
+    "district_rank": 82,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 11118,
+    "year": 2026,
+    "name": "The Baybies",
+    "country": "China",
+    "state": null,
+    "district": null,
+    "rookie_year": 2026,
+    "epa": {
+      "total_points": {
+        "mean": 72.67,
+        "sd": 26.22
+      },
+      "unitless": 1576.0,
+      "norm": 1553.0,
+      "conf": [
+        -1.0,
+        1.25
+      ],
+      "breakdown": {
+        "total_points": 72.67,
+        "auto_points": 11.76,
+        "teleop_points": 39.78,
+        "endgame_points": 21.13,
+        "energized_rp": 0.3803,
+        "supercharged_rp": -0.2288,
+        "traversal_rp": -0.33523,
+        "tiebreaker_points": 72.67,
+        "auto_fuel": 11.74,
+        "auto_tower": 0.01,
+        "transition_fuel": 4.73,
+        "first_shift_fuel": 18.84,
+        "second_shift_fuel": 16.21,
+        "teleop_fuel": 39.78,
+        "endgame_fuel": 20.7,
+        "endgame_tower": 0.43,
+        "total_fuel": 72.22,
+        "total_tower": 0.44,
+        "rp_1": 0.3803,
+        "rp_2": -0.2288,
+        "rp_3": -0.33523
+      },
+      "stats": {
+        "start": 23.74,
+        "pre_champs": 72.67,
+        "max": 78.04
+      },
+      "ranks": {
+        "total": {
+          "rank": 879,
+          "percentile": 0.764,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 20,
+          "percentile": 0.5833,
+          "team_count": 48
+        },
+        "state": {
+          "rank": 90,
+          "percentile": 0.8487,
+          "team_count": 595
+        },
+        "district": {
+          "rank": 297,
+          "percentile": 0.8156,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 7,
+      "losses": 5,
+      "ties": 0,
+      "count": 12,
+      "winrate": 0.5833
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 11270,
+    "year": 2026,
+    "name": "Nova",
+    "country": "Canada",
+    "state": "ON",
+    "district": "ont",
+    "rookie_year": 2026,
+    "epa": {
+      "total_points": {
+        "mean": 117.91,
+        "sd": 37.51
+      },
+      "unitless": 1697.0,
+      "norm": 1636.0,
+      "conf": [
+        -0.88,
+        0.88
+      ],
+      "breakdown": {
+        "total_points": 117.91,
+        "auto_points": 26.83,
+        "teleop_points": 67.94,
+        "endgame_points": 23.14,
+        "energized_rp": 0.3468,
+        "supercharged_rp": 0.0641,
+        "traversal_rp": -0.3401,
+        "tiebreaker_points": 117.91,
+        "auto_fuel": 26.82,
+        "auto_tower": 0.0,
+        "transition_fuel": 8.11,
+        "first_shift_fuel": 30.7,
+        "second_shift_fuel": 29.14,
+        "teleop_fuel": 67.94,
+        "endgame_fuel": 24.02,
+        "endgame_tower": -0.88,
+        "total_fuel": 118.79,
+        "total_tower": -0.88,
+        "rp_1": 0.3468,
+        "rp_2": 0.0641,
+        "rp_3": -0.3401
+      },
+      "stats": {
+        "start": 23.74,
+        "pre_champs": 117.91,
+        "max": 153.34
+      },
+      "ranks": {
+        "total": {
+          "rank": 401,
+          "percentile": 0.8923,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 28,
+          "percentile": 0.8486,
+          "team_count": 185
+        },
+        "state": {
+          "rank": 25,
+          "percentile": 0.7899,
+          "team_count": 119
+        },
+        "district": {
+          "rank": 25,
+          "percentile": 0.7899,
+          "team_count": 119
+        }
+      }
+    },
+    "record": {
+      "wins": 27,
+      "losses": 21,
+      "ties": 0,
+      "count": 48,
+      "winrate": 0.5625
+    },
+    "district_points": 211,
+    "district_rank": 15,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  },
+  {
+    "team": 11303,
+    "year": 2026,
+    "name": "BEZOAR ROBOTICS",
+    "country": "T\u00fcrkiye",
+    "state": null,
+    "district": null,
+    "rookie_year": 2026,
+    "epa": {
+      "total_points": {
+        "mean": 25.42,
+        "sd": 11.9
+      },
+      "unitless": 1450.0,
+      "norm": 1450.0,
+      "conf": [
+        -1.23,
+        0.94
+      ],
+      "breakdown": {
+        "total_points": 25.42,
+        "auto_points": 5.07,
+        "teleop_points": 13.68,
+        "endgame_points": 6.67,
+        "energized_rp": 0.0845,
+        "supercharged_rp": -0.0463,
+        "traversal_rp": -0.33571,
+        "tiebreaker_points": 25.42,
+        "auto_fuel": 5.05,
+        "auto_tower": 0.01,
+        "transition_fuel": 2.39,
+        "first_shift_fuel": 4.82,
+        "second_shift_fuel": 6.47,
+        "teleop_fuel": 13.68,
+        "endgame_fuel": 6.72,
+        "endgame_tower": -0.05,
+        "total_fuel": 25.45,
+        "total_tower": -0.03,
+        "rp_1": 0.0845,
+        "rp_2": -0.0463,
+        "rp_3": -0.33571
+      },
+      "stats": {
+        "start": 23.74,
+        "pre_champs": 25.42,
+        "max": 27.71
+      },
+      "ranks": {
+        "total": {
+          "rank": 2554,
+          "percentile": 0.3142,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 99,
+          "percentile": 0.5075,
+          "team_count": 201
+        },
+        "state": {
+          "rank": 345,
+          "percentile": 0.4202,
+          "team_count": 595
+        },
+        "district": {
+          "rank": 1018,
+          "percentile": 0.3681,
+          "team_count": 1611
+        }
+      }
+    },
+    "record": {
+      "wins": 4,
+      "losses": 7,
+      "ties": 0,
+      "count": 11,
+      "winrate": 0.3636
+    },
+    "district_points": null,
+    "district_rank": null,
+    "competing": {
+      "this_week": false,
+      "next_event_key": null,
+      "next_event_name": null,
+      "next_event_week": null
+    }
+  },
+  {
+    "team": 11493,
+    "year": 2026,
+    "name": "Pixel Knights",
+    "country": "USA",
+    "state": "MI",
+    "district": "fim",
+    "rookie_year": 2026,
+    "epa": {
+      "total_points": {
+        "mean": 53.35,
+        "sd": 36.5
+      },
+      "unitless": 1525.0,
+      "norm": 1516.0,
+      "conf": [
+        -0.92,
+        0.84
+      ],
+      "breakdown": {
+        "total_points": 53.35,
+        "auto_points": 11.78,
+        "teleop_points": 29.41,
+        "endgame_points": 12.17,
+        "energized_rp": 0.0031,
+        "supercharged_rp": -0.138,
+        "traversal_rp": -0.34005,
+        "tiebreaker_points": 53.35,
+        "auto_fuel": 12.03,
+        "auto_tower": -0.25,
+        "transition_fuel": 1.72,
+        "first_shift_fuel": 14.96,
+        "second_shift_fuel": 12.73,
+        "teleop_fuel": 29.41,
+        "endgame_fuel": 11.75,
+        "endgame_tower": 0.42,
+        "total_fuel": 53.18,
+        "total_tower": 0.17,
+        "rp_1": 0.0031,
+        "rp_2": -0.138,
+        "rp_3": -0.34005
+      },
+      "stats": {
+        "start": 23.74,
+        "pre_champs": 53.35,
+        "max": 64.5
+      },
+      "ranks": {
+        "total": {
+          "rank": 1261,
+          "percentile": 0.6614,
+          "team_count": 3724
+        },
+        "country": {
+          "rank": 1040,
+          "percentile": 0.6467,
+          "team_count": 2944
+        },
+        "state": {
+          "rank": 192,
+          "percentile": 0.6377,
+          "team_count": 530
+        },
+        "district": {
+          "rank": 192,
+          "percentile": 0.6377,
+          "team_count": 530
+        }
+      }
+    },
+    "record": {
+      "wins": 19,
+      "losses": 21,
+      "ties": 0,
+      "count": 40,
+      "winrate": 0.475
+    },
+    "district_points": 118,
+    "district_rank": 115,
+    "competing": {
+      "this_week": true,
+      "next_event_key": "2026cmptx",
+      "next_event_name": "FIRST Championship - FIRST Robotics Competition",
+      "next_event_week": 8
+    }
+  }
+]

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pit-scout-v2';
+const CACHE_NAME = 'pit-scout-v4';
 const ASSETS = [
   './',
   './index.html',
@@ -6,6 +6,8 @@ const ASSETS = [
   './app.js',
   './teams.csv',
   './manifest.json',
+  './prescouting.json',
+  './analysis/hopper_raw_data.json',
 ];
 
 self.addEventListener('install', (event) => {

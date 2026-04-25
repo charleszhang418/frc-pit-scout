@@ -172,6 +172,117 @@
     if (el) el.textContent = name || 'Set name →';
   }
 
+  // ───── Pre-Scout Data (separate from pit scouting) ─────
+  let statboticsData = {}; // { teamNumber: { epa, rank, auto, teleop, endgame, winrate } }
+  let prescoutData = {};   // { teamNumber: { primaryRole, autoStrength, climbAbility, reliability, whyPick, whyAvoid, videoNotes, summary } }
+
+  async function loadStatboticsData() {
+    try {
+      const resp = await fetch('analysis/hopper_raw_data.json');
+      if (!resp.ok) return;
+      const data = await resp.json();
+      const sorted = [...data].sort((a, b) => (b['epa.breakdown.total_points'] || 0) - (a['epa.breakdown.total_points'] || 0));
+      sorted.forEach((t, idx) => {
+        const teamNum = t.team;
+        const wins = t['record.wins'] || 0;
+        const losses = t['record.losses'] || 0;
+        const totalMatches = wins + losses;
+        statboticsData[teamNum] = {
+          epa: t['epa.breakdown.total_points'] || 0,
+          rank: idx + 1,
+          total: sorted.length,
+          auto: t['epa.breakdown.auto_points'] || 0,
+          teleop: t['epa.breakdown.teleop_points'] || 0,
+          endgame: t['epa.breakdown.endgame_points'] || 0,
+          winrate: totalMatches > 0 ? ((wins / totalMatches) * 100).toFixed(0) : null,
+        };
+      });
+    } catch (e) {
+      console.warn('Could not load Statbotics data:', e);
+    }
+  }
+
+  function loadPrescoutData() {
+    try {
+      const saved = localStorage.getItem('prescoutData');
+      if (saved) prescoutData = JSON.parse(saved);
+    } catch (e) {
+      console.warn('Could not load pre-scout data:', e);
+    }
+  }
+
+  function savePrescoutData() {
+    localStorage.setItem('prescoutData', JSON.stringify(prescoutData));
+  }
+
+  function getPrescoutForTeam(teamNumber) {
+    return prescoutData[teamNumber] || {
+      primaryRole: '',
+      autoStrength: '',
+      climbAbility: '',
+      reliability: '',
+      whyPick: '',
+      whyAvoid: '',
+      videoNotes: '',
+      summary: '',
+    };
+  }
+
+  function setPrescoutForTeam(teamNumber, data) {
+    prescoutData[teamNumber] = data;
+    savePrescoutData();
+  }
+
+  function exportPrescoutJSON() {
+    const blob = new Blob([JSON.stringify({ lastUpdated: new Date().toISOString(), teams: prescoutData }, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `prescouting_${new Date().toISOString().slice(0, 10)}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function importPrescoutJSON(file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const data = JSON.parse(reader.result);
+        if (data.teams && typeof data.teams === 'object') {
+          prescoutData = data.teams;
+          savePrescoutData();
+          alert(`Pre-scout data imported for ${Object.keys(data.teams).length} teams.`);
+        }
+      } catch (e) {
+        alert('Invalid pre-scout JSON file.');
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function savePrescoutFromForm() {
+    if (!currentTeamNumber) return;
+    const data = {
+      primaryRole: '',
+      autoStrength: '',
+      climbAbility: '',
+      reliability: '',
+      whyPick: $('#f-presct-whyPick')?.value.trim() || '',
+      whyAvoid: $('#f-presct-whyAvoid')?.value.trim() || '',
+      videoNotes: $('#f-presct-videoNotes')?.value.trim() || '',
+      summary: $('#f-presct-summary')?.value.trim() || '',
+    };
+    // Get seg-control values
+    ['presct.primaryRole', 'presct.autoStrength', 'presct.climbAbility', 'presct.reliability'].forEach(field => {
+      const ctrl = $(`.seg-control[data-field="${field}"]`);
+      if (!ctrl) return;
+      const selected = ctrl.querySelector('.seg-btn.selected');
+      const key = field.split('.')[1];
+      data[key] = selected ? selected.dataset.val : '';
+    });
+    setPrescoutForTeam(currentTeamNumber, data);
+  }
+
   // ───── DOM Refs ─────
   const $ = (sel) => document.querySelector(sel);
   const $$ = (sel) => document.querySelectorAll(sel);
@@ -387,9 +498,47 @@
       });
     });
 
-    // Activate first tab
-    $$('.form-tab').forEach(t => t.classList.toggle('active', t.dataset.section === 'info'));
-    $$('.form-section').forEach(s => s.classList.toggle('active', s.dataset.section === 'info'));
+    // Activate first tab (pre-scout)
+    $$('.form-tab').forEach(t => t.classList.toggle('active', t.dataset.section === 'presct'));
+    $$('.form-section').forEach(s => s.classList.toggle('active', s.dataset.section === 'presct'));
+
+    // Populate pre-scout stats from Statbotics
+    const stats = statboticsData[teamNumber];
+    if (stats) {
+      $('#presct-epa').textContent = stats.epa.toFixed(1);
+      $('#presct-epa').className = 'presct-stat-value ' + (stats.epa >= 150 ? 'good' : stats.epa >= 80 ? 'mid' : 'low');
+      $('#presct-rank').textContent = `${stats.rank} / ${stats.total}`;
+      $('#presct-auto').textContent = stats.auto.toFixed(1);
+      $('#presct-teleop').textContent = stats.teleop.toFixed(1);
+      $('#presct-endgame').textContent = stats.endgame.toFixed(1);
+      $('#presct-winrate').textContent = stats.winrate ? `${stats.winrate}%` : '—';
+    } else {
+      $('#presct-epa').textContent = '—';
+      $('#presct-epa').className = 'presct-stat-value';
+      $('#presct-rank').textContent = '—';
+      $('#presct-auto').textContent = '—';
+      $('#presct-teleop').textContent = '—';
+      $('#presct-endgame').textContent = '—';
+      $('#presct-winrate').textContent = '—';
+    }
+
+    // Populate pre-scout form fields
+    const presct = getPrescoutForTeam(teamNumber);
+    $('#f-presct-whyPick').value = presct.whyPick || '';
+    $('#f-presct-whyAvoid').value = presct.whyAvoid || '';
+    $('#f-presct-videoNotes').value = presct.videoNotes || '';
+    $('#f-presct-summary').value = presct.summary || '';
+
+    // Pre-scout segmented controls
+    ['presct.primaryRole', 'presct.autoStrength', 'presct.climbAbility', 'presct.reliability'].forEach(field => {
+      const ctrl = $(`.seg-control[data-field="${field}"]`);
+      if (!ctrl) return;
+      const key = field.split('.')[1];
+      const val = presct[key] || '';
+      ctrl.querySelectorAll('.seg-btn').forEach(btn => {
+        btn.classList.toggle('selected', btn.dataset.val === val);
+      });
+    });
 
     // Match notes
     renderMatchNotesList(team);
@@ -831,8 +980,14 @@
       if (!ctrl) return;
       ctrl.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
+      
+      const field = ctrl.dataset.field;
+      // Pre-scout fields save to localStorage
+      if (field && field.startsWith('presct.') && currentTeamNumber) {
+        savePrescoutFromForm();
+      }
       // Don't autosave for match-note compose form controls
-      if (!btn.closest('#match-note-form')) {
+      else if (!btn.closest('#match-note-form')) {
         scheduleAutosave();
       }
     });
@@ -891,6 +1046,20 @@
       e.target.value = '';
     });
 
+    // Pre-scout export/import
+    $('#btn-export-presct').addEventListener('click', exportPrescoutJSON);
+    $('#btn-import-presct').addEventListener('click', () => $('#import-presct-input').click());
+    $('#import-presct-input').addEventListener('change', (e) => {
+      if (e.target.files[0]) importPrescoutJSON(e.target.files[0]);
+      e.target.value = '';
+    });
+
+    // Pre-scout text field autosave
+    ['f-presct-whyPick', 'f-presct-whyAvoid', 'f-presct-videoNotes', 'f-presct-summary'].forEach(id => {
+      const el = $(`#${id}`);
+      if (el) el.addEventListener('input', savePrescoutFromForm);
+    });
+
     // Clear data
     $('#btn-clear-data').addEventListener('click', async () => {
       const yes = await confirmDialog(
@@ -924,6 +1093,11 @@
     await openDB();
     await loadTeamsCSV();
     await seedTeams(allCsvTeams);
+    
+    // Load pre-scout data (separate from pit scouting)
+    loadPrescoutData();
+    await loadStatboticsData();
+    
     await refreshData();
     wireEvents();
     registerSW();
