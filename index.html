@@ -80,6 +80,11 @@
       <header class="view-header">
         <h1>All Teams</h1>
       </header>
+      <div class="add-team-bar">
+        <input type="number" id="add-team-number" class="field-input" placeholder="Team #" style="width:90px;flex:0 0 auto" inputmode="numeric">
+        <input type="text" id="add-team-name" class="field-input" placeholder="Team name (optional)" style="flex:1" autocomplete="off">
+        <button id="btn-add-team" class="btn btn-primary" style="padding:10px 14px;white-space:nowrap">+ Add</button>
+      </div>
       <div class="search-bar">
         <svg viewBox="0 0 24 24" width="20" height="20"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
         <input type="text" id="teamlist-search" placeholder="Search team # or name…" autocomplete="off">
@@ -107,6 +112,7 @@
         <button class="form-tab" data-section="auto">Auto</button>
         <button class="form-tab" data-section="climb">Climb</button>
         <button class="form-tab" data-section="defense">Defense</button>
+        <button class="form-tab" data-section="match">Match</button>
         <button class="form-tab" data-section="verify">Verify</button>
       </div>
 
@@ -359,6 +365,46 @@
           <div class="field-group">
             <label class="field-label">Freeform Notes</label>
             <textarea id="f-defense-notes" class="field-textarea" rows="3" placeholder="Anything else about defense/reliability…"></textarea>
+          </div>
+        </div>
+
+        <!-- MATCH NOTES SECTION -->
+        <div class="form-section" data-section="match">
+          <div id="match-note-form" class="match-note-form">
+            <div class="field-group">
+              <label class="field-label">Match Number</label>
+              <input type="text" id="f-match-number" class="field-input" placeholder="e.g., Q12, SF1-2…" autocomplete="off">
+            </div>
+            <div class="field-group">
+              <label class="field-label">Observed Role</label>
+              <div class="seg-control wide" data-field="matchEntry.observedRole">
+                <button class="seg-btn" data-val="primary_scorer">Primary Scorer</button>
+                <button class="seg-btn" data-val="secondary_scorer">Secondary</button>
+                <button class="seg-btn" data-val="collector_ferry">Collector/Ferry</button>
+                <button class="seg-btn" data-val="defense">Defense</button>
+                <button class="seg-btn" data-val="climb_specialist">Climb Specialist</button>
+                <button class="seg-btn" data-val="inactive">Inactive</button>
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Performance</label>
+              <div class="seg-control" data-field="matchEntry.performance">
+                <button class="seg-btn" data-val="great">Great</button>
+                <button class="seg-btn" data-val="good">Good</button>
+                <button class="seg-btn" data-val="okay">Okay</button>
+                <button class="seg-btn" data-val="poor">Poor</button>
+                <button class="seg-btn" data-val="disabled">Disabled</button>
+              </div>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Notes</label>
+              <textarea id="f-match-notes" class="field-textarea" rows="2" placeholder="What did you observe this match…"></textarea>
+            </div>
+            <button id="btn-add-match-note" class="btn btn-primary btn-block">Add Match Note</button>
+          </div>
+          <div class="field-group" style="margin-top:16px">
+            <label class="field-label">Match Observation Log</label>
+            <div id="match-notes-list"></div>
           </div>
         </div>
 

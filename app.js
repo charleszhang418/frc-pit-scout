@@ -6,38 +6,83 @@
 (function () {
   'use strict';
 
-  // ───── Hopper Division Team List (2026 placeholder) ─────
+  // ───── Hopper Division Team List (2026 Official — 75 teams) ─────
   const DEFAULT_TEAMS = [
-    { teamNumber: 11118, teamName: 'The Baybies' },
-    { teamNumber: 254, teamName: 'The Cheesy Poofs' },
-    { teamNumber: 1678, teamName: 'Citrus Circuits' },
-    { teamNumber: 971, teamName: 'Spartan Robotics' },
+    { teamNumber: 188, teamName: 'Blizzard' },
+    { teamNumber: 238, teamName: 'Crusaders' },
+    { teamNumber: 401, teamName: 'Copperhead Robotics' },
+    { teamNumber: 494, teamName: 'Martians' },
+    { teamNumber: 503, teamName: 'Frog Force' },
+    { teamNumber: 540, teamName: 'TALON 540 Godwin Robotics' },
+    { teamNumber: 573, teamName: 'Mech Warriors' },
+    { teamNumber: 581, teamName: 'Blazing Bulldogs' },
+    { teamNumber: 761, teamName: 'TechPUPS' },
+    { teamNumber: 910, teamName: 'The Foley Freeze' },
+    { teamNumber: 1014, teamName: 'Bad Robots' },
+    { teamNumber: 1259, teamName: 'Paradigm Shift' },
+    { teamNumber: 1287, teamName: 'Aluminum Assault' },
+    { teamNumber: 1296, teamName: 'Full Metal Jackets' },
+    { teamNumber: 1625, teamName: 'Winnovation' },
+    { teamNumber: 1701, teamName: 'Robocubs' },
+    { teamNumber: 1706, teamName: 'Ratchet Rockers' },
+    { teamNumber: 1710, teamName: 'The Ravonics Revolution' },
+    { teamNumber: 1732, teamName: 'Hilltopper Robotics' },
+    { teamNumber: 1787, teamName: 'The Flying Circuits' },
+    { teamNumber: 1986, teamName: 'Team Titanium' },
     { teamNumber: 2056, teamName: 'OP Robotics' },
-    { teamNumber: 4414, teamName: 'HighTide' },
-    { teamNumber: 6328, teamName: 'Mechanical Advantage' },
-    { teamNumber: 148, teamName: 'Robowranglers' },
-    { teamNumber: 1323, teamName: 'MadTown Robotics' },
-    { teamNumber: 2910, teamName: 'Jack in the Bot' },
-    { teamNumber: 3310, teamName: 'Black Hawk Robotics' },
+    { teamNumber: 2102, teamName: 'Team Paradox' },
+    { teamNumber: 2199, teamName: 'Robo-Lions' },
+    { teamNumber: 2220, teamName: 'Blue Twilight' },
+    { teamNumber: 2383, teamName: 'Ninjineers' },
+    { teamNumber: 2486, teamName: 'CocoNuts' },
+    { teamNumber: 2607, teamName: 'The Fighting RoboVikings' },
+    { teamNumber: 2659, teamName: 'RoboWarriors' },
+    { teamNumber: 2834, teamName: 'Bionic Black Hawks' },
+    { teamNumber: 3015, teamName: 'Ranger Robotics' },
+    { teamNumber: 3035, teamName: 'Droid Rage' },
+    { teamNumber: 3175, teamName: 'Knight Vision' },
+    { teamNumber: 3297, teamName: 'Full Metal Jackets' },
+    { teamNumber: 3467, teamName: 'Windham Windup' },
+    { teamNumber: 3506, teamName: 'YETI Robotics' },
+    { teamNumber: 3512, teamName: 'Spartatroniks' },
+    { teamNumber: 3539, teamName: 'Byting Bulldogs' },
+    { teamNumber: 3641, teamName: 'The Flying Toasters' },
+    { teamNumber: 4143, teamName: 'MARS/WARS' },
+    { teamNumber: 4174, teamName: 'Mustang Robotics' },
+    { teamNumber: 4191, teamName: 'IMC' },
+    { teamNumber: 4201, teamName: 'The Vitruvian Bots' },
+    { teamNumber: 4613, teamName: 'Barker Redbacks' },
+    { teamNumber: 4698, teamName: 'Raider Robotics' },
+    { teamNumber: 5000, teamName: 'HAMMERHEADS' },
+    { teamNumber: 5086, teamName: 'Cadillac Connectors' },
+    { teamNumber: 5348, teamName: 'Charger Robotics' },
     { teamNumber: 5406, teamName: 'Celt-X' },
-    { teamNumber: 1114, teamName: 'Simbotics' },
-    { teamNumber: 2767, teamName: 'Stryke Force' },
-    { teamNumber: 118, teamName: 'Robonauts' },
-    { teamNumber: 1619, teamName: 'Up-A-Creek Robotics' },
-    { teamNumber: 2471, teamName: 'Team Mean Machine' },
-    { teamNumber: 4481, teamName: 'Team Rembrandts' },
-    { teamNumber: 5940, teamName: 'BREAD' },
-    { teamNumber: 6036, teamName: 'Peninsula Robotics' },
-    { teamNumber: 33, teamName: 'Killer Bees' },
-    { teamNumber: 1241, teamName: 'THEORY6' },
-    { teamNumber: 2614, teamName: 'Mountaineers' },
-    { teamNumber: 3005, teamName: 'RoboChargers' },
-    { teamNumber: 4096, teamName: 'Ctrl-Z' },
-    { teamNumber: 4911, teamName: 'CyberKnights' },
-    { teamNumber: 6672, teamName: 'Fusion Corps' },
-    { teamNumber: 7461, teamName: 'Sushi Squad' },
-    { teamNumber: 8033, teamName: 'Highlanders' },
-    { teamNumber: 9072, teamName: 'Boba Bots' },
+    { teamNumber: 5454, teamName: 'Obsidian' },
+    { teamNumber: 6121, teamName: 'RoboVikes' },
+    { teamNumber: 6152, teamName: 'Robo-Falcons' },
+    { teamNumber: 6200, teamName: 'PrepaTec - XRAMS' },
+    { teamNumber: 6328, teamName: 'Mechanical Advantage' },
+    { teamNumber: 6329, teamName: "The Bucks' Wrath" },
+    { teamNumber: 6517, teamName: 'So-Kno Robo' },
+    { teamNumber: 6639, teamName: 'The Mechanical Minds' },
+    { teamNumber: 7287, teamName: 'Esquimalt Atom Smashers' },
+    { teamNumber: 7451, teamName: 'AvengerRobotics' },
+    { teamNumber: 8005, teamName: 'Mega MeadowBots' },
+    { teamNumber: 8044, teamName: 'Denham Venom' },
+    { teamNumber: 8214, teamName: 'Cyber Unicorn' },
+    { teamNumber: 8267, teamName: 'Riptide Robotics' },
+    { teamNumber: 8513, teamName: 'Sisters 1st' },
+    { teamNumber: 8749, teamName: 'Farmersville Robotics' },
+    { teamNumber: 9449, teamName: 'Yellowjackets' },
+    { teamNumber: 9692, teamName: 'Sigma' },
+    { teamNumber: 9785, teamName: 'Alectrona' },
+    { teamNumber: 10131, teamName: 'Royal Turtles' },
+    { teamNumber: 10907, teamName: 'ROBOLYNX' },
+    { teamNumber: 11024, teamName: 'HYPERNOVA' },
+    { teamNumber: 11118, teamName: 'The Baybies' },
+    { teamNumber: 11270, teamName: 'Nova' },
+    { teamNumber: 11303, teamName: 'BEZOAR ROBOTICS' },
+    { teamNumber: 11493, teamName: 'Pixel Knights' },
   ];
 
   // ───── IndexedDB Setup ─────
@@ -149,6 +194,7 @@
         lastVerifiedMatch: '',
         confidenceScore: '',
       },
+      matchNotes: [],
       notes: '',
     };
   }
@@ -268,6 +314,7 @@
       inds.push({ cls: 'ind-climb', text: team.climb.maxClimb.toUpperCase() });
     if (team.fuel?.scoringConsistency && team.fuel.scoringConsistency !== 'unknown')
       inds.push({ cls: 'ind-fuel', text: 'FUEL' });
+    if (team.matchNotes?.length) inds.push({ cls: 'ind-auto', text: `${team.matchNotes.length} MATCH` });
     if (team.needsRecheck) inds.push({ cls: 'ind-recheck', text: 'RECHECK' });
     return inds;
   }
@@ -379,6 +426,15 @@
     // Activate first tab
     $$('.form-tab').forEach(t => t.classList.toggle('active', t.dataset.section === 'info'));
     $$('.form-section').forEach(s => s.classList.toggle('active', s.dataset.section === 'info'));
+
+    // Match notes
+    renderMatchNotesList(team);
+    $('#f-match-number').value = '';
+    $('#f-match-notes').value = '';
+    const matchRole = $('#match-note-form .seg-control[data-field="matchEntry.observedRole"]');
+    const matchPerf = $('#match-note-form .seg-control[data-field="matchEntry.performance"]');
+    matchRole?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
+    matchPerf?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
 
     showAutosave('Saved');
     switchView('form');
@@ -513,6 +569,106 @@
     showToast('Photo removed');
   }
 
+  // ───── Match Notes ─────
+  function renderMatchNotesList(team) {
+    const container = $('#match-notes-list');
+    const notes = team.matchNotes || [];
+    if (notes.length === 0) {
+      container.innerHTML = '<div class="empty-state" style="padding:16px">No match observations yet. Tap "Add Match Note" above.</div>';
+      return;
+    }
+    container.innerHTML = notes
+      .slice()
+      .reverse()
+      .map((n, idx) => {
+        const realIdx = notes.length - 1 - idx;
+        return `
+        <div class="match-note-card" data-idx="${realIdx}">
+          <div class="match-note-header">
+            <strong>${n.matchNumber || 'No match #'}</strong>
+            <span class="match-note-time">${n.timestamp ? new Date(n.timestamp).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : ''}</span>
+            <button class="match-note-delete" data-idx="${realIdx}" aria-label="Delete">&times;</button>
+          </div>
+          ${n.observedRole ? `<div class="match-note-tag">${n.observedRole.replace(/_/g, ' ')}</div>` : ''}
+          ${n.performance ? `<div class="match-note-tag perf-${n.performance}">${n.performance}</div>` : ''}
+          ${n.notes ? `<div class="match-note-body">${n.notes}</div>` : ''}
+        </div>`;
+      })
+      .join('');
+  }
+
+  async function addMatchNote() {
+    if (!currentTeamNumber) return;
+    const matchNum = $('#f-match-number').value.trim();
+    const role = $('#match-note-form .seg-control[data-field="matchEntry.observedRole"]');
+    const perf = $('#match-note-form .seg-control[data-field="matchEntry.performance"]');
+    const roleVal = role?.querySelector('.seg-btn.selected')?.dataset.val || '';
+    const perfVal = perf?.querySelector('.seg-btn.selected')?.dataset.val || '';
+    const notes = $('#f-match-notes').value.trim();
+
+    if (!matchNum && !notes) {
+      showToast('Enter a match number or notes', 'error');
+      return;
+    }
+
+    const entry = {
+      matchNumber: matchNum,
+      observedRole: roleVal,
+      performance: perfVal,
+      notes: notes,
+      timestamp: new Date().toISOString(),
+    };
+
+    const team = await dbGet(currentTeamNumber);
+    if (!team) return;
+    if (!team.matchNotes) team.matchNotes = [];
+    team.matchNotes.push(entry);
+    team.updatedAt = new Date().toISOString();
+    await dbPut(team);
+
+    // Reset form
+    $('#f-match-number').value = '';
+    $('#f-match-notes').value = '';
+    role?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
+    perf?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
+
+    renderMatchNotesList(team);
+    showAutosave('Saved');
+    showToast('Match note added', 'success');
+  }
+
+  async function deleteMatchNote(idx) {
+    if (!currentTeamNumber) return;
+    const team = await dbGet(currentTeamNumber);
+    if (!team || !team.matchNotes) return;
+    team.matchNotes.splice(idx, 1);
+    team.updatedAt = new Date().toISOString();
+    await dbPut(team);
+    renderMatchNotesList(team);
+    showAutosave('Saved');
+  }
+
+  // ───── Add Team ─────
+  async function addTeamManually() {
+    const numStr = $('#add-team-number').value.trim();
+    const name = $('#add-team-name').value.trim();
+    const num = parseInt(numStr, 10);
+    if (isNaN(num) || num < 1) {
+      showToast('Enter a valid team number', 'error');
+      return;
+    }
+    const existing = await dbGet(num);
+    if (existing) {
+      showToast(`Team ${num} already exists`, 'error');
+      return;
+    }
+    await dbPut(makeDefaultRecord({ teamNumber: num, teamName: name }));
+    await refreshData();
+    $('#add-team-number').value = '';
+    $('#add-team-name').value = '';
+    showToast(`Team ${num} added`, 'success');
+  }
+
   // ───── CSV Export ─────
   function flattenForCSV(team) {
     const row = {};
@@ -531,6 +687,7 @@
       }
     }
     row.hasPhoto = !!team.photoDataUrl;
+    row.matchNotesCount = (team.matchNotes || []).length;
     return row;
   }
 
@@ -709,7 +866,10 @@
       if (!ctrl) return;
       ctrl.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
       btn.classList.add('selected');
-      scheduleAutosave();
+      // Don't autosave for match-note compose form controls
+      if (!btn.closest('#match-note-form')) {
+        scheduleAutosave();
+      }
     });
 
     // Autosave on text inputs within form
@@ -720,6 +880,19 @@
     $('#f-notes').addEventListener('input', scheduleAutosave);
     $('#f-completed').addEventListener('change', scheduleAutosave);
     $('#f-needsRecheck').addEventListener('change', scheduleAutosave);
+
+    // Match notes
+    $('#btn-add-match-note').addEventListener('click', addMatchNote);
+    document.addEventListener('click', (e) => {
+      const del = e.target.closest('.match-note-delete');
+      if (del) {
+        const idx = parseInt(del.dataset.idx, 10);
+        if (!isNaN(idx)) deleteMatchNote(idx);
+      }
+    });
+
+    // Add team
+    $('#btn-add-team').addEventListener('click', addTeamManually);
 
     // Photo
     $('#photo-area').addEventListener('click', () => $('#photo-input').click());

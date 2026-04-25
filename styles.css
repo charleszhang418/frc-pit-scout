@@ -527,6 +527,78 @@ input, textarea { font-family: inherit; font-size: 1rem; }
 .dialog-actions { display: flex; gap: 8px; }
 .dialog-actions .btn { flex: 1; padding: 10px; font-size: 0.9rem; }
 
+/* ===== ADD TEAM BAR ===== */
+.add-team-bar {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin: 8px 0;
+}
+.add-team-bar .field-input {
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+/* ===== MATCH NOTE CARDS ===== */
+.match-note-form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+
+.match-note-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  margin-bottom: 8px;
+}
+.match-note-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.match-note-header strong { font-size: 0.95rem; }
+.match-note-time { font-size: 0.7rem; color: var(--text-dim); margin-left: auto; }
+.match-note-delete {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 1.3rem;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.match-note-delete:active { color: var(--red); background: var(--red-dim); }
+
+.match-note-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--surface2);
+  color: var(--text-dim);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+.match-note-tag.perf-great { background: var(--green-dim); color: var(--green); }
+.match-note-tag.perf-good { background: var(--blue-dim); color: var(--blue); }
+.match-note-tag.perf-okay { background: var(--orange-dim); color: var(--orange); }
+.match-note-tag.perf-poor { background: var(--red-dim); color: var(--red); }
+.match-note-tag.perf-disabled { background: var(--red-dim); color: var(--red); }
+
+.match-note-body {
+  font-size: 0.85rem;
+  color: var(--text);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (min-width: 640px) {
   .stats-grid { grid-template-columns: repeat(4, 1fr); }
