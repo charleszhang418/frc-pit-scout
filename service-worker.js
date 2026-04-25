@@ -1,9 +1,10 @@
-const CACHE_NAME = 'pit-scout-v1';
+const CACHE_NAME = 'pit-scout-v2';
 const ASSETS = [
   './',
   './index.html',
   './styles.css',
   './app.js',
+  './teams.csv',
   './manifest.json',
 ];
 

@@ -1,0 +1,601 @@
+teamNumber,teamName,division
+188,Blizzard,Hopper
+238,Crusaders,Hopper
+401,Copperhead Robotics,Hopper
+494,Martians,Hopper
+503,Frog Force,Hopper
+540,TALON 540 Godwin Robotics,Hopper
+573,Mech Warriors,Hopper
+581,Blazing Bulldogs,Hopper
+761,TechPUPS,Hopper
+910,The Foley Freeze,Hopper
+1014,Bad Robots,Hopper
+1259,Paradigm Shift,Hopper
+1287,Aluminum Assault,Hopper
+1296,Full Metal Jackets,Hopper
+1625,Winnovation,Hopper
+1701,Robocubs,Hopper
+1706,Ratchet Rockers,Hopper
+1710,The Ravonics Revolution,Hopper
+1732,Hilltopper Robotics,Hopper
+1787,The Flying Circuits,Hopper
+1986,Team Titanium,Hopper
+2056,OP Robotics,Hopper
+2102,Team Paradox,Hopper
+2199,Robo-Lions,Hopper
+2220,Blue Twilight,Hopper
+2383,Ninjineers,Hopper
+2486,CocoNuts,Hopper
+2607,The Fighting RoboVikings,Hopper
+2659,RoboWarriors,Hopper
+2834,Bionic Black Hawks,Hopper
+3015,Ranger Robotics,Hopper
+3035,Droid Rage,Hopper
+3175,Knight Vision,Hopper
+3297,Full Metal Jackets,Hopper
+3467,Windham Windup,Hopper
+3506,YETI Robotics,Hopper
+3512,Spartatroniks,Hopper
+3539,Byting Bulldogs,Hopper
+3641,The Flying Toasters,Hopper
+4143,MARS/WARS,Hopper
+4174,Mustang Robotics,Hopper
+4191,IMC,Hopper
+4201,The Vitruvian Bots,Hopper
+4613,Barker Redbacks,Hopper
+4698,Raider Robotics,Hopper
+5000,HAMMERHEADS,Hopper
+5086,Cadillac Connectors,Hopper
+5348,Charger Robotics,Hopper
+5406,Celt-X,Hopper
+5454,Obsidian,Hopper
+6121,RoboVikes,Hopper
+6152,Robo-Falcons,Hopper
+6200,PrepaTec - XRAMS,Hopper
+6328,Mechanical Advantage,Hopper
+6329,The Bucks' Wrath,Hopper
+6517,So-Kno Robo,Hopper
+6639,The Mechanical Minds,Hopper
+7287,Esquimalt Atom Smashers,Hopper
+7451,AvengerRobotics,Hopper
+8005,Mega MeadowBots,Hopper
+8044,Denham Venom,Hopper
+8214,Cyber Unicorn,Hopper
+8267,Riptide Robotics,Hopper
+8513,Sisters 1st,Hopper
+8749,Farmersville Robotics,Hopper
+9449,Yellowjackets,Hopper
+9692,Sigma,Hopper
+9785,Alectrona,Hopper
+10131,Royal Turtles,Hopper
+10907,ROBOLYNX,Hopper
+11024,HYPERNOVA,Hopper
+11118,The Baybies,Hopper
+11270,Nova,Hopper
+11303,BEZOAR ROBOTICS,Hopper
+11493,Pixel Knights,Hopper
+27,Team RUSH,Archimedes
+103,Cybersonics,Archimedes
+131,CHAOS,Archimedes
+167,Children of the Corn,Archimedes
+548,Robostangs,Archimedes
+587,The Hedgehogs,Archimedes
+971,Spartan Robotics,Archimedes
+1114,Simbotics,Archimedes
+1189,Gearheads,Archimedes
+1218,SCH Robotics,Archimedes
+1241,THEORY6,Archimedes
+1261,Robo Lions,Archimedes
+1501,Team THRUST,Archimedes
+1511,Rolling Thunder,Archimedes
+1619,Up-A-Creek Robotics,Archimedes
+1646,Precision Guessworks,Archimedes
+1648,G3 Robotics,Archimedes
+1731,Fresta Valley Robotics Club,Archimedes
+1868,Space Cookies,Archimedes
+1912,Team Combustion,Archimedes
+2075,Enigma Robotics,Archimedes
+2106,The Junkyard Dogs,Archimedes
+2137,The Oxford RoboCats,Archimedes
+2539,Krypton Cougars,Archimedes
+2583,Orange Dynamite,Archimedes
+2767,Stryke Force,Archimedes
+2826,Wave Robotics,Archimedes
+2847,The MegaHertz,Archimedes
+2851,Crevolution,Archimedes
+2881,Lady Cans,Archimedes
+2960,Automation Nation,Archimedes
+3006,Red Rock Robotics,Archimedes
+3045,Gear Gremlins,Archimedes
+3284,Camdenton LASER 3284,Archimedes
+3476,Code Orange,Archimedes
+3494,The Quadrangles,Archimedes
+3572,Wavelength,Archimedes
+3604,Goon Squad,Archimedes
+4096,Ctrl-Z,Archimedes
+4272,Maverick Robotics,Archimedes
+4403,PrepaTec - ROULT - Penoles,Archimedes
+4593,Rapid Acceleration,Archimedes
+4646,Wildcard Robotics,Archimedes
+4728,ROCORI Robotics,Archimedes
+5010,Tiger Dynasty,Archimedes
+5066,Singularity,Archimedes
+5338,RoboLoCo,Archimedes
+5468,Chaos Theory,Archimedes
+5665,FENERBAHCE DOGUS SPARC,Archimedes
+5801,CTC Inspire,Archimedes
+5829,Awtybots,Archimedes
+5940,BREAD,Archimedes
+6459,AG Robotik,Archimedes
+6907,The G.O.A.T,Archimedes
+7166,Red Thunder Robotics,Archimedes
+7407,Wired Boars,Archimedes
+7525,Pioneers,Archimedes
+7598,SCA Constellations,Archimedes
+8608,Alpha Bots,Archimedes
+8817,Buccaneer Robotics,Archimedes
+8884,Knight Owls,Archimedes
+9001,Delta Force,Archimedes
+9032,RoboWhales,Archimedes
+9084,Octobots,Archimedes
+9126,Silver Hawks,Archimedes
+9401,Midas' Mayhem,Archimedes
+9427,iDeer,Archimedes
+9470,Ctrl-Alt-Defeat,Archimedes
+9771,FPRO,Archimedes
+10015,Bubbles,Archimedes
+10021,Guerin Catholic Golden Gears,Archimedes
+10162,Viking Robotics,Archimedes
+11019,X.PLORE,Archimedes
+11297,Iron Corsairs,Archimedes
+11387,G.L.E.A.M.,Archimedes
+59,RamTech,Curie
+125,NUTRONs,Curie
+166,Chop Shop,Curie
+254,The Cheesy Poofs,Curie
+294,Beach Cities Robotics,Curie
+302,The Dragons,Curie
+571,Paragon Robotics,Curie
+589,Falkon Robotics,Curie
+870,TEAM R.I.C.E.,Curie
+987,HIGHROLLERS,Curie
+1024,Kil-A-Bytes,Curie
+1477,Texas Torque,Curie
+1498,The Polar Pilots,Curie
+1684,The Chimeras,Curie
+1714,MORE Robotics,Curie
+1987,Broncobots,Curie
+2053,Southern Tier Robotics,Curie
+2357,System Meltdown,Curie
+2412,Robototes,Curie
+2443,Blue Thunder,Curie
+2637,Phantom Catz,Curie
+2682,Boneyard Robotics,Curie
+2724,Avalanche Robotics,Curie
+2992,The S.S. Prometheus,Curie
+3128,The Aluminum Narwhals,Curie
+3181,Pittsford Panthers,Curie
+3197,HexHounds,Curie
+3792,Army Ants,Curie
+3847,Spectrum,Curie
+3932,The Dirty Mechanics,Curie
+4027,Centre Punch,Curie
+4256,Cyborg Cats,Curie
+4611,OZone,Curie
+4786,Nicolet FEAR,Curie
+5166,Fabricators,Curie
+5193,Pantheon,Curie
+5199,Robot Dolphins From Outer Space,Curie
+5460,Strike Zone,Curie
+5572,Rosbots,Curie
+5712,Hemlock's Gray Matter,Curie
+5907,CC Shambots,Curie
+5987,Galaxia,Curie
+6045,Sabre Robotics,Curie
+6366,RAM Rodz Robotics,Curie
+6369,Mercenary Robotics,Curie
+6413,Degrees of Freedom,Curie
+6417,Fridolins,Curie
+6497,Pymble P-Platers,Curie
+6510,Pymble Pride,Curie
+6615,Bellevillains,Curie
+6773,Max Throttle Mavericks,Curie
+6800,Valor,Curie
+7028,Binary Battalion,Curie
+7421,PrepaTec - OVERTURE,Curie
+7539,Elev8,Curie
+7565,SESI SENAI ROBONAUTICOS,Curie
+7567,SESI SENAI OCTOPUS,Curie
+8280,K9.0 Robotics,Curie
+8575,The Due Westerners,Curie
+8595,This Is How We Play,Curie
+8613,Barker Greybacks,Curie
+8725,MistyPanther,Curie
+9023,Future Martians,Curie
+9066,Cavalo Vendado,Curie
+9068,The Chargers,Curie
+9077,The Crown,Curie
+9200,SESI SENAI STARDUST,Curie
+9609,Paraducks,Curie
+10254,Regal Seagulls,Curie
+10349,Pontiac Firebirds,Curie
+10922,Amped,Curie
+11167,Team Titan,Curie
+11300,ZENITH,Curie
+11304,Meowbotics,Curie
+11318,Freedom Robotics,Curie
+11,MORT,Daly
+176,Aces High,Daly
+272,Cyber Crusaders,Daly
+303,The T.E.S.T. Team,Daly
+316,LUNATECS,Daly
+340,G.R.R.,Daly
+469,Las Guerrillas,Daly
+624,CRyptonite,Daly
+972,Iron Claw,Daly
+999,MechaRAMS,Daly
+1058,PVC Pirates,Daly
+1155,SciBorgs,Daly
+1156,Under Control,Daly
+1323,MadTown Robotics,Daly
+1325,Inverse Paradox,Daly
+1538,The Holy Cows,Daly
+1629,Garrett Coalition,Daly
+1676,The Pascack PI-oneers,Daly
+1720,PhyXTGears,Daly
+1727,REX,Daly
+1741,Red Alert,Daly
+1880,Warriors of East Harlem,Daly
+1939,THE KUHNIGHTS,Daly
+2073,EagleForce,Daly
+2338,Gear It Forward,Daly
+2399,The Fighting Unicorns,Daly
+2429,The Blockheads,Daly
+2472,Centurions,Daly
+2530,Inconceivable,Daly
+2718,Team OKC,Daly
+2883,F.R.E.D,Daly
+3008,Team Magma,Daly
+3100,The Lightning Turtles,Daly
+3314,Mechanical Mustangs,Daly
+3339,BumbleB,Daly
+3478,PrepaTec - LamBot,Daly
+3538,RoboJackets,Daly
+3646,INTEGRA BAHCESEHIR,Daly
+3656,Dexter Dreadbots,Daly
+3880,Tiki Techs,Daly
+3990,Tech for Kids,Daly
+4028,The Beak Squad,Daly
+4065,Nerds of Prey,Daly
+4188,Columbus Space Program,Daly
+4189,Chargers,Daly
+4414,HighTide,Daly
+4674,RoboJacks,Daly
+4678,CyberCavs,Daly
+5534,Onaway Onabots,Daly
+5550,BRONChO BOTS,Daly
+5557,BB-R8ERS,Daly
+5813,Morpheus,Daly
+5847,Ironclad,Daly
+5937,MI Robotics,Daly
+6017,PrepaTec - Cyberius,Daly
+6106,PrepaTec - TecGear,Daly
+6391,Ursuline Bearbotics,Daly
+6696,Cardinal Dynamics,Daly
+6919,The Commodores,Daly
+6941,IronPulse Robotics,Daly
+6998,Unipards,Daly
+7520,Team MineKee,Daly
+7632,An Kang Robotics Maker,Daly
+7712,ACCN UMOJA,Daly
+8393,Giant Diencephalic BrainSTEM,Daly
+8724,Mayhem,Daly
+9094,The Earthquakers,Daly
+9175,BrainMachine-FRC,Daly
+9545,Caracal Robotics,Daly
+10002,BotBuilders,Daly
+10213,BALTA,Daly
+10229,Event Horizon,Daly
+10619,Rana's Rivets,Daly
+11141,AlphaZ,Daly
+11178,Revelation,Daly
+16,Bomb Squad,Galileo
+51,Wings of Fire,Galileo
+111,WildStang,Galileo
+364,Team Fusion 364,Galileo
+449,The Blair Robot Project,Galileo
+484,Roboforce,Galileo
+614,Night Hawks,Galileo
+931,Perpetual Chaos,Galileo
+1023,Bedford Express,Galileo
+1391,The Metal Moose,Galileo
+1403,Team 1403 Cougar Robotics,Galileo
+1506,Metal Muscle,Galileo
+1533,Triple Strange,Galileo
+1690,Orbit,Galileo
+1756,Argos,Galileo
+1768,Nashoba Robotics,Galileo
+1816,The Green Machine,Galileo
+2054,Tech Vikes,Galileo
+2231,OnyxTronix,Galileo
+2393,Robotichauns,Galileo
+2468,Team Appreciate,Galileo
+2491,NoMythic,Galileo
+2556,RadioActive Roaches,Galileo
+2582,PantherBots,Galileo
+2590,Nemesis,Galileo
+2635,Lake Monsters,Galileo
+2813,Gear Heads,Galileo
+3082,Chicken Bot Pie,Galileo
+3243,Amperes,Galileo
+3501,Firebots,Galileo
+3544,Spartiates,Galileo
+3753,BulahBots!,Galileo
+3931,Cockadoodle Dominators,Galileo
+3937,Breakaway,Galileo
+4020,Cyber Tribe,Galileo
+4087,Voodoo Voltage,Galileo
+4125,Confidential,Galileo
+4322,Clockwork,Galileo
+4450,Olympia Robotics Federation,Galileo
+4469,R.A.I.D.,Galileo
+4607,C.I.S.,Galileo
+4655,Stateline Robotics,Galileo
+4766,Team SCREAM Jr.,Galileo
+5181,Explorer Robotics,Galileo
+5577,Kinematic Wolves,Galileo
+5653,Iron Mosquitos,Galileo
+5705,DESERT EAGLES - JOHN DEERE,Galileo
+5895,Peddie Robotics,Galileo
+5913,Patriotics,Galileo
+6201,The Highlanders,Galileo
+6429,4th Dimension,Galileo
+6487,Clockwork Knights,Galileo
+6528,Terror Bytes,Galileo
+6665,C-Otters,Galileo
+6911,SO BOTZ,Galileo
+6985,ENKA TECH,Galileo
+7183,W.A.R.,Galileo
+7415,Jaguar Robotics,Galileo
+7769,The CREW,Galileo
+7840,EMONER ROBOTICS,Galileo
+7915,Ripon Robotics,Galileo
+8069,Super Hornets,Galileo
+8119,TigerBotics,Galileo
+8159,Golden Horn,Galileo
+8229,Balikbayan Bots,Galileo
+8858,Beast from the East,Galileo
+9496,LYNK,Galileo
+9572,CC Shambytes,Galileo
+10034,GammaLand,Galileo
+10980,The Deadbolts,Galileo
+10991,PioBytes,Galileo
+11214,[CY]BEARCATS,Galileo
+11242,Golden Eagle Mechanics,Galileo
+11244,Avrasya Robotics,Galileo
+11417,Nano Knights,Galileo
+8,Paly Robotics,Johnson
+33,Killer Bees,Johnson
+48,Team E.L.I.T.E.,Johnson
+67,The HOT Team,Johnson
+117,Steel Dragons,Johnson
+118,Robonauts,Johnson
+179,Children of the Swamp,Johnson
+190,Gompei and the HERD,Johnson
+245,Adambots,Johnson
+321,RoboLancers,Johnson
+334,TechKnights,Johnson
+360,The Revolution,Johnson
+422,The Mech Tech Dragons,Johnson
+498,The Cobra Commanders,Johnson
+619,Cavalier Robotics,Johnson
+772,Sabre Bytes Robotics,Johnson
+836,The RoboBees,Johnson
+955,Ctrl C,Johnson
+1002,CircuitRunners Robotics,Johnson
+1073,The Force Team,Johnson
+1076,PiHi Samurai,Johnson
+1306,BadgerBOTS,Johnson
+1792,Round Table Robotics,Johnson
+1908,ShoreBots,Johnson
+2040,DERT,Johnson
+2096,RoboActive,Johnson
+2252,The Mavericks,Johnson
+2337,EngiNERDs,Johnson
+2522,Royal Robotics,Johnson
+2619,The Charge,Johnson
+2638,Rebel Robotics,Johnson
+2704,Roaring Robotics,Johnson
+2848,Rangers,Johnson
+2877,LigerBots,Johnson
+3061,Huskie Robotics,Johnson
+3255,SuperNURDs,Johnson
+3414,Hackbots,Johnson
+3536,Electro Eagles,Johnson
+3603,Cyber Coyotes,Johnson
+3620,Average Joes,Johnson
+3630,Stampede,Johnson
+3770,BlitzCreek,Johnson
+4391,BraveBots,Johnson
+4451,ROBOTZ Garage,Johnson
+4522,Team SCREAM,Johnson
+4635,PrepaTec - Botbusters,Johnson
+4946,The Alpha Dogs,Johnson
+4967,That ONE Team,Johnson
+5026,Iron Panthers,Johnson
+5968,Little Apple Cyborgs,Johnson
+6324,The Blue Devils,Johnson
+6652,Tigres,Johnson
+6766,AtomStorm,Johnson
+6829,Ignite Robotics,Johnson
+6940,Violet Z,Johnson
+7220,Steel Falcons,Johnson
+7257,Semiconductors,Johnson
+7403,Lightning Blue Lizards,Johnson
+7551,Extreme Mechanism,Johnson
+7558,ALT-F4,Johnson
+7563,SESI SENAI MEGAZORD,Johnson
+8612,Calvin Christian Robotics,Johnson
+9072,TigerBots,Johnson
+9277,Sparkans,Johnson
+9483,Overcharge,Johnson
+9484,Robot's District,Johnson
+9597,Luban Robotics,Johnson
+9646,The Marinators,Johnson
+9757,Mecha Marauders,Johnson
+10014,REBELLION,Johnson
+10114,Phantom Talons,Johnson
+10217,Catahoula Blue Dogs,Johnson
+10340,ITKAN Girls,Johnson
+10396,Mostra,Johnson
+11269,Batteries Not Included,Johnson
+68,Truck Town Thunder,Milstein
+70,More Martians,Milstein
+201,The FEDS,Milstein
+263,Aftershock,Milstein
+287,Floyd Robotics,Milstein
+343,Metal-In-Motion,Milstein
+353,POBots,Milstein
+359,Hawaiian Kids,Milstein
+686,Bovine Intervention,Milstein
+694,StuyPulse,Milstein
+1640,Sab-BOT-age,Milstein
+1671,Buchanan Bird Brains,Milstein
+1678,Citrus Circuits,Milstein
+1771,North Gwinnett Robotics,Milstein
+2122,Team Tators,Milstein
+2169,KING TeC,Milstein
+2200,BCR Blackout,Milstein
+2333,Sapulpa Robotics Team,Milstein
+2403,Plasma Robotics,Milstein
+2481,Roboteers,Milstein
+2601,Steel Hawks,Milstein
+2630,Thunderbolts,Milstein
+2811,StormBots,Milstein
+2846,FireBears,Milstein
+2905,Sultans of Turkiye,Milstein
+2974,Walton Robotics,Milstein
+3075,Ha-Dream Team,Milstein
+3245,Ravens,Milstein
+3277,ProDigi,Milstein
+3419,RoHawks,Milstein
+3492,Putnam Area Robotics Team,Milstein
+3637,The Daleks,Milstein
+3707,TechnoDogs,Milstein
+3928,Team Neutrino,Milstein
+4089,Stealth Robotics,Milstein
+4122,Ossining OBOTS,Milstein
+4270,Crusaders,Milstein
+4362,Gems,Milstein
+4421,FORGE Robotics,Milstein
+4476,W.A.F.F.L.E.S.,Milstein
+4481,Team Rembrandts,Milstein
+4499,The Highlanders,Milstein
+4795,Eastbots,Milstein
+4905,Andromeda One,Milstein
+4907,Thunderstamps,Milstein
+4915,Spartronics,Milstein
+5462,2Paw Robotics,Milstein
+5985,Project Bucephalus,Milstein
+6002,ZooBOTix,Milstein
+6090,Wayland Wildcats,Milstein
+6238,Popcorn Penguins,Milstein
+6925,W.A.Robotics,Milstein
+6989,KAISER,Milstein
+7039,XO,Milstein
+7250,OsCODEa,Milstein
+7426,PAIR OF DICE ROBOTICS,Milstein
+7457,suPURDUEper Robotics,Milstein
+7594,Nautilus,Milstein
+7717,Steam Punks,Milstein
+7763,Carrborobotics,Milstein
+7890,SeQuEnCe,Milstein
+8020,CyberpunK,Milstein
+8158,Bosphorus Robotics,Milstein
+8429,Valence Robotics,Milstein
+8808,SWLA Tech Pirates,Milstein
+8873,Rockefeller Robotics,Milstein
+9140,The Robobots,Milstein
+9635,Cyber Rabbit,Milstein
+9644,NEIA Robotics,Milstein
+10101,Critical Hit,Milstein
+10526,Orcas,Milstein
+10604,Demiroren Robotics,Milstein
+10633,BeeBotics,Milstein
+10950,The Northern Knights,Milstein
+11065,STEAMex Overheat,Milstein
+88,TJ2,Newton
+148,Robowranglers,Newton
+180,S.P.A.M.,Newton
+195,CyberKnights,Newton
+233,The Pink Team,Newton
+341,Miss Daisy,Newton
+346,RoboHawks,Newton
+386,Team Voltage,Newton
+424,Rust Belt Robotics,Newton
+599,The Robodox,Newton
+604,Quixilver,Newton
+687,The Nerd Herd,Newton
+695,Bison Robotics,Newton
+818,The Steel Armadillos,Newton
+868,TechHOUNDS,Newton
+930,Mukwonago BEARs,Newton
+948,NRG,Newton
+973,Greybots,Newton
+1108,Panther Robotics,Newton
+1540,Flaming Chickens,Newton
+1577,Steampunk,Newton
+1796,RoboTigers,Newton
+1807,Redbird Robotics,Newton
+1833,Team BEAN,Newton
+1884,Griffins,Newton
+1902,Exploding Bacon,Newton
+1922,Oz-Ram,Newton
+2046,Bear Metal,Newton
+2052,KnightKrawler,Newton
+2067,Apple Pi,Newton
+2194,Fondy Fire,Newton
+2370,IBOTS,Newton
+2586,Copper Bots,Newton
+2713,Red Hawk Robotics,Newton
+2783,Engineers of Tomorrow,Newton
+2910,Jack in the Bot,Newton
+2996,Cougars Gone Wired,Newton
+3005,RoboChargers,Newton
+3044,Team 0xBE4,Newton
+3256,WarriorBorgs,Newton
+3276,TOOLCATS,Newton
+3354,PrepaTec - TecDroid,Newton
+3966,Gryphon Command,Newton
+4099,The Falcons,Newton
+4206,Robo Vikes,Newton
+4253,Raid Zero,Newton
+4400,Cerbotics - Penoles,Newton
+4561,TerrorBytes,Newton
+4590,GreenBlitz,Newton
+5216,E-Ville Empire,Newton
+5414,Pearadox,Newton
+5549,Gryphon Robotics,Newton
+5736,Kingsmen Robotics,Newton
+5948,PrepaTec - Lebotics,Newton
+5951,Makers Assemble,Newton
+6036,Peninsula Robotics,Newton
+6352,LAUNCH TEAM,Newton
+6436,NARBULUT PARS ROBOTICS,Newton
+6647,PrepaTec - VOLTEC,Newton
+6988,ACI35,Newton
+7160,Ludington O-Bots,Newton
+8046,LakerBots,Newton
+8373,The Flying Octopi,Newton
+9029,Team NF,Newton
+9067,The Goonies,Newton
+9128,ITKAN Robotics,Newton
+9245,Laker Dreadnoughts,Newton
+9408,Warren Warbots,Newton
+9450,Velocity Raptors,Newton
+10291,MUTUM-X,Newton
+10553,Orange Overdrive,Newton
+10903,The Ionizers,Newton
+10935,Krono,Newton
+10979,Tiger Robotics,Newton
+11463,SHC Robotics,Newton

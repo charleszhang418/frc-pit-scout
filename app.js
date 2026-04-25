@@ -6,84 +6,26 @@
 (function () {
   'use strict';
 
-  // ───── Hopper Division Team List (2026 Official — 75 teams) ─────
-  const DEFAULT_TEAMS = [
-    { teamNumber: 188, teamName: 'Blizzard' },
-    { teamNumber: 238, teamName: 'Crusaders' },
-    { teamNumber: 401, teamName: 'Copperhead Robotics' },
-    { teamNumber: 494, teamName: 'Martians' },
-    { teamNumber: 503, teamName: 'Frog Force' },
-    { teamNumber: 540, teamName: 'TALON 540 Godwin Robotics' },
-    { teamNumber: 573, teamName: 'Mech Warriors' },
-    { teamNumber: 581, teamName: 'Blazing Bulldogs' },
-    { teamNumber: 761, teamName: 'TechPUPS' },
-    { teamNumber: 910, teamName: 'The Foley Freeze' },
-    { teamNumber: 1014, teamName: 'Bad Robots' },
-    { teamNumber: 1259, teamName: 'Paradigm Shift' },
-    { teamNumber: 1287, teamName: 'Aluminum Assault' },
-    { teamNumber: 1296, teamName: 'Full Metal Jackets' },
-    { teamNumber: 1625, teamName: 'Winnovation' },
-    { teamNumber: 1701, teamName: 'Robocubs' },
-    { teamNumber: 1706, teamName: 'Ratchet Rockers' },
-    { teamNumber: 1710, teamName: 'The Ravonics Revolution' },
-    { teamNumber: 1732, teamName: 'Hilltopper Robotics' },
-    { teamNumber: 1787, teamName: 'The Flying Circuits' },
-    { teamNumber: 1986, teamName: 'Team Titanium' },
-    { teamNumber: 2056, teamName: 'OP Robotics' },
-    { teamNumber: 2102, teamName: 'Team Paradox' },
-    { teamNumber: 2199, teamName: 'Robo-Lions' },
-    { teamNumber: 2220, teamName: 'Blue Twilight' },
-    { teamNumber: 2383, teamName: 'Ninjineers' },
-    { teamNumber: 2486, teamName: 'CocoNuts' },
-    { teamNumber: 2607, teamName: 'The Fighting RoboVikings' },
-    { teamNumber: 2659, teamName: 'RoboWarriors' },
-    { teamNumber: 2834, teamName: 'Bionic Black Hawks' },
-    { teamNumber: 3015, teamName: 'Ranger Robotics' },
-    { teamNumber: 3035, teamName: 'Droid Rage' },
-    { teamNumber: 3175, teamName: 'Knight Vision' },
-    { teamNumber: 3297, teamName: 'Full Metal Jackets' },
-    { teamNumber: 3467, teamName: 'Windham Windup' },
-    { teamNumber: 3506, teamName: 'YETI Robotics' },
-    { teamNumber: 3512, teamName: 'Spartatroniks' },
-    { teamNumber: 3539, teamName: 'Byting Bulldogs' },
-    { teamNumber: 3641, teamName: 'The Flying Toasters' },
-    { teamNumber: 4143, teamName: 'MARS/WARS' },
-    { teamNumber: 4174, teamName: 'Mustang Robotics' },
-    { teamNumber: 4191, teamName: 'IMC' },
-    { teamNumber: 4201, teamName: 'The Vitruvian Bots' },
-    { teamNumber: 4613, teamName: 'Barker Redbacks' },
-    { teamNumber: 4698, teamName: 'Raider Robotics' },
-    { teamNumber: 5000, teamName: 'HAMMERHEADS' },
-    { teamNumber: 5086, teamName: 'Cadillac Connectors' },
-    { teamNumber: 5348, teamName: 'Charger Robotics' },
-    { teamNumber: 5406, teamName: 'Celt-X' },
-    { teamNumber: 5454, teamName: 'Obsidian' },
-    { teamNumber: 6121, teamName: 'RoboVikes' },
-    { teamNumber: 6152, teamName: 'Robo-Falcons' },
-    { teamNumber: 6200, teamName: 'PrepaTec - XRAMS' },
-    { teamNumber: 6328, teamName: 'Mechanical Advantage' },
-    { teamNumber: 6329, teamName: "The Bucks' Wrath" },
-    { teamNumber: 6517, teamName: 'So-Kno Robo' },
-    { teamNumber: 6639, teamName: 'The Mechanical Minds' },
-    { teamNumber: 7287, teamName: 'Esquimalt Atom Smashers' },
-    { teamNumber: 7451, teamName: 'AvengerRobotics' },
-    { teamNumber: 8005, teamName: 'Mega MeadowBots' },
-    { teamNumber: 8044, teamName: 'Denham Venom' },
-    { teamNumber: 8214, teamName: 'Cyber Unicorn' },
-    { teamNumber: 8267, teamName: 'Riptide Robotics' },
-    { teamNumber: 8513, teamName: 'Sisters 1st' },
-    { teamNumber: 8749, teamName: 'Farmersville Robotics' },
-    { teamNumber: 9449, teamName: 'Yellowjackets' },
-    { teamNumber: 9692, teamName: 'Sigma' },
-    { teamNumber: 9785, teamName: 'Alectrona' },
-    { teamNumber: 10131, teamName: 'Royal Turtles' },
-    { teamNumber: 10907, teamName: 'ROBOLYNX' },
-    { teamNumber: 11024, teamName: 'HYPERNOVA' },
-    { teamNumber: 11118, teamName: 'The Baybies' },
-    { teamNumber: 11270, teamName: 'Nova' },
-    { teamNumber: 11303, teamName: 'BEZOAR ROBOTICS' },
-    { teamNumber: 11493, teamName: 'Pixel Knights' },
-  ];
+  // ───── Team data loaded from teams.csv ─────
+  const DIVISIONS = ['Hopper', 'Archimedes', 'Curie', 'Daly', 'Galileo', 'Johnson', 'Milstein', 'Newton'];
+  let allCsvTeams = []; // { teamNumber, teamName, division }
+
+  async function loadTeamsCSV() {
+    try {
+      const resp = await fetch('teams.csv');
+      if (!resp.ok) throw new Error('Failed to load teams.csv');
+      const text = await resp.text();
+      const lines = text.trim().split('\n');
+      for (let i = 1; i < lines.length; i++) {
+        const cols = lines[i].split(',').map(c => c.trim());
+        const num = parseInt(cols[0], 10);
+        if (isNaN(num)) continue;
+        allCsvTeams.push({ teamNumber: num, teamName: cols[1] || '', division: cols[2] || '' });
+      }
+    } catch (e) {
+      console.warn('Could not load teams.csv, starting empty:', e);
+    }
+  }
 
   // ───── IndexedDB Setup ─────
   const DB_NAME = 'frcPitScout';
@@ -145,6 +87,7 @@
     return {
       teamNumber: team.teamNumber,
       teamName: team.teamName || '',
+      division: team.division || '',
       assignedScout: '',
       updatedAt: '',
       completed: false,
@@ -212,9 +155,18 @@
   // ───── State ─────
   let allTeams = [];
   let currentFilter = 'all';
+  let currentDivision = localStorage.getItem('division') || 'Hopper';
   let currentSearch = '';
   let currentTeamNumber = null;
   let autosaveTimer = null;
+
+  // ───── Global Scout Name ─────
+  function getScoutName() { return localStorage.getItem('scoutName') || ''; }
+  function setScoutName(name) {
+    localStorage.setItem('scoutName', name);
+    const el = $('#global-scout-display');
+    if (el) el.textContent = name || 'Set name →';
+  }
 
   // ───── DOM Refs ─────
   const $ = (sel) => document.querySelector(sel);
@@ -287,7 +239,13 @@
     return { label: 'Unscouted', cls: 'chip-unscouted' };
   }
 
+  function matchesDivision(team) {
+    if (currentDivision === 'All') return true;
+    return (team.division || '') === currentDivision;
+  }
+
   function matchesFilter(team) {
+    if (!matchesDivision(team)) return false;
     const status = getStatusInfo(team);
     switch (currentFilter) {
       case 'unscouted': return status.label === 'Unscouted';
@@ -322,7 +280,9 @@
   function renderTeamRow(team) {
     const status = getStatusInfo(team);
     const indicators = getIndicators(team);
-    const indHTML = indicators.map(i => `<span class="indicator ${i.cls}">${i.text}</span>`).join('');
+    const divTag = (currentDivision === 'All' && team.division)
+      ? `<span class="indicator" style="background:var(--surface2);color:var(--text-dim)">${team.division}</span>` : '';
+    const indHTML = divTag + indicators.map(i => `<span class="indicator ${i.cls}">${i.text}</span>`).join('');
     return `
       <div class="team-row" data-team="${team.teamNumber}">
         <div class="team-row-num">${team.teamNumber}</div>
@@ -354,10 +314,11 @@
   }
 
   function updateStats() {
-    const total = allTeams.length;
-    const completed = allTeams.filter(t => t.completed).length;
-    const recheck = allTeams.filter(t => t.needsRecheck).length;
-    const verified = allTeams.filter(t => {
+    const divTeams = allTeams.filter(matchesDivision);
+    const total = divTeams.length;
+    const completed = divTeams.filter(t => t.completed).length;
+    const recheck = divTeams.filter(t => t.needsRecheck).length;
+    const verified = divTeams.filter(t => {
       const vs = t.verification?.status;
       return vs === 'match_verified' || vs === 'practice_verified';
     }).length;
@@ -377,7 +338,6 @@
     $('#form-team-name').textContent = team.teamName || '';
 
     // Populate inputs
-    $('#f-scoutName').value = team.assignedScout || '';
     $('#f-completed').checked = !!team.completed;
     $('#f-notes').value = team.notes || '';
     $('#f-needsRecheck').checked = !!team.needsRecheck;
@@ -442,7 +402,7 @@
 
   function collectFormData() {
     const data = {};
-    data.assignedScout = $('#f-scoutName').value.trim();
+    data.assignedScout = getScoutName();
     data.completed = $('#f-completed').checked;
     data.needsRecheck = $('#f-needsRecheck').checked;
     data.notes = $('#f-notes').value.trim();
@@ -674,6 +634,7 @@
     const row = {};
     row.teamNumber = team.teamNumber;
     row.teamName = team.teamName;
+    row.division = team.division || '';
     row.scout = team.assignedScout;
     row.updatedAt = team.updatedAt;
     row.completed = team.completed;
@@ -872,11 +833,22 @@
       }
     });
 
+    // Division selector
+    $('#division-select').addEventListener('change', (e) => {
+      currentDivision = e.target.value;
+      localStorage.setItem('division', currentDivision);
+      refreshData();
+    });
+
+    // Global scout name
+    $('#global-scout-input').addEventListener('input', (e) => {
+      setScoutName(e.target.value.trim());
+    });
+
     // Autosave on text inputs within form
     $$('#view-form .field-input, #view-form .field-textarea').forEach(el => {
       el.addEventListener('input', scheduleAutosave);
     });
-    $('#f-scoutName').addEventListener('input', scheduleAutosave);
     $('#f-notes').addEventListener('input', scheduleAutosave);
     $('#f-completed').addEventListener('change', scheduleAutosave);
     $('#f-needsRecheck').addEventListener('change', scheduleAutosave);
@@ -923,7 +895,7 @@
       );
       if (yes) {
         await dbClear();
-        await seedTeams(DEFAULT_TEAMS);
+        await seedTeams(allCsvTeams);
         await refreshData();
         showToast('All data cleared', 'success');
       }
@@ -946,10 +918,19 @@
   // ───── Init ─────
   async function init() {
     await openDB();
-    await seedTeams(DEFAULT_TEAMS);
+    await loadTeamsCSV();
+    await seedTeams(allCsvTeams);
     await refreshData();
     wireEvents();
     registerSW();
+
+    // Restore global scout name
+    const savedScout = getScoutName();
+    $('#global-scout-input').value = savedScout;
+    $('#global-scout-display').textContent = savedScout || 'Set name →';
+
+    // Restore division selector
+    $('#division-select').value = currentDivision;
   }
 
   if (document.readyState === 'loading') {

@@ -106,6 +106,57 @@ input, textarea { font-family: inherit; font-size: 1rem; }
 .stat-card.accent-orange .stat-number { color: var(--orange); }
 .stat-card.accent-blue .stat-number { color: var(--blue); }
 
+/* ===== GLOBAL BAR ===== */
+.global-bar {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0 6px;
+}
+.global-bar-item {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.global-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+.global-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 0.9rem;
+  padding: 0;
+  width: 100%;
+}
+.global-input::placeholder { color: var(--text-dim); }
+.global-display { display: none; }
+.global-select {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+}
+.global-select option {
+  background: var(--surface);
+  color: var(--text);
+}
+
 /* ===== SEARCH BAR ===== */
 .search-bar {
   display: flex;

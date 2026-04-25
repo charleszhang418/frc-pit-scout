@@ -36,9 +36,31 @@
     <!-- ===== DASHBOARD VIEW ===== -->
     <section id="view-dashboard" class="view active">
       <header class="view-header">
-        <h1>Hopper Pit Scout</h1>
-        <p class="subtitle">FRC Championship 2026</p>
+        <h1>Pit Scout</h1>
+        <p class="subtitle">FRC Championship Houston 2026</p>
       </header>
+
+      <div class="global-bar">
+        <div class="global-bar-item">
+          <label for="global-scout-input" class="global-label">Scout</label>
+          <input type="text" id="global-scout-input" class="global-input" placeholder="Your name" autocomplete="off">
+          <span id="global-scout-display" class="global-display">Set name →</span>
+        </div>
+        <div class="global-bar-item">
+          <label for="division-select" class="global-label">Division</label>
+          <select id="division-select" class="global-select">
+            <option value="Hopper">Hopper</option>
+            <option value="Archimedes">Archimedes</option>
+            <option value="Curie">Curie</option>
+            <option value="Daly">Daly</option>
+            <option value="Galileo">Galileo</option>
+            <option value="Johnson">Johnson</option>
+            <option value="Milstein">Milstein</option>
+            <option value="Newton">Newton</option>
+            <option value="All">All Divisions</option>
+          </select>
+        </div>
+      </div>
 
       <div class="stats-grid">
         <div class="stat-card">
@@ -120,10 +142,6 @@
 
         <!-- INFO SECTION -->
         <div class="form-section active" data-section="info">
-          <div class="field-group">
-            <label class="field-label">Scout Name</label>
-            <input type="text" id="f-scoutName" class="field-input" placeholder="Your name" autocomplete="off">
-          </div>
           <div class="field-group">
             <label class="field-label">Robot Photo</label>
             <div class="photo-area" id="photo-area">
