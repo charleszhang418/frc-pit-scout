@@ -94,11 +94,7 @@
       needsRecheck: false,
       photoDataUrl: '',
       robot: {
-        drivetrain: '',
-        bumpAbility: '',
-        trenchAbility: '',
-        groundIntake: '',
-        depotIntake: '',
+        shooterType: '',
         jamNotes: '',
       },
       fuel: {
@@ -116,9 +112,8 @@
         partnerConflicts: '',
       },
       climb: {
-        typicalClimb: '',
-        claimedSuccessRate: '',
-        partnerSpacing: '',
+        maxClimb: '',
+        climbTime: '',
       },
       defense: {
         canPlayDefense: '',
@@ -186,12 +181,33 @@
     localStorage.setItem('prescoutData', JSON.stringify(prescoutData));
   }
 
+  function prescoutMultiAsArray(val) {
+    if (Array.isArray(val)) return val.filter(Boolean);
+    if (typeof val === 'string' && val.trim()) {
+      return val.split(/[,，]/).map((s) => s.trim()).filter(Boolean);
+    }
+    return [];
+  }
+
   function getPrescoutForTeam(teamNumber) {
     const raw = prescoutData[teamNumber] ?? prescoutData[String(teamNumber)];
-    if (!raw) {
-      return { shooterType: '', autoClimb: '', maxClimb: '', climbTime: '' };
-    }
-    return { ...raw };
+    const def = {
+      tier: '',
+      shooterType: '',
+      autoClimb: '',
+      autoRoute: '',
+      driverAbility: '',
+      inactiveHub: [],
+      primaryRole: [],
+      summary: '',
+    };
+    if (!raw) return { ...def };
+    return {
+      ...def,
+      ...raw,
+      inactiveHub: prescoutMultiAsArray(raw.inactiveHub ?? raw.inactiveBehavior),
+      primaryRole: prescoutMultiAsArray(raw.primaryRole),
+    };
   }
 
   function setPrescoutForTeam(teamNumber, data) {
@@ -203,19 +219,29 @@
     if (!currentTeamNumber) return;
     const prev = getPrescoutForTeam(currentTeamNumber);
     const data = { ...prev };
-    ['presct.shooterType', 'presct.autoClimb', 'presct.maxClimb', 'presct.climbTime'].forEach((field) => {
+    ['presct.tier', 'presct.shooterType', 'presct.autoClimb', 'presct.driverAbility'].forEach((field) => {
       const ctrl = $(`.seg-control[data-field="${field}"]`);
       if (!ctrl) return;
       const key = field.split('.')[1];
       const selected = ctrl.querySelector('.seg-btn.selected');
       data[key] = selected ? selected.dataset.val : '';
     });
+    ['presct.inactiveHub', 'presct.primaryRole'].forEach((field) => {
+      const ctrl = $(`.seg-control[data-field="${field}"]`);
+      if (!ctrl) return;
+      const key = field.split('.')[1];
+      data[key] = [...ctrl.querySelectorAll('.seg-btn.selected')].map((b) => b.dataset.val);
+    });
+    const ar = $('#f-presct-autoRoute');
+    const sm = $('#f-presct-summary');
+    if (ar) data.autoRoute = ar.value.trim();
+    if (sm) data.summary = sm.value.trim();
     setPrescoutForTeam(currentTeamNumber, data);
   }
 
   function populatePresctControls(teamNumber) {
     const p = getPrescoutForTeam(teamNumber);
-    ['presct.shooterType', 'presct.autoClimb', 'presct.maxClimb', 'presct.climbTime'].forEach((field) => {
+    ['presct.tier', 'presct.shooterType', 'presct.autoClimb', 'presct.driverAbility'].forEach((field) => {
       const ctrl = $(`.seg-control[data-field="${field}"]`);
       if (!ctrl) return;
       const key = field.split('.')[1];
@@ -224,6 +250,19 @@
         btn.classList.toggle('selected', btn.dataset.val === val);
       });
     });
+    ['presct.inactiveHub', 'presct.primaryRole'].forEach((field) => {
+      const ctrl = $(`.seg-control[data-field="${field}"]`);
+      if (!ctrl) return;
+      const key = field.split('.')[1];
+      const set = new Set(prescoutMultiAsArray(p[key]));
+      ctrl.querySelectorAll('.seg-btn').forEach((btn) => {
+        btn.classList.toggle('selected', set.has(btn.dataset.val));
+      });
+    });
+    const ar = $('#f-presct-autoRoute');
+    const sm = $('#f-presct-summary');
+    if (ar) ar.value = p.autoRoute || '';
+    if (sm) sm.value = p.summary || '';
   }
 
   function exportPrescoutJSON() {
@@ -354,14 +393,19 @@
   function getIndicators(team) {
     const inds = [];
     const pc = getPrescoutForTeam(team.teamNumber);
-    const st = pc.shooterType;
+    if (pc.tier && pc.tier !== 'unknown' && pc.tier !== 'unranked') {
+      inds.push({ cls: 'ind-tier', text: pc.tier });
+    }
+    const pitShooter = team.robot?.shooterType;
+    const st = pitShooter && pitShooter !== 'unknown' && pitShooter !== '' ? pitShooter : pc.shooterType;
     if (st && st !== 'unknown' && st !== 'none') {
       const short = { fixed_drum: '滚筒', turret: '炮台', rotatable_drum: '转滚筒' }[st] || st;
       inds.push({ cls: 'ind-fuel', text: short });
     }
     if (pc.autoClimb === 'yes') inds.push({ cls: 'ind-auto', text: 'AUTO↑' });
-    if (pc.maxClimb && pc.maxClimb !== 'none' && pc.maxClimb !== 'unknown')
-      inds.push({ cls: 'ind-climb', text: pc.maxClimb.toUpperCase() });
+    const maxC = team.climb?.maxClimb || pc.maxClimb;
+    if (maxC && maxC !== 'none' && maxC !== 'unknown')
+      inds.push({ cls: 'ind-climb', text: String(maxC).toUpperCase() });
     if (team.matchNotes?.length) inds.push({ cls: 'ind-auto', text: `${team.matchNotes.length} M` });
     if (team.needsRecheck) inds.push({ cls: 'ind-recheck', text: 'RECHECK' });
     return inds;
@@ -446,8 +490,6 @@
 
     // Text fields mapped to nested objects
     const textFields = {
-      'f-robot-jamNotes': ['robot', 'jamNotes'],
-      'f-climb-partnerSpacing': ['climb', 'partnerSpacing'],
       'f-verify-notes': ['verification', 'notes'],
       'f-verify-matchEvidenceNotes': ['verification', 'matchEvidenceNotes'],
       'f-verify-lastVerifiedMatch': ['verification', 'lastVerifiedMatch'],
@@ -512,8 +554,6 @@
 
     // Text fields
     const textFields = {
-      'f-robot-jamNotes': ['robot', 'jamNotes'],
-      'f-climb-partnerSpacing': ['climb', 'partnerSpacing'],
       'f-verify-notes': ['verification', 'notes'],
       'f-verify-matchEvidenceNotes': ['verification', 'matchEvidenceNotes'],
       'f-verify-lastVerifiedMatch': ['verification', 'lastVerifiedMatch'],

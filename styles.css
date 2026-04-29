@@ -253,6 +253,7 @@ input, textarea { font-family: inherit; font-size: 1rem; }
 .indicator.ind-auto { background: var(--blue-dim); color: var(--blue); }
 .indicator.ind-climb { background: var(--green-dim); color: var(--green); }
 .indicator.ind-fuel { background: var(--orange-dim); color: var(--orange); }
+.indicator.ind-tier { background: var(--surface2); color: var(--accent); }
 .indicator.ind-recheck { background: var(--red-dim); color: var(--red); }
 
 .status-chip {
