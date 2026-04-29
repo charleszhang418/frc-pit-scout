@@ -694,6 +694,52 @@ input, textarea { font-family: inherit; font-size: 1rem; }
   color: var(--text-dim);
 }
 
+.presct-display {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+}
+
+.presct-empty {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.presct-row {
+  display: grid;
+  grid-template-columns: minmax(100px, 36%) 1fr;
+  gap: 8px 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+.presct-row:last-child { border-bottom: none; }
+
+.presct-k {
+  color: var(--text-dim);
+}
+.presct-v {
+  color: var(--text);
+  word-break: break-word;
+}
+
+.field-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px 0 12px;
+}
+
+.field-section-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
 /* Tier buttons */
 .seg-btn.tier-s.selected { background: #6c63ff; color: #fff; }
 .seg-btn.tier-a.selected { background: #3b82f6; color: #fff; }

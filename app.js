@@ -99,6 +99,7 @@
         trenchAbility: '',
         groundIntake: '',
         depotIntake: '',
+        shooterType: '',
         jamNotes: '',
       },
       fuel: {
@@ -116,6 +117,7 @@
         partnerConflicts: '',
       },
       climb: {
+        autoClimb: '',
         maxClimb: '',
         typicalClimb: '',
         climbTime: '',
@@ -189,7 +191,8 @@
   }
 
   function getPrescoutForTeam(teamNumber) {
-    return prescoutData[teamNumber] || {
+    const raw = prescoutData[teamNumber] ?? prescoutData[String(teamNumber)];
+    return raw || {
       tier: '',
       primaryRole: '',
       shooterType: '',
@@ -226,6 +229,7 @@
           prescoutData = data.teams;
           savePrescoutData();
           alert(`Pre-scout data imported for ${Object.keys(data.teams).length} teams.`);
+          if (currentTeamNumber) renderPrescoutReadonly(currentTeamNumber);
         }
       } catch (e) {
         alert('Invalid pre-scout JSON file.');
@@ -234,28 +238,51 @@
     reader.readAsText(file);
   }
 
-  function savePrescoutFromForm() {
-    if (!currentTeamNumber) return;
-    const data = {
-      tier: '',
-      primaryRole: '',
-      shooterType: '',
-      autoNotes: $('#f-presct-autoNotes')?.value.trim() || '',
-      climbAbility: '',
-      reliability: '',
-      driverAbility: '',
-      inactiveBehavior: '',
-      summary: $('#f-presct-summary')?.value.trim() || '',
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function formatPrescoutShooterPre(v) {
+    const labels = {
+      fixed_drum: '固定角度滚筒',
+      turret: '炮台',
+      rotatable_drum: '可转角度滚筒',
+      fixed: '固定角度滚筒',
+      none: '无',
+      unknown: '未知',
     };
-    // Get seg-control values
-    ['presct.tier', 'presct.primaryRole', 'presct.shooterType', 'presct.climbAbility', 'presct.reliability', 'presct.driverAbility', 'presct.inactiveBehavior'].forEach(field => {
-      const ctrl = $(`.seg-control[data-field="${field}"]`);
-      if (!ctrl) return;
-      const selected = ctrl.querySelector('.seg-btn.selected');
-      const key = field.split('.')[1];
-      data[key] = selected ? selected.dataset.val : '';
-    });
-    setPrescoutForTeam(currentTeamNumber, data);
+    return labels[v] || v || '—';
+  }
+
+  function renderPrescoutReadonly(teamNumber) {
+    const el = $('#presct-display');
+    if (!el) return;
+    const p = getPrescoutForTeam(teamNumber);
+    const hasAny = Object.values(p).some(v => v !== '' && v != null);
+    if (!hasAny) {
+      el.innerHTML = '<p class="presct-empty">No pre-scout data yet. On one device, build your sheet and use <strong>Data → Export Pre-Scout JSON</strong>, then everyone imports it.</p>';
+      return;
+    }
+    const row = (label, val) =>
+      `<div class="presct-row"><span class="presct-k">${label}</span><span class="presct-v">${val}</span></div>`;
+    const inactiveMap = { collects: 'Collects', defends: 'Defends', waits: 'Waits', scores: 'Scores anyway', unknown: 'Unknown' };
+    const roleMap = { scorer: 'Scorer', support: 'Support', defense: 'Defense', flex: 'Flex', unknown: 'Unknown' };
+    const climbPreMap = { none: 'None', L1: 'L1', L2: 'L2', L3: 'L3' };
+    const lines = [];
+    if (p.tier) lines.push(row('Tier', p.tier));
+    if (p.primaryRole) lines.push(row('Primary role', roleMap[p.primaryRole] || p.primaryRole));
+    if (p.shooterType) lines.push(row('Shooter (pre)', formatPrescoutShooterPre(p.shooterType)));
+    if (p.autoNotes) lines.push(row('Auto notes', escapeHtml(p.autoNotes).replace(/\n/g, '<br>')));
+    if (p.climbAbility) lines.push(row('Climb (pre)', climbPreMap[p.climbAbility] || p.climbAbility));
+    if (p.reliability) lines.push(row('Reliability', p.reliability));
+    if (p.driverAbility) lines.push(row('Driver ability', p.driverAbility));
+    if (p.inactiveBehavior) lines.push(row('When inactive', inactiveMap[p.inactiveBehavior] || p.inactiveBehavior));
+    if (p.summary) lines.push(row('Summary', escapeHtml(p.summary).replace(/\n/g, '<br>')));
+    el.innerHTML = lines.join('');
   }
 
   // ───── DOM Refs ─────
@@ -357,12 +384,15 @@
 
   function getIndicators(team) {
     const inds = [];
-    if (team.auto?.fuelEstimate || team.auto?.startLocation) inds.push({ cls: 'ind-auto', text: 'AUTO' });
+    const st = team.robot?.shooterType;
+    if (st && st !== 'unknown' && st !== 'none') {
+      const short = { fixed_drum: '滚筒', turret: '炮台', rotatable_drum: '转滚筒' }[st] || st;
+      inds.push({ cls: 'ind-fuel', text: short });
+    }
+    if (team.climb?.autoClimb === 'yes') inds.push({ cls: 'ind-auto', text: 'AUTO↑' });
     if (team.climb?.maxClimb && team.climb.maxClimb !== 'none' && team.climb.maxClimb !== 'unknown')
       inds.push({ cls: 'ind-climb', text: team.climb.maxClimb.toUpperCase() });
-    if (team.fuel?.scoringConsistency && team.fuel.scoringConsistency !== 'unknown')
-      inds.push({ cls: 'ind-fuel', text: 'FUEL' });
-    if (team.matchNotes?.length) inds.push({ cls: 'ind-auto', text: `${team.matchNotes.length} MATCH` });
+    if (team.matchNotes?.length) inds.push({ cls: 'ind-auto', text: `${team.matchNotes.length} M` });
     if (team.needsRecheck) inds.push({ cls: 'ind-recheck', text: 'RECHECK' });
     return inds;
   }
@@ -447,13 +477,7 @@
     // Text fields mapped to nested objects
     const textFields = {
       'f-robot-jamNotes': ['robot', 'jamNotes'],
-      'f-fuel-scoringRange': ['fuel', 'scoringRange'],
-      'f-auto-startLocation': ['auto', 'startLocation'],
-      'f-auto-pathDescription': ['auto', 'pathDescription'],
-      'f-auto-partnerConflicts': ['auto', 'partnerConflicts'],
       'f-climb-partnerSpacing': ['climb', 'partnerSpacing'],
-      'f-defense-knownIssues': ['defense', 'knownIssues'],
-      'f-defense-notes': ['defense', 'notes'],
       'f-verify-notes': ['verification', 'notes'],
       'f-verify-matchEvidenceNotes': ['verification', 'matchEvidenceNotes'],
       'f-verify-lastVerifiedMatch': ['verification', 'lastVerifiedMatch'],
@@ -463,35 +487,23 @@
       if (el) el.value = (team[path[0]] && team[path[0]][path[1]]) || '';
     }
 
-    // Segmented controls
-    $$('.seg-control').forEach(ctrl => {
+    // Segmented controls (pit + verify only — not match compose)
+    $$('#view-form .seg-control').forEach(ctrl => {
       const field = ctrl.dataset.field;
+      if (!field || field.startsWith('matchEntry.')) return;
       const [section, key] = field.split('.');
+      if (!['robot', 'climb', 'verification'].includes(section)) return;
       const val = team[section] && team[section][key];
       ctrl.querySelectorAll('.seg-btn').forEach(btn => {
         btn.classList.toggle('selected', btn.dataset.val === val);
       });
     });
 
-    // Activate first tab (pre-scout)
+    // Activate first tab (pre-scout reference)
     $$('.form-tab').forEach(t => t.classList.toggle('active', t.dataset.section === 'presct'));
     $$('.form-section').forEach(s => s.classList.toggle('active', s.dataset.section === 'presct'));
 
-    // Populate pre-scout form fields
-    const presct = getPrescoutForTeam(teamNumber);
-    $('#f-presct-autoNotes').value = presct.autoNotes || '';
-    $('#f-presct-summary').value = presct.summary || '';
-
-    // Pre-scout segmented controls
-    ['presct.tier', 'presct.primaryRole', 'presct.shooterType', 'presct.climbAbility', 'presct.reliability', 'presct.driverAbility', 'presct.inactiveBehavior'].forEach(field => {
-      const ctrl = $(`.seg-control[data-field="${field}"]`);
-      if (!ctrl) return;
-      const key = field.split('.')[1];
-      const val = presct[key] || '';
-      ctrl.querySelectorAll('.seg-btn').forEach(btn => {
-        btn.classList.toggle('selected', btn.dataset.val === val);
-      });
-    });
+    renderPrescoutReadonly(teamNumber);
 
     // Match notes
     renderMatchNotesList(team);
@@ -520,7 +532,9 @@
     // Segmented controls
     $$('.seg-control').forEach(ctrl => {
       const field = ctrl.dataset.field;
+      if (!field || field.startsWith('matchEntry.')) return;
       const [section, key] = field.split('.');
+      if (!['robot', 'climb', 'verification'].includes(section)) return;
       if (!data[section]) data[section] = {};
       const selected = ctrl.querySelector('.seg-btn.selected');
       data[section][key] = selected ? selected.dataset.val : '';
@@ -529,13 +543,7 @@
     // Text fields
     const textFields = {
       'f-robot-jamNotes': ['robot', 'jamNotes'],
-      'f-fuel-scoringRange': ['fuel', 'scoringRange'],
-      'f-auto-startLocation': ['auto', 'startLocation'],
-      'f-auto-pathDescription': ['auto', 'pathDescription'],
-      'f-auto-partnerConflicts': ['auto', 'partnerConflicts'],
       'f-climb-partnerSpacing': ['climb', 'partnerSpacing'],
-      'f-defense-knownIssues': ['defense', 'knownIssues'],
-      'f-defense-notes': ['defense', 'notes'],
       'f-verify-notes': ['verification', 'notes'],
       'f-verify-matchEvidenceNotes': ['verification', 'matchEvidenceNotes'],
       'f-verify-lastVerifiedMatch': ['verification', 'lastVerifiedMatch'],
@@ -558,7 +566,7 @@
     const formData = collectFormData();
 
     // Merge nested objects
-    for (const key of ['robot', 'fuel', 'auto', 'climb', 'defense', 'verification']) {
+    for (const key of ['robot', 'climb', 'verification']) {
       existing[key] = { ...existing[key], ...formData[key] };
     }
     existing.assignedScout = formData.assignedScout;
@@ -938,6 +946,9 @@
         tab.classList.add('active');
         const section = $(`.form-section[data-section="${tab.dataset.section}"]`);
         if (section) section.classList.add('active');
+        if (tab.dataset.section === 'presct' && currentTeamNumber) {
+          renderPrescoutReadonly(currentTeamNumber);
+        }
       });
     });
 
@@ -958,13 +969,7 @@
         btn.classList.add('selected');
       }
       
-      const field = ctrl.dataset.field;
-      // Pre-scout fields save to localStorage
-      if (field && field.startsWith('presct.') && currentTeamNumber) {
-        savePrescoutFromForm();
-      }
-      // Don't autosave for match-note compose form controls
-      else if (!btn.closest('#match-note-form')) {
+      if (!btn.closest('#match-note-form')) {
         scheduleAutosave();
       }
     });
@@ -1029,12 +1034,6 @@
     $('#import-presct-input').addEventListener('change', (e) => {
       if (e.target.files[0]) importPrescoutJSON(e.target.files[0]);
       e.target.value = '';
-    });
-
-    // Pre-scout text field autosave
-    ['f-presct-autoNotes', 'f-presct-summary'].forEach(id => {
-      const el = $(`#${id}`);
-      if (el) el.addEventListener('input', savePrescoutFromForm);
     });
 
     // Clear data

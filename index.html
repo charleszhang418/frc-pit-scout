@@ -129,112 +129,24 @@
 
       <div class="form-tabs" id="form-tabs">
         <button class="form-tab active" data-section="presct">Pre</button>
-        <button class="form-tab" data-section="info">Info</button>
-        <button class="form-tab" data-section="robot">Robot</button>
-        <button class="form-tab" data-section="fuel">Fuel</button>
-        <button class="form-tab" data-section="auto">Auto</button>
-        <button class="form-tab" data-section="climb">Climb</button>
-        <button class="form-tab" data-section="defense">Defense</button>
+        <button class="form-tab" data-section="pit">Pit</button>
         <button class="form-tab" data-section="match">Match</button>
         <button class="form-tab" data-section="verify">Verify</button>
       </div>
 
       <div class="form-body" id="form-body">
 
-        <!-- PRE-SCOUT SECTION (Read-only, shared data) -->
+        <!-- PRE: read-only reference (edit via Data → Pre-Scout JSON) -->
         <div class="form-section active" data-section="presct">
           <div class="presct-header">
-            <span class="presct-badge">Pre-Scouting</span>
-            <span class="presct-note">Shared research before event</span>
+            <span class="presct-badge">Pre-Scout</span>
+            <span class="presct-note">Reference only — import JSON in Data tab</span>
           </div>
-
-          <div class="field-group">
-            <label class="field-label">Tier</label>
-            <div class="seg-control" data-field="presct.tier">
-              <button class="seg-btn tier-s" data-val="S">S</button>
-              <button class="seg-btn tier-a" data-val="A">A</button>
-              <button class="seg-btn tier-b" data-val="B">B</button>
-              <button class="seg-btn tier-c" data-val="C">C</button>
-              <button class="seg-btn tier-d" data-val="D">D</button>
-            </div>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label">Primary Role</label>
-            <div class="seg-control wide" data-field="presct.primaryRole">
-              <button class="seg-btn" data-val="scorer">Scorer</button>
-              <button class="seg-btn" data-val="support">Support</button>
-              <button class="seg-btn" data-val="defense">Defense</button>
-              <button class="seg-btn" data-val="flex">Flex</button>
-              <button class="seg-btn" data-val="unknown">Unknown</button>
-            </div>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label">Shooter Type</label>
-            <div class="seg-control" data-field="presct.shooterType">
-              <button class="seg-btn" data-val="turret">Turret</button>
-              <button class="seg-btn" data-val="fixed">Fixed Angle</button>
-              <button class="seg-btn" data-val="none">None</button>
-              <button class="seg-btn" data-val="unknown">Unknown</button>
-            </div>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label">Auto Notes</label>
-            <textarea id="f-presct-autoNotes" class="field-textarea" rows="3" placeholder="Auto paths, consistency, game pieces…"></textarea>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label">Climb Ability</label>
-            <div class="seg-control" data-field="presct.climbAbility">
-              <button class="seg-btn" data-val="none">None</button>
-              <button class="seg-btn" data-val="L1">L1</button>
-              <button class="seg-btn" data-val="L2">L2</button>
-              <button class="seg-btn" data-val="L3">L3</button>
-            </div>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label">Reliability</label>
-            <div class="seg-control" data-field="presct.reliability">
-              <button class="seg-btn" data-val="risky">Risky</button>
-              <button class="seg-btn" data-val="average">Average</button>
-              <button class="seg-btn" data-val="solid">Solid</button>
-              <button class="seg-btn" data-val="unknown">Unknown</button>
-            </div>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label">Driver Ability</label>
-            <div class="seg-control" data-field="presct.driverAbility">
-              <button class="seg-btn" data-val="elite">Elite</button>
-              <button class="seg-btn" data-val="good">Good</button>
-              <button class="seg-btn" data-val="average">Average</button>
-              <button class="seg-btn" data-val="poor">Poor</button>
-              <button class="seg-btn" data-val="unknown">Unknown</button>
-            </div>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label">When Inactive / Downtime</label>
-            <div class="seg-control wide" data-field="presct.inactiveBehavior">
-              <button class="seg-btn" data-val="collects">Collects</button>
-              <button class="seg-btn" data-val="defends">Defends</button>
-              <button class="seg-btn" data-val="waits">Waits</button>
-              <button class="seg-btn" data-val="scores">Scores Anyway</button>
-              <button class="seg-btn" data-val="unknown">Unknown</button>
-            </div>
-          </div>
-
-          <div class="field-group">
-            <label class="field-label">Pre-Scout Summary</label>
-            <textarea id="f-presct-summary" class="field-textarea" rows="3" placeholder="Overall assessment from video/data research…"></textarea>
-          </div>
+          <div id="presct-display" class="presct-display"></div>
         </div>
 
-        <!-- INFO SECTION -->
-        <div class="form-section" data-section="info">
+        <!-- PIT: photo, robot, shooter, climb -->
+        <div class="form-section" data-section="pit">
           <div class="field-group">
             <label class="field-label">Robot Photo</label>
             <div class="photo-area" id="photo-area">
@@ -255,17 +167,16 @@
                 <input type="checkbox" id="f-completed">
                 <span class="toggle-slider"></span>
               </label>
-              <span class="toggle-label">Mark as complete</span>
+              <span class="toggle-label">Mark pit scout complete</span>
             </div>
           </div>
           <div class="field-group">
             <label class="field-label">General Notes</label>
-            <textarea id="f-notes" class="field-textarea" rows="3" placeholder="Anything notable about this team…"></textarea>
+            <textarea id="f-notes" class="field-textarea" rows="3" placeholder="Anything notable from the pit…"></textarea>
           </div>
-        </div>
 
-        <!-- ROBOT SECTION -->
-        <div class="form-section" data-section="robot">
+          <hr class="field-divider">
+          <p class="field-section-title">Robot</p>
           <div class="field-group">
             <label class="field-label">Drivetrain</label>
             <div class="seg-control" data-field="robot.drivetrain">
@@ -308,95 +219,32 @@
             </div>
           </div>
           <div class="field-group">
-            <label class="field-label">Jam/Reliability Notes</label>
-            <textarea id="f-robot-jamNotes" class="field-textarea" rows="2" placeholder="Jamming issues, reliability concerns…"></textarea>
+            <label class="field-label">Shooter Type</label>
+            <div class="seg-control wide" data-field="robot.shooterType">
+              <button class="seg-btn" data-val="fixed_drum">固定角度滚筒</button>
+              <button class="seg-btn" data-val="turret">炮台</button>
+              <button class="seg-btn" data-val="rotatable_drum">可转角度滚筒</button>
+              <button class="seg-btn" data-val="none">无</button>
+              <button class="seg-btn" data-val="unknown">未知</button>
+            </div>
           </div>
-        </div>
+          <div class="field-group">
+            <label class="field-label">Jam / Reliability Notes</label>
+            <textarea id="f-robot-jamNotes" class="field-textarea" rows="2" placeholder="Jamming issues, reliability…"></textarea>
+          </div>
 
-        <!-- FUEL / SCORING SECTION -->
-        <div class="form-section" data-section="fuel">
+          <hr class="field-divider">
+          <p class="field-section-title">Climb</p>
           <div class="field-group">
-            <label class="field-label">Preferred Scoring Range/Location</label>
-            <input type="text" id="f-fuel-scoringRange" class="field-input" placeholder="e.g., close range, far, speaker…" autocomplete="off">
-          </div>
-          <div class="field-group">
-            <label class="field-label">Scoring Consistency</label>
-            <div class="seg-control" data-field="fuel.scoringConsistency">
-              <button class="seg-btn" data-val="high">High</button>
-              <button class="seg-btn" data-val="medium">Medium</button>
-              <button class="seg-btn" data-val="low">Low</button>
-              <button class="seg-btn" data-val="unknown">Unknown</button>
-            </div>
-          </div>
-          <div class="field-group">
-            <label class="field-label">Estimated Teleop Role</label>
-            <div class="seg-control wide" data-field="fuel.teleopRole">
-              <button class="seg-btn" data-val="primary_scorer">Primary Scorer</button>
-              <button class="seg-btn" data-val="secondary_scorer">Secondary</button>
-              <button class="seg-btn" data-val="collector_ferry">Collector/Ferry</button>
-              <button class="seg-btn" data-val="defense">Defense</button>
-              <button class="seg-btn" data-val="climb_specialist">Climb Specialist</button>
-              <button class="seg-btn" data-val="unknown">Unknown</button>
-            </div>
-          </div>
-          <div class="field-group">
-            <label class="field-label">Inactive HUB Behavior</label>
-            <div class="seg-control wide" data-field="fuel.inactiveHubBehavior">
-              <button class="seg-btn" data-val="collects">Collects</button>
-              <button class="seg-btn" data-val="defends">Defends</button>
-              <button class="seg-btn" data-val="waits">Waits</button>
-              <button class="seg-btn" data-val="shoots_anyway">Shoots Anyway</button>
-              <button class="seg-btn" data-val="unknown">Unknown</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- AUTO SECTION -->
-        <div class="form-section" data-section="auto">
-          <div class="field-group">
-            <label class="field-label">Main Auto Start Location</label>
-            <input type="text" id="f-auto-startLocation" class="field-input" placeholder="e.g., left, center, right…" autocomplete="off">
-          </div>
-          <div class="field-group">
-            <label class="field-label">Auto Path / Description</label>
-            <textarea id="f-auto-pathDescription" class="field-textarea" rows="2" placeholder="Describe their auto routine…"></textarea>
-          </div>
-          <div class="field-group">
-            <label class="field-label">Auto Fuel Estimate</label>
-            <div class="seg-control" data-field="auto.fuelEstimate">
-              <button class="seg-btn" data-val="0">0</button>
-              <button class="seg-btn" data-val="1-10">1–10</button>
-              <button class="seg-btn" data-val="11-25">11–25</button>
-              <button class="seg-btn" data-val="26-50">26–50</button>
-              <button class="seg-btn" data-val="50+">50+</button>
-            </div>
-          </div>
-          <div class="field-group">
-            <label class="field-label">Auto Climbs Tower Level 1</label>
-            <div class="seg-control" data-field="auto.climbsL1">
+            <label class="field-label">Auto Climb</label>
+            <div class="seg-control" data-field="climb.autoClimb">
               <button class="seg-btn" data-val="yes">Yes</button>
               <button class="seg-btn" data-val="no">No</button>
               <button class="seg-btn" data-val="unknown">Unknown</button>
             </div>
           </div>
           <div class="field-group">
-            <label class="field-label">Center-Line Risk (Post-Championship Update)</label>
-            <div class="seg-control" data-field="auto.centerLineRisk">
-              <button class="seg-btn" data-val="safe">Safe</button>
-              <button class="seg-btn" data-val="risky">Risky</button>
-              <button class="seg-btn" data-val="unknown">Unknown</button>
-            </div>
-          </div>
-          <div class="field-group">
-            <label class="field-label">Partner Conflicts / Preferred Spacing</label>
-            <textarea id="f-auto-partnerConflicts" class="field-textarea" rows="2" placeholder="Any auto spacing issues with partners…"></textarea>
-          </div>
-        </div>
-
-        <!-- CLIMB / ENDGAME SECTION -->
-        <div class="form-section" data-section="climb">
-          <div class="field-group">
-            <label class="field-label">Max Climb</label>
+            <label class="field-label">Max Climb Height</label>
             <div class="seg-control" data-field="climb.maxClimb">
               <button class="seg-btn" data-val="none">None</button>
               <button class="seg-btn" data-val="L1">L1</button>
@@ -436,46 +284,8 @@
             </div>
           </div>
           <div class="field-group">
-            <label class="field-label">Partner Spacing Issues</label>
-            <textarea id="f-climb-partnerSpacing" class="field-textarea" rows="2" placeholder="Issues with climb partner spacing…"></textarea>
-          </div>
-        </div>
-
-        <!-- DEFENSE / RELIABILITY SECTION -->
-        <div class="form-section" data-section="defense">
-          <div class="field-group">
-            <label class="field-label">Can Play Defense</label>
-            <div class="seg-control" data-field="defense.canPlayDefense">
-              <button class="seg-btn" data-val="yes">Yes</button>
-              <button class="seg-btn" data-val="no">No</button>
-              <button class="seg-btn" data-val="unknown">Unknown</button>
-            </div>
-          </div>
-          <div class="field-group">
-            <label class="field-label">Can Handle Defense</label>
-            <div class="seg-control" data-field="defense.canHandleDefense">
-              <button class="seg-btn" data-val="well">Well</button>
-              <button class="seg-btn" data-val="okay">Okay</button>
-              <button class="seg-btn" data-val="poorly">Poorly</button>
-              <button class="seg-btn" data-val="unknown">Unknown</button>
-            </div>
-          </div>
-          <div class="field-group">
-            <label class="field-label">Foul/Card Risk</label>
-            <div class="seg-control" data-field="defense.foulRisk">
-              <button class="seg-btn" data-val="low">Low</button>
-              <button class="seg-btn" data-val="medium">Medium</button>
-              <button class="seg-btn" data-val="high">High</button>
-              <button class="seg-btn" data-val="unknown">Unknown</button>
-            </div>
-          </div>
-          <div class="field-group">
-            <label class="field-label">Known Mechanical/Electrical Issues</label>
-            <textarea id="f-defense-knownIssues" class="field-textarea" rows="2" placeholder="Broken sensors, motor problems…"></textarea>
-          </div>
-          <div class="field-group">
-            <label class="field-label">Freeform Notes</label>
-            <textarea id="f-defense-notes" class="field-textarea" rows="3" placeholder="Anything else about defense/reliability…"></textarea>
+            <label class="field-label">Partner Spacing / Notes</label>
+            <textarea id="f-climb-partnerSpacing" class="field-textarea" rows="2" placeholder="Climb partner spacing, bumper clearance…"></textarea>
           </div>
         </div>
 
