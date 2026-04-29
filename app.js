@@ -166,7 +166,7 @@
   }
 
   // ───── Pre-Scout Data (separate from pit scouting) ─────
-  let prescoutData = {};   // { teamNumber: { primaryRole, autoStrength, climbAbility, reliability, whyPick, whyAvoid, videoNotes, summary } }
+  let prescoutData = {};   // merged: Export JSON + optional prescouting.json baseline + local edits
 
   function loadPrescoutData() {
     try {
@@ -179,6 +179,54 @@
 
   function savePrescoutData() {
     localStorage.setItem('prescoutData', JSON.stringify(prescoutData));
+  }
+
+  /** Empty field: treat as “use baseline” when merging online `prescouting.json`. */
+  function prescoutFieldEmpty(v) {
+    if (v == null) return true;
+    if (typeof v === 'string') return v.trim() === '';
+    if (Array.isArray(v)) return v.length === 0;
+    return false;
+  }
+
+  /** Start from shared baseline; local non-empty values win (per field). */
+  function mergePrescoutBaselineIntoLocal(baseTeam, localTeam) {
+    const out = baseTeam && typeof baseTeam === 'object' ? { ...baseTeam } : {};
+    if (!localTeam || typeof localTeam !== 'object') return out;
+    for (const [k, v] of Object.entries(localTeam)) {
+      if (prescoutFieldEmpty(v)) continue;
+      out[k] = v;
+    }
+    return out;
+  }
+
+  /** Fetch `./prescouting.json` (same shape as Export Pre-Scout JSON) and merge into localStorage. */
+  async function mergeOnlinePrescoutBaseline() {
+    try {
+      const res = await fetch('./prescouting.json', { cache: 'no-store' });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (!data.teams || typeof data.teams !== 'object') return;
+      const ids = Object.keys(data.teams);
+      if (ids.length === 0) return;
+      for (const tn of ids) {
+        const baseTeam = data.teams[tn];
+        const num = Number(tn);
+        const key = Number.isInteger(num) && num > 0 ? num : tn;
+        const local = prescoutData[key] ?? prescoutData[String(key)] ?? prescoutData[tn];
+        const merged = mergePrescoutBaselineIntoLocal(baseTeam, local);
+        if (typeof key === 'number') {
+          delete prescoutData[String(key)];
+          delete prescoutData[tn];
+        } else {
+          delete prescoutData[tn];
+        }
+        prescoutData[key] = merged;
+      }
+      savePrescoutData();
+    } catch (e) {
+      console.warn('Could not merge online pre-scout baseline:', e);
+    }
   }
 
   function prescoutMultiAsArray(val) {
@@ -1087,6 +1135,7 @@
     
     // Load pre-scout data (separate from pit scouting)
     loadPrescoutData();
+    await mergeOnlinePrescoutBaseline();
     
     await refreshData();
     wireEvents();
