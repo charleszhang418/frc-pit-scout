@@ -1,4 +1,878 @@
 {
-  "lastUpdated": "2026-04-25T00:00:00Z",
-  "teams": {}
+  "lastUpdated": "2026-04-29T15:37:37.996Z",
+  "teams": {
+    "188": {
+      "tier": "S",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "",
+      "autoStrength": "none",
+      "climbAbility": "L3",
+      "reliability": "risky",
+      "whyPick": "",
+      "whyAvoid": "",
+      "videoNotes": ""
+    },
+    "238": {
+      "tier": "A",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "401": {
+      "tier": "B",
+      "primaryRole": "scorer",
+      "shooterType": "turret",
+      "autoNotes": "trench出发，neutral zone拿球，然后bump回来射球，在bump 正前方射球，然后慢慢撤到trench，1.5次",
+      "climbAbility": "none",
+      "reliability": "solid",
+      "driverAbility": "average",
+      "inactiveBehavior": "collects",
+      "summary": "车子重新做过，应该是个B+ A- Tier\n射球速度不快，慢速走射+边拿边射，射程很远\n防守还可以，driver比较莽"
+    },
+    "494": {
+      "tier": "B",
+      "shooterType": "fixed_drum",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "average",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "support"
+      ],
+      "summary": "高射炮，容易被干扰。intake可以反向吐球，从trench直接扔球回去",
+      "autoNotes": "bump去拿球，速度很慢，效率比较低",
+      "climbAbility": "none",
+      "reliability": "average",
+      "inactiveBehavior": "collects"
+    },
+    "503": {
+      "tier": "A",
+      "primaryRole": "scorer",
+      "shooterType": "fixed",
+      "autoNotes": "trench出发，bump正前方射球，然后卡在trench口",
+      "climbAbility": "none",
+      "reliability": "solid",
+      "driverAbility": "average",
+      "inactiveBehavior": "collects",
+      "summary": "球舱巨大，bps好，射程可变"
+    },
+    "540": {
+      "tier": "B",
+      "primaryRole": "scorer",
+      "shooterType": "turret",
+      "autoNotes": "trench进，trench出，投一波拿两波",
+      "climbAbility": "none",
+      "reliability": "average",
+      "driverAbility": "average",
+      "inactiveBehavior": "collects",
+      "summary": "投射比较慢，防守还可以"
+    },
+    "573": {
+      "tier": "C",
+      "primaryRole": "scorer",
+      "shooterType": "fixed",
+      "autoNotes": "Depot两次，球捡不完",
+      "climbAbility": "none",
+      "reliability": "risky",
+      "driverAbility": "poor",
+      "inactiveBehavior": "collects",
+      "summary": "射球捡球都很一般"
+    },
+    "581": {
+      "tier": "S",
+      "primaryRole": "scorer",
+      "shooterType": "fixed",
+      "autoNotes": "",
+      "climbAbility": "none",
+      "reliability": "solid",
+      "driverAbility": "elite",
+      "inactiveBehavior": "collects",
+      "summary": "射球快，球舱比较大"
+    },
+    "761": {
+      "tier": "B",
+      "primaryRole": "scorer",
+      "shooterType": "fixed",
+      "autoNotes": "neutral拿球，",
+      "climbAbility": "none",
+      "reliability": "average",
+      "driverAbility": "poor",
+      "inactiveBehavior": "",
+      "summary": "操作一般，投球比较慢容易被干扰"
+    },
+    "910": {
+      "tier": "C",
+      "primaryRole": "scorer",
+      "shooterType": "turret",
+      "autoNotes": "Trench -> Neutral Zone -> Trench",
+      "climbAbility": "none",
+      "reliability": "risky",
+      "driverAbility": "poor",
+      "inactiveBehavior": "collects",
+      "summary": "射速比较慢，可以走射"
+    },
+    "1014": {
+      "tier": "",
+      "shooterType": "fixed_drum",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "poor",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "Very bad",
+      "autoNotes": "Neutral -> Bump -> Neutral -> Bump",
+      "climbAbility": "none",
+      "reliability": "risky",
+      "inactiveBehavior": "collects"
+    },
+    "1259": {
+      "tier": "B",
+      "primaryRole": "support",
+      "shooterType": "turret",
+      "autoNotes": "Bump -> Neutral -> Bump -> 停在Netural",
+      "climbAbility": "none",
+      "reliability": "",
+      "driverAbility": "average",
+      "inactiveBehavior": "collects",
+      "summary": "能守能运球"
+    },
+    "1287": {
+      "tier": "C",
+      "primaryRole": "",
+      "shooterType": "",
+      "autoNotes": "trench -> neutral",
+      "climbAbility": "none",
+      "reliability": "average",
+      "driverAbility": "poor",
+      "inactiveBehavior": "",
+      "summary": ""
+    },
+    "1296": {
+      "tier": "B",
+      "primaryRole": "scorer",
+      "shooterType": "turret",
+      "autoNotes": "Bump -> N -> B-F -> N",
+      "climbAbility": "none",
+      "reliability": "solid",
+      "driverAbility": "average",
+      "inactiveBehavior": "collects",
+      "summary": "可以走射但比较慢，操作比较保守，Hub not active阶段拿满球就等着了"
+    },
+    "1625": {
+      "tier": "B",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "1701": {
+      "tier": "A",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "1706": {
+      "tier": "S",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "1710": {
+      "tier": "B",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "1732": {
+      "tier": "A",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "1787": {
+      "tier": "B",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "1986": {
+      "tier": "S",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": "",
+      "autoNotes": "",
+      "climbAbility": "",
+      "reliability": "",
+      "inactiveBehavior": ""
+    },
+    "2056": {
+      "tier": "S",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "2102": {
+      "tier": "A",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "2199": {
+      "tier": "B",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "2220": {
+      "tier": "C",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "2383": {
+      "tier": "B",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "2486": {
+      "tier": "C",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "2607": {
+      "tier": "B",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "2659": {
+      "tier": "A",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "2834": {
+      "tier": "unranked",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "3015": {
+      "tier": "S",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "3035": {
+      "tier": "B",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "3175": {
+      "tier": "B",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "3297": {
+      "tier": "C",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "3467": {
+      "tier": "S",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "3506": {
+      "tier": "B",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "3512": {
+      "tier": "B",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "3539": {
+      "tier": "A",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "3641": {
+      "tier": "B",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "4143": {
+      "tier": "B",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "4174": {
+      "tier": "B",
+      "shooterType": "fixed_drum",
+      "autoClimb": "",
+      "autoRoute": "Tr N Tr Shoot *2",
+      "driverAbility": "average",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "车子很轻，很容易撞开"
+    },
+    "4191": {
+      "tier": "unranked",
+      "shooterType": "fixed_drum",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "4201": {
+      "tier": "B",
+      "shooterType": "fixed_drum",
+      "autoClimb": "unknown",
+      "autoRoute": "Bump N Bump Shoot * 2",
+      "driverAbility": "average",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "bump高车，滚筒运球"
+    },
+    "4613": {
+      "tier": "unranked",
+      "shooterType": "turret",
+      "autoClimb": "",
+      "autoRoute": "开局扫球",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "4698": {
+      "tier": "A",
+      "shooterType": "fixed_drum",
+      "autoClimb": "unknown",
+      "autoRoute": "Tr N Tr Shoot * 2",
+      "driverAbility": "good",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "滚筒运球，很难防守"
+    },
+    "5000": {
+      "tier": "S",
+      "shooterType": "turret",
+      "autoClimb": "unknown",
+      "autoRoute": "Tr -> N -> TrShoot * 2",
+      "driverAbility": "average",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "炮台ferry，走射，可能算个A"
+    },
+    "5086": {
+      "tier": "B",
+      "shooterType": "turret",
+      "autoClimb": "unknown",
+      "autoRoute": "Tr N Tr Shoot",
+      "driverAbility": "average",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer",
+        "support"
+      ],
+      "summary": "走射炮台，intake可以反吐球，可能可以到A"
+    },
+    "5348": {
+      "tier": "C",
+      "shooterType": "turret",
+      "autoClimb": "unknown",
+      "autoRoute": "TR N TrShoot * 2",
+      "driverAbility": "poor",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "intake效率不高"
+    },
+    "5406": {
+      "tier": "A",
+      "shooterType": "turret",
+      "autoClimb": "unknown",
+      "autoRoute": "Tr N Bump Shoot * 2",
+      "driverAbility": "average",
+      "inactiveHub": [],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "走射炮台机"
+    },
+    "5454": {
+      "tier": "C",
+      "shooterType": "turret",
+      "autoClimb": "unknown",
+      "autoRoute": "Tr -> N -> Tr Shoot -> N",
+      "driverAbility": "average",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "炮台运球，射球不是很稳定，可以走射但是效率不高"
+    },
+    "6121": {
+      "tier": "B",
+      "shooterType": "fixed_drum",
+      "autoClimb": "unknown",
+      "autoRoute": "bump -> n -> bump -> shoot",
+      "driverAbility": "average",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "大机器，过不了trench\nintake反吐球\n可以防守，比较容易被干扰"
+    },
+    "6152": {
+      "tier": "B",
+      "shooterType": "fixed_drum",
+      "autoClimb": "",
+      "autoRoute": "Tr -> N -> B -> Shoot",
+      "driverAbility": "average",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "比较稳定的机器，没有什么特点"
+    },
+    "6200": {
+      "tier": "unranked",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "6328": {
+      "tier": "S",
+      "shooterType": "fixed_drum",
+      "autoClimb": "unknown",
+      "autoRoute": "Tr -> n -> Bump -> shot * 2",
+      "driverAbility": "good",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "走射滚筒，Ferry球，"
+    },
+    "6329": {
+      "tier": "S",
+      "shooterType": "fixed_drum",
+      "autoClimb": "unknown",
+      "autoRoute": "Tr -> N -> Bum -> Tr -> Shoot * 2",
+      "driverAbility": "good",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "滚筒ferry，高效得分机"
+    },
+    "6517": {
+      "tier": "B",
+      "shooterType": "fixed_drum",
+      "autoClimb": "unknown",
+      "autoRoute": "Trech -> N -> Bump -> Shoot -> Tr -> N ->",
+      "driverAbility": "average",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "很容易被球卡住自动的时候"
+    },
+    "6639": {
+      "tier": "unranked",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "7287": {
+      "tier": "C",
+      "shooterType": "turret",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": "机器比较糟糕"
+    },
+    "7451": {
+      "tier": "C",
+      "shooterType": "turret",
+      "autoClimb": "unknown",
+      "autoRoute": "Bump -> N -> Bump -> Shoot",
+      "driverAbility": "poor",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "似乎机器不是很稳定，会卡球然后出球比较慢，但是机器看起来还是不错的"
+    },
+    "8005": {
+      "tier": "B",
+      "shooterType": "turret",
+      "autoClimb": "",
+      "autoRoute": "Tr -> N -> Tr -> Shoot -> *2",
+      "driverAbility": "average",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "炮台ferry，实力不错，射球稍微有些慢"
+    },
+    "8044": {
+      "tier": "S",
+      "shooterType": "turret",
+      "autoClimb": "unknown",
+      "autoRoute": "Bump -> N 两次",
+      "driverAbility": "good",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "走射旋转射球，推球不用turret射球"
+    },
+    "8214": {
+      "tier": "S",
+      "shooterType": "fixed_drum",
+      "autoClimb": "unknown",
+      "autoRoute": "Bump -> N -> Bump -> Shoot -> Bump -> N -> Bump -> Shoot",
+      "driverAbility": "elite",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [],
+      "summary": "Ferry when inactive"
+    },
+    "8267": {
+      "tier": "B",
+      "shooterType": "fixed_drum",
+      "autoClimb": "unknown",
+      "autoRoute": "Bump -> N -> Bump -> Shoot",
+      "driverAbility": "poor",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "大容量机器，操作手一般"
+    },
+    "8513": {
+      "tier": "A",
+      "shooterType": "fixed_drum",
+      "autoClimb": "",
+      "autoRoute": "Bump -> N -> Bump -> Shoot -> Bump -> N",
+      "driverAbility": "average",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "大机器，只能过bump, 被卡bump防得很惨"
+    },
+    "8749": {
+      "tier": "A",
+      "shooterType": "fixed_drum",
+      "autoClimb": "unknown",
+      "autoRoute": "Tr -> N -> Bump -> Shoot -> Tr -> N -> Bump -> Shoot",
+      "driverAbility": "good",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "Ferry机，效率比较高"
+    },
+    "9449": {
+      "tier": "C",
+      "shooterType": "fixed_drum",
+      "autoClimb": "unknown",
+      "autoRoute": "Tr -> N -> Tr -> Hub -> Shoot",
+      "driverAbility": "average",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "离hub很近射球"
+    },
+    "9692": {
+      "tier": "C",
+      "shooterType": "fixed_drum",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "average",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "机器似乎不是很牢固，驾驶过于小心"
+    },
+    "9785": {
+      "tier": "S",
+      "shooterType": "fixed_drum",
+      "autoClimb": "",
+      "autoRoute": "Trench -> N -> Bump -> Shoot -> Tr -> N -> Bump -> Shoot",
+      "driverAbility": "elite",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "射速快，操作非常灵活，改过机构了，原来A级"
+    },
+    "10131": {
+      "tier": "A",
+      "shooterType": "fixed_drum",
+      "autoClimb": "unknown",
+      "autoRoute": "Bump -> N -> Bump -> Shoot -> Bump -> Stop",
+      "driverAbility": "average",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "很重，撞不动，射球Ferry机，只能过bump"
+    },
+    "10907": {
+      "tier": "unranked",
+      "shooterType": "",
+      "autoClimb": "",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "11024": {
+      "tier": "unranked",
+      "shooterType": "fixed_drum",
+      "autoClimb": "unknown",
+      "autoRoute": "",
+      "driverAbility": "",
+      "inactiveHub": [],
+      "primaryRole": [],
+      "summary": ""
+    },
+    "11270": {
+      "tier": "A",
+      "shooterType": "fixed_drum",
+      "autoClimb": "unknown",
+      "autoRoute": "Trench -> N -> Bump -> Shoot",
+      "driverAbility": "elite",
+      "inactiveHub": [
+        "collects"
+      ],
+      "primaryRole": [
+        "scorer"
+      ],
+      "summary": "非常灵活，去对面zone里拿球, 评级不准（B），这台机器的得分能力比较强，"
+    },
+    "11493": {
+      "tier": "unranked",
+      "shooterType": "fixed_drum",
+      "autoClimb": "no",
+      "autoRoute": "原地投球",
+      "driverAbility": "poor",
+      "inactiveHub": [
+        "defends"
+      ],
+      "primaryRole": [
+        "defense"
+      ],
+      "summary": "拦Trench入口",
+      "autoNotes": "",
+      "climbAbility": "",
+      "reliability": "",
+      "inactiveBehavior": ""
+    }
+  }
 }
