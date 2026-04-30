@@ -23,6 +23,10 @@
         <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zm0-10v2h14V7H7z"/></svg>
         <span>Teams</span>
       </button>
+      <button class="nav-btn" data-view="qual">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        <span>Qual</span>
+      </button>
       <button class="nav-btn" data-view="form" id="nav-form-btn" style="display:none">
         <svg viewBox="0 0 24 24" width="22" height="22"><path d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"/></svg>
         <span>Form</span>
@@ -112,6 +116,76 @@
         <input type="text" id="teamlist-search" placeholder="Search team # or name…" autocomplete="off">
       </div>
       <div id="teamlist-container" class="team-list"></div>
+    </section>
+
+    <!-- ===== QUAL MATCH QUICK ENTRY ===== -->
+    <section id="view-qual" class="view">
+      <header class="view-header">
+        <h1>Qual match entry</h1>
+        <p class="subtitle">Log paper notes after each match. Saves six robots, scores, and one comment line per team. Each team’s <strong>Form → Match</strong> tab shows their slice.</p>
+      </header>
+      <div class="qual-form card-like">
+        <div class="field-group">
+          <label class="field-label">Match</label>
+          <input type="text" id="qual-match-label" class="field-input" placeholder="e.g. Q14 or 14" autocomplete="off" inputmode="text">
+        </div>
+        <div class="qual-scores-row">
+          <div class="field-group flex-1">
+            <label class="field-label">Red score</label>
+            <input type="number" id="qual-score-red" class="field-input" placeholder="—" inputmode="numeric">
+          </div>
+          <div class="field-group flex-1">
+            <label class="field-label">Blue score</label>
+            <input type="number" id="qual-score-blue" class="field-input" placeholder="—" inputmode="numeric">
+          </div>
+        </div>
+        <div class="qual-alliance-block qual-red">
+          <h3 class="qual-alliance-title">Red alliance</h3>
+          <div class="qual-grid">
+            <div class="qual-slot">
+              <label class="field-label">R1 #</label>
+              <input type="number" id="qual-r1" class="field-input" inputmode="numeric" placeholder="Team">
+              <textarea id="qual-note-r1" class="field-textarea qual-note" rows="2" placeholder="Notes for this robot…"></textarea>
+            </div>
+            <div class="qual-slot">
+              <label class="field-label">R2 #</label>
+              <input type="number" id="qual-r2" class="field-input" inputmode="numeric" placeholder="Team">
+              <textarea id="qual-note-r2" class="field-textarea qual-note" rows="2" placeholder="Notes…"></textarea>
+            </div>
+            <div class="qual-slot">
+              <label class="field-label">R3 #</label>
+              <input type="number" id="qual-r3" class="field-input" inputmode="numeric" placeholder="Team">
+              <textarea id="qual-note-r3" class="field-textarea qual-note" rows="2" placeholder="Notes…"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="qual-alliance-block qual-blue">
+          <h3 class="qual-alliance-title">Blue alliance</h3>
+          <div class="qual-grid">
+            <div class="qual-slot">
+              <label class="field-label">B1 #</label>
+              <input type="number" id="qual-b1" class="field-input" inputmode="numeric" placeholder="Team">
+              <textarea id="qual-note-b1" class="field-textarea qual-note" rows="2" placeholder="Notes…"></textarea>
+            </div>
+            <div class="qual-slot">
+              <label class="field-label">B2 #</label>
+              <input type="number" id="qual-b2" class="field-input" inputmode="numeric" placeholder="Team">
+              <textarea id="qual-note-b2" class="field-textarea qual-note" rows="2" placeholder="Notes…"></textarea>
+            </div>
+            <div class="qual-slot">
+              <label class="field-label">B3 #</label>
+              <input type="number" id="qual-b3" class="field-input" inputmode="numeric" placeholder="Team">
+              <textarea id="qual-note-b3" class="field-textarea qual-note" rows="2" placeholder="Notes…"></textarea>
+            </div>
+          </div>
+        </div>
+        <button type="button" id="btn-qual-save" class="btn btn-primary btn-block">Save match</button>
+        <p class="qual-hint">Re-saving the same match number replaces that match everywhere. JSON backup includes qual matches (v2 format).</p>
+      </div>
+      <div class="field-group" style="margin-top:20px">
+        <label class="field-label">Saved from this screen</label>
+        <div id="qual-recent-list" class="qual-recent-list"></div>
+      </div>
     </section>
 
     <!-- ===== FORM VIEW ===== -->
@@ -275,6 +349,7 @@
 
         <!-- MATCH NOTES SECTION -->
         <div class="form-section" data-section="match">
+          <p class="presct-note" style="margin-bottom:12px">For a full field: use the bottom nav <strong>Qual</strong> tab (six teams + scores at once). Below is for single-team observations.</p>
           <div id="match-note-form" class="match-note-form">
             <div class="field-group">
               <label class="field-label">Match Number</label>
@@ -402,13 +477,13 @@
 
         <div class="export-card">
           <h3>Export JSON Backup</h3>
-          <p>Full backup including photos. Use to merge across devices.</p>
+          <p>Teams, photos, and <strong>Qual</strong> match log (v2 format). Older plain arrays still import as teams-only.</p>
           <button id="btn-export-json" class="btn btn-primary btn-block">Download JSON</button>
         </div>
 
         <div class="export-card">
           <h3>Import JSON Backup</h3>
-          <p>Merge data from another device. Newer records overwrite older ones.</p>
+          <p>Merge from backup. v2 restores qual matches; array-only files import teams only.</p>
           <input type="file" id="import-json-input" accept=".json" style="display:none">
           <button id="btn-import-json" class="btn btn-secondary btn-block">Import JSON</button>
         </div>

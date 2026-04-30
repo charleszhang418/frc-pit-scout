@@ -29,8 +29,9 @@
 
   // ───── IndexedDB Setup ─────
   const DB_NAME = 'frcPitScout';
-  const DB_VERSION = 1;
+  const DB_VERSION = 2;
   const STORE = 'teams';
+  const STORE_QUAL = 'qualMatches';
   let db = null;
 
   function openDB() {
@@ -41,6 +42,9 @@
         if (!d.objectStoreNames.contains(STORE)) {
           d.createObjectStore(STORE, { keyPath: 'teamNumber' });
         }
+        if (!d.objectStoreNames.contains(STORE_QUAL)) {
+          d.createObjectStore(STORE_QUAL, { keyPath: 'matchId' });
+        }
       };
       req.onsuccess = (e) => { db = e.target.result; resolve(db); };
       req.onerror = (e) => reject(e.target.error);
@@ -49,6 +53,10 @@
 
   function txStore(mode) {
     return db.transaction(STORE, mode).objectStore(STORE);
+  }
+
+  function qualTx(mode) {
+    return db.transaction(STORE_QUAL, mode).objectStore(STORE_QUAL);
   }
 
   function dbGet(key) {
@@ -77,7 +85,49 @@
 
   function dbClear() {
     return new Promise((resolve, reject) => {
-      const req = txStore('readwrite').clear();
+      const tx = db.transaction([STORE, STORE_QUAL], 'readwrite');
+      tx.objectStore(STORE).clear();
+      tx.objectStore(STORE_QUAL).clear();
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(tx.error);
+    });
+  }
+
+  function qualGet(matchId) {
+    return new Promise((resolve, reject) => {
+      const req = qualTx('readonly').get(matchId);
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function qualPut(record) {
+    return new Promise((resolve, reject) => {
+      const req = qualTx('readwrite').put(record);
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function qualDelete(matchId) {
+    return new Promise((resolve, reject) => {
+      const req = qualTx('readwrite').delete(matchId);
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function qualGetAll() {
+    return new Promise((resolve, reject) => {
+      const req = qualTx('readonly').getAll();
+      req.onsuccess = () => resolve(req.result || []);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function qualClearAll() {
+    return new Promise((resolve, reject) => {
+      const req = qualTx('readwrite').clear();
       req.onsuccess = () => resolve();
       req.onerror = () => reject(req.error);
     });
@@ -718,6 +768,27 @@
       .reverse()
       .map((n, idx) => {
         const realIdx = notes.length - 1 - idx;
+        if (n.source === 'qual_session' && n.qualMatchId) {
+          const pts =
+            n.scoreRed != null && n.scoreBlue != null
+              ? `<span class="match-note-points">${n.scoreRed}–${n.scoreBlue}</span>`
+              : '';
+          const al = n.alliance === 'red' ? 'Red' : 'Blue';
+          const ra = (n.redAlliance || []).join(', ');
+          const ba = (n.blueAlliance || []).join(', ');
+          return `
+        <div class="match-note-card match-note-qual" data-idx="${realIdx}">
+          <div class="match-note-header">
+            <strong>${n.matchNumber || 'Match'}</strong>
+            ${pts}
+            <span class="match-note-tag qual-alliance-tag">${al}</span>
+            <span class="match-note-time">${n.timestamp ? new Date(n.timestamp).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : ''}</span>
+            <button class="match-note-delete" data-idx="${realIdx}" aria-label="Delete">&times;</button>
+          </div>
+          <div class="qual-field-match-meta">R: ${ra} · B: ${ba}</div>
+          ${n.notes ? `<div class="match-note-body">${escapeNoteHtml(n.notes)}</div>` : '<div class="match-note-body muted">(no comment for this robot)</div>'}
+        </div>`;
+        }
         // Handle both old single role and new multi-role format
         const roles = n.observedRoles || (n.observedRole ? [n.observedRole] : []);
         const rolesTags = roles.map(r => `<div class="match-note-tag">${r.replace(/_/g, ' ')}</div>`).join('');
@@ -732,10 +803,19 @@
           ${rolesTags}
           ${n.performance ? `<div class="match-note-tag perf-${n.performance}">${n.performance}</div>` : ''}
           ${n.driverSkill ? `<div class="match-note-tag driver-${n.driverSkill}">Driver: ${n.driverSkill}</div>` : ''}
-          ${n.notes ? `<div class="match-note-body">${n.notes}</div>` : ''}
+          ${n.notes ? `<div class="match-note-body">${escapeNoteHtml(n.notes)}</div>` : ''}
         </div>`;
       })
       .join('');
+  }
+
+  function escapeNoteHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/\n/g, '<br>');
   }
 
   async function addMatchNote() {
@@ -790,11 +870,194 @@
     if (!currentTeamNumber) return;
     const team = await dbGet(currentTeamNumber);
     if (!team || !team.matchNotes) return;
+    const removed = team.matchNotes[idx];
+    if (removed?.source === 'qual_session' && removed.qualMatchId) {
+      await deleteQualMatchSession(removed.qualMatchId);
+      const t2 = await dbGet(currentTeamNumber);
+      renderMatchNotesList(t2 || team);
+      showAutosave('Saved');
+      return;
+    }
     team.matchNotes.splice(idx, 1);
     team.updatedAt = new Date().toISOString();
     await dbPut(team);
     renderMatchNotesList(team);
     showAutosave('Saved');
+  }
+
+  // ───── Qual match (full field entry → fan-out to team matchNotes) ─────
+  function normalizeQualMatchId(raw) {
+    const s = String(raw || '').trim();
+    if (!s) return '';
+    const m = s.toUpperCase().match(/(\d+)/);
+    return m ? 'QM' + m[1] : s.toUpperCase().replace(/\s+/g, '');
+  }
+
+  async function ensureTeamStub(teamNumber) {
+    let team = await dbGet(teamNumber);
+    if (!team) {
+      const fromCsv = allCsvTeams.find((t) => t.teamNumber === teamNumber);
+      team = makeDefaultRecord(fromCsv || { teamNumber, teamName: '' });
+      await dbPut(team);
+    }
+    return team;
+  }
+
+  async function removeQualFanoutFromTeams(matchId) {
+    const old = await qualGet(matchId);
+    if (!old) return;
+    const nums = [...(old.red || []), ...(old.blue || [])];
+    for (const num of nums) {
+      const team = await dbGet(num);
+      if (!team || !team.matchNotes) continue;
+      const next = team.matchNotes.filter((n) => n.qualMatchId !== matchId);
+      if (next.length === team.matchNotes.length) continue;
+      team.matchNotes = next;
+      team.updatedAt = new Date().toISOString();
+      await dbPut(team);
+    }
+  }
+
+  async function appendQualFanoutNote(teamNumber, record, alliance, comment) {
+    await ensureTeamStub(teamNumber);
+    const team = await dbGet(teamNumber);
+    if (!team.matchNotes) team.matchNotes = [];
+    const entry = {
+      matchNumber: record.matchLabel || record.matchId,
+      qualMatchId: record.matchId,
+      source: 'qual_session',
+      alliance,
+      scoreRed: record.scoreRed,
+      scoreBlue: record.scoreBlue,
+      redAlliance: record.red,
+      blueAlliance: record.blue,
+      notes: comment || '',
+      alliancePoints: alliance === 'red' ? record.scoreRed : record.scoreBlue,
+      observedRoles: [],
+      performance: '',
+      driverSkill: '',
+      timestamp: record.updatedAt,
+    };
+    team.matchNotes.push(entry);
+    team.updatedAt = record.updatedAt;
+    await dbPut(team);
+  }
+
+  async function rebuildQualFanoutFromStore() {
+    const allTeams = await dbGetAll();
+    for (const team of allTeams) {
+      if (!team.matchNotes?.length) continue;
+      const filtered = team.matchNotes.filter((n) => n.source !== 'qual_session');
+      if (filtered.length === team.matchNotes.length) continue;
+      team.matchNotes = filtered;
+      team.updatedAt = new Date().toISOString();
+      await dbPut(team);
+    }
+    const quals = await qualGetAll();
+    for (const r of quals) {
+      const comments = r.comments || {};
+      for (const tn of r.red || []) {
+        await appendQualFanoutNote(tn, r, 'red', comments[String(tn)] || '');
+      }
+      for (const tn of r.blue || []) {
+        await appendQualFanoutNote(tn, r, 'blue', comments[String(tn)] || '');
+      }
+    }
+  }
+
+  function clearQualForm() {
+    $('#qual-match-label').value = '';
+    for (let i = 1; i <= 3; i++) {
+      $(`#qual-r${i}`).value = '';
+      $(`#qual-b${i}`).value = '';
+      $(`#qual-note-r${i}`).value = '';
+      $(`#qual-note-b${i}`).value = '';
+    }
+    $('#qual-score-red').value = '';
+    $('#qual-score-blue').value = '';
+  }
+
+  async function saveQualMatchSession() {
+    const matchLabel = $('#qual-match-label').value.trim();
+    const matchId = normalizeQualMatchId(matchLabel);
+    if (!matchId) {
+      showToast('Enter match # (e.g. 14 or Q14)', 'error');
+      return;
+    }
+    const reds = [1, 2, 3].map((i) => parseInt($(`#qual-r${i}`).value.trim(), 10));
+    const blues = [1, 2, 3].map((i) => parseInt($(`#qual-b${i}`).value.trim(), 10));
+    if (reds.some((n) => !Number.isFinite(n) || n < 1) || blues.some((n) => !Number.isFinite(n) || n < 1)) {
+      showToast('Enter all six team numbers', 'error');
+      return;
+    }
+    const sr = $('#qual-score-red').value.trim();
+    const sb = $('#qual-score-blue').value.trim();
+    const scoreRed = sr === '' ? null : parseInt(sr, 10);
+    const scoreBlue = sb === '' ? null : parseInt(sb, 10);
+    const comments = {};
+    for (let i = 0; i < 3; i++) {
+      comments[String(reds[i])] = $(`#qual-note-r${i + 1}`).value.trim();
+      comments[String(blues[i])] = $(`#qual-note-b${i + 1}`).value.trim();
+    }
+
+    await removeQualFanoutFromTeams(matchId);
+
+    const record = {
+      matchId,
+      matchLabel: matchLabel || matchId,
+      red: reds,
+      blue: blues,
+      scoreRed: Number.isFinite(scoreRed) ? scoreRed : null,
+      scoreBlue: Number.isFinite(scoreBlue) ? scoreBlue : null,
+      comments,
+      updatedAt: new Date().toISOString(),
+      scout: getScoutName(),
+    };
+    await qualPut(record);
+
+    for (let i = 0; i < 3; i++) {
+      await appendQualFanoutNote(reds[i], record, 'red', comments[String(reds[i])] || '');
+    }
+    for (let i = 0; i < 3; i++) {
+      await appendQualFanoutNote(blues[i], record, 'blue', comments[String(blues[i])] || '');
+    }
+
+    clearQualForm();
+    await renderQualRecentList();
+    await refreshData();
+    showToast('Match saved — see each team’s Match tab', 'success');
+  }
+
+  async function deleteQualMatchSession(matchId) {
+    await removeQualFanoutFromTeams(matchId);
+    await qualDelete(matchId);
+    await renderQualRecentList();
+    await refreshData();
+    showToast('Qual match removed', 'success');
+  }
+
+  async function renderQualRecentList() {
+    const el = $('#qual-recent-list');
+    if (!el) return;
+    const rows = await qualGetAll();
+    rows.sort((a, b) => (b.updatedAt || '').localeCompare(a.updatedAt || ''));
+    if (rows.length === 0) {
+      el.innerHTML = '<div class="empty-state" style="padding:12px">No matches logged from this screen yet.</div>';
+      return;
+    }
+    el.innerHTML = rows
+      .map((r) => {
+        const score =
+          r.scoreRed != null && r.scoreBlue != null ? ` · ${r.scoreRed}–${r.scoreBlue}` : '';
+        return `<div class="qual-recent-card">
+          <div class="qual-recent-main">
+            <strong>${r.matchLabel || r.matchId}</strong>${score}
+            <div class="qual-recent-meta">R: ${(r.red || []).join(', ')} · B: ${(r.blue || []).join(', ')}</div>
+          </div>
+          <button type="button" class="btn btn-small qual-recent-del" data-mid="${r.matchId}">Delete</button>
+        </div>`;
+      })
+      .join('');
   }
 
   // ───── Add Team ─────
@@ -880,7 +1143,14 @@
 
   async function exportJSON() {
     const teams = await dbGetAll();
-    const json = JSON.stringify(teams, null, 2);
+    const qualMatches = await qualGetAll();
+    const payload = {
+      format: 'frcPitScout-v2',
+      exportedAt: new Date().toISOString(),
+      teams,
+      qualMatches,
+    };
+    const json = JSON.stringify(payload, null, 2);
     const ts = new Date().toISOString().slice(0, 16).replace(/[:.]/g, '-');
     downloadFile(json, `hopper-pit-scout-${ts}.json`, 'application/json');
     updateExportTimestamp();
@@ -890,8 +1160,17 @@
   async function importJSON(file) {
     try {
       const text = await file.text();
-      const records = JSON.parse(text);
-      if (!Array.isArray(records)) throw new Error('Expected array');
+      const data = JSON.parse(text);
+      let records;
+      let qualList = null;
+      if (Array.isArray(data)) {
+        records = data;
+      } else if (data.teams && Array.isArray(data.teams)) {
+        records = data.teams;
+        qualList = data.qualMatches;
+      } else {
+        throw new Error('Expected team array or { teams, qualMatches } object');
+      }
       let imported = 0;
       for (const rec of records) {
         if (!rec.teamNumber) continue;
@@ -901,8 +1180,16 @@
           imported++;
         }
       }
+      if (qualList && Array.isArray(qualList)) {
+        await qualClearAll();
+        for (const q of qualList) {
+          if (q && q.matchId) await qualPut(q);
+        }
+        await rebuildQualFanoutFromStore();
+      }
       await refreshData();
-      showToast(`Imported ${imported} team(s)`, 'success');
+      await renderQualRecentList();
+      showToast(`Imported ${imported} team(s)` + (qualList ? ` + ${qualList.length} qual match(es)` : ''), 'success');
     } catch (err) {
       showToast('Import failed: ' + err.message, 'error');
     }
@@ -946,7 +1233,8 @@
         const view = btn.dataset.view;
         if (view === 'form' && !currentTeamNumber) return;
         switchView(view);
-        if (view !== 'form') refreshData();
+        if (view === 'qual') renderQualRecentList();
+        if (view !== 'form' && view !== 'qual') refreshData();
       });
     });
 
@@ -1057,15 +1345,22 @@
     $('#f-completed').addEventListener('change', scheduleAutosave);
     $('#f-needsRecheck').addEventListener('change', scheduleAutosave);
 
-    // Match notes
+    // Match notes + qual list delete
     $('#btn-add-match-note').addEventListener('click', addMatchNote);
     document.addEventListener('click', (e) => {
+      const qdel = e.target.closest('.qual-recent-del');
+      if (qdel && qdel.dataset.mid) {
+        deleteQualMatchSession(qdel.dataset.mid);
+        return;
+      }
       const del = e.target.closest('.match-note-delete');
       if (del) {
         const idx = parseInt(del.dataset.idx, 10);
         if (!isNaN(idx)) deleteMatchNote(idx);
       }
     });
+
+    $('#btn-qual-save').addEventListener('click', () => saveQualMatchSession());
 
     // Add team
     $('#btn-add-team').addEventListener('click', addTeamManually);
@@ -1109,6 +1404,7 @@
         await dbClear();
         await seedTeams(allCsvTeams);
         await refreshData();
+        await renderQualRecentList();
         showToast('All data cleared', 'success');
       }
     });
@@ -1148,6 +1444,8 @@
 
     // Restore division selector
     $('#division-select').value = currentDivision;
+
+    await renderQualRecentList();
   }
 
   if (document.readyState === 'loading') {

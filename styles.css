@@ -755,6 +755,90 @@ input, textarea { font-family: inherit; font-size: 1rem; }
 }
 .export-card.presct-export h3 { color: var(--blue); }
 
+/* ===== QUAL MATCH ENTRY ===== */
+#view-qual .card-like,
+.qual-form.card-like {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin: 0 12px 16px;
+}
+.qual-scores-row {
+  display: flex;
+  gap: 12px;
+}
+.qual-scores-row .flex-1 { flex: 1; min-width: 0; }
+.qual-alliance-block {
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+.qual-alliance-block.qual-red {
+  border-left: 3px solid #ef4444;
+  background: rgba(239, 68, 68, 0.06);
+}
+.qual-alliance-block.qual-blue {
+  border-left: 3px solid #3b82f6;
+  background: rgba(59, 130, 246, 0.08);
+}
+.qual-alliance-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.qual-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.qual-slot .field-label { font-size: 0.7rem; }
+.qual-note { margin-top: 6px; font-size: 0.85rem; }
+.qual-hint {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-top: 12px;
+  line-height: 1.35;
+}
+.qual-recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.qual-recent-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+.qual-recent-main { min-width: 0; }
+.qual-recent-meta {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+.qual-recent-del { flex-shrink: 0; }
+.match-note-qual .qual-alliance-tag {
+  background: var(--accent);
+  color: #fff;
+}
+.qual-field-match-meta {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin: 4px 0;
+}
+.match-note-body.muted {
+  color: var(--text-dim);
+  font-style: italic;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (min-width: 640px) {
   .stats-grid { grid-template-columns: repeat(4, 1fr); }
