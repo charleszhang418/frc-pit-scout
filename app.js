@@ -1141,6 +1141,51 @@
     showToast('CSV exported', 'success');
   }
 
+  /**
+   * Merge v2 backup: team rows when backup newer (same rule as manual import).
+   * Qual: only if qualMatches is a non-empty array — replaces qual store and rebuilds fan-out.
+   * Empty/missing qualMatches leaves local qual matches unchanged.
+   */
+  async function applyPitBackupPayload(data) {
+    if (!data || !Array.isArray(data.teams)) {
+      return { teamsUpdated: 0, qualSynced: false, qualCount: 0 };
+    }
+    let teamsUpdated = 0;
+    for (const rec of data.teams) {
+      if (!rec.teamNumber) continue;
+      const existing = await dbGet(rec.teamNumber);
+      if (!existing || !existing.updatedAt || (rec.updatedAt && rec.updatedAt > existing.updatedAt)) {
+        await dbPut(rec);
+        teamsUpdated++;
+      }
+    }
+    const qualList = data.qualMatches;
+    let qualSynced = false;
+    let qualCount = 0;
+    if (qualList && Array.isArray(qualList) && qualList.length > 0) {
+      await qualClearAll();
+      for (const q of qualList) {
+        if (q && q.matchId) await qualPut(q);
+      }
+      await rebuildQualFanoutFromStore();
+      qualSynced = true;
+      qualCount = qualList.length;
+    }
+    return { teamsUpdated, qualSynced, qualCount };
+  }
+
+  async function mergeOnlinePitBaseline() {
+    try {
+      const res = await fetch('./pit-scout-baseline.json', { cache: 'no-store' });
+      if (!res.ok) return;
+      const data = await res.json();
+      if (data.format !== 'frcPitScout-v2' || !Array.isArray(data.teams)) return;
+      await applyPitBackupPayload(data);
+    } catch (e) {
+      console.warn('Could not merge online pit baseline:', e);
+    }
+  }
+
   async function exportJSON() {
     const teams = await dbGetAll();
     const qualMatches = await qualGetAll();
@@ -1161,35 +1206,21 @@
     try {
       const text = await file.text();
       const data = JSON.parse(text);
-      let records;
-      let qualList = null;
+      let payload;
       if (Array.isArray(data)) {
-        records = data;
+        payload = { teams: data, qualMatches: undefined };
       } else if (data.teams && Array.isArray(data.teams)) {
-        records = data.teams;
-        qualList = data.qualMatches;
+        payload = data;
       } else {
         throw new Error('Expected team array or { teams, qualMatches } object');
       }
-      let imported = 0;
-      for (const rec of records) {
-        if (!rec.teamNumber) continue;
-        const existing = await dbGet(rec.teamNumber);
-        if (!existing || !existing.updatedAt || (rec.updatedAt && rec.updatedAt > existing.updatedAt)) {
-          await dbPut(rec);
-          imported++;
-        }
-      }
-      if (qualList && Array.isArray(qualList)) {
-        await qualClearAll();
-        for (const q of qualList) {
-          if (q && q.matchId) await qualPut(q);
-        }
-        await rebuildQualFanoutFromStore();
-      }
+      const { teamsUpdated, qualSynced, qualCount } = await applyPitBackupPayload(payload);
       await refreshData();
       await renderQualRecentList();
-      showToast(`Imported ${imported} team(s)` + (qualList ? ` + ${qualList.length} qual match(es)` : ''), 'success');
+      showToast(
+        `Imported ${teamsUpdated} team row(s)` + (qualSynced ? ` + ${qualCount} qual match(es)` : ''),
+        'success'
+      );
     } catch (err) {
       showToast('Import failed: ' + err.message, 'error');
     }
@@ -1432,6 +1463,7 @@
     // Load pre-scout data (separate from pit scouting)
     loadPrescoutData();
     await mergeOnlinePrescoutBaseline();
+    await mergeOnlinePitBaseline();
     
     await refreshData();
     wireEvents();

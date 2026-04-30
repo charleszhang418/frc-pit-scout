@@ -478,6 +478,7 @@
         <div class="export-card">
           <h3>Export JSON Backup</h3>
           <p>Teams, photos, and <strong>Qual</strong> match log (v2 format). Older plain arrays still import as teams-only.</p>
+          <p class="presct-note" style="margin-top:10px">To load pit data without a manual import: commit your export as <strong>pit-scout-baseline.json</strong> next to <strong>index.html</strong>. Each site visit merges it (newer <strong>updatedAt</strong> per team wins; <strong>qualMatches</strong> syncs only if the file includes a non-empty list).</p>
           <button id="btn-export-json" class="btn btn-primary btn-block">Download JSON</button>
         </div>
 

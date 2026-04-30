@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pit-scout-v18';
+const CACHE_NAME = 'pit-scout-v19';
 const ASSETS = [
   './',
   './index.html',
@@ -29,8 +29,9 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
   const isPrescoutJson = url.pathname.endsWith('/prescouting.json') || url.pathname.endsWith('prescouting.json');
+  const isPitBaselineJson = url.pathname.endsWith('/pit-scout-baseline.json') || url.pathname.endsWith('pit-scout-baseline.json');
 
-  if (isPrescoutJson) {
+  if (isPrescoutJson || isPitBaselineJson) {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
