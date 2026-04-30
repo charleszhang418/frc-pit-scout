@@ -202,10 +202,21 @@
   // ───── State ─────
   let allTeams = [];
   let currentFilter = 'all';
-  let currentDivision = localStorage.getItem('division') || 'Hopper';
+  let currentDivision = 'Hopper';
   let currentSearch = '';
   let currentTeamNumber = null;
   let autosaveTimer = null;
+
+  function normalizeCurrentDivision() {
+    const raw = localStorage.getItem('division') || 'Hopper';
+    const allowed = new Set([...DIVISIONS, 'All']);
+    if (allowed.has(raw)) {
+      currentDivision = raw;
+    } else {
+      currentDivision = 'Hopper';
+      localStorage.setItem('division', 'Hopper');
+    }
+  }
 
   // ───── Global Scout Name ─────
   function getScoutName() { return localStorage.getItem('scoutName') || ''; }
@@ -532,7 +543,15 @@
       .sort((a, b) => a.teamNumber - b.teamNumber);
     const container = $(`#${containerId}`);
     if (filtered.length === 0) {
-      container.innerHTML = '<div class="empty-state">No teams match your filter.</div>';
+      let extra = '';
+      if (allTeams.length > 0) {
+        if (currentDivision !== 'All') {
+          extra = `<p class="presct-note" style="margin-top:8px">${allTeams.length} teams are saved — try division <strong>All Divisions</strong> if yours is empty.</p>`;
+        } else if (currentFilter !== 'all') {
+          extra = `<p class="presct-note" style="margin-top:8px">Try the <strong>All</strong> filter chip to see every team.</p>`;
+        }
+      }
+      container.innerHTML = `<div class="empty-state">No teams match your filter.</div>${extra}`;
     } else {
       container.innerHTML = filtered.map(renderTeamRow).join('');
     }
@@ -547,14 +566,28 @@
 
   function updateStats() {
     const divTeams = allTeams.filter(matchesDivision);
-    const total = divTeams.length;
+    const dbTotal = allTeams.length;
+    const totalEl = $('#stat-total');
+    const subEl = $('#stat-total-sub');
+    if (totalEl) totalEl.textContent = String(divTeams.length);
+    if (subEl) {
+      if (dbTotal === 0) {
+        subEl.textContent = 'No roster loaded — go online and reload';
+        subEl.style.color = 'var(--red)';
+      } else if (currentDivision !== 'All' && divTeams.length < dbTotal) {
+        subEl.textContent = `${dbTotal} teams in app (all divisions)`;
+        subEl.style.color = 'var(--text-dim)';
+      } else {
+        subEl.textContent = '';
+        subEl.style.color = '';
+      }
+    }
     const completed = divTeams.filter(t => t.completed).length;
     const recheck = divTeams.filter(t => t.needsRecheck).length;
     const verified = divTeams.filter(t => {
       const vs = t.verification?.status;
       return vs === 'match_verified' || vs === 'practice_verified';
     }).length;
-    $('#stat-total').textContent = total;
     $('#stat-completed').textContent = completed;
     $('#stat-recheck').textContent = recheck;
     $('#stat-verified').textContent = verified;
@@ -1153,10 +1186,14 @@
     let teamsUpdated = 0;
     for (const rec of data.teams) {
       if (!rec.teamNumber) continue;
-      const existing = await dbGet(rec.teamNumber);
-      if (!existing || !existing.updatedAt || (rec.updatedAt && rec.updatedAt > existing.updatedAt)) {
-        await dbPut(rec);
-        teamsUpdated++;
+      try {
+        const existing = await dbGet(rec.teamNumber);
+        if (!existing || !existing.updatedAt || (rec.updatedAt && rec.updatedAt > existing.updatedAt)) {
+          await dbPut(rec);
+          teamsUpdated++;
+        }
+      } catch (err) {
+        console.warn('Skipping team', rec.teamNumber, err);
       }
     }
     const qualList = data.qualMatches;
@@ -1179,7 +1216,7 @@
       const res = await fetch('./pit-scout-baseline.json', { cache: 'no-store' });
       if (!res.ok) return;
       const data = await res.json();
-      if (data.format !== 'frcPitScout-v2' || !Array.isArray(data.teams)) return;
+      if (!Array.isArray(data.teams) || data.teams.length === 0) return;
       await applyPitBackupPayload(data);
     } catch (e) {
       console.warn('Could not merge online pit baseline:', e);
@@ -1456,25 +1493,27 @@
 
   // ───── Init ─────
   async function init() {
+    normalizeCurrentDivision();
     await openDB();
     await loadTeamsCSV();
     await seedTeams(allCsvTeams);
-    
-    // Load pre-scout data (separate from pit scouting)
+
     loadPrescoutData();
     await mergeOnlinePrescoutBaseline();
-    await mergeOnlinePitBaseline();
-    
+
     await refreshData();
     wireEvents();
     registerSW();
 
-    // Restore global scout name
+    mergeOnlinePitBaseline()
+      .then(() => refreshData())
+      .then(() => renderQualRecentList())
+      .catch((e) => console.warn('Pit baseline merge failed:', e));
+
     const savedScout = getScoutName();
     $('#global-scout-input').value = savedScout;
     $('#global-scout-display').textContent = savedScout || 'Set name →';
 
-    // Restore division selector
     $('#division-select').value = currentDivision;
 
     await renderQualRecentList();

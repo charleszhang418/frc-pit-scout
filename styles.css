@@ -101,6 +101,7 @@ input, textarea { font-family: inherit; font-size: 1rem; }
 }
 .stat-number { font-size: 2rem; font-weight: 800; }
 .stat-label { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+.stat-sub { font-size: 0.68rem; color: var(--text-dim); margin-top: 6px; line-height: 1.25; min-height: 1.25em; }
 
 .stat-card.accent-green .stat-number { color: var(--green); }
 .stat-card.accent-orange .stat-number { color: var(--orange); }
