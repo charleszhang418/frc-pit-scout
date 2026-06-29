@@ -1,6 +1,5 @@
-# FRC Pit Scout — Houston 2026
+# FRC Scouting — 2026
 
-面向 FRC 锦标赛的离线优先 pit / 预侦察 / 资格赛记录工具。纯浏览器运行，数据存 IndexedDB，无需后端。
 
 **线上地址（GitHub Pages）：** https://charleszhang418.github.io/frc-pit-scout/
 
