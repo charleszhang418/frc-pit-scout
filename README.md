@@ -32,10 +32,6 @@ python3 -m http.server 8765
 | `pit-scout-baseline.json` | Pit + Qual 备份（v2 导出格式）。备份较新或本机无 `updatedAt` 时合并。 |
 | `teams.csv` | 全场队伍列表与分区。 |
 
-更新 GitHub Pages 上的共享数据：在应用中导出 → 替换对应文件 → commit → push。部署约 1–2 分钟后，强制刷新页面即可。
-
-仍可使用 **Data → Import JSON** 或 **Import Pre-Scout JSON** 手动导入。
-
 ---
 
 ## 应用结构
