@@ -2235,10 +2235,73 @@
   }
 
   // ───── Service Worker Registration ─────
+  function showUpdateBanner() {
+    if ($('#app-update-banner')) return;
+    const bar = document.createElement('div');
+    bar.id = 'app-update-banner';
+    bar.className = 'app-update-banner';
+    bar.innerHTML =
+      '<span>New app version available</span>' +
+      '<button type="button" class="btn btn-primary btn-small" id="btn-app-reload">Reload</button>';
+    document.body.appendChild(bar);
+    $('#btn-app-reload')?.addEventListener('click', async () => {
+      try {
+        if (currentTeamNumber) {
+          clearTimeout(autosaveTimer);
+          await saveForm();
+        }
+      } catch (e) {
+        console.warn('Save before reload failed:', e);
+      }
+      window.location.reload();
+    });
+  }
+
   function registerSW() {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js').catch(() => {});
-    }
+    if (!('serviceWorker' in navigator)) return;
+
+    let refreshing = false;
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      // New SW took control — prompt reload so in-memory old JS is replaced.
+      if (refreshing) return;
+      showUpdateBanner();
+    });
+
+    navigator.serviceWorker.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'SW_ACTIVATED') {
+        showUpdateBanner();
+      }
+    });
+
+    navigator.serviceWorker
+      .register('./service-worker.js')
+      .then((reg) => {
+        const askUpdate = () => {
+          reg.update().catch(() => {});
+        };
+        askUpdate();
+        setInterval(askUpdate, 60 * 1000);
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible') askUpdate();
+        });
+        window.addEventListener('online', askUpdate);
+
+        if (reg.waiting) {
+          reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+          showUpdateBanner();
+        }
+        reg.addEventListener('updatefound', () => {
+          const worker = reg.installing;
+          if (!worker) return;
+          worker.addEventListener('statechange', () => {
+            if (worker.state === 'installed' && navigator.serviceWorker.controller) {
+              worker.postMessage({ type: 'SKIP_WAITING' });
+              showUpdateBanner();
+            }
+          });
+        });
+      })
+      .catch(() => {});
   }
 
   // ───── Init ─────

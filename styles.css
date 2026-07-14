@@ -90,6 +90,32 @@ input, textarea { font-family: inherit; font-size: 1rem; }
   margin: 4px 0;
   word-break: break-word;
 }
+
+.app-update-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  padding-top: calc(10px + env(safe-area-inset-top, 0px));
+  background: #1e3a5f;
+  color: #e8f1ff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+.app-update-banner .btn {
+  flex-shrink: 0;
+  padding: 8px 14px;
+}
+body:has(.app-update-banner) #app {
+  padding-top: 52px;
+}
 .subtitle { color: var(--text-dim); font-size: 0.875rem; margin-top: 2px; }
 
 /* ===== BOTTOM NAV ===== */

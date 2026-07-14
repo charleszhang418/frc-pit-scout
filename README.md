@@ -63,7 +63,7 @@ Analysis snapshots under `analysis/hopper_*` are separate and unchanged.
 ## 常见问题
 
 - **队伍数为 0 / 列表为空** — 检查分区筛选（可试 **All Divisions**）。需联网加载 `teams.csv`。换赛事后请 **Clear All Data** 再重载。
-- **推送后页面仍是旧版** — 关闭标签页重开，或清除站点数据，让 Service Worker 更新（见 `service-worker.js` 中 `pit-scout-v*`）。
+- **推送后页面仍是旧版** — 应用会自动检查更新；出现顶部 **New app version available → Reload** 即可。一般无需强制硬刷新。
 - **Hopper 数据在哪** — 见 `archives/2026cmptx-hopper/`；可用 Import JSON 临时恢复查看。
 
 ---
