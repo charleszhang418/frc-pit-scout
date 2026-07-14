@@ -1,0 +1,18 @@
+{
+  "name": "frc-pit-scout-sync",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloudflare Workers + D1 sync API for FRC Pit Scout",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:local": "wrangler d1 execute pit-scout --local --file=./schema.sql",
+    "db:remote": "wrangler d1 execute pit-scout --remote --file=./schema.sql",
+    "seed:local": "node ./seed/seed.mjs --local",
+    "seed:remote": "node ./seed/seed.mjs --remote",
+    "test:api": "node ./scripts/smoke-test.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "^4.20.0"
+  }
+}

@@ -29,10 +29,13 @@
 
   // ───── IndexedDB Setup ─────
   const DB_NAME = 'frcPitScout';
-  const DB_VERSION = 2;
+  const DB_VERSION = 3;
   const STORE = 'teams';
   const STORE_QUAL = 'qualMatches';
+  const STORE_OUTBOX = 'outbox';
+  const STORE_SYNC_META = 'syncMeta';
   let db = null;
+  let syncEnqueueEnabled = true;
 
   function openDB() {
     return new Promise((resolve, reject) => {
@@ -44,6 +47,12 @@
         }
         if (!d.objectStoreNames.contains(STORE_QUAL)) {
           d.createObjectStore(STORE_QUAL, { keyPath: 'matchId' });
+        }
+        if (!d.objectStoreNames.contains(STORE_OUTBOX)) {
+          d.createObjectStore(STORE_OUTBOX, { keyPath: 'operationId' });
+        }
+        if (!d.objectStoreNames.contains(STORE_SYNC_META)) {
+          d.createObjectStore(STORE_SYNC_META, { keyPath: 'key' });
         }
       };
       req.onsuccess = (e) => { db = e.target.result; resolve(db); };
@@ -59,6 +68,14 @@
     return db.transaction(STORE_QUAL, mode).objectStore(STORE_QUAL);
   }
 
+  function outboxTx(mode) {
+    return db.transaction(STORE_OUTBOX, mode).objectStore(STORE_OUTBOX);
+  }
+
+  function syncMetaTx(mode) {
+    return db.transaction(STORE_SYNC_META, mode).objectStore(STORE_SYNC_META);
+  }
+
   function dbGet(key) {
     return new Promise((resolve, reject) => {
       const req = txStore('readonly').get(key);
@@ -67,12 +84,25 @@
     });
   }
 
-  function dbPut(record) {
+  function dbPutRaw(record) {
     return new Promise((resolve, reject) => {
       const req = txStore('readwrite').put(record);
       req.onsuccess = () => resolve();
       req.onerror = () => reject(req.error);
     });
+  }
+
+  async function dbPut(record, options = {}) {
+    await dbPutRaw(record);
+    if (syncEnqueueEnabled && !options.skipOutbox && window.PitScoutSync) {
+      try {
+        await window.PitScoutSync.enqueue('team', record.teamNumber, record, {
+          baseRevision: Number(record.syncRevision || 0),
+        });
+      } catch (e) {
+        console.warn('Outbox enqueue (team) failed:', e);
+      }
+    }
   }
 
   function dbGetAll() {
@@ -85,9 +115,10 @@
 
   function dbClear() {
     return new Promise((resolve, reject) => {
-      const tx = db.transaction([STORE, STORE_QUAL], 'readwrite');
+      const tx = db.transaction([STORE, STORE_QUAL, STORE_OUTBOX], 'readwrite');
       tx.objectStore(STORE).clear();
       tx.objectStore(STORE_QUAL).clear();
+      tx.objectStore(STORE_OUTBOX).clear();
       tx.oncomplete = () => resolve();
       tx.onerror = () => reject(tx.error);
     });
@@ -101,12 +132,25 @@
     });
   }
 
-  function qualPut(record) {
+  function qualPutRaw(record) {
     return new Promise((resolve, reject) => {
       const req = qualTx('readwrite').put(record);
       req.onsuccess = () => resolve();
       req.onerror = () => reject(req.error);
     });
+  }
+
+  async function qualPut(record, options = {}) {
+    await qualPutRaw(record);
+    if (syncEnqueueEnabled && !options.skipOutbox && window.PitScoutSync) {
+      try {
+        await window.PitScoutSync.enqueue('qual_match', record.matchId, record, {
+          baseRevision: Number(record.syncRevision || 0),
+        });
+      } catch (e) {
+        console.warn('Outbox enqueue (qual) failed:', e);
+      }
+    }
   }
 
   function qualDelete(matchId) {
@@ -131,6 +175,198 @@
       req.onsuccess = () => resolve();
       req.onerror = () => reject(req.error);
     });
+  }
+
+  function outboxPut(op) {
+    return new Promise((resolve, reject) => {
+      const req = outboxTx('readwrite').put(op);
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function outboxDelete(operationId) {
+    return new Promise((resolve, reject) => {
+      const req = outboxTx('readwrite').delete(operationId);
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function outboxList(limit = 50) {
+    return new Promise((resolve, reject) => {
+      const req = outboxTx('readonly').getAll();
+      req.onsuccess = () => {
+        const rows = (req.result || []).sort((a, b) =>
+          String(a.clientCreatedAt || '').localeCompare(String(b.clientCreatedAt || ''))
+        );
+        resolve(rows.slice(0, limit));
+      };
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function outboxCount() {
+    return new Promise((resolve, reject) => {
+      const req = outboxTx('readonly').count();
+      req.onsuccess = () => resolve(req.result || 0);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function syncMetaGet(key) {
+    return new Promise((resolve, reject) => {
+      const req = syncMetaTx('readonly').get(key);
+      req.onsuccess = () => resolve(req.result ? req.result.value : null);
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  function syncMetaSet(key, value) {
+    return new Promise((resolve, reject) => {
+      const req = syncMetaTx('readwrite').put({ key, value });
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+    });
+  }
+
+  async function applyRemoteTeamPayload(payload, revision) {
+    if (!payload?.teamNumber) return;
+    const existing = await dbGet(payload.teamNumber);
+    const next = { ...payload, syncRevision: revision };
+    if (existing?.photoDataUrl && !next.photoDataUrl) {
+      next.photoDataUrl = existing.photoDataUrl;
+    }
+    await dbPutRaw(next);
+  }
+
+  async function applyRemoteQualPayload(payload, revision) {
+    if (!payload?.matchId) return;
+    await qualPutRaw({ ...payload, syncRevision: revision });
+  }
+
+  async function applySyncChanges(changes) {
+    syncEnqueueEnabled = false;
+    let touchedQual = false;
+    try {
+      for (const ch of changes) {
+        if (ch.deletedAt) {
+          if (ch.entity === 'team' && ch.payload?.teamNumber) {
+            const t = await dbGet(ch.payload.teamNumber);
+            if (t) {
+              t.deletedAt = ch.deletedAt;
+              t.syncRevision = ch.revision;
+              await dbPutRaw(t);
+            }
+          } else if (ch.entity === 'qual_match' && ch.payload?.matchId) {
+            await qualDelete(ch.payload.matchId);
+            touchedQual = true;
+          } else if (ch.entity === 'prescout' && ch.payload?.teamNumber) {
+            deletePrescoutLocal(ch.payload.teamNumber);
+          }
+          continue;
+        }
+        if (ch.entity === 'team') {
+          await applyRemoteTeamPayload(ch.payload, ch.revision);
+        } else if (ch.entity === 'qual_match') {
+          await applyRemoteQualPayload(ch.payload, ch.revision);
+          touchedQual = true;
+        } else if (ch.entity === 'prescout') {
+          applyPrescoutRemote(ch.payload, ch.revision);
+        }
+      }
+      if (touchedQual) await rebuildQualFanoutFromStore();
+    } finally {
+      syncEnqueueEnabled = true;
+    }
+  }
+
+  function deletePrescoutLocal(teamNumber) {
+    delete prescoutData[teamNumber];
+    delete prescoutData[String(teamNumber)];
+    savePrescoutData();
+  }
+
+  function applyPrescoutRemote(payload, revision) {
+    if (!payload?.teamNumber) return;
+    const key = payload.teamNumber;
+    const { teamNumber, syncRevision, ...rest } = payload;
+    prescoutData[key] = { ...rest, syncRevision: revision };
+    savePrescoutData();
+  }
+
+  async function applySyncSnapshot(data) {
+    syncEnqueueEnabled = false;
+    try {
+      if (Array.isArray(data.roster) && data.roster.length) {
+        allCsvTeams = data.roster.map((t) => ({
+          teamNumber: t.teamNumber,
+          teamName: t.teamName || '',
+          division: t.division || '',
+        }));
+        await seedTeams(allCsvTeams);
+        const divisions = [...new Set(allCsvTeams.map((t) => t.division).filter(Boolean))];
+        refreshDivisionSelect(divisions);
+      }
+      for (const row of data.teamRecords || []) {
+        if (row.deletedAt) continue;
+        await applyRemoteTeamPayload(row.payload, row.revision);
+      }
+      for (const row of data.qualMatches || []) {
+        if (row.deletedAt) continue;
+        await applyRemoteQualPayload(row.payload, row.revision);
+      }
+      for (const row of data.prescout || []) {
+        if (row.deletedAt) continue;
+        applyPrescoutRemote(row.payload, row.revision);
+      }
+      await rebuildQualFanoutFromStore();
+    } finally {
+      syncEnqueueEnabled = true;
+    }
+    await refreshData();
+    await renderQualRecentList();
+  }
+
+  async function setLocalRevision(entityId, revision) {
+    const parts = String(entityId).split(':');
+    const kind = parts[1];
+    const key = parts.slice(2).join(':');
+    if (kind === 'team') {
+      const num = parseInt(key, 10);
+      const t = await dbGet(num);
+      if (t) {
+        t.syncRevision = revision;
+        await dbPutRaw(t);
+      }
+    } else if (kind === 'qual') {
+      const q = await qualGet(key);
+      if (q) {
+        q.syncRevision = revision;
+        await qualPutRaw(q);
+      }
+    } else if (kind === 'prescout') {
+      const num = parseInt(key, 10);
+      const pc = getPrescoutForTeam(num);
+      if (pc) {
+        pc.syncRevision = revision;
+        setPrescoutForTeam(num, pc, { skipOutbox: true });
+      }
+    }
+  }
+
+  function refreshDivisionSelect(divisions) {
+    const sel = $('#division-select');
+    if (!sel || !divisions?.length) return;
+    const current = sel.value;
+    const opts = divisions.map((d) => `<option value="${escapeHtml(d)}">${escapeHtml(d)}</option>`).join('');
+    sel.innerHTML = opts + '<option value="All">All Divisions</option>';
+    if ([...sel.options].some((o) => o.value === current)) sel.value = current;
+    else if (divisions[0]) {
+      sel.value = divisions[0];
+      currentDivision = divisions[0];
+      localStorage.setItem('division', currentDivision);
+    }
   }
 
   function makeDefaultRecord(team) {
@@ -191,10 +427,10 @@
     for (const t of teamList) {
       const rec = existingMap.get(t.teamNumber);
       if (!rec) {
-        await dbPut(makeDefaultRecord(t));
+        await dbPut(makeDefaultRecord(t), { skipOutbox: true });
       } else if (!rec.division && t.division) {
         rec.division = t.division;
-        await dbPut(rec);
+        await dbPut(rec, { skipOutbox: true });
       }
     }
   }
@@ -206,6 +442,198 @@
   let currentSearch = '';
   let currentTeamNumber = null;
   let autosaveTimer = null;
+  let assignedTeamNumbers = []; // device-local "my teams"
+  let pitMapConfig = null;
+  let mapHighlightMineOnly = false;
+  let assignSearch = '';
+  const ASSIGNED_TEAMS_KEY = 'assignedTeams';
+
+  async function loadAssignedTeams() {
+    const raw = await syncMetaGet(ASSIGNED_TEAMS_KEY);
+    if (Array.isArray(raw)) {
+      assignedTeamNumbers = raw.map(Number).filter((n) => Number.isInteger(n) && n > 0);
+    } else {
+      assignedTeamNumbers = [];
+    }
+  }
+
+  async function saveAssignedTeams() {
+    const unique = [...new Set(assignedTeamNumbers)].sort((a, b) => a - b);
+    assignedTeamNumbers = unique;
+    await syncMetaSet(ASSIGNED_TEAMS_KEY, unique);
+    updateAssignmentSummaries();
+  }
+
+  function isAssignedTeam(teamNumber) {
+    return assignedTeamNumbers.includes(Number(teamNumber));
+  }
+
+  async function toggleAssignedTeam(teamNumber) {
+    const num = Number(teamNumber);
+    if (!Number.isInteger(num) || num < 1) return;
+    if (isAssignedTeam(num)) {
+      assignedTeamNumbers = assignedTeamNumbers.filter((n) => n !== num);
+    } else {
+      assignedTeamNumbers.push(num);
+    }
+    await saveAssignedTeams();
+    renderAssignTeamList();
+    if (currentFilter === 'mine') renderTeamList('dashboard-team-list');
+    renderPitMap();
+  }
+
+  async function clearAssignedTeams() {
+    assignedTeamNumbers = [];
+    await saveAssignedTeams();
+    renderAssignTeamList();
+    if (currentFilter === 'mine') renderTeamList('dashboard-team-list');
+    renderPitMap();
+  }
+
+  function updateAssignmentSummaries() {
+    const n = assignedTeamNumbers.length;
+    const countEl = $('#my-teams-count');
+    if (countEl) countEl.textContent = `My teams: ${n} — set in Data`;
+    const assignCount = $('#assign-count');
+    if (assignCount) assignCount.textContent = `Selected: ${n}`;
+    const mapSum = $('#map-assign-summary');
+    if (mapSum) mapSum.textContent = `My teams: ${n}`;
+  }
+
+  async function loadPitMapConfig() {
+    try {
+      const res = await fetch('./pit-map.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('Failed to load pit-map.json');
+      const data = await res.json();
+      if (!data || !Array.isArray(data.halls)) {
+        throw new Error('Invalid pit-map.json shape (need halls[])');
+      }
+      pitMapConfig = data;
+    } catch (e) {
+      console.warn('Pit map config load failed:', e);
+      pitMapConfig = { eventId: '', halls: [] };
+    }
+  }
+
+  function teamByNumber(num) {
+    return allTeams.find((t) => t.teamNumber === Number(num));
+  }
+
+  function teamChipClass(teamNumber) {
+    const mine = isAssignedTeam(teamNumber);
+    const team = teamByNumber(teamNumber);
+    const done = !!(team && team.completed);
+    if (mine && done) return 'mine-done';
+    if (mine && !done) return 'mine-open';
+    if (!mine && done) return 'other-done';
+    return 'other-open';
+  }
+
+  function renderPitStall(pit) {
+    const pitId = escapeHtml(pit.pitId || '');
+    const kind = pit.kind || (pit.teamNumber ? 'team' : 'empty');
+
+    if (kind === 'inspection' || kind === 'radio' || kind === 'emt') {
+      return `<div class="pit-stall pit-stall-${escapeHtml(kind)}" title="${pitId}">
+        <span class="pit-stall-id">${pitId}</span>
+        <span class="pit-stall-label">${escapeHtml(pit.label || kind.toUpperCase())}</span>
+      </div>`;
+    }
+
+    if (kind === 'empty' || !pit.teamNumber) {
+      return `<div class="pit-stall pit-stall-empty" title="${pitId}">
+        <span class="pit-stall-id">${pitId}</span>
+        <span class="pit-stall-label">—</span>
+      </div>`;
+    }
+
+    const tn = Number(pit.teamNumber);
+    const cls = teamChipClass(tn);
+    const dimMine = mapHighlightMineOnly && !isAssignedTeam(tn);
+    return `<button type="button" class="pit-stall pit-stall-team ${cls}${dimMine ? ' dimmed' : ''}" data-team="${tn}" title="${pitId}">
+      <span class="pit-stall-id">${pitId}</span>
+      <span class="pit-stall-teamnum">${escapeHtml(tn)}</span>
+    </button>`;
+  }
+
+  function renderPitColumn(col) {
+    if (col.kind === 'aisle') {
+      return '<div class="pit-aisle" aria-hidden="true"></div>';
+    }
+    const pits = Array.isArray(col.pits) ? col.pits : [];
+    const hasMine = pits.some((p) => p.teamNumber && isAssignedTeam(p.teamNumber));
+    const dimCol = mapHighlightMineOnly && pits.some((p) => p.teamNumber) && !hasMine;
+    return `<div class="pit-column${dimCol ? ' dimmed' : ''}${hasMine ? ' has-mine' : ''}" data-col="${escapeHtml(col.id || '')}">
+      <div class="pit-column-header">${escapeHtml(col.id || '')}</div>
+      <div class="pit-column-stack">${pits.map(renderPitStall).join('')}</div>
+    </div>`;
+  }
+
+  function renderPitDivision(div) {
+    const color = div.color || '#888';
+    const columns = Array.isArray(div.columns) ? div.columns : [];
+    return `<section class="pit-division" data-division="${escapeHtml(div.id || '')}">
+      <header class="pit-division-header" style="background:${escapeHtml(color)}">${escapeHtml(div.label || div.id || '')}</header>
+      <div class="pit-division-columns">${columns.map(renderPitColumn).join('')}</div>
+    </section>`;
+  }
+
+  function renderPitHall(hall) {
+    const divisions = Array.isArray(hall.divisions) ? hall.divisions : [];
+    return `<section class="pit-hall">
+      <h2 class="pit-hall-label">${escapeHtml(hall.label || hall.id || '')}</h2>
+      <div class="pit-hall-divisions">${divisions.map(renderPitDivision).join('')}</div>
+    </section>`;
+  }
+
+  function renderPitMap() {
+    const grid = $('#pit-map-grid');
+    if (!grid) return;
+    if (!pitMapConfig) {
+      grid.innerHTML = '<div class="empty-state">Pit map not loaded.</div>';
+      return;
+    }
+    grid.removeAttribute('style');
+    const halls = pitMapConfig.halls || [];
+    if (!halls.length) {
+      grid.innerHTML = '<div class="empty-state">No halls in pit-map.json</div>';
+      return;
+    }
+    grid.innerHTML = `<div class="pit-map-floor">${halls.map(renderPitHall).join('')}</div>`;
+    updateAssignmentSummaries();
+  }
+
+  function renderAssignTeamList() {
+    const list = $('#assign-team-list');
+    if (!list) return;
+    const q = (assignSearch || '').toLowerCase();
+    const teams = allTeams
+      .slice()
+      .sort((a, b) => a.teamNumber - b.teamNumber)
+      .filter((t) => {
+        if (!q) return true;
+        return (
+          String(t.teamNumber).includes(q) ||
+          (t.teamName || '').toLowerCase().includes(q)
+        );
+      });
+    if (!teams.length) {
+      list.innerHTML = '<div class="empty-state" style="padding:12px">No teams match.</div>';
+      updateAssignmentSummaries();
+      return;
+    }
+    list.innerHTML = teams
+      .map((t) => {
+        const selected = isAssignedTeam(t.teamNumber);
+        return `<button type="button" class="assign-team-row${selected ? ' selected' : ''}" data-team="${t.teamNumber}">
+          <span class="assign-num">${t.teamNumber}</span>
+          <span class="assign-name">${escapeHtml(t.teamName || 'Unknown')}</span>
+          <span class="assign-check">${selected ? 'Assigned' : 'Tap to assign'}</span>
+        </button>`;
+      })
+      .join('');
+    updateAssignmentSummaries();
+  }
 
   function normalizeCurrentDivision() {
     const raw = localStorage.getItem('division') || 'Hopper';
@@ -319,9 +747,15 @@
     };
   }
 
-  function setPrescoutForTeam(teamNumber, data) {
+  function setPrescoutForTeam(teamNumber, data, options = {}) {
     prescoutData[teamNumber] = data;
     savePrescoutData();
+    if (!options.skipOutbox && syncEnqueueEnabled && window.PitScoutSync) {
+      const payload = { teamNumber: Number(teamNumber), ...data };
+      window.PitScoutSync.enqueue('prescout', teamNumber, payload, {
+        baseRevision: Number(data.syncRevision || 0),
+      }).catch((e) => console.warn('Outbox enqueue (prescout) failed:', e));
+    }
   }
 
   function savePrescoutFromForm() {
@@ -482,6 +916,7 @@
     if (!matchesDivision(team)) return false;
     const status = getStatusInfo(team);
     switch (currentFilter) {
+      case 'mine': return isAssignedTeam(team.teamNumber);
       case 'unscouted': return status.label === 'Unscouted';
       case 'completed': return team.completed;
       case 'recheck': return team.needsRecheck;
@@ -524,16 +959,16 @@
     const status = getStatusInfo(team);
     const indicators = getIndicators(team);
     const divTag = (currentDivision === 'All' && team.division)
-      ? `<span class="indicator" style="background:var(--surface2);color:var(--text-dim)">${team.division}</span>` : '';
-    const indHTML = divTag + indicators.map(i => `<span class="indicator ${i.cls}">${i.text}</span>`).join('');
+      ? `<span class="indicator" style="background:var(--surface2);color:var(--text-dim)">${escapeHtml(team.division)}</span>` : '';
+    const indHTML = divTag + indicators.map(i => `<span class="indicator ${escapeHtml(i.cls)}">${escapeHtml(i.text)}</span>`).join('');
     return `
       <div class="team-row" data-team="${team.teamNumber}">
         <div class="team-row-num">${team.teamNumber}</div>
         <div class="team-row-info">
-          <div class="team-row-name">${team.teamName || 'Unknown'}</div>
-          <div class="team-row-indicators">${indHTML}</div>
+          <div class="team-row-name">${escapeHtml(team.teamName || 'Unknown')}</div>
+          <div class="team-row-indicators">${indHTML}${isAssignedTeam(team.teamNumber) ? '<span class="indicator ind-mine">MINE</span>' : ''}</div>
         </div>
-        <span class="status-chip ${status.cls}">${status.label}</span>
+        <span class="status-chip ${escapeHtml(status.cls)}">${escapeHtml(status.label)}</span>
       </div>`;
   }
 
@@ -560,8 +995,11 @@
   async function refreshData() {
     allTeams = await dbGetAll();
     updateStats();
+    updateAssignmentSummaries();
     renderTeamList('dashboard-team-list');
     renderTeamList('teamlist-container');
+    renderAssignTeamList();
+    renderPitMap();
   }
 
   function updateStats() {
@@ -660,7 +1098,7 @@
     matchPerf?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
     matchDriver?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
 
-    showAutosave('Saved');
+    showAutosave('Saved on this device');
     switchView('form');
   }
 
@@ -718,13 +1156,13 @@
     existing.updatedAt = formData.updatedAt;
 
     await dbPut(existing);
-    showAutosave('Saved');
+    showAutosave('Saved on this device');
   }
 
   function showAutosave(text) {
     const el = $('#autosave-indicator');
     el.textContent = text;
-    el.classList.toggle('saving', text !== 'Saved');
+    el.classList.toggle('saving', text !== 'Saved on this device');
   }
 
   function scheduleAutosave() {
@@ -771,7 +1209,7 @@
     $('#photo-preview').style.display = '';
     $('#photo-placeholder').style.display = 'none';
     $('#photo-remove-btn').style.display = '';
-    showAutosave('Saved');
+    showAutosave('Saved on this device');
     showToast('Photo saved', 'success');
   }
 
@@ -804,18 +1242,21 @@
         if (n.source === 'qual_session' && n.qualMatchId) {
           const pts =
             n.scoreRed != null && n.scoreBlue != null
-              ? `<span class="match-note-points">${n.scoreRed}–${n.scoreBlue}</span>`
+              ? `<span class="match-note-points">${escapeHtml(n.scoreRed)}–${escapeHtml(n.scoreBlue)}</span>`
               : '';
           const al = n.alliance === 'red' ? 'Red' : 'Blue';
-          const ra = (n.redAlliance || []).join(', ');
-          const ba = (n.blueAlliance || []).join(', ');
+          const ra = escapeHtml((n.redAlliance || []).join(', '));
+          const ba = escapeHtml((n.blueAlliance || []).join(', '));
+          const timeLabel = n.timestamp
+            ? escapeHtml(new Date(n.timestamp).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }))
+            : '';
           return `
         <div class="match-note-card match-note-qual" data-idx="${realIdx}">
           <div class="match-note-header">
-            <strong>${n.matchNumber || 'Match'}</strong>
+            <strong>${escapeHtml(n.matchNumber || 'Match')}</strong>
             ${pts}
             <span class="match-note-tag qual-alliance-tag">${al}</span>
-            <span class="match-note-time">${n.timestamp ? new Date(n.timestamp).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : ''}</span>
+            <span class="match-note-time">${timeLabel}</span>
             <button class="match-note-delete" data-idx="${realIdx}" aria-label="Delete">&times;</button>
           </div>
           <div class="qual-field-match-meta">R: ${ra} · B: ${ba}</div>
@@ -824,31 +1265,40 @@
         }
         // Handle both old single role and new multi-role format
         const roles = n.observedRoles || (n.observedRole ? [n.observedRole] : []);
-        const rolesTags = roles.map(r => `<div class="match-note-tag">${r.replace(/_/g, ' ')}</div>`).join('');
+        const rolesTags = roles.map(r => `<div class="match-note-tag">${escapeHtml(String(r).replace(/_/g, ' '))}</div>`).join('');
+        const perfCls = /^[a-z0-9_-]+$/i.test(String(n.performance || '')) ? n.performance : '';
+        const driverCls = /^[a-z0-9_-]+$/i.test(String(n.driverSkill || '')) ? n.driverSkill : '';
+        const timeLabel = n.timestamp
+          ? escapeHtml(new Date(n.timestamp).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }))
+          : '';
         return `
         <div class="match-note-card" data-idx="${realIdx}">
           <div class="match-note-header">
-            <strong>${n.matchNumber || 'No match #'}</strong>
-            ${n.alliancePoints ? `<span class="match-note-points">${n.alliancePoints} pts</span>` : ''}
-            <span class="match-note-time">${n.timestamp ? new Date(n.timestamp).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : ''}</span>
+            <strong>${escapeHtml(n.matchNumber || 'No match #')}</strong>
+            ${n.alliancePoints ? `<span class="match-note-points">${escapeHtml(n.alliancePoints)} pts</span>` : ''}
+            <span class="match-note-time">${timeLabel}</span>
             <button class="match-note-delete" data-idx="${realIdx}" aria-label="Delete">&times;</button>
           </div>
           ${rolesTags}
-          ${n.performance ? `<div class="match-note-tag perf-${n.performance}">${n.performance}</div>` : ''}
-          ${n.driverSkill ? `<div class="match-note-tag driver-${n.driverSkill}">Driver: ${n.driverSkill}</div>` : ''}
+          ${n.performance ? `<div class="match-note-tag${perfCls ? ` perf-${escapeHtml(perfCls)}` : ''}">${escapeHtml(n.performance)}</div>` : ''}
+          ${n.driverSkill ? `<div class="match-note-tag${driverCls ? ` driver-${escapeHtml(driverCls)}` : ''}">Driver: ${escapeHtml(n.driverSkill)}</div>` : ''}
           ${n.notes ? `<div class="match-note-body">${escapeNoteHtml(n.notes)}</div>` : ''}
         </div>`;
       })
       .join('');
   }
 
-  function escapeNoteHtml(s) {
+  function escapeHtml(s) {
     return String(s)
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
-      .replace(/\n/g, '<br>');
+      .replace(/'/g, '&#39;');
+  }
+
+  function escapeNoteHtml(s) {
+    return escapeHtml(s).replace(/\n/g, '<br>');
   }
 
   async function addMatchNote() {
@@ -895,7 +1345,7 @@
     driver?.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
 
     renderMatchNotesList(team);
-    showAutosave('Saved');
+    showAutosave('Saved on this device');
     showToast('Match note added', 'success');
   }
 
@@ -908,14 +1358,14 @@
       await deleteQualMatchSession(removed.qualMatchId);
       const t2 = await dbGet(currentTeamNumber);
       renderMatchNotesList(t2 || team);
-      showAutosave('Saved');
+      showAutosave('Saved on this device');
       return;
     }
     team.matchNotes.splice(idx, 1);
     team.updatedAt = new Date().toISOString();
     await dbPut(team);
     renderMatchNotesList(team);
-    showAutosave('Saved');
+    showAutosave('Saved on this device');
   }
 
   // ───── Qual match (full field entry → fan-out to team matchNotes) ─────
@@ -1081,13 +1531,15 @@
     el.innerHTML = rows
       .map((r) => {
         const score =
-          r.scoreRed != null && r.scoreBlue != null ? ` · ${r.scoreRed}–${r.scoreBlue}` : '';
+          r.scoreRed != null && r.scoreBlue != null
+            ? ` · ${escapeHtml(r.scoreRed)}–${escapeHtml(r.scoreBlue)}`
+            : '';
         return `<div class="qual-recent-card">
           <div class="qual-recent-main">
-            <strong>${r.matchLabel || r.matchId}</strong>${score}
-            <div class="qual-recent-meta">R: ${(r.red || []).join(', ')} · B: ${(r.blue || []).join(', ')}</div>
+            <strong>${escapeHtml(r.matchLabel || r.matchId)}</strong>${score}
+            <div class="qual-recent-meta">R: ${escapeHtml((r.red || []).join(', '))} · B: ${escapeHtml((r.blue || []).join(', '))}</div>
           </div>
-          <button type="button" class="btn btn-small qual-recent-del" data-mid="${r.matchId}">Delete</button>
+          <button type="button" class="btn btn-small qual-recent-del" data-mid="${escapeHtml(r.matchId)}">Delete</button>
         </div>`;
       })
       .join('');
@@ -1174,41 +1626,191 @@
     showToast('CSV exported', 'success');
   }
 
+  /** Prefer newer ISO timestamps; equal/missing remote never beats a local record. */
+  function isRemoteNewer(remoteTs, localTs) {
+    if (!remoteTs) return false;
+    if (!localTs) return true;
+    return String(remoteTs) > String(localTs);
+  }
+
+  function stripTeamPhotos(rec) {
+    if (!rec || typeof rec !== 'object') return rec;
+    const copy = { ...rec };
+    copy.photoDataUrl = '';
+    return copy;
+  }
+
   /**
-   * Merge v2 backup: team rows when backup newer (same rule as manual import).
-   * Qual: only if qualMatches is a non-empty array — replaces qual store and rebuilds fan-out.
+   * Validate a pit backup / import payload before any IndexedDB writes.
+   * Returns { ok, errors, payload } — payload is normalized when ok.
+   */
+  function validatePitBackupPayload(data) {
+    const errors = [];
+    if (data == null) {
+      errors.push('Backup is empty');
+      return { ok: false, errors, payload: null };
+    }
+    let teams;
+    let qualMatches;
+    if (Array.isArray(data)) {
+      teams = data;
+      qualMatches = undefined;
+    } else if (typeof data === 'object' && Array.isArray(data.teams)) {
+      teams = data.teams;
+      qualMatches = data.qualMatches;
+      if (data.format != null && data.format !== 'frcPitScout-v2' && data.format !== 'frcPitScout-v1') {
+        errors.push(`Unsupported format: ${data.format}`);
+      }
+    } else {
+      errors.push('Expected team array or { teams, qualMatches } object');
+      return { ok: false, errors, payload: null };
+    }
+
+    const normalizedTeams = [];
+    for (let i = 0; i < teams.length; i++) {
+      const rec = teams[i];
+      if (!rec || typeof rec !== 'object') {
+        errors.push(`teams[${i}]: not an object`);
+        continue;
+      }
+      const num = Number(rec.teamNumber);
+      if (!Number.isInteger(num) || num < 1 || num > 99999) {
+        errors.push(`teams[${i}]: invalid teamNumber`);
+        continue;
+      }
+      if (rec.teamName != null && typeof rec.teamName !== 'string') {
+        errors.push(`teams[${i}]: teamName must be a string`);
+        continue;
+      }
+      if (rec.matchNotes != null && !Array.isArray(rec.matchNotes)) {
+        errors.push(`teams[${i}]: matchNotes must be an array`);
+        continue;
+      }
+      if (rec.photoDataUrl != null && typeof rec.photoDataUrl !== 'string') {
+        errors.push(`teams[${i}]: photoDataUrl must be a string`);
+        continue;
+      }
+      if (typeof rec.photoDataUrl === 'string' && rec.photoDataUrl.length > 6_000_000) {
+        errors.push(`teams[${i}]: photoDataUrl exceeds size limit`);
+        continue;
+      }
+      normalizedTeams.push({ ...rec, teamNumber: num });
+    }
+
+    let normalizedQual = undefined;
+    if (qualMatches !== undefined && qualMatches !== null) {
+      if (!Array.isArray(qualMatches)) {
+        errors.push('qualMatches must be an array when present');
+      } else {
+        normalizedQual = [];
+        for (let i = 0; i < qualMatches.length; i++) {
+          const q = qualMatches[i];
+          if (!q || typeof q !== 'object') {
+            errors.push(`qualMatches[${i}]: not an object`);
+            continue;
+          }
+          const matchId = normalizeQualMatchId(q.matchId || q.matchLabel || '');
+          if (!matchId) {
+            errors.push(`qualMatches[${i}]: missing matchId`);
+            continue;
+          }
+          if (q.red != null && !Array.isArray(q.red)) {
+            errors.push(`qualMatches[${i}]: red must be an array`);
+            continue;
+          }
+          if (q.blue != null && !Array.isArray(q.blue)) {
+            errors.push(`qualMatches[${i}]: blue must be an array`);
+            continue;
+          }
+          normalizedQual.push({ ...q, matchId });
+        }
+      }
+    }
+
+    if (errors.length) return { ok: false, errors, payload: null };
+    return {
+      ok: true,
+      errors: [],
+      payload: { teams: normalizedTeams, qualMatches: normalizedQual },
+    };
+  }
+
+  /**
+   * Merge v2 backup without clearing local stores.
+   * Teams: keep local when it has updatedAt and remote is not newer.
+   * Qual: upsert by matchId when remote is newer or local is missing; never wipe the store.
    * Empty/missing qualMatches leaves local qual matches unchanged.
    */
-  async function applyPitBackupPayload(data) {
+  async function applyPitBackupPayload(data, options = {}) {
+    const { stripPhotos = false } = options;
     if (!data || !Array.isArray(data.teams)) {
-      return { teamsUpdated: 0, qualSynced: false, qualCount: 0 };
+      return { teamsUpdated: 0, qualUpserted: 0, qualSkipped: 0, qualSynced: false, qualCount: 0 };
     }
     let teamsUpdated = 0;
-    for (const rec of data.teams) {
-      if (!rec.teamNumber) continue;
+    for (const raw of data.teams) {
+      if (!raw.teamNumber) continue;
+      const rec = stripPhotos ? stripTeamPhotos(raw) : raw;
       try {
         const existing = await dbGet(rec.teamNumber);
-        if (!existing || !existing.updatedAt || (rec.updatedAt && rec.updatedAt > existing.updatedAt)) {
-          await dbPut(rec);
+        if (!existing || !existing.updatedAt || isRemoteNewer(rec.updatedAt, existing.updatedAt)) {
+          // Preserve a local photo when the incoming record intentionally has none (auto baseline).
+          if (
+            stripPhotos &&
+            existing?.photoDataUrl &&
+            (!rec.photoDataUrl || rec.photoDataUrl === '')
+          ) {
+            rec.photoDataUrl = existing.photoDataUrl;
+          }
+          await dbPut(rec, { skipOutbox: true });
           teamsUpdated++;
         }
       } catch (err) {
         console.warn('Skipping team', rec.teamNumber, err);
       }
     }
+
     const qualList = data.qualMatches;
-    let qualSynced = false;
-    let qualCount = 0;
+    let qualUpserted = 0;
+    let qualSkipped = 0;
     if (qualList && Array.isArray(qualList) && qualList.length > 0) {
-      await qualClearAll();
       for (const q of qualList) {
-        if (q && q.matchId) await qualPut(q);
+        if (!q || !q.matchId) {
+          qualSkipped++;
+          continue;
+        }
+        const matchId = normalizeQualMatchId(q.matchId);
+        if (!matchId) {
+          qualSkipped++;
+          continue;
+        }
+        const incoming = { ...q, matchId };
+        try {
+          const existing = await qualGet(matchId);
+          if (!existing || isRemoteNewer(incoming.updatedAt, existing.updatedAt)) {
+            await qualPut(incoming, { skipOutbox: true });
+            qualUpserted++;
+          } else {
+            qualSkipped++;
+          }
+        } catch (err) {
+          console.warn('Skipping qual match', matchId, err);
+          qualSkipped++;
+        }
       }
-      await rebuildQualFanoutFromStore();
-      qualSynced = true;
-      qualCount = qualList.length;
+      if (qualUpserted > 0) {
+        await rebuildQualFanoutFromStore();
+      }
+      console.info(
+        `[pit-merge] qual upserted=${qualUpserted} skipped=${qualSkipped} (local unmatched preserved)`
+      );
     }
-    return { teamsUpdated, qualSynced, qualCount };
+    return {
+      teamsUpdated,
+      qualUpserted,
+      qualSkipped,
+      qualSynced: qualUpserted > 0,
+      qualCount: qualUpserted,
+    };
   }
 
   async function mergeOnlinePitBaseline() {
@@ -1216,8 +1818,14 @@
       const res = await fetch('./pit-scout-baseline.json', { cache: 'no-store' });
       if (!res.ok) return;
       const data = await res.json();
-      if (!Array.isArray(data.teams) || data.teams.length === 0) return;
-      await applyPitBackupPayload(data);
+      const { ok, errors, payload } = validatePitBackupPayload(data);
+      if (!ok) {
+        console.warn('Online pit baseline failed validation:', errors.slice(0, 5));
+        return;
+      }
+      if (!payload.teams.length) return;
+      // Automatic baseline never carries photos (keeps startup light; preserves local photos).
+      await applyPitBackupPayload(payload, { stripPhotos: true });
     } catch (e) {
       console.warn('Could not merge online pit baseline:', e);
     }
@@ -1242,22 +1850,29 @@
   async function importJSON(file) {
     try {
       const text = await file.text();
-      const data = JSON.parse(text);
-      let payload;
-      if (Array.isArray(data)) {
-        payload = { teams: data, qualMatches: undefined };
-      } else if (data.teams && Array.isArray(data.teams)) {
-        payload = data;
-      } else {
-        throw new Error('Expected team array or { teams, qualMatches } object');
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error('File is not valid JSON');
       }
-      const { teamsUpdated, qualSynced, qualCount } = await applyPitBackupPayload(payload);
+      const { ok, errors, payload } = validatePitBackupPayload(data);
+      if (!ok) {
+        const preview = errors.slice(0, 3).join('; ');
+        throw new Error(
+          `Validation failed (${errors.length} issue${errors.length === 1 ? '' : 's'}): ${preview}`
+        );
+      }
+      const { teamsUpdated, qualUpserted, qualSkipped } = await applyPitBackupPayload(payload);
       await refreshData();
       await renderQualRecentList();
-      showToast(
-        `Imported ${teamsUpdated} team row(s)` + (qualSynced ? ` + ${qualCount} qual match(es)` : ''),
-        'success'
-      );
+      const qualMsg =
+        qualUpserted > 0
+          ? ` + ${qualUpserted} qual match(es)` + (qualSkipped ? ` (${qualSkipped} kept local)` : '')
+          : qualSkipped
+            ? ` (kept ${qualSkipped} newer local qual match(es))`
+            : '';
+      showToast(`Imported ${teamsUpdated} team row(s)${qualMsg}`, 'success');
     } catch (err) {
       showToast('Import failed: ' + err.message, 'error');
     }
@@ -1302,6 +1917,8 @@
         if (view === 'form' && !currentTeamNumber) return;
         switchView(view);
         if (view === 'qual') renderQualRecentList();
+        if (view === 'map') renderPitMap();
+        if (view === 'export') renderAssignTeamList();
         if (view !== 'form' && view !== 'qual') refreshData();
       });
     });
@@ -1329,11 +1946,39 @@
 
     // Team row clicks (delegated)
     document.addEventListener('click', (e) => {
+      const mapTeam = e.target.closest('.pit-stall-team, .pit-map-team');
+      if (mapTeam) {
+        const num = parseInt(mapTeam.dataset.team, 10);
+        if (num) openTeamForm(num);
+        return;
+      }
+      const assignRow = e.target.closest('.assign-team-row');
+      if (assignRow) {
+        const num = parseInt(assignRow.dataset.team, 10);
+        if (num) toggleAssignedTeam(num);
+        return;
+      }
       const row = e.target.closest('.team-row');
       if (row) {
         const num = parseInt(row.dataset.team, 10);
         if (num) openTeamForm(num);
       }
+    });
+
+    $('#map-highlight-mine')?.addEventListener('change', (e) => {
+      mapHighlightMineOnly = !!e.target.checked;
+      renderPitMap();
+    });
+    $('#assign-search')?.addEventListener('input', (e) => {
+      assignSearch = e.target.value.trim();
+      renderAssignTeamList();
+    });
+    $('#btn-assign-clear')?.addEventListener('click', async () => {
+      const yes = await confirmDialog(
+        'Clear assignments',
+        'Remove all teams from this phone’s assignment list? Pit data is not deleted.'
+      );
+      if (yes) await clearAssignedTeams();
     });
 
     // Form back
@@ -1477,11 +2122,116 @@
       }
     });
 
+    // Sync
+    $('#btn-sync-join')?.addEventListener('click', () => handleSyncJoin());
+    $('#btn-sync-now')?.addEventListener('click', async () => {
+      try {
+        await window.PitScoutSync.runSync();
+        showToast('Sync finished', 'success');
+      } catch (e) {
+        showToast('Sync failed: ' + e.message, 'error');
+      }
+    });
+    $('#btn-sync-snapshot')?.addEventListener('click', async () => {
+      try {
+        await window.PitScoutSync.pullSnapshot();
+        showToast('Snapshot applied', 'success');
+      } catch (e) {
+        showToast('Snapshot failed: ' + e.message, 'error');
+      }
+    });
+    $('#sync-status-chip')?.addEventListener('click', () => {
+      const panel = $('#sync-panel');
+      if (panel) panel.hidden = !panel.hidden;
+    });
+
     // Load last export timestamp
     const lastExport = localStorage.getItem('lastExport');
     if (lastExport) {
       $('#last-export-time').textContent = `Last export: ${lastExport}`;
     }
+  }
+
+  // ───── Sync status UI ─────
+  function updateSyncStatusUI(s) {
+    const chip = $('#sync-status-chip');
+    const detail = $('#sync-status-detail');
+    if (!chip || !window.PitScoutSync) return;
+    const label = window.PitScoutSync.statusLabel();
+    chip.textContent = label;
+    chip.dataset.status = s.status;
+    chip.className = 'sync-status-chip status-' + s.status;
+    if (detail) {
+      const cfg = window.PIT_SCOUT_CONFIG || {};
+      detail.innerHTML = '';
+      const lines = [
+        `Event: ${s.eventId || cfg.DEFAULT_EVENT_ID || '—'}`,
+        `API: ${cfg.SYNC_API_URL || '—'}`,
+        `Pending: ${s.pending}`,
+        s.lastSyncAt ? `Last sync: ${new Date(s.lastSyncAt).toLocaleString()}` : 'Last sync: never',
+        s.lastError ? `Error: ${s.lastError}` : '',
+      ].filter(Boolean);
+      lines.forEach((line) => {
+        const p = document.createElement('p');
+        p.textContent = line;
+        detail.appendChild(p);
+      });
+    }
+  }
+
+  async function handleSyncJoin() {
+    const code = ($('#sync-invite-input')?.value || '').trim();
+    const name = getScoutName() || ($('#global-scout-input')?.value || '').trim() || 'Scout';
+    if (!code) {
+      showToast('Enter invite code', 'error');
+      return;
+    }
+    try {
+      setScoutName(name);
+      showToast('Joining event…', '');
+      await window.PitScoutSync.join({ inviteCode: code, displayName: name });
+      showToast('Joined — syncing', 'success');
+      updateSyncStatusUI(window.PitScoutSync.getState());
+    } catch (e) {
+      showToast('Join failed: ' + e.message, 'error');
+    }
+  }
+
+  async function initSyncClient() {
+    if (!window.PitScoutSync) return;
+    await window.PitScoutSync.init({
+      outboxPut,
+      outboxDelete,
+      outboxList,
+      outboxCount,
+      syncMetaGet,
+      syncMetaSet,
+      applySnapshot: applySyncSnapshot,
+      applyChanges: async (changes) => {
+        await applySyncChanges(changes);
+        await refreshData();
+        await renderQualRecentList();
+      },
+      setLocalRevision,
+      applyConflictServerRecord: async (result) => {
+        const rec = result.serverRecord;
+        if (!rec) return;
+        // entity inferred from entityId in operation — use payload shape
+        if (rec.payload?.teamNumber && rec.payload?.robot !== undefined) {
+          await applyRemoteTeamPayload(rec.payload, rec.revision);
+        } else if (rec.payload?.matchId) {
+          await applyRemoteQualPayload(rec.payload, rec.revision);
+        } else if (rec.payload?.teamNumber) {
+          applyPrescoutRemote(rec.payload, rec.revision);
+        }
+      },
+      onSyncComplete: async () => {
+        await refreshData();
+        await renderQualRecentList();
+      },
+    });
+    window.PitScoutSync.subscribe(updateSyncStatusUI);
+    updateSyncStatusUI(window.PitScoutSync.getState());
   }
 
   // ───── Service Worker Registration ─────
@@ -1495,6 +2245,8 @@
   async function init() {
     normalizeCurrentDivision();
     await openDB();
+    await loadAssignedTeams();
+    await loadPitMapConfig();
     await loadTeamsCSV();
     await seedTeams(allCsvTeams);
 
@@ -1504,6 +2256,7 @@
     await refreshData();
     wireEvents();
     registerSW();
+    await initSyncClient();
 
     mergeOnlinePitBaseline()
       .then(() => refreshData())
@@ -1517,6 +2270,7 @@
     $('#division-select').value = currentDivision;
 
     await renderQualRecentList();
+    updateAssignmentSummaries();
   }
 
   if (document.readyState === 'loading') {

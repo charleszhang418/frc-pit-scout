@@ -1,0 +1,105 @@
+{
+  "eventId": "2026-china-postseason",
+  "note": "Houston-style pit layout: halls → divisions → columns of stalls. Edit this file and reload. Each pit has pitId (e.g. A08) and teamNumber (or kind: empty|inspection|radio|emt).",
+  "halls": [
+    {
+      "id": "hall-a",
+      "label": "Hall A",
+      "divisions": [
+        {
+          "id": "alpha",
+          "label": "Alpha",
+          "color": "#c45c6a",
+          "columns": [
+            {
+              "id": "A",
+              "pits": [
+                { "pitId": "A08", "teamNumber": 8214 },
+                { "pitId": "A07", "teamNumber": 10131 },
+                { "pitId": "A06", "teamNumber": 11118 },
+                { "pitId": "A05", "kind": "empty" },
+                { "pitId": "A04", "kind": "empty" },
+                { "pitId": "A03", "kind": "empty" },
+                { "pitId": "A02", "kind": "inspection", "label": "INSPECTION" },
+                { "pitId": "A01", "kind": "radio", "label": "Radio" }
+              ]
+            },
+            {
+              "id": "B",
+              "pits": [
+                { "pitId": "B08", "kind": "empty" },
+                { "pitId": "B07", "kind": "empty" },
+                { "pitId": "B06", "kind": "empty" },
+                { "pitId": "B05", "kind": "empty" },
+                { "pitId": "B04", "kind": "empty" },
+                { "pitId": "B03", "kind": "empty" },
+                { "pitId": "B02", "kind": "empty" },
+                { "pitId": "B01", "kind": "empty" }
+              ]
+            },
+            { "kind": "aisle" },
+            {
+              "id": "C",
+              "pits": [
+                { "pitId": "C08", "kind": "empty" },
+                { "pitId": "C07", "kind": "empty" },
+                { "pitId": "C06", "kind": "empty" },
+                { "pitId": "C05", "kind": "empty" },
+                { "pitId": "C04", "kind": "empty" },
+                { "pitId": "C03", "kind": "empty" },
+                { "pitId": "C02", "kind": "empty" },
+                { "pitId": "C01", "kind": "empty" }
+              ]
+            },
+            {
+              "id": "D",
+              "pits": [
+                { "pitId": "D08", "kind": "empty" },
+                { "pitId": "D07", "kind": "empty" },
+                { "pitId": "D06", "kind": "empty" },
+                { "pitId": "D05", "kind": "empty" },
+                { "pitId": "D04", "kind": "empty" },
+                { "pitId": "D03", "kind": "empty" },
+                { "pitId": "D02", "kind": "empty" },
+                { "pitId": "D01", "kind": "emt", "label": "EMT" }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bravo",
+          "label": "Bravo",
+          "color": "#5b8fd9",
+          "columns": [
+            {
+              "id": "E",
+              "pits": [
+                { "pitId": "E08", "kind": "empty" },
+                { "pitId": "E07", "kind": "empty" },
+                { "pitId": "E06", "kind": "empty" },
+                { "pitId": "E05", "kind": "empty" },
+                { "pitId": "E04", "kind": "empty" },
+                { "pitId": "E03", "kind": "empty" },
+                { "pitId": "E02", "kind": "empty" },
+                { "pitId": "E01", "kind": "empty" }
+              ]
+            },
+            {
+              "id": "F",
+              "pits": [
+                { "pitId": "F08", "kind": "empty" },
+                { "pitId": "F07", "kind": "empty" },
+                { "pitId": "F06", "kind": "empty" },
+                { "pitId": "F05", "kind": "empty" },
+                { "pitId": "F04", "kind": "empty" },
+                { "pitId": "F03", "kind": "empty" },
+                { "pitId": "F02", "kind": "empty" },
+                { "pitId": "F01", "kind": "empty" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

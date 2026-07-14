@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#1a1a2e">
-  <title>FRC Pit Scout — Hopper 2026</title>
+  <title>FRC Pit Scout</title>
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -22,6 +22,10 @@
       <button class="nav-btn" data-view="teamlist">
         <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zm0-10v2h14V7H7z"/></svg>
         <span>Teams</span>
+      </button>
+      <button class="nav-btn" data-view="map">
+        <svg viewBox="0 0 24 24" width="22" height="22"><path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>
+        <span>Map</span>
       </button>
       <button class="nav-btn" data-view="qual">
         <svg viewBox="0 0 24 24" width="22" height="22"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
@@ -41,7 +45,8 @@
     <section id="view-dashboard" class="view active">
       <header class="view-header">
         <h1>Pit Scout</h1>
-        <p class="subtitle">FRC Championship Houston 2026</p>
+        <p class="subtitle">Offline-first · multi-device sync</p>
+        <button type="button" id="sync-status-chip" class="sync-status-chip status-local_only" title="Sync status">Local only</button>
       </header>
 
       <div class="global-bar">
@@ -93,11 +98,13 @@
 
       <div class="filter-row">
         <button class="filter-chip active" data-filter="all">All</button>
+        <button class="filter-chip" data-filter="mine">My teams</button>
         <button class="filter-chip" data-filter="unscouted">Unscouted</button>
         <button class="filter-chip" data-filter="completed">Completed</button>
         <button class="filter-chip" data-filter="recheck">Recheck</button>
         <button class="filter-chip" data-filter="verified">Verified</button>
       </div>
+      <p id="my-teams-count" class="presct-note" style="margin:4px 0 8px">My teams: 0 — set in Data</p>
 
       <div id="dashboard-team-list" class="team-list"></div>
     </section>
@@ -117,6 +124,30 @@
         <input type="text" id="teamlist-search" placeholder="Search team # or name…" autocomplete="off">
       </div>
       <div id="teamlist-container" class="team-list"></div>
+    </section>
+
+    <!-- ===== PIT MAP VIEW ===== -->
+    <section id="view-map" class="view">
+      <header class="view-header">
+        <h1>Pit Map</h1>
+        <p class="subtitle">Houston-style pit columns · edit pit-map.json</p>
+      </header>
+      <div class="map-toolbar">
+        <label class="map-toggle">
+          <input type="checkbox" id="map-highlight-mine">
+          <span>Highlight my pits only</span>
+        </label>
+        <span id="map-assign-summary" class="presct-note">My teams: 0</span>
+      </div>
+      <div id="pit-map-grid" class="pit-map-grid" aria-label="Pit map"></div>
+      <div class="pit-map-legend">
+        <span class="legend-item"><i class="swatch mine-open"></i> Mine · not done</span>
+        <span class="legend-item"><i class="swatch mine-done"></i> Mine · done</span>
+        <span class="legend-item"><i class="swatch other-open"></i> Other · not done</span>
+        <span class="legend-item"><i class="swatch other-done"></i> Other · done</span>
+        <span class="legend-item"><i class="swatch empty"></i> Empty / service</span>
+      </div>
+      <p class="presct-note" style="margin-top:10px">Layout is halls → divisions → columns of stalls (pitId + team). Edit <strong>pit-map.json</strong> and reload.</p>
     </section>
 
     <!-- ===== QUAL MATCH QUICK ENTRY ===== -->
@@ -199,7 +230,7 @@
           <span id="form-team-number" class="form-team-num"></span>
           <span id="form-team-name" class="form-team-name"></span>
         </div>
-        <div id="autosave-indicator" class="autosave-indicator">Saved</div>
+        <div id="autosave-indicator" class="autosave-indicator">Saved on this device</div>
       </header>
 
       <div class="form-tabs" id="form-tabs">
@@ -470,6 +501,26 @@
       </header>
 
       <div class="export-cards">
+        <div class="export-card" id="sync-panel">
+          <h3>Multi-device Sync</h3>
+          <p>Join with the team invite code. Edits save on this device first, then sync when the server is reachable.</p>
+          <label class="global-label" for="sync-invite-input">Invite code</label>
+          <input type="text" id="sync-invite-input" class="global-input" placeholder="e.g. CHINA2026" autocomplete="off" style="width:100%;margin:8px 0 12px">
+          <button id="btn-sync-join" class="btn btn-primary btn-block">Join event</button>
+          <button id="btn-sync-now" class="btn btn-secondary btn-block" style="margin-top:8px">Sync now</button>
+          <button id="btn-sync-snapshot" class="btn btn-secondary btn-block" style="margin-top:8px">Pull full snapshot</button>
+          <div id="sync-status-detail" class="presct-note" style="margin-top:12px"></div>
+        </div>
+
+        <div class="export-card" id="assign-panel">
+          <h3>This phone’s teams</h3>
+          <p>Full roster stays available. Mark the teams <strong>this device</strong> should pit-scout. Assignments stay on this phone (not synced).</p>
+          <p id="assign-count" class="presct-note">Selected: 0</p>
+          <input type="search" id="assign-search" class="global-input" placeholder="Search team # or name…" autocomplete="off" style="width:100%;margin:8px 0">
+          <div id="assign-team-list" class="assign-team-list"></div>
+          <button id="btn-assign-clear" class="btn btn-secondary btn-block" style="margin-top:10px">Clear all assignments</button>
+        </div>
+
         <div class="export-card">
           <h3>Export CSV</h3>
           <p>Flat spreadsheet of all scouted teams (no photos).</p>
@@ -478,14 +529,14 @@
 
         <div class="export-card">
           <h3>Export JSON Backup</h3>
-          <p>Teams, photos, and <strong>Qual</strong> match log (v2 format). Older plain arrays still import as teams-only.</p>
-          <p class="presct-note" style="margin-top:10px">To load pit data without a manual import: commit your export as <strong>pit-scout-baseline.json</strong> next to <strong>index.html</strong>. Each site visit merges it (newer <strong>updatedAt</strong> per team wins; <strong>qualMatches</strong> syncs only if the file includes a non-empty list).</p>
-          <button id="btn-export-json" class="btn btn-primary btn-block">Download JSON</button>
+          <p>Recovery snapshot: teams, photos, and <strong>Qual</strong> match log (v2). Keep exporting even with sync — disaster recovery for lost phones.</p>
+          <p class="presct-note" style="margin-top:10px">Shared baseline: commit an export as <strong>pit-scout-baseline.json</strong>. Startup merges by <strong>updatedAt</strong> (never clears newer local qual matches; automatic merge strips photos).</p>
+          <button id="btn-export-json" class="btn btn-primary btn-block">Download recovery JSON</button>
         </div>
 
         <div class="export-card">
           <h3>Import JSON Backup</h3>
-          <p>Merge from backup. v2 restores qual matches; array-only files import teams only.</p>
+          <p>Validated merge. Invalid files leave the database unchanged. Qual matches upsert by match ID; newer local rows are kept.</p>
           <input type="file" id="import-json-input" accept=".json" style="display:none">
           <button id="btn-import-json" class="btn btn-secondary btn-block">Import JSON</button>
         </div>
@@ -512,6 +563,7 @@
         </div>
 
         <div class="export-meta">
+          <p id="data-status-line" class="presct-note">Status: local device only — export a recovery JSON before clearing browser data or switching phones.</p>
           <p id="last-export-time">No exports yet</p>
         </div>
       </div>
@@ -519,6 +571,8 @@
 
   </div>
 
+  <script src="config.js"></script>
+  <script src="sync-client.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

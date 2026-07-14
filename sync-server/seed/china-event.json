@@ -1,0 +1,15 @@
+{
+  "event": {
+    "id": "2026-china-postseason",
+    "name": "China Post-Season 2026",
+    "year": 2026,
+    "timezone": "Asia/Shanghai",
+    "inviteCode": "CHINA2026"
+  },
+  "teams": [
+    { "teamNumber": 8214, "teamName": "Cyber Unicorn", "division": "A" },
+    { "teamNumber": 10131, "teamName": "Royal Turtles", "division": "A" },
+    { "teamNumber": 11118, "teamName": "The Baybies", "division": "A" }
+  ],
+  "_comment": "Replace teams[] with the full China roster when available. Keep inviteCode private to the team."
+}

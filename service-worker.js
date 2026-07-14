@@ -1,12 +1,15 @@
-const CACHE_NAME = 'pit-scout-v20';
+const CACHE_NAME = 'pit-scout-v25';
 const ASSETS = [
   './',
   './index.html',
   './styles.css',
   './app.js',
+  './config.js',
+  './sync-client.js',
   './teams.csv',
   './manifest.json',
   './prescouting.json',
+  './pit-map.json',
 ];
 
 self.addEventListener('install', (event) => {
@@ -30,8 +33,9 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
   const isPrescoutJson = url.pathname.endsWith('/prescouting.json') || url.pathname.endsWith('prescouting.json');
   const isPitBaselineJson = url.pathname.endsWith('/pit-scout-baseline.json') || url.pathname.endsWith('pit-scout-baseline.json');
+  const isPitMapJson = url.pathname.endsWith('/pit-map.json') || url.pathname.endsWith('pit-map.json');
 
-  if (isPrescoutJson || isPitBaselineJson) {
+  if (isPrescoutJson || isPitBaselineJson || isPitMapJson) {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
