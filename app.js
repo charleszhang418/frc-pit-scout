@@ -7,7 +7,7 @@
   'use strict';
 
   // ───── Team data loaded from teams.csv ─────
-  const DIVISIONS = ['Hopper', 'Archimedes', 'Curie', 'Daly', 'Galileo', 'Johnson', 'Milstein', 'Newton'];
+  const DIVISIONS = ['Block1', 'Block2', 'Block3', 'Block4', 'Block5'];
   let allCsvTeams = []; // { teamNumber, teamName, division }
 
   async function loadTeamsCSV() {
@@ -438,7 +438,7 @@
   // ───── State ─────
   let allTeams = [];
   let currentFilter = 'all';
-  let currentDivision = 'Hopper';
+  let currentDivision = 'All';
   let currentSearch = '';
   let currentTeamNumber = null;
   let autosaveTimer = null;
@@ -636,13 +636,13 @@
   }
 
   function normalizeCurrentDivision() {
-    const raw = localStorage.getItem('division') || 'Hopper';
+    const raw = localStorage.getItem('division') || 'All';
     const allowed = new Set([...DIVISIONS, 'All']);
     if (allowed.has(raw)) {
       currentDivision = raw;
     } else {
-      currentDivision = 'Hopper';
-      localStorage.setItem('division', 'Hopper');
+      currentDivision = 'All';
+      localStorage.setItem('division', 'All');
     }
   }
 
