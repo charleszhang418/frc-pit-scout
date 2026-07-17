@@ -828,15 +828,7 @@
     const q = (assignSearch || '').toLowerCase();
     const teams = allTeams
       .slice()
-      .sort((a, b) => {
-        const aMine = isAssignedTeam(a.teamNumber) ? 0 : 1;
-        const bMine = isAssignedTeam(b.teamNumber) ? 0 : 1;
-        if (aMine !== bMine) return aMine - bMine;
-        const aOther = getOtherDeviceClaim(a.teamNumber) ? 0 : 1;
-        const bOther = getOtherDeviceClaim(b.teamNumber) ? 0 : 1;
-        if (aOther !== bOther) return aOther - bOther;
-        return a.teamNumber - b.teamNumber;
-      })
+      .sort((a, b) => a.teamNumber - b.teamNumber)
       .filter((t) => {
         if (!q) return true;
         return (
