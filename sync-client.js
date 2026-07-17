@@ -69,6 +69,7 @@
     if (entityType === 'qual_match') return `${eventId}:qual:${key}`;
     if (entityType === 'prescout') return `${eventId}:prescout:${key}`;
     if (entityType === 'match_observation') return `${eventId}:matchobs:${key}`;
+    if (entityType === 'device_assignments') return `${eventId}:device_assignments:${key}`;
     return `${eventId}:${entityType}:${key}`;
   }
 

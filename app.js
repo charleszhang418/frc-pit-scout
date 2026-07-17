@@ -269,6 +269,8 @@
             touchedQual = true;
           } else if (ch.entity === 'prescout' && ch.payload?.teamNumber) {
             deletePrescoutLocal(ch.payload.teamNumber);
+          } else if (ch.entity === 'device_assignments' && ch.payload?.deviceId) {
+            await applyDeviceAssignmentRemote(ch.payload, ch.revision, { deleted: true });
           }
           continue;
         }
@@ -279,6 +281,8 @@
           touchedQual = true;
         } else if (ch.entity === 'prescout') {
           applyPrescoutRemote(ch.payload, ch.revision);
+        } else if (ch.entity === 'device_assignments') {
+          await applyDeviceAssignmentRemote(ch.payload, ch.revision);
         }
       }
       if (touchedQual) await rebuildQualFanoutFromStore();
@@ -326,12 +330,20 @@
         if (row.deletedAt) continue;
         applyPrescoutRemote(row.payload, row.revision);
       }
+      for (const row of data.deviceAssignments || []) {
+        if (row.deletedAt) continue;
+        await applyDeviceAssignmentRemote(row.payload, row.revision, { fromSnapshot: true });
+      }
       await rebuildQualFanoutFromStore();
     } finally {
       syncEnqueueEnabled = true;
     }
     await refreshData();
     await renderQualRecentList();
+    // After join/snapshot, publish this phone's Map list so others can see it
+    if (assignedTeamNumbers.length) {
+      await enqueueMyAssignments();
+    }
   }
 
   async function setLocalRevision(entityId, revision) {
@@ -358,6 +370,18 @@
         pc.syncRevision = revision;
         setPrescoutForTeam(num, pc, { skipOutbox: true });
       }
+    } else if (kind === 'device_assignments') {
+      const deviceId = key;
+      if (!remoteDeviceAssignments[deviceId]) {
+        remoteDeviceAssignments[deviceId] = {
+          displayName: deviceId === myDeviceIdCache ? getScoutName() || 'Scout' : 'Another scout',
+          teamNumbers: deviceId === myDeviceIdCache ? [...assignedTeamNumbers] : [],
+          syncRevision: revision,
+        };
+      } else {
+        remoteDeviceAssignments[deviceId].syncRevision = revision;
+      }
+      await persistRemoteAssignments();
     }
   }
 
@@ -490,11 +514,14 @@
   let currentSearch = '';
   let currentTeamNumber = null;
   let autosaveTimer = null;
-  let assignedTeamNumbers = []; // device-local "my teams"
+  let assignedTeamNumbers = []; // this phone's "my teams"
+  let remoteDeviceAssignments = {}; // deviceId -> { displayName, teamNumbers, syncRevision }
+  let myDeviceIdCache = '';
   let pitMapConfig = null;
   let mapHighlightMineOnly = false;
   let assignSearch = '';
   const ASSIGNED_TEAMS_KEY = 'assignedTeams';
+  const REMOTE_ASSIGN_KEY = 'remoteDeviceAssignments';
 
   async function loadAssignedTeams() {
     const raw = await syncMetaGet(ASSIGNED_TEAMS_KEY);
@@ -503,17 +530,72 @@
     } else {
       assignedTeamNumbers = [];
     }
+    const remote = await syncMetaGet(REMOTE_ASSIGN_KEY);
+    remoteDeviceAssignments = remote && typeof remote === 'object' && !Array.isArray(remote) ? remote : {};
+    myDeviceIdCache = (await syncMetaGet('deviceId')) || '';
   }
 
-  async function saveAssignedTeams() {
+  async function persistRemoteAssignments() {
+    await syncMetaSet(REMOTE_ASSIGN_KEY, remoteDeviceAssignments);
+  }
+
+  async function enqueueMyAssignments() {
+    if (!window.PitScoutSync || !syncEnqueueEnabled) return;
+    myDeviceIdCache = myDeviceIdCache || (await syncMetaGet('deviceId')) || '';
+    if (!myDeviceIdCache) return;
+    const displayName =
+      getScoutName() ||
+      window.PitScoutSync.getState?.()?.displayName ||
+      (await syncMetaGet('displayName')) ||
+      'Scout';
+    const prev = remoteDeviceAssignments[myDeviceIdCache] || {};
+    const baseRevision = Number(prev.syncRevision || 0);
+    const payload = {
+      deviceId: myDeviceIdCache,
+      displayName,
+      teamNumbers: [...assignedTeamNumbers],
+      syncRevision: baseRevision,
+    };
+    // Keep local mirror of what we are pushing
+    remoteDeviceAssignments[myDeviceIdCache] = {
+      displayName,
+      teamNumbers: [...assignedTeamNumbers],
+      syncRevision: baseRevision,
+    };
+    await persistRemoteAssignments();
+    await window.PitScoutSync.enqueue('device_assignments', myDeviceIdCache, payload, {
+      baseRevision,
+    });
+  }
+
+  async function saveAssignedTeams(options = {}) {
     const unique = [...new Set(assignedTeamNumbers)].sort((a, b) => a - b);
     assignedTeamNumbers = unique;
     await syncMetaSet(ASSIGNED_TEAMS_KEY, unique);
     updateAssignmentSummaries();
+    if (!options.skipOutbox) {
+      await enqueueMyAssignments();
+    }
   }
 
   function isAssignedTeam(teamNumber) {
     return assignedTeamNumbers.includes(Number(teamNumber));
+  }
+
+  function getOtherDeviceClaim(teamNumber) {
+    const num = Number(teamNumber);
+    if (!Number.isInteger(num) || num < 1) return null;
+    for (const [devId, rec] of Object.entries(remoteDeviceAssignments)) {
+      if (!rec || devId === myDeviceIdCache) continue;
+      const nums = (rec.teamNumbers || []).map(Number);
+      if (nums.includes(num)) {
+        return {
+          deviceId: devId,
+          displayName: String(rec.displayName || '').trim() || 'Another scout',
+        };
+      }
+    }
+    return null;
   }
 
   async function toggleAssignedTeam(teamNumber) {
@@ -522,6 +604,15 @@
     if (isAssignedTeam(num)) {
       assignedTeamNumbers = assignedTeamNumbers.filter((n) => n !== num);
     } else {
+      const claim = getOtherDeviceClaim(num);
+      if (claim) {
+        const yes = await confirmDialog(
+          'Assigned to another scout',
+          `#${num} is on ${claim.displayName}'s list. Assign to this phone anyway?`,
+          { confirmLabel: 'Assign anyway', cancelLabel: 'Cancel', danger: false }
+        );
+        if (!yes) return;
+      }
       assignedTeamNumbers.push(num);
     }
     await saveAssignedTeams();
@@ -548,6 +639,57 @@
     if (mapSum) mapSum.textContent = `My teams: ${n}`;
   }
 
+  async function applyDeviceAssignmentRemote(payload, revision, options = {}) {
+    const deviceId = String(payload?.deviceId || '').trim();
+    if (!deviceId) return;
+    myDeviceIdCache = myDeviceIdCache || (await syncMetaGet('deviceId')) || '';
+
+    if (options.deleted) {
+      delete remoteDeviceAssignments[deviceId];
+      await persistRemoteAssignments();
+      renderPitMap();
+      return;
+    }
+
+    const teamNumbers = [
+      ...new Set(
+        (Array.isArray(payload.teamNumbers) ? payload.teamNumbers : [])
+          .map(Number)
+          .filter((n) => Number.isInteger(n) && n > 0)
+      ),
+    ].sort((a, b) => a - b);
+    const displayName = String(payload.displayName || '').trim();
+
+    if (deviceId === myDeviceIdCache) {
+      if (options.fromSnapshot && assignedTeamNumbers.length) {
+        // Keep local list after join; push it next. Still store server revision as base.
+        remoteDeviceAssignments[deviceId] = {
+          displayName: getScoutName() || displayName || 'Scout',
+          teamNumbers: [...assignedTeamNumbers],
+          syncRevision: Number(revision || 0),
+        };
+      } else {
+        assignedTeamNumbers = teamNumbers;
+        await syncMetaSet(ASSIGNED_TEAMS_KEY, teamNumbers);
+        remoteDeviceAssignments[deviceId] = {
+          displayName: displayName || getScoutName() || 'Scout',
+          teamNumbers,
+          syncRevision: Number(revision || 0),
+        };
+        updateAssignmentSummaries();
+        renderAssignTeamList();
+      }
+    } else {
+      remoteDeviceAssignments[deviceId] = {
+        displayName: displayName || 'Another scout',
+        teamNumbers,
+        syncRevision: Number(revision || 0),
+      };
+    }
+    await persistRemoteAssignments();
+    renderPitMap();
+  }
+
   async function loadPitMapConfig() {
     try {
       const res = await fetch('./pit-map.json', { cache: 'no-store' });
@@ -567,7 +709,7 @@
     return allTeams.find((t) => t.teamNumber === Number(num));
   }
 
-  function isClaimedByOtherScout(team) {
+  function isClaimedByOtherScoutName(team) {
     if (!team) return false;
     const scout = String(team.assignedScout || '').trim();
     if (!scout) return false;
@@ -575,16 +717,27 @@
     return !myName || scout.toLowerCase() !== myName.toLowerCase();
   }
 
+  function isClaimedByOther(team) {
+    if (!team) return false;
+    return !!getOtherDeviceClaim(team.teamNumber) || isClaimedByOtherScoutName(team);
+  }
+
+  function otherClaimLabel(team) {
+    const claim = getOtherDeviceClaim(team?.teamNumber);
+    if (claim) return claim.displayName;
+    return String(team?.assignedScout || '').trim() || 'another scout';
+  }
+
   function teamChipClass(teamNumber) {
     const mine = isAssignedTeam(teamNumber);
     const team = teamByNumber(teamNumber);
     const done = !!(team && team.completed);
-    const claimedByOther = isClaimedByOtherScout(team);
+    const claimedByOther = !!getOtherDeviceClaim(teamNumber) || isClaimedByOtherScoutName(team);
 
     if (mine && done) return 'mine-done';
     if (mine && !done) return 'mine-open';
     if (!mine && done) return 'other-done';
-    // Claimed by another scout name (synced) → orange; otherwise unassigned → no color
+    // On another phone's Map list (or other scout name) → orange
     if (!mine && !done && claimedByOther) return 'other-assigned';
     return 'other-open';
   }
@@ -1100,11 +1253,11 @@
     const team = await dbGet(teamNumber);
     if (!team) return;
 
-    if (isClaimedByOtherScout(team)) {
-      const scout = String(team.assignedScout || '').trim();
+    if (isClaimedByOther(team)) {
+      const who = otherClaimLabel(team);
       const yes = await confirmDialog(
         'Assigned to another scout',
-        `#${team.teamNumber} is assigned to ${scout}. Open it anyway?`,
+        `#${team.teamNumber} is assigned to ${who}. Open it anyway?`,
         { confirmLabel: 'Open anyway', cancelLabel: 'Cancel', danger: false }
       );
       if (!yes) return;
@@ -2420,6 +2573,8 @@
           await applyRemoteTeamPayload(rec.payload, rec.revision);
         } else if (rec.payload?.matchId) {
           await applyRemoteQualPayload(rec.payload, rec.revision);
+        } else if (rec.payload?.deviceId && Array.isArray(rec.payload?.teamNumbers)) {
+          await applyDeviceAssignmentRemote(rec.payload, rec.revision);
         } else if (rec.payload?.teamNumber) {
           applyPrescoutRemote(rec.payload, rec.revision);
         }
@@ -2427,6 +2582,8 @@
       onSyncComplete: async () => {
         await refreshData();
         await renderQualRecentList();
+        renderPitMap();
+        renderAssignTeamList();
       },
     });
     window.PitScoutSync.subscribe(updateSyncStatusUI);

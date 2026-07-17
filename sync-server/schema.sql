@@ -95,6 +95,20 @@ CREATE TABLE IF NOT EXISTS match_observations (
   schema_version INTEGER NOT NULL DEFAULT 1
 );
 
+-- Per-device Map assignment lists (synced so other phones see claims)
+CREATE TABLE IF NOT EXISTS device_assignments (
+  id TEXT PRIMARY KEY,
+  event_id TEXT NOT NULL,
+  device_id TEXT NOT NULL,
+  payload_json TEXT NOT NULL,
+  revision INTEGER NOT NULL DEFAULT 1,
+  updated_at TEXT NOT NULL,
+  updated_by TEXT,
+  deleted_at TEXT,
+  schema_version INTEGER NOT NULL DEFAULT 1,
+  UNIQUE (event_id, device_id)
+);
+
 CREATE TABLE IF NOT EXISTS processed_operations (
   operation_id TEXT PRIMARY KEY,
   device_id TEXT,
@@ -119,3 +133,4 @@ CREATE INDEX IF NOT EXISTS idx_team_records_event ON team_records(event_id);
 CREATE INDEX IF NOT EXISTS idx_qual_matches_event ON qual_matches(event_id);
 CREATE INDEX IF NOT EXISTS idx_prescout_event ON prescout_records(event_id);
 CREATE INDEX IF NOT EXISTS idx_match_obs_event ON match_observations(event_id);
+CREATE INDEX IF NOT EXISTS idx_device_assignments_event ON device_assignments(event_id);

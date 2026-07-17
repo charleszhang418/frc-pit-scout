@@ -7,6 +7,7 @@ const ENTITY_TABLE = {
   qual_match: 'qual_matches',
   prescout: 'prescout_records',
   match_observation: 'match_observations',
+  device_assignments: 'device_assignments',
 };
 
 function bearerToken(request) {
@@ -323,6 +324,52 @@ async function applyUpsert(db, session, op) {
         Number(payload.schemaVersion || 1)
       )
       .run();
+  } else if (entity === 'device_assignments') {
+    const deviceId = String(payload.deviceId || session.deviceId || '').trim();
+    if (!deviceId) return { status: 'rejected', error: 'Missing deviceId' };
+    // Only the owning device may write its assignment list
+    if (deviceId !== session.deviceId) {
+      return { status: 'rejected', error: 'Cannot modify another device assignment list' };
+    }
+    const teamNumbers = [
+      ...new Set(
+        (Array.isArray(payload.teamNumbers) ? payload.teamNumbers : [])
+          .map(Number)
+          .filter((n) => Number.isInteger(n) && n > 0)
+      ),
+    ].sort((a, b) => a - b);
+    const cleanPayload = {
+      deviceId,
+      displayName: String(payload.displayName || session.displayName || '').trim().slice(0, 80),
+      teamNumbers,
+      updatedAt,
+    };
+    await db
+      .prepare(
+        `INSERT INTO device_assignments (id, event_id, device_id, payload_json, revision, updated_at, updated_by, deleted_at, schema_version)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+         ON CONFLICT(id) DO UPDATE SET
+           payload_json = excluded.payload_json,
+           revision = excluded.revision,
+           updated_at = excluded.updated_at,
+           updated_by = excluded.updated_by,
+           deleted_at = excluded.deleted_at,
+           schema_version = excluded.schema_version`
+      )
+      .bind(
+        entityId,
+        eventId,
+        deviceId,
+        JSON.stringify(cleanPayload),
+        nextRevision,
+        updatedAt,
+        session.displayName,
+        deletedAt,
+        Number(payload.schemaVersion || 1)
+      )
+      .run();
+    // Ensure change log / return use cleaned payload
+    Object.assign(payload, cleanPayload);
   }
 
   await appendChangeLog(db, {
@@ -476,6 +523,12 @@ export async function handleSnapshot(request, env, session, eventId) {
     .bind(eventId)
     .all();
 
+  const deviceAssignments = await env.DB.prepare(
+    'SELECT id, device_id, payload_json, revision, updated_at, deleted_at FROM device_assignments WHERE event_id = ?'
+  )
+    .bind(eventId)
+    .all();
+
   const cursorRow = await env.DB.prepare(
     'SELECT COALESCE(MAX(seq), 0) AS max_seq FROM change_log WHERE event_id = ?'
   )
@@ -517,6 +570,14 @@ export async function handleSnapshot(request, env, session, eventId) {
       id: r.id,
       teamNumber: r.team_number,
       matchKey: r.match_key,
+      revision: r.revision,
+      updatedAt: r.updated_at,
+      deletedAt: r.deleted_at,
+      payload: JSON.parse(r.payload_json),
+    })),
+    deviceAssignments: (deviceAssignments.results || []).map((r) => ({
+      id: r.id,
+      deviceId: r.device_id,
       revision: r.revision,
       updatedAt: r.updated_at,
       deletedAt: r.deleted_at,
