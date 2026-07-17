@@ -421,16 +421,48 @@
     };
   }
 
-  async function seedTeams(teamList) {
+  async function seedTeams(teamList, options = {}) {
+    const { pruneMissing = true } = options;
     const existing = await dbGetAll();
-    const existingMap = new Map(existing.map(t => [t.teamNumber, t]));
+    const existingMap = new Map(existing.map((t) => [t.teamNumber, t]));
+    const rosterNums = new Set();
+
     for (const t of teamList) {
-      const rec = existingMap.get(t.teamNumber);
+      const num = Number(t.teamNumber);
+      if (!Number.isInteger(num) || num < 1) continue;
+      rosterNums.add(num);
+      const rec = existingMap.get(num);
       if (!rec) {
         await dbPut(makeDefaultRecord(t), { skipOutbox: true });
-      } else if (!rec.division && t.division) {
-        rec.division = t.division;
-        await dbPut(rec, { skipOutbox: true });
+      } else {
+        let dirty = false;
+        if (t.division && rec.division !== t.division) {
+          rec.division = t.division;
+          dirty = true;
+        }
+        if (t.teamName && !rec.teamName) {
+          rec.teamName = t.teamName;
+          dirty = true;
+        }
+        if (dirty) await dbPut(rec, { skipOutbox: true });
+      }
+    }
+
+    // Drop leftover teams from a previous event (e.g. Houston Hopper still in IndexedDB).
+    if (pruneMissing && rosterNums.size > 0) {
+      for (const rec of existing) {
+        if (!rosterNums.has(rec.teamNumber)) {
+          await new Promise((resolve, reject) => {
+            const req = txStore('readwrite').delete(rec.teamNumber);
+            req.onsuccess = () => resolve();
+            req.onerror = () => reject(req.error);
+          });
+        }
+      }
+      // Drop assignments that no longer exist on the roster.
+      if (assignedTeamNumbers.length) {
+        assignedTeamNumbers = assignedTeamNumbers.filter((n) => rosterNums.has(n));
+        await saveAssignedTeams().catch(() => {});
       }
     }
   }
