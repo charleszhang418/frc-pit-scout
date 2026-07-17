@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#1a1a2e">
   <title>FRC Pit Scout</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css?v=43">
+  <link rel="stylesheet" href="styles.css?v=44">
 </head>
 <body>
   <div id="app">
@@ -547,24 +547,20 @@
         </div>
         -->
 
+        <!--
         <div class="export-card">
           <h3>Export CSV</h3>
           <p>Flat spreadsheet of all scouted teams (no photos).</p>
           <button id="btn-export-csv" class="btn btn-primary btn-block">Download CSV</button>
         </div>
+        -->
 
         <div class="export-card">
-          <h3>Export JSON Backup</h3>
-          <p>Recovery snapshot: teams, photos, and <strong>Qual</strong> match log (v2). Keep exporting even with sync — disaster recovery for lost phones.</p>
-          <p class="presct-note" style="margin-top:10px">Shared baseline: commit an export as <strong>pit-scout-baseline.json</strong>. Startup merges by <strong>updatedAt</strong> (never clears newer local qual matches; automatic merge strips photos).</p>
-          <button id="btn-export-json" class="btn btn-primary btn-block">Download recovery JSON</button>
-        </div>
-
-        <div class="export-card">
-          <h3>Import JSON Backup</h3>
-          <p>Validated merge. Invalid files leave the database unchanged. Qual matches upsert by match ID; newer local rows are kept.</p>
+          <h3>Export &amp; Import JSON</h3>
+          <p>Full backup for sharing between phones: teams, <strong>photos</strong>, notes, and Qual match log. Export on one device, import on another.</p>
+          <button id="btn-export-json" class="btn btn-primary btn-block">Export JSON</button>
           <input type="file" id="import-json-input" accept=".json" style="display:none">
-          <button id="btn-import-json" class="btn btn-secondary btn-block">Import JSON</button>
+          <button id="btn-import-json" class="btn btn-secondary btn-block" style="margin-top:8px">Import JSON</button>
         </div>
 
         <div class="export-card">
@@ -574,6 +570,7 @@
           <button id="btn-import-teams" class="btn btn-secondary btn-block">Import Teams CSV</button>
         </div>
 
+        <!--
         <div class="export-card presct-export">
           <h3>Pre-Scout Data</h3>
           <p>Export is the same format as the site file prescouting.json. Put that file next to index.html in GitHub and push: each load merges it as a shared baseline; values you already entered on this device are kept.</p>
@@ -587,9 +584,10 @@
           <p>Permanently delete all scouting data from this device.</p>
           <button id="btn-clear-data" class="btn btn-danger btn-block">Clear All Data</button>
         </div>
+        -->
 
         <div class="export-meta">
-          <p id="data-status-line" class="presct-note">Status: local device only — export a recovery JSON before clearing browser data or switching phones.</p>
+          <p id="data-status-line" class="presct-note">Status: local device only — use Export JSON to move data between phones.</p>
           <p id="last-export-time">No exports yet</p>
         </div>
       </div>
@@ -597,8 +595,8 @@
 
   </div>
 
-  <script src="config.js?v=43"></script>
-  <!-- <script src="sync-client.js?v=43"></script> -->
-  <script src="app.js?v=43"></script>
+  <script src="config.js?v=44"></script>
+  <!-- <script src="sync-client.js?v=44"></script> -->
+  <script src="app.js?v=44"></script>
 </body>
 </html>

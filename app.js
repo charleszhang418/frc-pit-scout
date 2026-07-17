@@ -2406,29 +2406,27 @@
     });
 
     // Export/Import
-    $('#btn-export-csv').addEventListener('click', exportCSV);
-    $('#btn-export-json').addEventListener('click', exportJSON);
-    $('#btn-import-json').addEventListener('click', () => $('#import-json-input').click());
-    $('#import-json-input').addEventListener('change', (e) => {
+    $('#btn-export-csv')?.addEventListener('click', exportCSV);
+    $('#btn-export-json')?.addEventListener('click', exportJSON);
+    $('#btn-import-json')?.addEventListener('click', () => $('#import-json-input')?.click());
+    $('#import-json-input')?.addEventListener('change', (e) => {
       if (e.target.files[0]) importJSON(e.target.files[0]);
       e.target.value = '';
     });
-    $('#btn-import-teams').addEventListener('click', () => $('#import-teams-input').click());
-    $('#import-teams-input').addEventListener('change', (e) => {
+    $('#btn-import-teams')?.addEventListener('click', () => $('#import-teams-input')?.click());
+    $('#import-teams-input')?.addEventListener('change', (e) => {
       if (e.target.files[0]) importTeamsCSV(e.target.files[0]);
       e.target.value = '';
     });
 
-    // Pre-scout export/import
-    $('#btn-export-presct').addEventListener('click', exportPrescoutJSON);
-    $('#btn-import-presct').addEventListener('click', () => $('#import-presct-input').click());
-    $('#import-presct-input').addEventListener('change', (e) => {
+    // Pre-scout / clear (UI commented out — keep handlers optional)
+    $('#btn-export-presct')?.addEventListener('click', exportPrescoutJSON);
+    $('#btn-import-presct')?.addEventListener('click', () => $('#import-presct-input')?.click());
+    $('#import-presct-input')?.addEventListener('change', (e) => {
       if (e.target.files[0]) importPrescoutJSON(e.target.files[0]);
       e.target.value = '';
     });
-
-    // Clear data
-    $('#btn-clear-data').addEventListener('click', async () => {
+    $('#btn-clear-data')?.addEventListener('click', async () => {
       const yes = await confirmDialog(
         'Clear All Data',
         'This will permanently delete all scouting data on this device. This cannot be undone. Export a backup first!'
