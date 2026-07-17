@@ -1,7 +1,7 @@
 /* Pit Scout service worker — network-first app shell + offline fallback.
  * Bump CACHE_NAME when changing this file so activate clears stale caches.
  */
-const CACHE_NAME = 'pit-scout-v28';
+const CACHE_NAME = 'pit-scout-v29';
 const PRECACHE = [
   './',
   './index.html',

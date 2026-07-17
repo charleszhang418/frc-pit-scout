@@ -7,48 +7,220 @@
     "inviteCode": "CHINA2026"
   },
   "teams": [
-    { "teamNumber": 5449, "teamName": "", "division": "Block1" },
-    { "teamNumber": 5515, "teamName": "", "division": "Block1" },
-    { "teamNumber": 5516, "teamName": "", "division": "Block1" },
-    { "teamNumber": 5823, "teamName": "", "division": "Block2" },
-    { "teamNumber": 5849, "teamName": "", "division": "Block1" },
-    { "teamNumber": 6353, "teamName": "", "division": "Block2" },
-    { "teamNumber": 6394, "teamName": "", "division": "Block2" },
-    { "teamNumber": 6399, "teamName": "", "division": "Block2" },
-    { "teamNumber": 6414, "teamName": "", "division": "Block1" },
-    { "teamNumber": 6433, "teamName": "", "division": "Block2" },
-    { "teamNumber": 6487, "teamName": "", "division": "Block2" },
-    { "teamNumber": 6494, "teamName": "", "division": "Block2" },
-    { "teamNumber": 6706, "teamName": "", "division": "Block1" },
-    { "teamNumber": 6766, "teamName": "", "division": "Block2" },
-    { "teamNumber": 6907, "teamName": "", "division": "Block2" },
-    { "teamNumber": 6940, "teamName": "", "division": "Block2" },
-    { "teamNumber": 6941, "teamName": "", "division": "Block3" },
-    { "teamNumber": 7002, "teamName": "", "division": "Block3" },
-    { "teamNumber": 8011, "teamName": "", "division": "Block3" },
-    { "teamNumber": 8015, "teamName": "", "division": "Block3" },
-    { "teamNumber": 8214, "teamName": "", "division": "Block3" },
-    { "teamNumber": 8810, "teamName": "", "division": "Block3" },
-    { "teamNumber": 9597, "teamName": "", "division": "Block3" },
-    { "teamNumber": 9635, "teamName": "", "division": "Block3" },
-    { "teamNumber": 9991, "teamName": "", "division": "Block3" },
-    { "teamNumber": 9992, "teamName": "", "division": "Block3" },
-    { "teamNumber": 9994, "teamName": "", "division": "Block4" },
-    { "teamNumber": 9995, "teamName": "", "division": "Block1" },
-    { "teamNumber": 9996, "teamName": "", "division": "Block1" },
-    { "teamNumber": 9997, "teamName": "", "division": "Block1" },
-    { "teamNumber": 9999, "teamName": "", "division": "Block4" },
-    { "teamNumber": 10000, "teamName": "", "division": "Block4" },
-    { "teamNumber": 10016, "teamName": "", "division": "Block4" },
-    { "teamNumber": 10120, "teamName": "", "division": "Block1" },
-    { "teamNumber": 10479, "teamName": "", "division": "Block4" },
-    { "teamNumber": 10526, "teamName": "", "division": "Block4" },
-    { "teamNumber": 10541, "teamName": "", "division": "Block4" },
-    { "teamNumber": 10711, "teamName": "", "division": "Block4" },
-    { "teamNumber": 11019, "teamName": "", "division": "Block4" },
-    { "teamNumber": 11118, "teamName": "", "division": "Block5" },
-    { "teamNumber": 11256, "teamName": "", "division": "Block5" },
-    { "teamNumber": 11328, "teamName": "", "division": "Block5" },
-    { "teamNumber": 11352, "teamName": "", "division": "Block5" }
+    {
+      "teamNumber": 5449,
+      "teamName": "Prototype",
+      "division": "Block1"
+    },
+    {
+      "teamNumber": 5515,
+      "teamName": "Blue Power Robotics",
+      "division": "Block1"
+    },
+    {
+      "teamNumber": 5516,
+      "teamName": "Iron Maple",
+      "division": "Block1"
+    },
+    {
+      "teamNumber": 5823,
+      "teamName": "ACE",
+      "division": "Block2"
+    },
+    {
+      "teamNumber": 5849,
+      "teamName": "Joker",
+      "division": "Block1"
+    },
+    {
+      "teamNumber": 6353,
+      "teamName": "EFZ Robotics",
+      "division": "Block2"
+    },
+    {
+      "teamNumber": 6394,
+      "teamName": "MITO",
+      "division": "Block2"
+    },
+    {
+      "teamNumber": 6399,
+      "teamName": "Tinspiratio",
+      "division": "Block2"
+    },
+    {
+      "teamNumber": 6414,
+      "teamName": "Voyager",
+      "division": "Block1"
+    },
+    {
+      "teamNumber": 6433,
+      "teamName": "HZ4Z",
+      "division": "Block2"
+    },
+    {
+      "teamNumber": 6487,
+      "teamName": "Clockwork Knights",
+      "division": "Block2"
+    },
+    {
+      "teamNumber": 6494,
+      "teamName": "Wings of Liberty",
+      "division": "Block2"
+    },
+    {
+      "teamNumber": 6706,
+      "teamName": "Golem",
+      "division": "Block1"
+    },
+    {
+      "teamNumber": 6766,
+      "teamName": "AtomStorm",
+      "division": "Block2"
+    },
+    {
+      "teamNumber": 6907,
+      "teamName": "The G.O.A.T",
+      "division": "Block2"
+    },
+    {
+      "teamNumber": 6940,
+      "teamName": "Violet Z",
+      "division": "Block2"
+    },
+    {
+      "teamNumber": 6941,
+      "teamName": "IronPulse Robotics",
+      "division": "Block3"
+    },
+    {
+      "teamNumber": 7002,
+      "teamName": "风云蹦豆",
+      "division": "Block3"
+    },
+    {
+      "teamNumber": 8011,
+      "teamName": "Wayi Guangzhou",
+      "division": "Block3"
+    },
+    {
+      "teamNumber": 8015,
+      "teamName": "The Cheetahs",
+      "division": "Block3"
+    },
+    {
+      "teamNumber": 8214,
+      "teamName": "Cyber Unicorn",
+      "division": "Block3"
+    },
+    {
+      "teamNumber": 8810,
+      "teamName": "The Alphabots",
+      "division": "Block3"
+    },
+    {
+      "teamNumber": 9597,
+      "teamName": "Luban Robotics",
+      "division": "Block3"
+    },
+    {
+      "teamNumber": 9635,
+      "teamName": "Cyber Rabbit",
+      "division": "Block3"
+    },
+    {
+      "teamNumber": 9991,
+      "teamName": "Off-Season Demo Team 9991",
+      "division": "Block3"
+    },
+    {
+      "teamNumber": 9992,
+      "teamName": "Off-Season Demo Team 9992",
+      "division": "Block3"
+    },
+    {
+      "teamNumber": 9994,
+      "teamName": "Off-Season Demo Team 9994",
+      "division": "Block4"
+    },
+    {
+      "teamNumber": 9995,
+      "teamName": "Off-Season Demo Team 9995",
+      "division": "Block1"
+    },
+    {
+      "teamNumber": 9996,
+      "teamName": "Off-Season Demo Team 9996",
+      "division": "Block1"
+    },
+    {
+      "teamNumber": 9997,
+      "teamName": "Off-Season Demo Team 9997",
+      "division": "Block1"
+    },
+    {
+      "teamNumber": 9999,
+      "teamName": "Off-Season Demo Team 9999",
+      "division": "Block4"
+    },
+    {
+      "teamNumber": 10000,
+      "teamName": "Neutron Star",
+      "division": "Block4"
+    },
+    {
+      "teamNumber": 10016,
+      "teamName": "Absolute Zero",
+      "division": "Block4"
+    },
+    {
+      "teamNumber": 10120,
+      "teamName": "Wulfa the Wolf",
+      "division": "Block1"
+    },
+    {
+      "teamNumber": 10479,
+      "teamName": "Powerhouse",
+      "division": "Block4"
+    },
+    {
+      "teamNumber": 10526,
+      "teamName": "Orcas",
+      "division": "Block4"
+    },
+    {
+      "teamNumber": 10541,
+      "teamName": "CarbonPulse Robotics",
+      "division": "Block4"
+    },
+    {
+      "teamNumber": 10711,
+      "teamName": "FORMSHOP",
+      "division": "Block4"
+    },
+    {
+      "teamNumber": 11019,
+      "teamName": "X.PLORE",
+      "division": "Block4"
+    },
+    {
+      "teamNumber": 11118,
+      "teamName": "The Baybies",
+      "division": "Block5"
+    },
+    {
+      "teamNumber": 11256,
+      "teamName": "Satellites",
+      "division": "Block5"
+    },
+    {
+      "teamNumber": 11328,
+      "teamName": "SIA",
+      "division": "Block5"
+    },
+    {
+      "teamNumber": 11352,
+      "teamName": "Flying Tiger",
+      "division": "Block5"
+    }
   ]
 }
