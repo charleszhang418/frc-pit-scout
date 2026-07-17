@@ -75,10 +75,12 @@
   function stripPhoto(rec) {
     if (!rec || typeof rec !== 'object') return rec;
     const copy = { ...rec };
-    if (copy.photoDataUrl) {
-      copy.hasLocalPhoto = true;
-      copy.photoDataUrl = '';
-    }
+    const had =
+      !!(copy.photoDataUrl) ||
+      (Array.isArray(copy.photos) && copy.photos.length > 0);
+    if (had) copy.hasLocalPhoto = true;
+    copy.photoDataUrl = '';
+    copy.photos = [];
     return copy;
   }
 

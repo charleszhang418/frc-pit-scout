@@ -234,8 +234,14 @@
     if (!payload?.teamNumber) return;
     const existing = await dbGet(payload.teamNumber);
     const next = { ...payload, syncRevision: revision };
-    if (existing?.photoDataUrl && !next.photoDataUrl) {
-      next.photoDataUrl = existing.photoDataUrl;
+    syncPhotoFields(next);
+    if (existing) {
+      const localPhotos = getTeamPhotos(existing);
+      const remotePhotos = getTeamPhotos(next);
+      if (localPhotos.length && !remotePhotos.length) {
+        next.photos = localPhotos;
+        next.photoDataUrl = localPhotos[0]?.dataUrl || '';
+      }
     }
     await dbPutRaw(next);
   }
@@ -379,6 +385,7 @@
       completed: false,
       needsRecheck: false,
       photoDataUrl: '',
+      photos: [],
       robot: {
         shooterType: '',
         jamNotes: '',
@@ -1082,17 +1089,13 @@
     $('#f-notes').value = team.notes || '';
     $('#f-needsRecheck').checked = !!team.needsRecheck;
 
-    // Photo
-    if (team.photoDataUrl) {
-      $('#photo-preview').src = team.photoDataUrl;
-      $('#photo-preview').style.display = '';
-      $('#photo-placeholder').style.display = 'none';
-      $('#photo-remove-btn').style.display = '';
-    } else {
-      $('#photo-preview').style.display = 'none';
-      $('#photo-placeholder').style.display = '';
-      $('#photo-remove-btn').style.display = 'none';
+    // Photos — migrate legacy photoDataUrl into photos[] once
+    const hadPhotosArray = Array.isArray(team.photos) && team.photos.length > 0;
+    syncPhotoFields(team);
+    if (!hadPhotosArray && team.photos.length > 0) {
+      await dbPut(team, { skipOutbox: true });
     }
+    renderPhotoGallery(team);
 
     // Text fields mapped to nested objects
     const textFields = {
@@ -1211,8 +1214,62 @@
   }
 
   // ───── Photo Handling ─────
+  const MAX_TEAM_PHOTOS = 8;
+
+  function newPhotoId() {
+    if (crypto?.randomUUID) return crypto.randomUUID();
+    return `p-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  }
+
+  /** Normalize legacy photoDataUrl into photos[]; keep photoDataUrl as first for back-compat. */
+  function getTeamPhotos(team) {
+    if (!team) return [];
+    let photos = Array.isArray(team.photos) ? team.photos.filter((p) => p && p.dataUrl) : [];
+    if (!photos.length && team.photoDataUrl) {
+      photos = [{ id: 'legacy', dataUrl: team.photoDataUrl, createdAt: team.updatedAt || '' }];
+    }
+    return photos.map((p, i) => ({
+      id: p.id || `photo-${i}`,
+      dataUrl: p.dataUrl,
+      createdAt: p.createdAt || '',
+    }));
+  }
+
+  function syncPhotoFields(team) {
+    const photos = getTeamPhotos(team);
+    team.photos = photos;
+    team.photoDataUrl = photos[0]?.dataUrl || '';
+    return photos;
+  }
+
+  function renderPhotoGallery(team) {
+    const gallery = $('#photo-gallery');
+    const countEl = $('#photo-count-label');
+    const addBtn = $('#photo-add-btn');
+    if (!gallery) return;
+    const photos = getTeamPhotos(team);
+    if (!photos.length) {
+      gallery.innerHTML = '';
+    } else {
+      gallery.innerHTML = photos
+        .map(
+          (p) => `<div class="photo-thumb" data-photo-id="${escapeHtml(p.id)}">
+          <img src="${p.dataUrl}" alt="Robot photo">
+          <button type="button" class="photo-thumb-remove" data-photo-id="${escapeHtml(p.id)}" aria-label="Remove photo">&times;</button>
+        </div>`
+        )
+        .join('');
+    }
+    if (countEl) countEl.textContent = `${photos.length} / ${MAX_TEAM_PHOTOS} photos`;
+    if (addBtn) {
+      addBtn.disabled = photos.length >= MAX_TEAM_PHOTOS;
+      addBtn.textContent =
+        photos.length >= MAX_TEAM_PHOTOS ? `Photo limit (${MAX_TEAM_PHOTOS})` : '+ Add photo';
+    }
+  }
+
   function compressImage(file, maxDim, quality) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onload = (e) => {
         const img = new Image();
@@ -1228,38 +1285,61 @@
           canvas.getContext('2d').drawImage(img, 0, 0, w, h);
           resolve(canvas.toDataURL('image/jpeg', quality));
         };
+        img.onerror = () => reject(new Error('Could not decode image'));
         img.src = e.target.result;
       };
+      reader.onerror = () => reject(new Error('Could not read file'));
       reader.readAsDataURL(file);
     });
   }
 
-  async function handlePhoto(file) {
-    if (!file || !currentTeamNumber) return;
-    const dataUrl = await compressImage(file, 800, 0.7);
+  async function handlePhotos(fileList) {
+    if (!fileList?.length || !currentTeamNumber) return;
     const team = await dbGet(currentTeamNumber);
     if (!team) return;
-    team.photoDataUrl = dataUrl;
+    const photos = syncPhotoFields(team);
+    const room = MAX_TEAM_PHOTOS - photos.length;
+    if (room <= 0) {
+      showToast(`Maximum ${MAX_TEAM_PHOTOS} photos per team`, 'error');
+      return;
+    }
+    const files = Array.from(fileList).slice(0, room);
+    let added = 0;
+    for (const file of files) {
+      if (!file.type.startsWith('image/')) continue;
+      try {
+        const dataUrl = await compressImage(file, 800, 0.7);
+        photos.push({
+          id: newPhotoId(),
+          dataUrl,
+          createdAt: new Date().toISOString(),
+        });
+        added++;
+      } catch (e) {
+        console.warn('Photo compress failed', e);
+      }
+    }
+    team.photos = photos;
+    team.photoDataUrl = photos[0]?.dataUrl || '';
     team.updatedAt = new Date().toISOString();
     await dbPut(team);
-    $('#photo-preview').src = dataUrl;
-    $('#photo-preview').style.display = '';
-    $('#photo-placeholder').style.display = 'none';
-    $('#photo-remove-btn').style.display = '';
+    renderPhotoGallery(team);
     showAutosave('Saved on this device');
-    showToast('Photo saved', 'success');
+    if (added) showToast(added === 1 ? 'Photo saved' : `${added} photos saved`, 'success');
+    else showToast('No photos added', 'error');
   }
 
-  async function removePhoto() {
-    if (!currentTeamNumber) return;
+  async function removePhotoById(photoId) {
+    if (!currentTeamNumber || !photoId) return;
     const team = await dbGet(currentTeamNumber);
     if (!team) return;
-    team.photoDataUrl = '';
+    const photos = syncPhotoFields(team).filter((p) => p.id !== photoId);
+    team.photos = photos;
+    team.photoDataUrl = photos[0]?.dataUrl || '';
     team.updatedAt = new Date().toISOString();
     await dbPut(team);
-    $('#photo-preview').style.display = 'none';
-    $('#photo-placeholder').style.display = '';
-    $('#photo-remove-btn').style.display = 'none';
+    renderPhotoGallery(team);
+    showAutosave('Saved on this device');
     showToast('Photo removed');
   }
 
@@ -1621,7 +1701,8 @@
         }
       }
     }
-    row.hasPhoto = !!team.photoDataUrl;
+    row.hasPhoto = getTeamPhotos(team).length > 0;
+    row.photoCount = getTeamPhotos(team).length;
     row.matchNotesCount = (team.matchNotes || []).length;
     return row;
   }
@@ -1673,7 +1754,10 @@
   function stripTeamPhotos(rec) {
     if (!rec || typeof rec !== 'object') return rec;
     const copy = { ...rec };
+    const had = getTeamPhotos(copy).length > 0;
     copy.photoDataUrl = '';
+    copy.photos = [];
+    if (had) copy.hasLocalPhoto = true;
     return copy;
   }
 
@@ -1730,6 +1814,31 @@
       if (typeof rec.photoDataUrl === 'string' && rec.photoDataUrl.length > 6_000_000) {
         errors.push(`teams[${i}]: photoDataUrl exceeds size limit`);
         continue;
+      }
+      if (rec.photos != null) {
+        if (!Array.isArray(rec.photos)) {
+          errors.push(`teams[${i}]: photos must be an array`);
+          continue;
+        }
+        if (rec.photos.length > 12) {
+          errors.push(`teams[${i}]: too many photos`);
+          continue;
+        }
+        let badPhoto = false;
+        for (let j = 0; j < rec.photos.length; j++) {
+          const p = rec.photos[j];
+          if (!p || typeof p !== 'object' || typeof p.dataUrl !== 'string') {
+            errors.push(`teams[${i}].photos[${j}]: invalid photo`);
+            badPhoto = true;
+            break;
+          }
+          if (p.dataUrl.length > 6_000_000) {
+            errors.push(`teams[${i}].photos[${j}]: exceeds size limit`);
+            badPhoto = true;
+            break;
+          }
+        }
+        if (badPhoto) continue;
       }
       normalizedTeams.push({ ...rec, teamNumber: num });
     }
@@ -1790,13 +1899,14 @@
       try {
         const existing = await dbGet(rec.teamNumber);
         if (!existing || !existing.updatedAt || isRemoteNewer(rec.updatedAt, existing.updatedAt)) {
-          // Preserve a local photo when the incoming record intentionally has none (auto baseline).
-          if (
-            stripPhotos &&
-            existing?.photoDataUrl &&
-            (!rec.photoDataUrl || rec.photoDataUrl === '')
-          ) {
-            rec.photoDataUrl = existing.photoDataUrl;
+          // Preserve local photos when the incoming record intentionally has none (auto baseline).
+          if (stripPhotos && existing) {
+            const localPhotos = getTeamPhotos(existing);
+            const incomingPhotos = getTeamPhotos(rec);
+            if (localPhotos.length && !incomingPhotos.length) {
+              rec.photos = localPhotos;
+              rec.photoDataUrl = localPhotos[0]?.dataUrl || '';
+            }
           }
           await dbPut(rec, { skipOutbox: true });
           teamsUpdated++;
@@ -2116,11 +2226,19 @@
     $('#btn-add-team').addEventListener('click', addTeamManually);
 
     // Photo
-    $('#photo-area').addEventListener('click', () => $('#photo-input').click());
-    $('#photo-input').addEventListener('change', (e) => {
-      if (e.target.files[0]) handlePhoto(e.target.files[0]);
+    $('#photo-add-btn')?.addEventListener('click', () => $('#photo-input')?.click());
+    $('#photo-input')?.addEventListener('change', (e) => {
+      if (e.target.files?.length) handlePhotos(e.target.files);
+      e.target.value = '';
     });
-    $('#photo-remove-btn').addEventListener('click', removePhoto);
+    $('#photo-gallery')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('.photo-thumb-remove');
+      if (btn) {
+        e.preventDefault();
+        e.stopPropagation();
+        removePhotoById(btn.dataset.photoId);
+      }
+    });
 
     // Export/Import
     $('#btn-export-csv').addEventListener('click', exportCSV);

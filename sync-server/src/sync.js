@@ -123,6 +123,7 @@ function stripPhotos(payload) {
   if (!payload || typeof payload !== 'object') return payload;
   const copy = { ...payload };
   if ('photoDataUrl' in copy) copy.photoDataUrl = '';
+  if ('photos' in copy) copy.photos = [];
   return copy;
 }
 
