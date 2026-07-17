@@ -340,10 +340,10 @@
     }
     await refreshData();
     await renderQualRecentList();
-    // After join/snapshot, publish this phone's Map list so others can see it
-    if (assignedTeamNumbers.length) {
-      await enqueueMyAssignments();
-    }
+    // Multi-device assignment publish disabled
+    // if (assignedTeamNumbers.length) {
+    //   await enqueueMyAssignments();
+    // }
   }
 
   async function setLocalRevision(entityId, revision) {
@@ -577,9 +577,10 @@
     assignedTeamNumbers = unique;
     await syncMetaSet(ASSIGNED_TEAMS_KEY, unique);
     updateAssignmentSummaries();
-    if (!options.skipOutbox) {
-      await enqueueMyAssignments();
-    }
+    // Multi-device assignment sync disabled — use recovery JSON between phones.
+    // if (!options.skipOutbox) {
+    //   await enqueueMyAssignments();
+    // }
   }
 
   function isAssignedTeam(teamNumber) {
@@ -587,18 +588,7 @@
   }
 
   function getOtherDeviceClaim(teamNumber) {
-    const num = Number(teamNumber);
-    if (!Number.isInteger(num) || num < 1) return null;
-    for (const [devId, rec] of Object.entries(remoteDeviceAssignments)) {
-      if (!rec || devId === myDeviceIdCache) continue;
-      const nums = (rec.teamNumbers || []).map(Number);
-      if (nums.includes(num)) {
-        return {
-          deviceId: devId,
-          displayName: String(rec.displayName || '').trim() || 'Another scout',
-        };
-      }
-    }
+    // Multi-device claims disabled
     return null;
   }
 
@@ -608,15 +598,6 @@
     if (isAssignedTeam(num)) {
       assignedTeamNumbers = assignedTeamNumbers.filter((n) => n !== num);
     } else {
-      const claim = getOtherDeviceClaim(num);
-      if (claim) {
-        const yes = await confirmDialog(
-          'Assigned to another scout',
-          `#${num} is on ${claim.displayName}'s list. Assign to this phone anyway?`,
-          { confirmLabel: 'Assign anyway', cancelLabel: 'Cancel', danger: false }
-        );
-        if (!yes) return;
-      }
       assignedTeamNumbers.push(num);
     }
     await saveAssignedTeams();
@@ -735,17 +716,10 @@
   }
 
   function teamChipClass(teamNumber) {
-    const mine = isAssignedTeam(teamNumber);
     const team = teamByNumber(teamNumber);
     const done = !!(team && team.completed);
-    const claimedByOther = !!getOtherDeviceClaim(teamNumber) || isClaimedByOtherScoutName(team);
-
-    if (mine && done) return 'mine-done';
-    if (mine && !done) return 'mine-open';
-    if (!mine && done) return 'other-done';
-    // On another phone's Map list (or other scout name) → orange
-    if (!mine && !done && claimedByOther) return 'other-assigned';
-    return 'other-open';
+    if (done) return 'mine-done';
+    return 'mine-open';
   }
 
   function renderPitStall(pit) {
@@ -759,7 +733,8 @@
       </div>`;
     }
 
-    if (kind === 'empty' || !pit.teamNumber) {
+    // Only show teams assigned to this phone; everything else looks empty
+    if (kind === 'empty' || !pit.teamNumber || !isAssignedTeam(pit.teamNumber)) {
       return `<div class="pit-stall pit-stall-empty" title="${pitId}">
         <span class="pit-stall-id">${pitId}</span>
         <span class="pit-stall-label">—</span>
@@ -768,8 +743,7 @@
 
     const tn = Number(pit.teamNumber);
     const cls = teamChipClass(tn);
-    const dimMine = mapHighlightMineOnly && !isAssignedTeam(tn);
-    return `<button type="button" class="pit-stall pit-stall-team ${cls}${dimMine ? ' dimmed' : ''}" data-team="${tn}" title="${pitId}">
+    return `<button type="button" class="pit-stall pit-stall-team ${cls}" data-team="${tn}" title="${pitId}">
       <span class="pit-stall-id">${pitId}</span>
       <span class="pit-stall-teamnum">${escapeHtml(tn)}</span>
     </button>`;
@@ -781,8 +755,7 @@
     }
     const pits = Array.isArray(col.pits) ? col.pits : [];
     const hasMine = pits.some((p) => p.teamNumber && isAssignedTeam(p.teamNumber));
-    const dimCol = mapHighlightMineOnly && pits.some((p) => p.teamNumber) && !hasMine;
-    return `<div class="pit-column${dimCol ? ' dimmed' : ''}${hasMine ? ' has-mine' : ''}" data-col="${escapeHtml(col.id || '')}">
+    return `<div class="pit-column${hasMine ? ' has-mine' : ''}" data-col="${escapeHtml(col.id || '')}">
       <div class="pit-column-header">${escapeHtml(col.id || '')}</div>
       <div class="pit-column-stack">${pits.map(renderPitStall).join('')}</div>
     </div>`;
@@ -844,20 +817,10 @@
     list.innerHTML = teams
       .map((t) => {
         const selected = isAssignedTeam(t.teamNumber);
-        const other = !selected ? getOtherDeviceClaim(t.teamNumber) : null;
-        let rowClass = 'assign-team-row';
-        let status = 'Tap to assign';
-        if (selected) {
-          rowClass += ' selected';
-          status = 'Mine';
-        } else if (other) {
-          rowClass += ' claimed-other';
-          status = escapeHtml(other.displayName);
-        }
-        return `<button type="button" class="${rowClass}" data-team="${t.teamNumber}">
+        return `<button type="button" class="assign-team-row${selected ? ' selected' : ''}" data-team="${t.teamNumber}">
           <span class="assign-num">${t.teamNumber}</span>
           <span class="assign-name">${escapeHtml(t.teamName || 'Unknown')}</span>
-          <span class="assign-check">${status}</span>
+          <span class="assign-check">${selected ? 'Assigned' : 'Tap to assign'}</span>
         </button>`;
       })
       .join('');
@@ -1268,16 +1231,6 @@
   async function openTeamForm(teamNumber) {
     const team = await dbGet(teamNumber);
     if (!team) return;
-
-    if (isClaimedByOther(team)) {
-      const who = otherClaimLabel(team);
-      const yes = await confirmDialog(
-        'Assigned to another scout',
-        `#${team.teamNumber} is assigned to ${who}. Open it anyway?`,
-        { confirmLabel: 'Open anyway', cancelLabel: 'Cancel', danger: false }
-      );
-      if (!yes) return;
-    }
 
     currentTeamNumber = teamNumber;
 
@@ -2326,10 +2279,6 @@
       }
     });
 
-    $('#map-highlight-mine')?.addEventListener('change', (e) => {
-      mapHighlightMineOnly = !!e.target.checked;
-      renderPitMap();
-    });
     $('#assign-search')?.addEventListener('input', (e) => {
       assignSearch = e.target.value.trim();
       renderAssignTeamList();
@@ -2493,7 +2442,8 @@
       }
     });
 
-    // Sync
+    // Sync (disabled — panel commented out; restore with sync-client.js)
+    /*
     $('#btn-sync-join')?.addEventListener('click', () => handleSyncJoin());
     $('#btn-sync-now')?.addEventListener('click', async () => {
       try {
@@ -2515,6 +2465,7 @@
       const panel = $('#sync-panel');
       if (panel) panel.hidden = !panel.hidden;
     });
+    */
 
     // Load last export timestamp
     const lastExport = localStorage.getItem('lastExport');
@@ -2694,7 +2645,8 @@
     await refreshData();
     wireEvents();
     registerSW();
-    await initSyncClient();
+    // await initSyncClient(); // multi-device sync disabled — use Export/Import JSON
+    await initSyncClient(); // no-op when sync-client.js is not loaded
 
     mergeOnlinePitBaseline()
       .then(() => refreshData())

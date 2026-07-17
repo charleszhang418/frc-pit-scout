@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#1a1a2e">
   <title>FRC Pit Scout</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css?v=42">
+  <link rel="stylesheet" href="styles.css?v=43">
 </head>
 <body>
   <div id="app">
@@ -46,7 +46,7 @@
       <header class="view-header">
         <h1>Pit Scout</h1>
         <p class="subtitle">Offline-first · multi-device sync</p>
-        <button type="button" id="sync-status-chip" class="sync-status-chip status-local_only" title="Sync status">Local only</button>
+        <button type="button" id="sync-status-chip" class="sync-status-chip status-local_only" title="Sync status" style="display:none">Local only</button>
       </header>
 
       <div class="global-bar">
@@ -130,26 +130,19 @@
         <p class="subtitle">Houston-style pit columns · edit pit-map.json</p>
       </header>
       <div class="map-toolbar">
-        <label class="map-toggle">
-          <input type="checkbox" id="map-highlight-mine">
-          <span>Highlight my pits only</span>
-        </label>
         <span id="map-assign-summary" class="presct-note">My teams: 0</span>
       </div>
       <div id="pit-map-grid" class="pit-map-grid" aria-label="Pit map"></div>
       <div class="pit-map-legend">
-        <span class="legend-item"><i class="swatch mine-open"></i> Mine · not done</span>
-        <span class="legend-item"><i class="swatch mine-done"></i> Mine · done</span>
-        <span class="legend-item"><i class="swatch other-assigned"></i> Assigned to others</span>
-        <span class="legend-item"><i class="swatch other-open"></i> Not assigned</span>
-        <span class="legend-item"><i class="swatch other-done"></i> Other · done</span>
-        <span class="legend-item"><i class="swatch empty"></i> Empty / service</span>
+        <span class="legend-item"><i class="swatch mine-open"></i> Assigned · not done</span>
+        <span class="legend-item"><i class="swatch mine-done"></i> Assigned · done</span>
+        <span class="legend-item"><i class="swatch empty"></i> Empty / not assigned</span>
       </div>
-      <p class="presct-note" style="margin-top:10px">Layout is halls → divisions → columns of stalls (pitId + team). Edit <strong>pit-map.json</strong> and reload.</p>
+      <p class="presct-note" style="margin-top:10px">Map shows only teams assigned to this phone. Share data via Data → Export/Import JSON.</p>
 
       <div class="export-card map-assign-panel" id="assign-panel">
         <h3>This phone’s teams</h3>
-        <p>Mark the teams <strong>this device</strong> should pit-scout. Lists sync when you are joined — other phones see your picks as orange.</p>
+        <p>Mark the teams <strong>this device</strong> should pit-scout. Assignments stay on this phone — merge pit data with recovery JSON between devices.</p>
         <p id="assign-count" class="presct-note">Selected: 0</p>
         <input type="search" id="assign-search" class="global-input" placeholder="Search team # or name…" autocomplete="off" style="width:100%;margin:8px 0">
         <div id="assign-team-list" class="assign-team-list"></div>
@@ -540,6 +533,8 @@
       </header>
 
       <div class="export-cards">
+        <!--
+        Multi-device Sync (disabled for now — use Export/Import JSON between phones)
         <div class="export-card" id="sync-panel">
           <h3>Multi-device Sync</h3>
           <p>Join with the team invite code. Edits save on this device first, then sync when the server is reachable.</p>
@@ -550,6 +545,7 @@
           <button id="btn-sync-snapshot" class="btn btn-secondary btn-block" style="margin-top:8px">Pull full snapshot</button>
           <div id="sync-status-detail" class="presct-note" style="margin-top:12px"></div>
         </div>
+        -->
 
         <div class="export-card">
           <h3>Export CSV</h3>
@@ -601,8 +597,8 @@
 
   </div>
 
-  <script src="config.js?v=42"></script>
-  <script src="sync-client.js?v=42"></script>
-  <script src="app.js?v=42"></script>
+  <script src="config.js?v=43"></script>
+  <!-- <script src="sync-client.js?v=43"></script> -->
+  <script src="app.js?v=43"></script>
 </body>
 </html>
