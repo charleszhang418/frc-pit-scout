@@ -6,8 +6,8 @@
     {
       "binding": "DB",
       "database_name": "pit-scout",
-      "database_id": "local-dev-pit-scout",
-      "preview_database_id": "local-dev-pit-scout"
+      "database_id": "6d8be791-e5dd-4d2a-a846-cae9b05f87bc",
+      "preview_database_id": "6d8be791-e5dd-4d2a-a846-cae9b05f87bc"
     }
   ],
   "vars": {
