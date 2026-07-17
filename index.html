@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#1a1a2e">
   <title>FRC Pit Scout</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css?v=44">
+  <link rel="stylesheet" href="styles.css?v=45">
 </head>
 <body>
   <div id="app">
@@ -136,9 +136,11 @@
       <div class="pit-map-legend">
         <span class="legend-item"><i class="swatch mine-open"></i> Assigned · not done</span>
         <span class="legend-item"><i class="swatch mine-done"></i> Assigned · done</span>
-        <span class="legend-item"><i class="swatch empty"></i> Empty / not assigned</span>
+        <span class="legend-item"><i class="swatch other-open"></i> Not assigned</span>
+        <span class="legend-item"><i class="swatch other-done"></i> Not assigned · done</span>
+        <span class="legend-item"><i class="swatch empty"></i> Empty / service</span>
       </div>
-      <p class="presct-note" style="margin-top:10px">Map shows only teams assigned to this phone. Share data via Data → Export/Import JSON.</p>
+      <p class="presct-note" style="margin-top:10px">All pit teams stay visible. Assigned teams are colored; share data via Data → Export/Import JSON.</p>
 
       <div class="export-card map-assign-panel" id="assign-panel">
         <h3>This phone’s teams</h3>
@@ -595,8 +597,8 @@
 
   </div>
 
-  <script src="config.js?v=44"></script>
-  <!-- <script src="sync-client.js?v=44"></script> -->
-  <script src="app.js?v=44"></script>
+  <script src="config.js?v=45"></script>
+  <!-- <script src="sync-client.js?v=45"></script> -->
+  <script src="app.js?v=45"></script>
 </body>
 </html>

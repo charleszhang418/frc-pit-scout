@@ -716,10 +716,13 @@
   }
 
   function teamChipClass(teamNumber) {
+    const mine = isAssignedTeam(teamNumber);
     const team = teamByNumber(teamNumber);
     const done = !!(team && team.completed);
-    if (done) return 'mine-done';
-    return 'mine-open';
+    if (mine && done) return 'mine-done';
+    if (mine && !done) return 'mine-open';
+    if (!mine && done) return 'other-done';
+    return 'other-open';
   }
 
   function renderPitStall(pit) {
@@ -733,8 +736,7 @@
       </div>`;
     }
 
-    // Only show teams assigned to this phone; everything else looks empty
-    if (kind === 'empty' || !pit.teamNumber || !isAssignedTeam(pit.teamNumber)) {
+    if (kind === 'empty' || !pit.teamNumber) {
       return `<div class="pit-stall pit-stall-empty" title="${pitId}">
         <span class="pit-stall-id">${pitId}</span>
         <span class="pit-stall-label">—</span>
