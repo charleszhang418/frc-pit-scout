@@ -390,6 +390,8 @@
         shooterType: '',
         jamNotes: '',
         ballsPerLoad: '',
+        heightProfile: '',
+        canPassTrench: '',
       },
       fuel: {
         scoringRange: '',
@@ -539,7 +541,7 @@
   function updateAssignmentSummaries() {
     const n = assignedTeamNumbers.length;
     const countEl = $('#my-teams-count');
-    if (countEl) countEl.textContent = `My teams: ${n} — set in Data`;
+    if (countEl) countEl.textContent = `My teams: ${n} — set in Map`;
     const assignCount = $('#assign-count');
     if (assignCount) assignCount.textContent = `Selected: ${n}`;
     const mapSum = $('#map-assign-summary');

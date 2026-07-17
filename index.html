@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#1a1a2e">
   <title>FRC Pit Scout</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css?v=34">
+  <link rel="stylesheet" href="styles.css?v=36">
 </head>
 <body>
   <div id="app">
@@ -145,6 +145,15 @@
         <span class="legend-item"><i class="swatch empty"></i> Empty / service</span>
       </div>
       <p class="presct-note" style="margin-top:10px">Layout is halls → divisions → columns of stalls (pitId + team). Edit <strong>pit-map.json</strong> and reload.</p>
+
+      <div class="export-card map-assign-panel" id="assign-panel">
+        <h3>This phone’s teams</h3>
+        <p>Mark the teams <strong>this device</strong> should pit-scout. Assignments stay on this phone (not synced). Use with “Highlight my pits only” above.</p>
+        <p id="assign-count" class="presct-note">Selected: 0</p>
+        <input type="search" id="assign-search" class="global-input" placeholder="Search team # or name…" autocomplete="off" style="width:100%;margin:8px 0">
+        <div id="assign-team-list" class="assign-team-list"></div>
+        <button id="btn-assign-clear" class="btn btn-secondary btn-block" style="margin-top:10px">Clear all assignments</button>
+      </div>
     </section>
 
     <!-- ===== QUAL MATCH QUICK ENTRY ===== -->
@@ -352,6 +361,22 @@
             <input type="text" id="f-balls-per-load" class="field-input" placeholder="大约一次多少球" inputmode="numeric" autocomplete="off">
           </div>
           <div class="field-group">
+            <label class="field-label">车高</label>
+            <div class="seg-control" data-field="robot.heightProfile">
+              <button class="seg-btn" data-val="tall">高车</button>
+              <button class="seg-btn" data-val="short">低车</button>
+              <button class="seg-btn" data-val="unknown">未知</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">过 Trench</label>
+            <div class="seg-control" data-field="robot.canPassTrench">
+              <button class="seg-btn" data-val="yes">能过</button>
+              <button class="seg-btn" data-val="no">不能</button>
+              <button class="seg-btn" data-val="unknown">未知</button>
+            </div>
+          </div>
+          <div class="field-group">
             <label class="field-label">Max Climb Height</label>
             <div class="seg-control" data-field="climb.maxClimb">
               <button class="seg-btn" data-val="none">None</button>
@@ -525,15 +550,6 @@
           <div id="sync-status-detail" class="presct-note" style="margin-top:12px"></div>
         </div>
 
-        <div class="export-card" id="assign-panel">
-          <h3>This phone’s teams</h3>
-          <p>Full roster stays available. Mark the teams <strong>this device</strong> should pit-scout. Assignments stay on this phone (not synced).</p>
-          <p id="assign-count" class="presct-note">Selected: 0</p>
-          <input type="search" id="assign-search" class="global-input" placeholder="Search team # or name…" autocomplete="off" style="width:100%;margin:8px 0">
-          <div id="assign-team-list" class="assign-team-list"></div>
-          <button id="btn-assign-clear" class="btn btn-secondary btn-block" style="margin-top:10px">Clear all assignments</button>
-        </div>
-
         <div class="export-card">
           <h3>Export CSV</h3>
           <p>Flat spreadsheet of all scouted teams (no photos).</p>
@@ -584,8 +600,8 @@
 
   </div>
 
-  <script src="config.js?v=34"></script>
-  <script src="sync-client.js?v=34"></script>
-  <script src="app.js?v=34"></script>
+  <script src="config.js?v=36"></script>
+  <script src="sync-client.js?v=36"></script>
+  <script src="app.js?v=36"></script>
 </body>
 </html>

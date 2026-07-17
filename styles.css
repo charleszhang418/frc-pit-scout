@@ -1161,8 +1161,12 @@ button.pit-stall {
 .legend-item .swatch.empty { background: #f3f3f5; border-style: dashed; }
 
 /* ===== ASSIGNMENTS ===== */
+.map-assign-panel {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
 .assign-team-list {
-  max-height: 280px;
+  max-height: 320px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
