@@ -571,9 +571,16 @@
     const mine = isAssignedTeam(teamNumber);
     const team = teamByNumber(teamNumber);
     const done = !!(team && team.completed);
+    const scout = String(team?.assignedScout || '').trim();
+    const myName = String(getScoutName() || '').trim();
+    const claimedByOther =
+      !!scout && (!myName || scout.toLowerCase() !== myName.toLowerCase());
+
     if (mine && done) return 'mine-done';
     if (mine && !done) return 'mine-open';
     if (!mine && done) return 'other-done';
+    // Claimed by another scout name (synced) → orange; otherwise unassigned → no color
+    if (!mine && !done && claimedByOther) return 'other-assigned';
     return 'other-open';
   }
 
