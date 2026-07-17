@@ -431,17 +431,22 @@
       const num = Number(t.teamNumber);
       if (!Number.isInteger(num) || num < 1) continue;
       rosterNums.add(num);
+      const csvName = String(t.teamName || '').trim();
+      const csvDiv = String(t.division || '').trim();
       const rec = existingMap.get(num);
       if (!rec) {
-        await dbPut(makeDefaultRecord(t), { skipOutbox: true });
+        await dbPut(makeDefaultRecord({ teamNumber: num, teamName: csvName, division: csvDiv }), {
+          skipOutbox: true,
+        });
       } else {
         let dirty = false;
-        if (t.division && rec.division !== t.division) {
-          rec.division = t.division;
+        // teams.csv is the roster authority for name/division (fixes empty/"Unknown" leftovers).
+        if (csvName && rec.teamName !== csvName) {
+          rec.teamName = csvName;
           dirty = true;
         }
-        if (t.teamName && !rec.teamName) {
-          rec.teamName = t.teamName;
+        if (csvDiv && rec.division !== csvDiv) {
+          rec.division = csvDiv;
           dirty = true;
         }
         if (dirty) await dbPut(rec, { skipOutbox: true });
