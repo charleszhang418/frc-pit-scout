@@ -567,14 +567,19 @@
     return allTeams.find((t) => t.teamNumber === Number(num));
   }
 
+  function isClaimedByOtherScout(team) {
+    if (!team) return false;
+    const scout = String(team.assignedScout || '').trim();
+    if (!scout) return false;
+    const myName = String(getScoutName() || '').trim();
+    return !myName || scout.toLowerCase() !== myName.toLowerCase();
+  }
+
   function teamChipClass(teamNumber) {
     const mine = isAssignedTeam(teamNumber);
     const team = teamByNumber(teamNumber);
     const done = !!(team && team.completed);
-    const scout = String(team?.assignedScout || '').trim();
-    const myName = String(getScoutName() || '').trim();
-    const claimedByOther =
-      !!scout && (!myName || scout.toLowerCase() !== myName.toLowerCase());
+    const claimedByOther = isClaimedByOtherScout(team);
 
     if (mine && done) return 'mine-done';
     if (mine && !done) return 'mine-open';
@@ -929,17 +934,20 @@
   }
 
   // ───── Confirm Dialog ─────
-  function confirmDialog(title, message) {
+  function confirmDialog(title, message, options = {}) {
+    const confirmLabel = options.confirmLabel || 'Confirm';
+    const cancelLabel = options.cancelLabel || 'Cancel';
+    const confirmClass = options.danger === false ? 'btn-primary' : 'btn-danger';
     return new Promise((resolve) => {
       const overlay = document.createElement('div');
       overlay.className = 'dialog-overlay';
       overlay.innerHTML = `
-        <div class="dialog-box">
-          <h3>${title}</h3>
-          <p>${message}</p>
+        <div class="dialog-box" role="dialog" aria-modal="true">
+          <h3>${escapeHtml(title)}</h3>
+          <p>${escapeHtml(message)}</p>
           <div class="dialog-actions">
-            <button class="btn btn-secondary" data-action="cancel">Cancel</button>
-            <button class="btn btn-danger" data-action="confirm">Confirm</button>
+            <button type="button" class="btn btn-secondary" data-action="cancel">${escapeHtml(cancelLabel)}</button>
+            <button type="button" class="btn ${confirmClass}" data-action="confirm">${escapeHtml(confirmLabel)}</button>
           </div>
         </div>`;
       document.body.appendChild(overlay);
@@ -1091,6 +1099,17 @@
   async function openTeamForm(teamNumber) {
     const team = await dbGet(teamNumber);
     if (!team) return;
+
+    if (isClaimedByOtherScout(team)) {
+      const scout = String(team.assignedScout || '').trim();
+      const yes = await confirmDialog(
+        'Assigned to another scout',
+        `#${team.teamNumber} is assigned to ${scout}. Open it anyway?`,
+        { confirmLabel: 'Open anyway', cancelLabel: 'Cancel', danger: false }
+      );
+      if (!yes) return;
+    }
+
     currentTeamNumber = teamNumber;
 
     $('#form-team-number').textContent = `#${team.teamNumber}`;
