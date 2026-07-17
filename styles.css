@@ -1103,9 +1103,11 @@ button.pit-stall {
 }
 .pit-stall-team.mine-done .pit-stall-id { color: #14532d; }
 .pit-stall-team.other-open {
-  background: #fff;
-  color: #111;
+  background: #fdba74;
+  border-color: #ea580c;
+  color: #7c2d12;
 }
+.pit-stall-team.other-open .pit-stall-id { color: #9a3412; }
 .pit-stall-team.other-done {
   background: #dcfce7;
   border-color: #16a34a;
@@ -1156,7 +1158,7 @@ button.pit-stall {
 }
 .legend-item .swatch.mine-open { background: #6c63ff; }
 .legend-item .swatch.mine-done { background: #22c55e; }
-.legend-item .swatch.other-open { background: #fff; }
+.legend-item .swatch.other-open { background: #fdba74; }
 .legend-item .swatch.other-done { background: #dcfce7; }
 .legend-item .swatch.empty { background: #f3f3f5; border-style: dashed; }
 
