@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#1a1a2e">
   <title>FRC Pit Scout</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=33">
 </head>
 <body>
   <div id="app">
@@ -231,16 +231,21 @@
       </header>
 
       <div class="form-tabs" id="form-tabs">
-        <button class="form-tab active" data-section="presct">Pre</button>
-        <button class="form-tab" data-section="pit">Pit</button>
+        <!--
+        <button class="form-tab" data-section="presct">Pre</button>
+        -->
+        <button class="form-tab active" data-section="pit">Pit</button>
         <button class="form-tab" data-section="match">Match</button>
+        <!--
         <button class="form-tab" data-section="verify">Verify</button>
+        -->
       </div>
 
       <div class="form-body" id="form-body">
 
-        <!-- PRE: exportable via Pre-Scout JSON (localStorage) -->
-        <div class="form-section active" data-section="presct">
+        <!--
+        PRE: exportable via Pre-Scout JSON (localStorage)
+        <div class="form-section" data-section="presct">
           <div class="presct-header">
             <span class="presct-badge">Pre-Scout</span>
             <span class="presct-note">Saved per device — share via Data → Pre-Scout JSON</span>
@@ -314,9 +319,10 @@
             <textarea id="f-presct-summary" class="field-textarea" rows="4" placeholder="Overall pre-scout summary…"></textarea>
           </div>
         </div>
+        -->
 
         <!-- PIT: device-scouted pit fields (IndexedDB) -->
-        <div class="form-section" data-section="pit">
+        <div class="form-section active" data-section="pit">
           <div class="field-group">
             <label class="field-label">Completed</label>
             <div class="toggle-row">
@@ -336,6 +342,14 @@
               <button class="seg-btn" data-val="none">无</button>
               <button class="seg-btn" data-val="unknown">未知</button>
             </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Auto</label>
+            <textarea id="f-auto-notes" class="field-textarea" rows="3" placeholder="Auto path / what they do in auto…"></textarea>
+          </div>
+          <div class="field-group">
+            <label class="field-label">一次装球</label>
+            <input type="text" id="f-balls-per-load" class="field-input" placeholder="大约一次多少球" inputmode="numeric" autocomplete="off">
           </div>
           <div class="field-group">
             <label class="field-label">Max Climb Height</label>
@@ -365,6 +379,10 @@
             </button>
             <p id="photo-count-label" class="presct-note" style="margin-top:6px">0 / 8 photos</p>
             <input type="file" id="photo-input" accept="image/*" capture="environment" multiple style="display:none">
+            <!-- Compat shims: older cached app.js still toggles these; keep hidden so team open never crashes. -->
+            <img id="photo-preview" alt="" style="display:none" width="0" height="0">
+            <div id="photo-placeholder" style="display:none" aria-hidden="true"></div>
+            <button type="button" id="photo-remove-btn" style="display:none" aria-hidden="true" tabindex="-1"></button>
           </div>
           <div class="field-group">
             <label class="field-label">General Notes</label>
@@ -425,7 +443,8 @@
           </div>
         </div>
 
-        <!-- VERIFICATION SECTION -->
+        <!--
+        VERIFICATION SECTION
         <div class="form-section" data-section="verify">
           <div class="field-group">
             <label class="field-label">Evidence Level</label>
@@ -479,6 +498,7 @@
             </div>
           </div>
         </div>
+        -->
 
       </div>
 
@@ -564,8 +584,8 @@
 
   </div>
 
-  <script src="config.js"></script>
-  <script src="sync-client.js"></script>
-  <script src="app.js"></script>
+  <script src="config.js?v=33"></script>
+  <script src="sync-client.js?v=33"></script>
+  <script src="app.js?v=33"></script>
 </body>
 </html>

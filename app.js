@@ -389,6 +389,7 @@
       robot: {
         shooterType: '',
         jamNotes: '',
+        ballsPerLoad: '',
       },
       fuel: {
         scoringRange: '',
@@ -399,6 +400,7 @@
       auto: {
         startLocation: '',
         pathDescription: '',
+        notes: '',
         fuelEstimate: '',
         climbsL1: '',
         centerLineRisk: '',
@@ -893,7 +895,8 @@
     const navBtn = $(`.nav-btn[data-view="${name}"]`);
     if (navBtn) navBtn.classList.add('active');
     if (name === 'form') {
-      $('#nav-form-btn').style.display = '';
+      const formNav = $('#nav-form-btn');
+      if (formNav) formNav.style.display = '';
     }
     window.scrollTo(0, 0);
   }
@@ -1087,7 +1090,8 @@
     // Populate inputs
     $('#f-completed').checked = !!team.completed;
     $('#f-notes').value = team.notes || '';
-    $('#f-needsRecheck').checked = !!team.needsRecheck;
+    const recheckEl = $('#f-needsRecheck');
+    if (recheckEl) recheckEl.checked = !!team.needsRecheck;
 
     // Photos — migrate legacy photoDataUrl into photos[] once
     const hadPhotosArray = Array.isArray(team.photos) && team.photos.length > 0;
@@ -1099,6 +1103,8 @@
 
     // Text fields mapped to nested objects
     const textFields = {
+      'f-auto-notes': ['auto', 'notes'],
+      'f-balls-per-load': ['robot', 'ballsPerLoad'],
       'f-verify-notes': ['verification', 'notes'],
       'f-verify-matchEvidenceNotes': ['verification', 'matchEvidenceNotes'],
       'f-verify-lastVerifiedMatch': ['verification', 'lastVerifiedMatch'],
@@ -1120,11 +1126,13 @@
       });
     });
 
-    // Activate first tab (pre-scout reference)
-    $$('.form-tab').forEach(t => t.classList.toggle('active', t.dataset.section === 'presct'));
-    $$('.form-section').forEach(s => s.classList.toggle('active', s.dataset.section === 'presct'));
+    // Default to Pit tab (Pre / Verify currently commented out in HTML)
+    $$('.form-tab').forEach(t => t.classList.toggle('active', t.dataset.section === 'pit'));
+    $$('.form-section').forEach(s => s.classList.toggle('active', s.dataset.section === 'pit'));
 
-    populatePresctControls(teamNumber);
+    if ($('#f-presct-summary') || $('#f-presct-autoRoute')) {
+      populatePresctControls(teamNumber);
+    }
 
     // Match notes
     renderMatchNotesList(team);
@@ -1146,7 +1154,8 @@
     const data = {};
     data.assignedScout = getScoutName();
     data.completed = $('#f-completed').checked;
-    data.needsRecheck = $('#f-needsRecheck').checked;
+    const recheckEl = $('#f-needsRecheck');
+    if (recheckEl) data.needsRecheck = recheckEl.checked;
     data.notes = $('#f-notes').value.trim();
     data.updatedAt = new Date().toISOString();
 
@@ -1163,6 +1172,8 @@
 
     // Text fields
     const textFields = {
+      'f-auto-notes': ['auto', 'notes'],
+      'f-balls-per-load': ['robot', 'ballsPerLoad'],
       'f-verify-notes': ['verification', 'notes'],
       'f-verify-matchEvidenceNotes': ['verification', 'matchEvidenceNotes'],
       'f-verify-lastVerifiedMatch': ['verification', 'lastVerifiedMatch'],
@@ -1180,18 +1191,21 @@
 
   async function saveForm() {
     if (!currentTeamNumber) return;
-    savePrescoutFromForm();
+    if ($('#f-presct-summary') || $('#f-presct-autoRoute')) {
+      savePrescoutFromForm();
+    }
     const existing = await dbGet(currentTeamNumber);
     if (!existing) return;
     const formData = collectFormData();
 
     // Merge nested objects
-    for (const key of ['robot', 'climb', 'verification']) {
-      existing[key] = { ...existing[key], ...formData[key] };
+    for (const key of ['robot', 'auto', 'climb', 'verification']) {
+      if (!formData[key]) continue;
+      existing[key] = { ...(existing[key] || {}), ...formData[key] };
     }
     existing.assignedScout = formData.assignedScout;
     existing.completed = formData.completed;
-    existing.needsRecheck = formData.needsRecheck;
+    if ('needsRecheck' in formData) existing.needsRecheck = formData.needsRecheck;
     existing.notes = formData.notes;
     existing.updatedAt = formData.updatedAt;
 
@@ -2201,9 +2215,11 @@
     $$('#view-form .field-input, #view-form .field-textarea').forEach(el => {
       el.addEventListener('input', scheduleAutosave);
     });
-    $('#f-notes').addEventListener('input', scheduleAutosave);
-    $('#f-completed').addEventListener('change', scheduleAutosave);
-    $('#f-needsRecheck').addEventListener('change', scheduleAutosave);
+    $('#f-notes')?.addEventListener('input', scheduleAutosave);
+    $('#f-completed')?.addEventListener('change', scheduleAutosave);
+    $('#f-needsRecheck')?.addEventListener('change', scheduleAutosave);
+    $('#f-auto-notes')?.addEventListener('input', scheduleAutosave);
+    $('#f-balls-per-load')?.addEventListener('input', scheduleAutosave);
 
     // Match notes + qual list delete
     $('#btn-add-match-note').addEventListener('click', addMatchNote);
