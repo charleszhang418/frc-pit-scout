@@ -381,6 +381,7 @@
     runSync,
     enqueue,
     entityIdFor,
+    ensureDeviceId,
     getState: () => ({ ...state }),
     statusLabel,
     subscribe(fn) {

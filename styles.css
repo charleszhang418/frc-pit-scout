@@ -1200,6 +1200,10 @@ button.pit-stall {
   border-color: var(--accent);
   background: rgba(108, 99, 255, 0.12);
 }
+.assign-team-row.claimed-other {
+  border-color: #ea580c;
+  background: rgba(253, 186, 116, 0.25);
+}
 .assign-team-row .assign-num {
   font-weight: 800;
   color: var(--accent);
@@ -1215,10 +1219,21 @@ button.pit-stall {
 .assign-team-row .assign-check {
   font-size: 0.75rem;
   color: var(--text-dim);
+  max-width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .assign-team-row.selected .assign-check {
   color: var(--accent);
   font-weight: 700;
+}
+.assign-team-row.claimed-other .assign-check {
+  color: #c2410c;
+  font-weight: 700;
+}
+.assign-team-row.claimed-other .assign-num {
+  color: #c2410c;
 }
 
 /* ===== RESPONSIVE ===== */

@@ -541,7 +541,11 @@
 
   async function enqueueMyAssignments() {
     if (!window.PitScoutSync || !syncEnqueueEnabled) return;
-    myDeviceIdCache = myDeviceIdCache || (await syncMetaGet('deviceId')) || '';
+    if (typeof window.PitScoutSync.ensureDeviceId === 'function') {
+      myDeviceIdCache = await window.PitScoutSync.ensureDeviceId();
+    } else {
+      myDeviceIdCache = (await syncMetaGet('deviceId')) || myDeviceIdCache || '';
+    }
     if (!myDeviceIdCache) return;
     const displayName =
       getScoutName() ||
@@ -642,12 +646,13 @@
   async function applyDeviceAssignmentRemote(payload, revision, options = {}) {
     const deviceId = String(payload?.deviceId || '').trim();
     if (!deviceId) return;
-    myDeviceIdCache = myDeviceIdCache || (await syncMetaGet('deviceId')) || '';
+    myDeviceIdCache = (await syncMetaGet('deviceId')) || myDeviceIdCache || '';
 
     if (options.deleted) {
       delete remoteDeviceAssignments[deviceId];
       await persistRemoteAssignments();
       renderPitMap();
+      renderAssignTeamList();
       return;
     }
 
@@ -659,8 +664,9 @@
       ),
     ].sort((a, b) => a - b);
     const displayName = String(payload.displayName || '').trim();
+    const isMine = !!myDeviceIdCache && deviceId === myDeviceIdCache;
 
-    if (deviceId === myDeviceIdCache) {
+    if (isMine) {
       if (options.fromSnapshot && assignedTeamNumbers.length) {
         // Keep local list after join; push it next. Still store server revision as base.
         remoteDeviceAssignments[deviceId] = {
@@ -677,7 +683,6 @@
           syncRevision: Number(revision || 0),
         };
         updateAssignmentSummaries();
-        renderAssignTeamList();
       }
     } else {
       remoteDeviceAssignments[deviceId] = {
@@ -688,6 +693,7 @@
     }
     await persistRemoteAssignments();
     renderPitMap();
+    renderAssignTeamList();
   }
 
   async function loadPitMapConfig() {
@@ -822,7 +828,15 @@
     const q = (assignSearch || '').toLowerCase();
     const teams = allTeams
       .slice()
-      .sort((a, b) => a.teamNumber - b.teamNumber)
+      .sort((a, b) => {
+        const aMine = isAssignedTeam(a.teamNumber) ? 0 : 1;
+        const bMine = isAssignedTeam(b.teamNumber) ? 0 : 1;
+        if (aMine !== bMine) return aMine - bMine;
+        const aOther = getOtherDeviceClaim(a.teamNumber) ? 0 : 1;
+        const bOther = getOtherDeviceClaim(b.teamNumber) ? 0 : 1;
+        if (aOther !== bOther) return aOther - bOther;
+        return a.teamNumber - b.teamNumber;
+      })
       .filter((t) => {
         if (!q) return true;
         return (
@@ -838,10 +852,20 @@
     list.innerHTML = teams
       .map((t) => {
         const selected = isAssignedTeam(t.teamNumber);
-        return `<button type="button" class="assign-team-row${selected ? ' selected' : ''}" data-team="${t.teamNumber}">
+        const other = !selected ? getOtherDeviceClaim(t.teamNumber) : null;
+        let rowClass = 'assign-team-row';
+        let status = 'Tap to assign';
+        if (selected) {
+          rowClass += ' selected';
+          status = 'Mine';
+        } else if (other) {
+          rowClass += ' claimed-other';
+          status = escapeHtml(other.displayName);
+        }
+        return `<button type="button" class="${rowClass}" data-team="${t.teamNumber}">
           <span class="assign-num">${t.teamNumber}</span>
           <span class="assign-name">${escapeHtml(t.teamName || 'Unknown')}</span>
-          <span class="assign-check">${selected ? 'Assigned' : 'Tap to assign'}</span>
+          <span class="assign-check">${status}</span>
         </button>`;
       })
       .join('');
@@ -2259,7 +2283,10 @@
         if (view === 'form' && !currentTeamNumber) return;
         switchView(view);
         if (view === 'qual') renderQualRecentList();
-        if (view === 'map') renderPitMap();
+        if (view === 'map') {
+          renderPitMap();
+          renderAssignTeamList();
+        }
         if (view === 'export') renderAssignTeamList();
         if (view !== 'form' && view !== 'qual') refreshData();
       });
