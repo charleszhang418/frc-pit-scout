@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#1a1a2e">
   <title>FRC Pit Scout</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css?v=45">
+  <link rel="stylesheet" href="styles.css?v=46">
 </head>
 <body>
   <div id="app">
@@ -411,9 +411,10 @@
           </div>
         </div>
 
-        <!-- MATCH NOTES SECTION -->
+        <!-- MATCH NOTES SECTION — view only; entry via Qual tab -->
         <div class="form-section" data-section="match">
-          <p class="presct-note" style="margin-bottom:12px">For a full field: use the bottom nav <strong>Qual</strong> tab (six teams + scores at once). Below is for single-team observations.</p>
+          <p class="presct-note" style="margin-bottom:12px">Match notes come from the bottom nav <strong>Qual</strong> tab. This page is a per-team log only.</p>
+          <!--
           <div id="match-note-form" class="match-note-form">
             <div class="field-group">
               <label class="field-label">Match Number</label>
@@ -458,7 +459,8 @@
             </div>
             <button id="btn-add-match-note" class="btn btn-primary btn-block">Add Match Note</button>
           </div>
-          <div class="field-group" style="margin-top:16px">
+          -->
+          <div class="field-group">
             <label class="field-label">Match Observation Log</label>
             <div id="match-notes-list"></div>
           </div>
@@ -597,8 +599,8 @@
 
   </div>
 
-  <script src="config.js?v=45"></script>
-  <!-- <script src="sync-client.js?v=45"></script> -->
-  <script src="app.js?v=45"></script>
+  <script src="config.js?v=46"></script>
+  <!-- <script src="sync-client.js?v=46"></script> -->
+  <script src="app.js?v=46"></script>
 </body>
 </html>

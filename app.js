@@ -1287,10 +1287,11 @@
     }
 
     // Match notes
+    // Match notes (compose form commented out — entry via Qual tab only)
     renderMatchNotesList(team);
-    $('#f-match-number').value = '';
-    $('#f-match-notes').value = '';
-    $('#f-match-alliancePoints').value = '';
+    $('#f-match-number') && ($('#f-match-number').value = '');
+    $('#f-match-notes') && ($('#f-match-notes').value = '');
+    $('#f-match-alliancePoints') && ($('#f-match-alliancePoints').value = '');
     const matchRoles = $('#match-note-form .seg-control[data-field="matchEntry.observedRoles"]');
     const matchPerf = $('#match-note-form .seg-control[data-field="matchEntry.performance"]');
     const matchDriver = $('#match-note-form .seg-control[data-field="matchEntry.driverSkill"]');
@@ -1512,9 +1513,10 @@
   // ───── Match Notes ─────
   function renderMatchNotesList(team) {
     const container = $('#match-notes-list');
+    if (!container) return;
     const notes = team.matchNotes || [];
     if (notes.length === 0) {
-      container.innerHTML = '<div class="empty-state" style="padding:16px">No match observations yet. Tap "Add Match Note" above.</div>';
+      container.innerHTML = '<div class="empty-state" style="padding:16px">No match notes yet. Enter matches in the Qual tab.</div>';
       return;
     }
     container.innerHTML = notes
@@ -1540,7 +1542,6 @@
             ${pts}
             <span class="match-note-tag qual-alliance-tag">${al}</span>
             <span class="match-note-time">${timeLabel}</span>
-            <button class="match-note-delete" data-idx="${realIdx}" aria-label="Delete">&times;</button>
           </div>
           <div class="qual-field-match-meta">R: ${ra} · B: ${ba}</div>
           ${n.notes ? `<div class="match-note-body">${escapeNoteHtml(n.notes)}</div>` : '<div class="match-note-body muted">(no comment for this robot)</div>'}
@@ -1560,7 +1561,6 @@
             <strong>${escapeHtml(n.matchNumber || 'No match #')}</strong>
             ${n.alliancePoints ? `<span class="match-note-points">${escapeHtml(n.alliancePoints)} pts</span>` : ''}
             <span class="match-note-time">${timeLabel}</span>
-            <button class="match-note-delete" data-idx="${realIdx}" aria-label="Delete">&times;</button>
           </div>
           ${rolesTags}
           ${n.performance ? `<div class="match-note-tag${perfCls ? ` perf-${escapeHtml(perfCls)}` : ''}">${escapeHtml(n.performance)}</div>` : ''}
@@ -2373,7 +2373,7 @@
     $('#f-balls-per-load')?.addEventListener('input', scheduleAutosave);
 
     // Match notes + qual list delete
-    $('#btn-add-match-note').addEventListener('click', addMatchNote);
+    $('#btn-add-match-note')?.addEventListener('click', addMatchNote);
     document.addEventListener('click', (e) => {
       const qdel = e.target.closest('.qual-recent-del');
       if (qdel && qdel.dataset.mid) {
