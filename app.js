@@ -416,6 +416,7 @@
         ballsPerLoad: '',
         heightProfile: '',
         canPassTrench: '',
+        idealShotDistance: '',
       },
       fuel: {
         scoringRange: '',

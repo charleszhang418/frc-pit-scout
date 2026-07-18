@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#1a1a2e">
   <title>FRC Pit Scout</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css?v=46">
+  <link rel="stylesheet" href="styles.css?v=47">
 </head>
 <body>
   <div id="app">
@@ -364,11 +364,22 @@
               <button class="seg-btn" data-val="unknown">未知</button>
             </div>
           </div>
+          <!--
           <div class="field-group">
             <label class="field-label">过 Trench</label>
             <div class="seg-control" data-field="robot.canPassTrench">
               <button class="seg-btn" data-val="yes">能过</button>
               <button class="seg-btn" data-val="no">不能</button>
+              <button class="seg-btn" data-val="unknown">未知</button>
+            </div>
+          </div>
+          -->
+          <div class="field-group">
+            <label class="field-label">理想射球距离</label>
+            <div class="seg-control" data-field="robot.idealShotDistance">
+              <button class="seg-btn" data-val="near">近</button>
+              <button class="seg-btn" data-val="mid">中</button>
+              <button class="seg-btn" data-val="far">远</button>
               <button class="seg-btn" data-val="unknown">未知</button>
             </div>
           </div>
@@ -599,8 +610,8 @@
 
   </div>
 
-  <script src="config.js?v=46"></script>
-  <!-- <script src="sync-client.js?v=46"></script> -->
-  <script src="app.js?v=46"></script>
+  <script src="config.js?v=47"></script>
+  <!-- <script src="sync-client.js?v=47"></script> -->
+  <script src="app.js?v=47"></script>
 </body>
 </html>
