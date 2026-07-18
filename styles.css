@@ -548,8 +548,33 @@ body:has(.app-update-banner) #app {
   align-items: center;
   justify-content: center;
 }
+.photo-actions {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 .photo-add-btn {
   margin-top: 0;
+  text-align: center;
+  cursor: pointer;
+}
+.photo-add-btn.is-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+/* Visually hidden but still activatable via <label for> (display:none breaks some mobile browsers). */
+.photo-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 .photo-area {
   background: var(--surface);

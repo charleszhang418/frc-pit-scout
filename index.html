@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#1a1a2e">
   <title>FRC Pit Scout</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css?v=47">
+  <link rel="stylesheet" href="styles.css?v=48">
 </head>
 <body>
   <div id="app">
@@ -406,12 +406,22 @@
           <div class="field-group">
             <label class="field-label">Robot Photos</label>
             <div id="photo-gallery" class="photo-gallery"></div>
-            <button type="button" id="photo-add-btn" class="btn btn-secondary btn-block photo-add-btn">
-              + Add photo
-            </button>
+            <div class="photo-actions">
+              <!-- Labels (not JS .click()) so iOS/Android/WeChat reliably open the picker. -->
+              <label for="photo-camera-input" id="photo-camera-btn" class="btn btn-primary btn-block photo-add-btn">
+                拍照 Take photo
+              </label>
+              <label for="photo-gallery-input" id="photo-gallery-btn" class="btn btn-secondary btn-block photo-add-btn">
+                相册 Choose from album
+              </label>
+              <!-- Camera: no multiple (breaks capture on many Androids). Extra accept token helps Chrome 14+. -->
+              <input type="file" id="photo-camera-input" class="photo-file-input" accept="image/*,android/force-camera-workaround" capture="environment">
+              <input type="file" id="photo-gallery-input" class="photo-file-input" accept="image/*" multiple>
+            </div>
             <p id="photo-count-label" class="presct-note" style="margin-top:6px">0 / 8 photos</p>
-            <input type="file" id="photo-input" accept="image/*" capture="environment" multiple style="display:none">
             <!-- Compat shims: older cached app.js still toggles these; keep hidden so team open never crashes. -->
+            <button type="button" id="photo-add-btn" style="display:none" aria-hidden="true" tabindex="-1"></button>
+            <input type="file" id="photo-input" style="display:none" aria-hidden="true" tabindex="-1">
             <img id="photo-preview" alt="" style="display:none" width="0" height="0">
             <div id="photo-placeholder" style="display:none" aria-hidden="true"></div>
             <button type="button" id="photo-remove-btn" style="display:none" aria-hidden="true" tabindex="-1"></button>
@@ -610,8 +620,8 @@
 
   </div>
 
-  <script src="config.js?v=47"></script>
-  <!-- <script src="sync-client.js?v=47"></script> -->
-  <script src="app.js?v=47"></script>
+  <script src="config.js?v=48"></script>
+  <!-- <script src="sync-client.js?v=48"></script> -->
+  <script src="app.js?v=48"></script>
 </body>
 </html>

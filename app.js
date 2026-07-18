@@ -1410,9 +1410,24 @@
     return photos;
   }
 
+  function setPhotoInputsEnabled(enabled) {
+    ['photo-camera-input', 'photo-gallery-input', 'photo-input'].forEach((id) => {
+      const el = $(`#${id}`);
+      if (el) el.disabled = !enabled;
+    });
+    ['photo-camera-btn', 'photo-gallery-btn', 'photo-add-btn'].forEach((id) => {
+      const el = $(`#${id}`);
+      if (!el) return;
+      el.classList.toggle('is-disabled', !enabled);
+      if ('disabled' in el) el.disabled = !enabled;
+    });
+  }
+
   function renderPhotoGallery(team) {
     const gallery = $('#photo-gallery');
     const countEl = $('#photo-count-label');
+    const cameraBtn = $('#photo-camera-btn');
+    const galleryBtn = $('#photo-gallery-btn');
     const addBtn = $('#photo-add-btn');
     if (!gallery) return;
     const photos = getTeamPhotos(team);
@@ -1428,41 +1443,93 @@
         )
         .join('');
     }
+    const atLimit = photos.length >= MAX_TEAM_PHOTOS;
     if (countEl) countEl.textContent = `${photos.length} / ${MAX_TEAM_PHOTOS} photos`;
-    if (addBtn) {
-      addBtn.disabled = photos.length >= MAX_TEAM_PHOTOS;
-      addBtn.textContent =
-        photos.length >= MAX_TEAM_PHOTOS ? `Photo limit (${MAX_TEAM_PHOTOS})` : '+ Add photo';
+    if (cameraBtn) {
+      cameraBtn.textContent = atLimit
+        ? `已满 Photo limit (${MAX_TEAM_PHOTOS})`
+        : '拍照 Take photo';
     }
+    if (galleryBtn) {
+      galleryBtn.textContent = atLimit
+        ? `已满 Photo limit (${MAX_TEAM_PHOTOS})`
+        : '相册 Choose from album';
+    }
+    if (addBtn && addBtn.style.display !== 'none') {
+      addBtn.disabled = atLimit;
+      addBtn.textContent = atLimit ? `Photo limit (${MAX_TEAM_PHOTOS})` : '+ Add photo';
+    }
+    setPhotoInputsEnabled(!atLimit);
+  }
+
+  function looksLikeImageFile(file) {
+    if (!file) return false;
+    const type = (file.type || '').toLowerCase();
+    if (type.startsWith('image/')) return true;
+    // Android camera often returns empty / octet-stream MIME; accept by extension or unknown name.
+    if (!type || type === 'application/octet-stream') {
+      const name = file.name || '';
+      if (!name || !name.includes('.')) return true;
+      return /\.(jpe?g|png|gif|webp|heic|heif|bmp)$/i.test(name);
+    }
+    return false;
   }
 
   function compressImage(file, maxDim, quality) {
     return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const img = new Image();
-        img.onload = () => {
+      const objectUrl = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = () => {
+        try {
           const canvas = document.createElement('canvas');
-          let w = img.width, h = img.height;
+          let w = img.width;
+          let h = img.height;
+          if (!w || !h) {
+            URL.revokeObjectURL(objectUrl);
+            reject(new Error('Could not decode image'));
+            return;
+          }
           if (w > maxDim || h > maxDim) {
-            if (w > h) { h = Math.round(h * maxDim / w); w = maxDim; }
-            else { w = Math.round(w * maxDim / h); h = maxDim; }
+            if (w > h) {
+              h = Math.round((h * maxDim) / w);
+              w = maxDim;
+            } else {
+              w = Math.round((w * maxDim) / h);
+              h = maxDim;
+            }
           }
           canvas.width = w;
           canvas.height = h;
-          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          URL.revokeObjectURL(objectUrl);
           resolve(canvas.toDataURL('image/jpeg', quality));
-        };
-        img.onerror = () => reject(new Error('Could not decode image'));
-        img.src = e.target.result;
+        } catch (err) {
+          URL.revokeObjectURL(objectUrl);
+          reject(err);
+        }
       };
-      reader.onerror = () => reject(new Error('Could not read file'));
-      reader.readAsDataURL(file);
+      img.onerror = () => {
+        URL.revokeObjectURL(objectUrl);
+        // Fallback: store original data URL (works when canvas can't decode, e.g. some HEIC).
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const dataUrl = e.target?.result;
+          if (typeof dataUrl === 'string' && dataUrl.startsWith('data:')) resolve(dataUrl);
+          else reject(new Error('Could not decode image'));
+        };
+        reader.onerror = () => reject(new Error('Could not read file'));
+        reader.readAsDataURL(file);
+      };
+      img.src = objectUrl;
     });
   }
 
   async function handlePhotos(fileList) {
-    if (!fileList?.length || !currentTeamNumber) return;
+    if (!fileList?.length || !currentTeamNumber) {
+      if (!currentTeamNumber) showToast('Open a team before adding photos', 'error');
+      return;
+    }
     const team = await dbGet(currentTeamNumber);
     if (!team) return;
     const photos = syncPhotoFields(team);
@@ -1473,8 +1540,13 @@
     }
     const files = Array.from(fileList).slice(0, room);
     let added = 0;
+    let skippedType = 0;
+    let failed = 0;
     for (const file of files) {
-      if (!file.type.startsWith('image/')) continue;
+      if (!looksLikeImageFile(file)) {
+        skippedType++;
+        continue;
+      }
       try {
         const dataUrl = await compressImage(file, 800, 0.7);
         photos.push({
@@ -1485,6 +1557,7 @@
         added++;
       } catch (e) {
         console.warn('Photo compress failed', e);
+        failed++;
       }
     }
     team.photos = photos;
@@ -1494,6 +1567,8 @@
     renderPhotoGallery(team);
     showAutosave('Saved on this device');
     if (added) showToast(added === 1 ? 'Photo saved' : `${added} photos saved`, 'success');
+    else if (failed) showToast('Could not process photo (try album JPG/PNG)', 'error');
+    else if (skippedType) showToast('Selected file is not an image', 'error');
     else showToast('No photos added', 'error');
   }
 
@@ -2393,11 +2468,19 @@
     // Add team
     $('#btn-add-team').addEventListener('click', addTeamManually);
 
-    // Photo
-    $('#photo-add-btn')?.addEventListener('click', () => $('#photo-input')?.click());
-    $('#photo-input')?.addEventListener('change', (e) => {
+    // Photo — prefer native <label for> activation; keep legacy button click as fallback.
+    const onPhotoInputChange = (e) => {
       if (e.target.files?.length) handlePhotos(e.target.files);
       e.target.value = '';
+    };
+    $('#photo-camera-input')?.addEventListener('change', onPhotoInputChange);
+    $('#photo-gallery-input')?.addEventListener('change', onPhotoInputChange);
+    $('#photo-input')?.addEventListener('change', onPhotoInputChange);
+    $('#photo-add-btn')?.addEventListener('click', () => {
+      const camera = $('#photo-camera-input');
+      const legacy = $('#photo-input');
+      if (camera && !camera.disabled) camera.click();
+      else if (legacy && !legacy.disabled) legacy.click();
     });
     $('#photo-gallery')?.addEventListener('click', (e) => {
       const btn = e.target.closest('.photo-thumb-remove');
