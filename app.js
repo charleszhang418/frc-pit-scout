@@ -1526,7 +1526,9 @@
   }
 
   async function handlePhotos(fileList) {
-    if (!fileList?.length || !currentTeamNumber) {
+    // Snapshot immediately — FileList is live; clearing input.value empties it across awaits.
+    const incoming = Array.isArray(fileList) ? fileList.slice() : Array.from(fileList || []);
+    if (!incoming.length || !currentTeamNumber) {
       if (!currentTeamNumber) showToast('Open a team before adding photos', 'error');
       return;
     }
@@ -1538,7 +1540,7 @@
       showToast(`Maximum ${MAX_TEAM_PHOTOS} photos per team`, 'error');
       return;
     }
-    const files = Array.from(fileList).slice(0, room);
+    const files = incoming.slice(0, room);
     let added = 0;
     let skippedType = 0;
     let failed = 0;
@@ -2470,8 +2472,9 @@
 
     // Photo — prefer native <label for> activation; keep legacy button click as fallback.
     const onPhotoInputChange = (e) => {
-      if (e.target.files?.length) handlePhotos(e.target.files);
+      const files = e.target.files ? Array.from(e.target.files) : [];
       e.target.value = '';
+      if (files.length) handlePhotos(files);
     };
     $('#photo-camera-input')?.addEventListener('change', onPhotoInputChange);
     $('#photo-gallery-input')?.addEventListener('change', onPhotoInputChange);
