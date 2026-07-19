@@ -518,6 +518,7 @@
   let currentFilter = 'all';
   let currentDivision = 'All';
   let currentSearch = '';
+  let currentSort = localStorage.getItem('teamSort') || 'number';
   let currentTeamNumber = null;
   let autosaveTimer = null;
   let assignedTeamNumbers = []; // this phone's "my teams"
@@ -1138,6 +1139,8 @@
     );
   }
 
+  const TIER_SORT_RANK = { S: 0, A: 1, B: 2, C: 3, D: 4 };
+
   function getTeamTierLabel(team) {
     const letter = (team?.tiering?.tier || '').toUpperCase();
     const def = !!team?.tiering?.defense;
@@ -1146,6 +1149,36 @@
     }
     if (def) return 'DEF';
     return '';
+  }
+
+  /** Lower = higher on the list when sorting by tier. */
+  function getTierSortRank(team) {
+    const letter = (team?.tiering?.tier || '').toUpperCase();
+    if (TIER_SORT_RANK[letter] != null) return TIER_SORT_RANK[letter];
+    if (team?.tiering?.defense) return 5; // defense-only after D
+    return 6; // unranked last
+  }
+
+  function compareTeams(a, b) {
+    if (currentSort === 'tier') {
+      const ra = getTierSortRank(a);
+      const rb = getTierSortRank(b);
+      if (ra !== rb) return ra - rb;
+      // Within same letter: Defense-tagged first, then team #
+      const da = a?.tiering?.defense ? 0 : 1;
+      const db = b?.tiering?.defense ? 0 : 1;
+      if (da !== db) return da - db;
+    }
+    return a.teamNumber - b.teamNumber;
+  }
+
+  function setTeamSort(mode) {
+    currentSort = mode === 'tier' ? 'tier' : 'number';
+    localStorage.setItem('teamSort', currentSort);
+    const dash = $('#sort-select');
+    const list = $('#teamlist-sort-select');
+    if (dash && dash.value !== currentSort) dash.value = currentSort;
+    if (list && list.value !== currentSort) list.value = currentSort;
   }
 
   function getIndicators(team) {
@@ -1192,7 +1225,7 @@
   function renderTeamList(containerId) {
     const filtered = allTeams
       .filter(t => matchesFilter(t) && matchesSearch(t))
-      .sort((a, b) => a.teamNumber - b.teamNumber);
+      .sort(compareTeams);
     const container = $(`#${containerId}`);
     if (filtered.length === 0) {
       let extra = '';
@@ -2369,6 +2402,22 @@
         currentFilter = chip.dataset.filter;
         renderTeamList('dashboard-team-list');
       });
+    });
+
+    // Sort (shared across Dashboard + Teams)
+    const syncSortControls = () => {
+      setTeamSort(currentSort);
+    };
+    syncSortControls();
+    $('#sort-select')?.addEventListener('change', (e) => {
+      setTeamSort(e.target.value);
+      renderTeamList('dashboard-team-list');
+      renderTeamList('teamlist-container');
+    });
+    $('#teamlist-sort-select')?.addEventListener('change', (e) => {
+      setTeamSort(e.target.value);
+      renderTeamList('dashboard-team-list');
+      renderTeamList('teamlist-container');
     });
 
     // Team list search

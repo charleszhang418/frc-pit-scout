@@ -273,6 +273,21 @@ body:has(.app-update-banner) #app {
   color: #fff;
 }
 
+.sort-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 2px 0 6px;
+}
+.sort-row .global-label {
+  margin: 0;
+  flex: 0 0 auto;
+}
+.sort-select {
+  flex: 1;
+  min-width: 0;
+}
+
 /* ===== TEAM LIST ===== */
 .team-list { display: flex; flex-direction: column; gap: 6px; }
 

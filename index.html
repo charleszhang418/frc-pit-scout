@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#1a1a2e">
   <title>FRC Pit Scout</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css?v=50">
+  <link rel="stylesheet" href="styles.css?v=51">
 </head>
 <body>
   <div id="app">
@@ -101,6 +101,13 @@
         <button class="filter-chip" data-filter="recheck">Recheck</button>
         <button class="filter-chip" data-filter="verified">Verified</button>
       </div>
+      <div class="sort-row">
+        <label for="sort-select" class="global-label">Sort</label>
+        <select id="sort-select" class="global-select sort-select">
+          <option value="number">Team #</option>
+          <option value="tier">Tier (S → D)</option>
+        </select>
+      </div>
       <p id="my-teams-count" class="presct-note" style="margin:4px 0 8px">My teams: 0 — set in Data</p>
 
       <div id="dashboard-team-list" class="team-list"></div>
@@ -119,6 +126,13 @@
       <div class="search-bar">
         <svg viewBox="0 0 24 24" width="20" height="20"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
         <input type="text" id="teamlist-search" placeholder="Search team # or name…" autocomplete="off">
+      </div>
+      <div class="sort-row">
+        <label for="teamlist-sort-select" class="global-label">Sort</label>
+        <select id="teamlist-sort-select" class="global-select sort-select">
+          <option value="number">Team #</option>
+          <option value="tier">Tier (S → D)</option>
+        </select>
       </div>
       <div id="teamlist-container" class="team-list"></div>
     </section>
@@ -643,8 +657,8 @@
 
   </div>
 
-  <script src="config.js?v=50"></script>
-  <!-- <script src="sync-client.js?v=50"></script> -->
-  <script src="app.js?v=50"></script>
+  <script src="config.js?v=51"></script>
+  <!-- <script src="sync-client.js?v=51"></script> -->
+  <script src="app.js?v=51"></script>
 </body>
 </html>
