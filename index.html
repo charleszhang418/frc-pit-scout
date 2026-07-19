@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#1a1a2e">
   <title>FRC Pit Scout</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="styles.css?v=49">
+  <link rel="stylesheet" href="styles.css?v=50">
 </head>
 <body>
   <div id="app">
@@ -240,6 +240,7 @@
         <button class="form-tab" data-section="presct">Pre</button>
         -->
         <button class="form-tab active" data-section="pit">Pit</button>
+        <button class="form-tab" data-section="tier">Tier</button>
         <button class="form-tab" data-section="match">Match</button>
         <!--
         <button class="form-tab" data-section="verify">Verify</button>
@@ -432,6 +433,28 @@
           </div>
         </div>
 
+        <!-- TIER: alliance pick list — independent of pit / match notes -->
+        <div class="form-section" data-section="tier">
+          <div class="field-group">
+            <label class="field-label">Alliance Tier</label>
+            <p class="presct-note" style="margin-bottom:10px">Pick one letter (S–D). Defense can be tagged with any tier — e.g. C + Defense. Not two letters at once.</p>
+            <div class="seg-control wide tier-letter-control" data-field="tiering.tier" data-allow-deselect="1">
+              <button type="button" class="seg-btn tier-s" data-val="S">S</button>
+              <button type="button" class="seg-btn tier-a" data-val="A">A</button>
+              <button type="button" class="seg-btn tier-b" data-val="B">B</button>
+              <button type="button" class="seg-btn tier-c" data-val="C">C</button>
+              <button type="button" class="seg-btn tier-d" data-val="D">D</button>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">Defense</label>
+            <p class="presct-note" style="margin-bottom:10px">Optional. Can be on together with any letter tier.</p>
+            <div class="seg-control multi" data-field="tiering.defense">
+              <button type="button" class="seg-btn tier-defense" data-val="yes">Defense</button>
+            </div>
+          </div>
+        </div>
+
         <!-- MATCH NOTES SECTION — view only; entry via Qual tab -->
         <div class="form-section" data-section="match">
           <p class="presct-note" style="margin-bottom:12px">Match notes come from the bottom nav <strong>Qual</strong> tab. This page is a per-team log only.</p>
@@ -620,8 +643,8 @@
 
   </div>
 
-  <script src="config.js?v=49"></script>
-  <!-- <script src="sync-client.js?v=49"></script> -->
-  <script src="app.js?v=49"></script>
+  <script src="config.js?v=50"></script>
+  <!-- <script src="sync-client.js?v=50"></script> -->
+  <script src="app.js?v=50"></script>
 </body>
 </html>

@@ -881,11 +881,21 @@ body:has(.app-update-banner) #app {
 }
 
 /* Tier buttons */
+.tier-letter-control .seg-btn {
+  font-weight: 800;
+  font-size: 1.05rem;
+  min-width: 44px;
+}
 .seg-btn.tier-s.selected { background: #6c63ff; color: #fff; }
 .seg-btn.tier-a.selected { background: #3b82f6; color: #fff; }
 .seg-btn.tier-b.selected { background: #22c55e; color: #fff; }
 .seg-btn.tier-c.selected { background: #f59e0b; color: #fff; }
 .seg-btn.tier-d.selected { background: #ef4444; color: #fff; }
+.seg-btn.tier-defense.selected {
+  background: #0ea5e9;
+  color: #fff;
+  border-color: #0ea5e9;
+}
 
 /* Pre-scout export card */
 .export-card.presct-export {

@@ -444,6 +444,11 @@
         knownIssues: '',
         notes: '',
       },
+      // Alliance pick list (separate from pit / match scouting)
+      tiering: {
+        tier: '', // S | A | B | C | D
+        defense: false,
+      },
       verification: {
         evidenceLevel: '',
         status: '',
@@ -1133,10 +1138,23 @@
     );
   }
 
+  function getTeamTierLabel(team) {
+    const letter = (team?.tiering?.tier || '').toUpperCase();
+    const def = !!team?.tiering?.defense;
+    if (letter && ['S', 'A', 'B', 'C', 'D'].includes(letter)) {
+      return def ? `${letter}·DEF` : letter;
+    }
+    if (def) return 'DEF';
+    return '';
+  }
+
   function getIndicators(team) {
     const inds = [];
     const pc = getPrescoutForTeam(team.teamNumber);
-    if (pc.tier && pc.tier !== 'unknown' && pc.tier !== 'unranked') {
+    const tierLabel = getTeamTierLabel(team);
+    if (tierLabel) {
+      inds.push({ cls: 'ind-tier', text: tierLabel });
+    } else if (pc.tier && pc.tier !== 'unknown' && pc.tier !== 'unranked') {
       inds.push({ cls: 'ind-tier', text: pc.tier });
     }
     const pitShooter = team.robot?.shooterType;
@@ -1267,13 +1285,22 @@
       if (el) el.value = (team[path[0]] && team[path[0]][path[1]]) || '';
     }
 
-    // Segmented controls (pit + verify only — not match compose)
+    // Segmented controls (pit / tier / verify — not match compose)
     $$('#view-form .seg-control').forEach(ctrl => {
       const field = ctrl.dataset.field;
       if (!field || field.startsWith('matchEntry.')) return;
       const [section, key] = field.split('.');
-      if (!['robot', 'climb', 'verification'].includes(section)) return;
-      const val = team[section] && team[section][key];
+      if (!['robot', 'climb', 'verification', 'tiering'].includes(section)) return;
+      if (section === 'tiering' && key === 'defense') {
+        const on = !!team.tiering?.defense;
+        ctrl.querySelectorAll('.seg-btn').forEach((btn) => {
+          btn.classList.toggle('selected', on && btn.dataset.val === 'yes');
+        });
+        return;
+      }
+      const val = section === 'tiering'
+        ? (team.tiering?.tier || '')
+        : (team[section] && team[section][key]);
       ctrl.querySelectorAll('.seg-btn').forEach(btn => {
         btn.classList.toggle('selected', btn.dataset.val === val);
       });
@@ -1318,8 +1345,12 @@
       const field = ctrl.dataset.field;
       if (!field || field.startsWith('matchEntry.')) return;
       const [section, key] = field.split('.');
-      if (!['robot', 'climb', 'verification'].includes(section)) return;
+      if (!['robot', 'climb', 'verification', 'tiering'].includes(section)) return;
       if (!data[section]) data[section] = {};
+      if (section === 'tiering' && key === 'defense') {
+        data.tiering.defense = !!ctrl.querySelector('.seg-btn.selected');
+        return;
+      }
       const selected = ctrl.querySelector('.seg-btn.selected');
       data[section][key] = selected ? selected.dataset.val : '';
     });
@@ -1353,9 +1384,15 @@
     const formData = collectFormData();
 
     // Merge nested objects
-    for (const key of ['robot', 'auto', 'climb', 'verification']) {
+    for (const key of ['robot', 'auto', 'climb', 'verification', 'tiering']) {
       if (!formData[key]) continue;
       existing[key] = { ...(existing[key] || {}), ...formData[key] };
+    }
+    if (formData.tiering) {
+      existing.tiering = {
+        tier: formData.tiering.tier || '',
+        defense: !!formData.tiering.defense,
+      };
     }
     existing.assignedScout = formData.assignedScout;
     existing.completed = formData.completed;
@@ -1938,13 +1975,15 @@
     row.completed = team.completed;
     row.needsRecheck = team.needsRecheck;
     row.notes = team.notes;
-    for (const section of ['robot', 'fuel', 'auto', 'climb', 'defense', 'verification']) {
+    for (const section of ['robot', 'fuel', 'auto', 'climb', 'defense', 'verification', 'tiering']) {
       if (team[section]) {
         for (const [k, v] of Object.entries(team[section])) {
           row[`${section}_${k}`] = v;
         }
       }
     }
+    row.tier = team.tiering?.tier || '';
+    row.tierDefense = !!team.tiering?.defense;
     row.hasPhoto = getTeamPhotos(team).length > 0;
     row.photoCount = getTeamPhotos(team).length;
     row.matchNotesCount = (team.matchNotes || []).length;
@@ -2408,17 +2447,19 @@
       if (!btn) return;
       const ctrl = btn.closest('.seg-control');
       if (!ctrl) return;
-      
-      // Check if multi-select
+
+      // Check if multi-select (e.g. Defense tag — independent of letter tier)
       if (ctrl.classList.contains('multi')) {
-        // Toggle the clicked button
         btn.classList.toggle('selected');
+      } else if (ctrl.dataset.allowDeselect === '1' && btn.classList.contains('selected')) {
+        // Tap selected tier again to clear
+        btn.classList.remove('selected');
       } else {
         // Single select: deselect others
         ctrl.querySelectorAll('.seg-btn').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
       }
-      
+
       if (btn.closest('#match-note-form')) return;
       const field = ctrl.dataset.field;
       if (field && field.startsWith('presct.')) {
