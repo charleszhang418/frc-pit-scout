@@ -1,0 +1,3591 @@
+{
+  "event_code": "OTSAN",
+  "event_name": "World Robot Contest South China Championships 2026 - Sanya FRC / China Off-Season Presented by TIMKEN",
+  "source_urls": {
+    "qualifications": "https://frc-events.firstinspires.org/2026/OTSAN/qualifications",
+    "rankings": "https://frc-events.firstinspires.org/2026/OTSAN/rankings",
+    "event": "https://frc-events.firstinspires.org/2026/OTSAN"
+  },
+  "fetched_note": "Scraped from frc-events HTML (FIRST API needs auth; TBA/Statbotics often omit off-season).",
+  "matches_played": 36,
+  "matches_total": 48,
+  "teams": 41,
+  "real_teams": 34,
+  "mean_alliance_score": 264.3,
+  "median_event_epa": 81.9,
+  "median_opr": 83.9,
+  "matches": [
+    {
+      "match": "qm1",
+      "match_number": 1,
+      "comp_level": "qm",
+      "time": "Mon 7/20 - 9:06 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            9635,
+            7002,
+            9995
+          ],
+          "team_keys": [
+            "frc9635",
+            "frc7002",
+            "frc9995"
+          ],
+          "score": 280
+        },
+        "blue": {
+          "teams": [
+            8015,
+            8810,
+            5515
+          ],
+          "team_keys": [
+            "frc8015",
+            "frc8810",
+            "frc5515"
+          ],
+          "score": 278
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm2",
+      "match_number": 2,
+      "comp_level": "qm",
+      "time": "Mon 7/20 - 9:17 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            6399,
+            6706,
+            5449
+          ],
+          "team_keys": [
+            "frc6399",
+            "frc6706",
+            "frc5449"
+          ],
+          "score": 165
+        },
+        "blue": {
+          "teams": [
+            6766,
+            9997,
+            10479
+          ],
+          "team_keys": [
+            "frc6766",
+            "frc9997",
+            "frc10479"
+          ],
+          "score": 623
+        }
+      },
+      "winning_alliance": "blue",
+      "played": true
+    },
+    {
+      "match": "qm3",
+      "match_number": 3,
+      "comp_level": "qm",
+      "time": "Mon 7/20 - 9:28 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            10541,
+            9994,
+            6394
+          ],
+          "team_keys": [
+            "frc10541",
+            "frc9994",
+            "frc6394"
+          ],
+          "score": 59
+        },
+        "blue": {
+          "teams": [
+            6353,
+            6940,
+            9992
+          ],
+          "team_keys": [
+            "frc6353",
+            "frc6940",
+            "frc9992"
+          ],
+          "score": 212
+        }
+      },
+      "winning_alliance": "blue",
+      "played": true
+    },
+    {
+      "match": "qm4",
+      "match_number": 4,
+      "comp_level": "qm",
+      "time": "Mon 7/20 - 9:43 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            5849,
+            11118,
+            5516
+          ],
+          "team_keys": [
+            "frc5849",
+            "frc11118",
+            "frc5516"
+          ],
+          "score": 66
+        },
+        "blue": {
+          "teams": [
+            5823,
+            9597,
+            11019
+          ],
+          "team_keys": [
+            "frc5823",
+            "frc9597",
+            "frc11019"
+          ],
+          "score": 217
+        }
+      },
+      "winning_alliance": "blue",
+      "played": true
+    },
+    {
+      "match": "qm5",
+      "match_number": 5,
+      "comp_level": "qm",
+      "time": "Mon 7/20 - 9:55 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            9999,
+            9996,
+            11352
+          ],
+          "team_keys": [
+            "frc9999",
+            "frc9996",
+            "frc11352"
+          ],
+          "score": 5
+        },
+        "blue": {
+          "teams": [
+            8011,
+            11256,
+            8214
+          ],
+          "team_keys": [
+            "frc8011",
+            "frc11256",
+            "frc8214"
+          ],
+          "score": 659
+        }
+      },
+      "winning_alliance": "blue",
+      "played": true
+    },
+    {
+      "match": "qm6",
+      "match_number": 6,
+      "comp_level": "qm",
+      "time": "Mon 7/20 - 10:07 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            9991,
+            10711,
+            6907
+          ],
+          "team_keys": [
+            "frc9991",
+            "frc10711",
+            "frc6907"
+          ],
+          "score": 218
+        },
+        "blue": {
+          "teams": [
+            10016,
+            6494,
+            6433
+          ],
+          "team_keys": [
+            "frc10016",
+            "frc6494",
+            "frc6433"
+          ],
+          "score": 193
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm7",
+      "match_number": 7,
+      "comp_level": "qm",
+      "time": "Mon 7/20 - 10:19 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            11328,
+            6940,
+            6487
+          ],
+          "team_keys": [
+            "frc11328",
+            "frc6940",
+            "frc6487"
+          ],
+          "score": 430
+        },
+        "blue": {
+          "teams": [
+            10000,
+            10120,
+            6941
+          ],
+          "team_keys": [
+            "frc10000",
+            "frc10120",
+            "frc6941"
+          ],
+          "score": 192
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm8",
+      "match_number": 8,
+      "comp_level": "qm",
+      "time": "Mon 7/20 - 10:29 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            5516,
+            5823,
+            9635
+          ],
+          "team_keys": [
+            "frc5516",
+            "frc5823",
+            "frc9635"
+          ],
+          "score": 385
+        },
+        "blue": {
+          "teams": [
+            6706,
+            10541,
+            10479
+          ],
+          "team_keys": [
+            "frc6706",
+            "frc10541",
+            "frc10479"
+          ],
+          "score": 342
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm9",
+      "match_number": 9,
+      "comp_level": "qm",
+      "time": "Mon 7/20 - 10:42 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            9597,
+            7002,
+            6399
+          ],
+          "team_keys": [
+            "frc9597",
+            "frc7002",
+            "frc6399"
+          ],
+          "score": 150
+        },
+        "blue": {
+          "teams": [
+            6353,
+            11352,
+            11256
+          ],
+          "team_keys": [
+            "frc6353",
+            "frc11352",
+            "frc11256"
+          ],
+          "score": 73
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm10",
+      "match_number": 10,
+      "comp_level": "qm",
+      "time": "Mon 7/20 - 10:55 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            5849,
+            5515,
+            8214
+          ],
+          "team_keys": [
+            "frc5849",
+            "frc5515",
+            "frc8214"
+          ],
+          "score": 435
+        },
+        "blue": {
+          "teams": [
+            6766,
+            9992,
+            6494
+          ],
+          "team_keys": [
+            "frc6766",
+            "frc9992",
+            "frc6494"
+          ],
+          "score": 332
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm11",
+      "match_number": 11,
+      "comp_level": "qm",
+      "time": "Mon 7/20 - 11:08 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            6941,
+            9995,
+            10711
+          ],
+          "team_keys": [
+            "frc6941",
+            "frc9995",
+            "frc10711"
+          ],
+          "score": 211
+        },
+        "blue": {
+          "teams": [
+            9991,
+            9999,
+            10120
+          ],
+          "team_keys": [
+            "frc9991",
+            "frc9999",
+            "frc10120"
+          ],
+          "score": 165
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm12",
+      "match_number": 12,
+      "comp_level": "qm",
+      "time": "Mon 7/20 - 11:25 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            10000,
+            11118,
+            5449
+          ],
+          "team_keys": [
+            "frc10000",
+            "frc11118",
+            "frc5449"
+          ],
+          "score": 146
+        },
+        "blue": {
+          "teams": [
+            9996,
+            10016,
+            9994
+          ],
+          "team_keys": [
+            "frc9996",
+            "frc10016",
+            "frc9994"
+          ],
+          "score": 121
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm13",
+      "match_number": 13,
+      "comp_level": "qm",
+      "time": "Mon 7/20 - 11:38 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            9997,
+            8011,
+            8810
+          ],
+          "team_keys": [
+            "frc9997",
+            "frc8011",
+            "frc8810"
+          ],
+          "score": 500
+        },
+        "blue": {
+          "teams": [
+            11328,
+            6907,
+            8015
+          ],
+          "team_keys": [
+            "frc11328",
+            "frc6907",
+            "frc8015"
+          ],
+          "score": 294
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm14",
+      "match_number": 14,
+      "comp_level": "qm",
+      "time": "Mon 7/20 - 11:51 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            5823,
+            6433,
+            6394
+          ],
+          "team_keys": [
+            "frc5823",
+            "frc6433",
+            "frc6394"
+          ],
+          "score": 150
+        },
+        "blue": {
+          "teams": [
+            6487,
+            11019,
+            6399
+          ],
+          "team_keys": [
+            "frc6487",
+            "frc11019",
+            "frc6399"
+          ],
+          "score": 190
+        }
+      },
+      "winning_alliance": "blue",
+      "played": true
+    },
+    {
+      "match": "qm15",
+      "match_number": 15,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 12:04 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            6940,
+            6941,
+            5849
+          ],
+          "team_keys": [
+            "frc6940",
+            "frc6941",
+            "frc5849"
+          ],
+          "score": 343
+        },
+        "blue": {
+          "teams": [
+            6706,
+            9995,
+            6353
+          ],
+          "team_keys": [
+            "frc6706",
+            "frc9995",
+            "frc6353"
+          ],
+          "score": 250
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm16",
+      "match_number": 16,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 1:09 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            6494,
+            10120,
+            10541
+          ],
+          "team_keys": [
+            "frc6494",
+            "frc10120",
+            "frc10541"
+          ],
+          "score": 431
+        },
+        "blue": {
+          "teams": [
+            7002,
+            10000,
+            11352
+          ],
+          "team_keys": [
+            "frc7002",
+            "frc10000",
+            "frc11352"
+          ],
+          "score": 77
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm17",
+      "match_number": 17,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 1:20 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            5449,
+            8015,
+            5516
+          ],
+          "team_keys": [
+            "frc5449",
+            "frc8015",
+            "frc5516"
+          ],
+          "score": 35
+        },
+        "blue": {
+          "teams": [
+            11328,
+            9991,
+            8214
+          ],
+          "team_keys": [
+            "frc11328",
+            "frc9991",
+            "frc8214"
+          ],
+          "score": 618
+        }
+      },
+      "winning_alliance": "blue",
+      "played": true
+    },
+    {
+      "match": "qm18",
+      "match_number": 18,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 1:33 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            10016,
+            6394,
+            6766
+          ],
+          "team_keys": [
+            "frc10016",
+            "frc6394",
+            "frc6766"
+          ],
+          "score": 166
+        },
+        "blue": {
+          "teams": [
+            11256,
+            9996,
+            8810
+          ],
+          "team_keys": [
+            "frc11256",
+            "frc9996",
+            "frc8810"
+          ],
+          "score": 305
+        }
+      },
+      "winning_alliance": "blue",
+      "played": true
+    },
+    {
+      "match": "qm19",
+      "match_number": 19,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 1:45 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            11019,
+            10479,
+            8011
+          ],
+          "team_keys": [
+            "frc11019",
+            "frc10479",
+            "frc8011"
+          ],
+          "score": 511
+        },
+        "blue": {
+          "teams": [
+            9994,
+            10711,
+            5515
+          ],
+          "team_keys": [
+            "frc9994",
+            "frc10711",
+            "frc5515"
+          ],
+          "score": 17
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm20",
+      "match_number": 20,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 1:56 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            11118,
+            9997,
+            6907
+          ],
+          "team_keys": [
+            "frc11118",
+            "frc9997",
+            "frc6907"
+          ],
+          "score": 490
+        },
+        "blue": {
+          "teams": [
+            6487,
+            9999,
+            9635
+          ],
+          "team_keys": [
+            "frc6487",
+            "frc9999",
+            "frc9635"
+          ],
+          "score": 376
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm21",
+      "match_number": 21,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 2:07 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            6433,
+            9992,
+            6941
+          ],
+          "team_keys": [
+            "frc6433",
+            "frc9992",
+            "frc6941"
+          ],
+          "score": 122
+        },
+        "blue": {
+          "teams": [
+            9597,
+            5516,
+            10000
+          ],
+          "team_keys": [
+            "frc9597",
+            "frc5516",
+            "frc10000"
+          ],
+          "score": 87
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm22",
+      "match_number": 22,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 2:19 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            8015,
+            10016,
+            10120
+          ],
+          "team_keys": [
+            "frc8015",
+            "frc10016",
+            "frc10120"
+          ],
+          "score": 51
+        },
+        "blue": {
+          "teams": [
+            6394,
+            5849,
+            6706
+          ],
+          "team_keys": [
+            "frc6394",
+            "frc5849",
+            "frc6706"
+          ],
+          "score": 200
+        }
+      },
+      "winning_alliance": "blue",
+      "played": true
+    },
+    {
+      "match": "qm23",
+      "match_number": 23,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 2:29 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            9995,
+            6494,
+            6940
+          ],
+          "team_keys": [
+            "frc9995",
+            "frc6494",
+            "frc6940"
+          ],
+          "score": 397
+        },
+        "blue": {
+          "teams": [
+            10479,
+            5823,
+            11256
+          ],
+          "team_keys": [
+            "frc10479",
+            "frc5823",
+            "frc11256"
+          ],
+          "score": 302
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm24",
+      "match_number": 24,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 2:41 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            6766,
+            6353,
+            7002
+          ],
+          "team_keys": [
+            "frc6766",
+            "frc6353",
+            "frc7002"
+          ],
+          "score": 179
+        },
+        "blue": {
+          "teams": [
+            11118,
+            8011,
+            10711
+          ],
+          "team_keys": [
+            "frc11118",
+            "frc8011",
+            "frc10711"
+          ],
+          "score": 447
+        }
+      },
+      "winning_alliance": "blue",
+      "played": true
+    },
+    {
+      "match": "qm25",
+      "match_number": 25,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 2:57 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            8810,
+            6907,
+            9999
+          ],
+          "team_keys": [
+            "frc8810",
+            "frc6907",
+            "frc9999"
+          ],
+          "score": 430
+        },
+        "blue": {
+          "teams": [
+            9994,
+            11352,
+            11019
+          ],
+          "team_keys": [
+            "frc9994",
+            "frc11352",
+            "frc11019"
+          ],
+          "score": 106
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm26",
+      "match_number": 26,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 3:10 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            5515,
+            6433,
+            9991
+          ],
+          "team_keys": [
+            "frc5515",
+            "frc6433",
+            "frc9991"
+          ],
+          "score": 99
+        },
+        "blue": {
+          "teams": [
+            8214,
+            10541,
+            9997
+          ],
+          "team_keys": [
+            "frc8214",
+            "frc10541",
+            "frc9997"
+          ],
+          "score": 840
+        }
+      },
+      "winning_alliance": "blue",
+      "played": true
+    },
+    {
+      "match": "qm27",
+      "match_number": 27,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 3:22 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            9992,
+            9597,
+            6487
+          ],
+          "team_keys": [
+            "frc9992",
+            "frc9597",
+            "frc6487"
+          ],
+          "score": 66
+        },
+        "blue": {
+          "teams": [
+            9635,
+            5449,
+            11328
+          ],
+          "team_keys": [
+            "frc9635",
+            "frc5449",
+            "frc11328"
+          ],
+          "score": 209
+        }
+      },
+      "winning_alliance": "blue",
+      "played": true
+    },
+    {
+      "match": "qm28",
+      "match_number": 28,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 3:34 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            9996,
+            8015,
+            11118
+          ],
+          "team_keys": [
+            "frc9996",
+            "frc8015",
+            "frc11118"
+          ],
+          "score": 221
+        },
+        "blue": {
+          "teams": [
+            6399,
+            6941,
+            6494
+          ],
+          "team_keys": [
+            "frc6399",
+            "frc6941",
+            "frc6494"
+          ],
+          "score": 344
+        }
+      },
+      "winning_alliance": "blue",
+      "played": true
+    },
+    {
+      "match": "qm29",
+      "match_number": 29,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 3:47 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            6940,
+            10000,
+            6766
+          ],
+          "team_keys": [
+            "frc6940",
+            "frc10000",
+            "frc6766"
+          ],
+          "score": 380
+        },
+        "blue": {
+          "teams": [
+            6907,
+            5516,
+            7002
+          ],
+          "team_keys": [
+            "frc6907",
+            "frc5516",
+            "frc7002"
+          ],
+          "score": 136
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm30",
+      "match_number": 30,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 3:59 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            10479,
+            8214,
+            6433
+          ],
+          "team_keys": [
+            "frc10479",
+            "frc8214",
+            "frc6433"
+          ],
+          "score": 532
+        },
+        "blue": {
+          "teams": [
+            8810,
+            6353,
+            10120
+          ],
+          "team_keys": [
+            "frc8810",
+            "frc6353",
+            "frc10120"
+          ],
+          "score": 371
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm31",
+      "match_number": 31,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 4:14 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            9999,
+            5515,
+            8011
+          ],
+          "team_keys": [
+            "frc9999",
+            "frc5515",
+            "frc8011"
+          ],
+          "score": 186
+        },
+        "blue": {
+          "teams": [
+            6394,
+            5449,
+            9597
+          ],
+          "team_keys": [
+            "frc6394",
+            "frc5449",
+            "frc9597"
+          ],
+          "score": 155
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm32",
+      "match_number": 32,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 4:25 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            9991,
+            6487,
+            5849
+          ],
+          "team_keys": [
+            "frc9991",
+            "frc6487",
+            "frc5849"
+          ],
+          "score": 273
+        },
+        "blue": {
+          "teams": [
+            11256,
+            9635,
+            9994
+          ],
+          "team_keys": [
+            "frc11256",
+            "frc9635",
+            "frc9994"
+          ],
+          "score": 398
+        }
+      },
+      "winning_alliance": "blue",
+      "played": true
+    },
+    {
+      "match": "qm33",
+      "match_number": 33,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 4:38 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            9992,
+            6399,
+            9997
+          ],
+          "team_keys": [
+            "frc9992",
+            "frc6399",
+            "frc9997"
+          ],
+          "score": 240
+        },
+        "blue": {
+          "teams": [
+            9995,
+            11019,
+            10016
+          ],
+          "team_keys": [
+            "frc9995",
+            "frc11019",
+            "frc10016"
+          ],
+          "score": 175
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm34",
+      "match_number": 34,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 4:50 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            11352,
+            6706,
+            11328
+          ],
+          "team_keys": [
+            "frc11352",
+            "frc6706",
+            "frc11328"
+          ],
+          "score": 285
+        },
+        "blue": {
+          "teams": [
+            10711,
+            9996,
+            5823
+          ],
+          "team_keys": [
+            "frc10711",
+            "frc9996",
+            "frc5823"
+          ],
+          "score": 206
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm35",
+      "match_number": 35,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 5:01 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            10541,
+            5516,
+            6353
+          ],
+          "team_keys": [
+            "frc10541",
+            "frc5516",
+            "frc6353"
+          ],
+          "score": 156
+        },
+        "blue": {
+          "teams": [
+            5449,
+            6494,
+            9999
+          ],
+          "team_keys": [
+            "frc5449",
+            "frc6494",
+            "frc9999"
+          ],
+          "score": 125
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm36",
+      "match_number": 36,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 5:13 AM",
+      "alliances": {
+        "red": {
+          "teams": [
+            10479,
+            9635,
+            10000
+          ],
+          "team_keys": [
+            "frc10479",
+            "frc9635",
+            "frc10000"
+          ],
+          "score": 336
+        },
+        "blue": {
+          "teams": [
+            8011,
+            6394,
+            6941
+          ],
+          "team_keys": [
+            "frc8011",
+            "frc6394",
+            "frc6941"
+          ],
+          "score": 269
+        }
+      },
+      "winning_alliance": "red",
+      "played": true
+    },
+    {
+      "match": "qm37",
+      "match_number": 37,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 9:00 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            8214,
+            6766,
+            9597
+          ],
+          "team_keys": [
+            "frc8214",
+            "frc6766",
+            "frc9597"
+          ],
+          "score": null
+        },
+        "blue": {
+          "teams": [
+            6487,
+            9994,
+            9997
+          ],
+          "team_keys": [
+            "frc6487",
+            "frc9994",
+            "frc9997"
+          ],
+          "score": null
+        }
+      },
+      "winning_alliance": null,
+      "played": false
+    },
+    {
+      "match": "qm38",
+      "match_number": 38,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 9:12 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            5515,
+            11352,
+            10016
+          ],
+          "team_keys": [
+            "frc5515",
+            "frc11352",
+            "frc10016"
+          ],
+          "score": null
+        },
+        "blue": {
+          "teams": [
+            6940,
+            8015,
+            6433
+          ],
+          "team_keys": [
+            "frc6940",
+            "frc8015",
+            "frc6433"
+          ],
+          "score": null
+        }
+      },
+      "winning_alliance": null,
+      "played": false
+    },
+    {
+      "match": "qm39",
+      "match_number": 39,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 9:24 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            10120,
+            11256,
+            9995
+          ],
+          "team_keys": [
+            "frc10120",
+            "frc11256",
+            "frc9995"
+          ],
+          "score": null
+        },
+        "blue": {
+          "teams": [
+            11019,
+            11328,
+            11118
+          ],
+          "team_keys": [
+            "frc11019",
+            "frc11328",
+            "frc11118"
+          ],
+          "score": null
+        }
+      },
+      "winning_alliance": null,
+      "played": false
+    },
+    {
+      "match": "qm40",
+      "match_number": 40,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 9:36 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            5823,
+            9992,
+            6706
+          ],
+          "team_keys": [
+            "frc5823",
+            "frc9992",
+            "frc6706"
+          ],
+          "score": null
+        },
+        "blue": {
+          "teams": [
+            7002,
+            8810,
+            9991
+          ],
+          "team_keys": [
+            "frc7002",
+            "frc8810",
+            "frc9991"
+          ],
+          "score": null
+        }
+      },
+      "winning_alliance": null,
+      "played": false
+    },
+    {
+      "match": "qm41",
+      "match_number": 41,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 9:48 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            6907,
+            6399,
+            9996
+          ],
+          "team_keys": [
+            "frc6907",
+            "frc6399",
+            "frc9996"
+          ],
+          "score": null
+        },
+        "blue": {
+          "teams": [
+            5849,
+            10711,
+            10541
+          ],
+          "team_keys": [
+            "frc5849",
+            "frc10711",
+            "frc10541"
+          ],
+          "score": null
+        }
+      },
+      "winning_alliance": null,
+      "played": false
+    },
+    {
+      "match": "qm42",
+      "match_number": 42,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 10:00 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            6433,
+            10000,
+            6353
+          ],
+          "team_keys": [
+            "frc6433",
+            "frc10000",
+            "frc6353"
+          ],
+          "score": null
+        },
+        "blue": {
+          "teams": [
+            9999,
+            6766,
+            8015
+          ],
+          "team_keys": [
+            "frc9999",
+            "frc6766",
+            "frc8015"
+          ],
+          "score": null
+        }
+      },
+      "winning_alliance": null,
+      "played": false
+    },
+    {
+      "match": "qm43",
+      "match_number": 43,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 10:12 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            9994,
+            9995,
+            8011
+          ],
+          "team_keys": [
+            "frc9994",
+            "frc9995",
+            "frc8011"
+          ],
+          "score": null
+        },
+        "blue": {
+          "teams": [
+            5516,
+            6487,
+            10016
+          ],
+          "team_keys": [
+            "frc5516",
+            "frc6487",
+            "frc10016"
+          ],
+          "score": null
+        }
+      },
+      "winning_alliance": null,
+      "played": false
+    },
+    {
+      "match": "qm44",
+      "match_number": 44,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 10:24 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            11352,
+            10479,
+            6940
+          ],
+          "team_keys": [
+            "frc11352",
+            "frc10479",
+            "frc6940"
+          ],
+          "score": null
+        },
+        "blue": {
+          "teams": [
+            11118,
+            9991,
+            9992
+          ],
+          "team_keys": [
+            "frc11118",
+            "frc9991",
+            "frc9992"
+          ],
+          "score": null
+        }
+      },
+      "winning_alliance": null,
+      "played": false
+    },
+    {
+      "match": "qm45",
+      "match_number": 45,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 10:36 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            10541,
+            11019,
+            11256
+          ],
+          "team_keys": [
+            "frc10541",
+            "frc11019",
+            "frc11256"
+          ],
+          "score": null
+        },
+        "blue": {
+          "teams": [
+            6941,
+            8214,
+            6706
+          ],
+          "team_keys": [
+            "frc6941",
+            "frc8214",
+            "frc6706"
+          ],
+          "score": null
+        }
+      },
+      "winning_alliance": null,
+      "played": false
+    },
+    {
+      "match": "qm46",
+      "match_number": 46,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 10:48 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            5449,
+            5515,
+            9996
+          ],
+          "team_keys": [
+            "frc5449",
+            "frc5515",
+            "frc9996"
+          ],
+          "score": null
+        },
+        "blue": {
+          "teams": [
+            10120,
+            6907,
+            5823
+          ],
+          "team_keys": [
+            "frc10120",
+            "frc6907",
+            "frc5823"
+          ],
+          "score": null
+        }
+      },
+      "winning_alliance": null,
+      "played": false
+    },
+    {
+      "match": "qm47",
+      "match_number": 47,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 11:00 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            9997,
+            11328,
+            6394
+          ],
+          "team_keys": [
+            "frc9997",
+            "frc11328",
+            "frc6394"
+          ],
+          "score": null
+        },
+        "blue": {
+          "teams": [
+            6494,
+            5849,
+            7002
+          ],
+          "team_keys": [
+            "frc6494",
+            "frc5849",
+            "frc7002"
+          ],
+          "score": null
+        }
+      },
+      "winning_alliance": null,
+      "played": false
+    },
+    {
+      "match": "qm48",
+      "match_number": 48,
+      "comp_level": "qm",
+      "time": "Tue 7/21 - 11:12 PM",
+      "alliances": {
+        "red": {
+          "teams": [
+            9597,
+            8810,
+            9635
+          ],
+          "team_keys": [
+            "frc9597",
+            "frc8810",
+            "frc9635"
+          ],
+          "score": null
+        },
+        "blue": {
+          "teams": [
+            10711,
+            6399,
+            6940
+          ],
+          "team_keys": [
+            "frc10711",
+            "frc6399",
+            "frc6940"
+          ],
+          "score": null
+        }
+      },
+      "winning_alliance": null,
+      "played": false
+    }
+  ],
+  "rankings": [
+    {
+      "rank": 1,
+      "team": 8214,
+      "name": "Cyber Unicorn",
+      "ranking_score": 5.0,
+      "avg_match": 594.8,
+      "avg_auto": 118.4,
+      "avg_tower": 0.0,
+      "record": "5 - 0 - 0",
+      "wins": 5,
+      "losses": 0,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 2,
+      "team": 9997,
+      "name": "Off-Season Demo Team 9997",
+      "ranking_score": 4.6,
+      "avg_match": 527.6,
+      "avg_auto": 78.4,
+      "avg_tower": 0.0,
+      "record": "5 - 0 - 0",
+      "wins": 5,
+      "losses": 0,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 3,
+      "team": 6940,
+      "name": "Violet Z",
+      "ranking_score": 4.5,
+      "avg_match": 343.5,
+      "avg_auto": 95.5,
+      "avg_tower": 0.0,
+      "record": "4 - 0 - 0",
+      "wins": 4,
+      "losses": 0,
+      "ties": 0,
+      "matches_played": 4
+    },
+    {
+      "rank": 4,
+      "team": 8011,
+      "name": "Wayi Guangzhou",
+      "ranking_score": 3.83,
+      "avg_match": 409.5,
+      "avg_auto": 79.5,
+      "avg_tower": 0.0,
+      "record": "5 - 1 - 0",
+      "wins": 5,
+      "losses": 1,
+      "ties": 0,
+      "matches_played": 6
+    },
+    {
+      "rank": 5,
+      "team": 9635,
+      "name": "Cyber Rabbit",
+      "ranking_score": 3.67,
+      "avg_match": 323.17,
+      "avg_auto": 69.83,
+      "avg_tower": 0.0,
+      "record": "5 - 1 - 0",
+      "wins": 5,
+      "losses": 1,
+      "ties": 0,
+      "matches_played": 6
+    },
+    {
+      "rank": 6,
+      "team": 11328,
+      "name": "SIA",
+      "ranking_score": 3.6,
+      "avg_match": 361.2,
+      "avg_auto": 79.6,
+      "avg_tower": 0.0,
+      "record": "4 - 1 - 0",
+      "wins": 4,
+      "losses": 1,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 7,
+      "team": 10479,
+      "name": "Powerhouse",
+      "ranking_score": 3.5,
+      "avg_match": 424.33,
+      "avg_auto": 77.83,
+      "avg_tower": 0.0,
+      "record": "4 - 2 - 0",
+      "wins": 4,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 6
+    },
+    {
+      "rank": 8,
+      "team": 8810,
+      "name": "The Alphabots",
+      "ranking_score": 3.4,
+      "avg_match": 370.8,
+      "avg_auto": 65.4,
+      "avg_tower": 0.0,
+      "record": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 9,
+      "team": 11256,
+      "name": "Satellites",
+      "ranking_score": 3.0,
+      "avg_match": 334.4,
+      "avg_auto": 63.4,
+      "avg_tower": 0.0,
+      "record": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 10,
+      "team": 10541,
+      "name": "CarbonPulse Robotics",
+      "ranking_score": 2.8,
+      "avg_match": 362.6,
+      "avg_auto": 59.2,
+      "avg_tower": 0.0,
+      "record": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 11,
+      "team": 6907,
+      "name": "The G.O.A.T",
+      "ranking_score": 2.8,
+      "avg_match": 307.6,
+      "avg_auto": 54.8,
+      "avg_tower": 0.0,
+      "record": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 12,
+      "team": 11118,
+      "name": "The Baybies",
+      "ranking_score": 2.6,
+      "avg_match": 259.0,
+      "avg_auto": 62.4,
+      "avg_tower": 0.0,
+      "record": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 13,
+      "team": 5849,
+      "name": "Joker",
+      "ranking_score": 2.6,
+      "avg_match": 258.4,
+      "avg_auto": 45.2,
+      "avg_tower": 0.0,
+      "record": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 14,
+      "team": 9995,
+      "name": "Off-Season Demo Team 9995",
+      "ranking_score": 2.6,
+      "avg_match": 249.6,
+      "avg_auto": 40.6,
+      "avg_tower": 0.0,
+      "record": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 15,
+      "team": 6399,
+      "name": "Tinspiratio",
+      "ranking_score": 2.6,
+      "avg_match": 214.8,
+      "avg_auto": 40.8,
+      "avg_tower": 0.0,
+      "record": "4 - 1 - 0",
+      "wins": 4,
+      "losses": 1,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 16,
+      "team": 6494,
+      "name": "Wings of Liberty",
+      "ranking_score": 2.5,
+      "avg_match": 293.67,
+      "avg_auto": 54.83,
+      "avg_tower": 0.0,
+      "record": "3 - 3 - 0",
+      "wins": 3,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 6
+    },
+    {
+      "rank": 17,
+      "team": 6941,
+      "name": "IronPulse Robotics",
+      "ranking_score": 2.33,
+      "avg_match": 231.0,
+      "avg_auto": 47.17,
+      "avg_tower": 0.0,
+      "record": "4 - 2 - 0",
+      "wins": 4,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 6
+    },
+    {
+      "rank": 18,
+      "team": 6766,
+      "name": "AtomStorm",
+      "ranking_score": 2.2,
+      "avg_match": 327.0,
+      "avg_auto": 66.4,
+      "avg_tower": 0.0,
+      "record": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 19,
+      "team": 6487,
+      "name": "Clockwork Knights",
+      "ranking_score": 2.2,
+      "avg_match": 265.0,
+      "avg_auto": 59.2,
+      "avg_tower": 0.0,
+      "record": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 20,
+      "team": 11019,
+      "name": "X.PLORE",
+      "ranking_score": 2.2,
+      "avg_match": 235.8,
+      "avg_auto": 31.8,
+      "avg_tower": 0.0,
+      "record": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 21,
+      "team": 10711,
+      "name": "FORMSHOP",
+      "ranking_score": 2.2,
+      "avg_match": 207.8,
+      "avg_auto": 40.4,
+      "avg_tower": 0.0,
+      "record": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 22,
+      "team": 10000,
+      "name": "Neutron Star",
+      "ranking_score": 2.0,
+      "avg_match": 189.67,
+      "avg_auto": 60.33,
+      "avg_tower": 0.0,
+      "record": "3 - 3 - 0",
+      "wins": 3,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 6
+    },
+    {
+      "rank": 23,
+      "team": 9992,
+      "name": "Off-Season Demo Team 9992",
+      "ranking_score": 2.0,
+      "avg_match": 189.4,
+      "avg_auto": 44.0,
+      "avg_tower": 0.0,
+      "record": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 24,
+      "team": 9991,
+      "name": "Off-Season Demo Team 9991",
+      "ranking_score": 1.8,
+      "avg_match": 274.6,
+      "avg_auto": 40.2,
+      "avg_tower": 0.0,
+      "record": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 25,
+      "team": 6706,
+      "name": "Golem",
+      "ranking_score": 1.8,
+      "avg_match": 243.4,
+      "avg_auto": 36.8,
+      "avg_tower": 0.0,
+      "record": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 26,
+      "team": 5515,
+      "name": "Blue Power Robotics",
+      "ranking_score": 1.8,
+      "avg_match": 201.0,
+      "avg_auto": 51.8,
+      "avg_tower": 0.0,
+      "record": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 27,
+      "team": 9999,
+      "name": "Off-Season Demo Team 9999",
+      "ranking_score": 1.67,
+      "avg_match": 212.83,
+      "avg_auto": 47.33,
+      "avg_tower": 0.0,
+      "record": "2 - 4 - 0",
+      "wins": 2,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 6
+    },
+    {
+      "rank": 28,
+      "team": 5823,
+      "name": "ACE",
+      "ranking_score": 1.6,
+      "avg_match": 242.0,
+      "avg_auto": 47.4,
+      "avg_tower": 0.0,
+      "record": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 29,
+      "team": 6433,
+      "name": "HZ4Z",
+      "ranking_score": 1.6,
+      "avg_match": 196.2,
+      "avg_auto": 38.2,
+      "avg_tower": 0.0,
+      "record": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 30,
+      "team": 6353,
+      "name": "EFZ Robotics",
+      "ranking_score": 1.5,
+      "avg_match": 199.33,
+      "avg_auto": 35.0,
+      "avg_tower": 0.0,
+      "record": "2 - 4 - 0",
+      "wins": 2,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 6
+    },
+    {
+      "rank": 31,
+      "team": 10120,
+      "name": "Wulfa the Wolf",
+      "ranking_score": 1.4,
+      "avg_match": 241.0,
+      "avg_auto": 41.6,
+      "avg_tower": 0.0,
+      "record": "1 - 4 - 0",
+      "wins": 1,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 32,
+      "team": 7002,
+      "name": "\u98ce\u4e91\u8e66\u8c46",
+      "ranking_score": 1.4,
+      "avg_match": 155.4,
+      "avg_auto": 45.8,
+      "avg_tower": 0.0,
+      "record": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 33,
+      "team": 9597,
+      "name": "Luban Robotics",
+      "ranking_score": 1.2,
+      "avg_match": 131.0,
+      "avg_auto": 31.6,
+      "avg_tower": 0.0,
+      "record": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 34,
+      "team": 5516,
+      "name": "Iron Maple",
+      "ranking_score": 1.17,
+      "avg_match": 130.83,
+      "avg_auto": 34.33,
+      "avg_tower": 0.0,
+      "record": "2 - 4 - 0",
+      "wins": 2,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 6
+    },
+    {
+      "rank": 35,
+      "team": 9994,
+      "name": "Off-Season Demo Team 9994",
+      "ranking_score": 1.0,
+      "avg_match": 136.2,
+      "avg_auto": 26.8,
+      "avg_tower": 0.0,
+      "record": "1 - 4 - 0",
+      "wins": 1,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 36,
+      "team": 5449,
+      "name": "Prototype",
+      "ranking_score": 1.0,
+      "avg_match": 130.0,
+      "avg_auto": 33.5,
+      "avg_tower": 0.0,
+      "record": "2 - 4 - 0",
+      "wins": 2,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 6
+    },
+    {
+      "rank": 37,
+      "team": 9996,
+      "name": "Off-Season Demo Team 9996",
+      "ranking_score": 0.8,
+      "avg_match": 171.6,
+      "avg_auto": 32.6,
+      "avg_tower": 0.0,
+      "record": "1 - 4 - 0",
+      "wins": 1,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 38,
+      "team": 11352,
+      "name": "Flying Tiger",
+      "ranking_score": 0.8,
+      "avg_match": 105.2,
+      "avg_auto": 22.0,
+      "avg_tower": 0.0,
+      "record": "1 - 4 - 0",
+      "wins": 1,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 39,
+      "team": 6394,
+      "name": "MITO",
+      "ranking_score": 0.5,
+      "avg_match": 160.67,
+      "avg_auto": 33.0,
+      "avg_tower": 0.0,
+      "record": "1 - 5 - 0",
+      "wins": 1,
+      "losses": 5,
+      "ties": 0,
+      "matches_played": 6
+    },
+    {
+      "rank": 40,
+      "team": 8015,
+      "name": "The Cheetahs",
+      "ranking_score": 0.4,
+      "avg_match": 173.8,
+      "avg_auto": 47.0,
+      "avg_tower": 0.0,
+      "record": "0 - 5 - 0",
+      "wins": 0,
+      "losses": 5,
+      "ties": 0,
+      "matches_played": 5
+    },
+    {
+      "rank": 41,
+      "team": 10016,
+      "name": "Absolute Zero",
+      "ranking_score": 0.0,
+      "avg_match": 131.2,
+      "avg_auto": 21.0,
+      "avg_tower": 0.0,
+      "record": "0 - 5 - 0",
+      "wins": 0,
+      "losses": 5,
+      "ties": 0,
+      "matches_played": 5
+    }
+  ],
+  "metrics": [
+    {
+      "team": 8214,
+      "name": "Cyber Unicorn",
+      "qual_rank": 1,
+      "ranking_score": 5.0,
+      "wlt": "5 - 0 - 0",
+      "wins": 5,
+      "losses": 0,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 594.8,
+      "avg_auto_alliance": 118.4,
+      "opr": 256.17,
+      "opr_ols": 430.08,
+      "dpr": 40.4,
+      "ccwm": 215.77,
+      "event_epa": 233.42,
+      "auto_epa_proxy": 50.99,
+      "tele_end_proxy": 205.18,
+      "avg_margin": 448.4,
+      "season_epa": 200.99,
+      "season_auto_epa": 42.03,
+      "season_tele_epa": 108.28,
+      "season_end_epa": 50.68,
+      "is_demo": false,
+      "opr_rank": 1,
+      "epa_rank": 1,
+      "auto_rank": 1,
+      "ccwm_rank": 1
+    },
+    {
+      "team": 9997,
+      "name": "Off-Season Demo Team 9997",
+      "qual_rank": 2,
+      "ranking_score": 4.6,
+      "wlt": "5 - 0 - 0",
+      "wins": 5,
+      "losses": 0,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 527.6,
+      "avg_auto_alliance": 78.4,
+      "opr": 196.0,
+      "opr_ols": 236.56,
+      "dpr": 79.9,
+      "ccwm": 116.1,
+      "event_epa": 205.34,
+      "auto_epa_proxy": 29.12,
+      "tele_end_proxy": 166.87,
+      "avg_margin": 316.8,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": true,
+      "opr_rank": 2,
+      "epa_rank": 2,
+      "auto_rank": 5,
+      "ccwm_rank": 3
+    },
+    {
+      "team": 8011,
+      "name": "Wayi Guangzhou",
+      "qual_rank": 4,
+      "ranking_score": 3.83,
+      "wlt": "5 - 1 - 0",
+      "wins": 5,
+      "losses": 1,
+      "ties": 0,
+      "matches_played": 6,
+      "avg_match": 409.5,
+      "avg_auto_alliance": 79.5,
+      "opr": 159.89,
+      "opr_ols": 180.9,
+      "dpr": 39.0,
+      "ccwm": 120.89,
+      "event_epa": 178.62,
+      "auto_epa_proxy": 31.04,
+      "tele_end_proxy": 128.85,
+      "avg_margin": 264.3,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 3,
+      "epa_rank": 3,
+      "auto_rank": 3,
+      "ccwm_rank": 2
+    },
+    {
+      "team": 10479,
+      "name": "Powerhouse",
+      "qual_rank": 7,
+      "ranking_score": 3.5,
+      "wlt": "4 - 2 - 0",
+      "wins": 4,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 6,
+      "avg_match": 424.33,
+      "avg_auto_alliance": 77.83,
+      "opr": 150.21,
+      "opr_ols": 135.7,
+      "dpr": 103.45,
+      "ccwm": 46.76,
+      "event_epa": 166.72,
+      "auto_epa_proxy": 27.55,
+      "tele_end_proxy": 122.66,
+      "avg_margin": 173.7,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 4,
+      "epa_rank": 4,
+      "auto_rank": 7,
+      "ccwm_rank": 10
+    },
+    {
+      "team": 6766,
+      "name": "AtomStorm",
+      "qual_rank": 18,
+      "ranking_score": 2.2,
+      "wlt": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 327.0,
+      "avg_auto_alliance": 66.4,
+      "opr": 128.12,
+      "opr_ols": 178.16,
+      "dpr": 121.86,
+      "ccwm": 6.25,
+      "event_epa": 139.59,
+      "auto_epa_proxy": 26.01,
+      "tele_end_proxy": 102.1,
+      "avg_margin": 38.4,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 9,
+      "epa_rank": 5,
+      "auto_rank": 8,
+      "ccwm_rank": 16
+    },
+    {
+      "team": 11328,
+      "name": "SIA",
+      "qual_rank": 6,
+      "ranking_score": 3.6,
+      "wlt": "4 - 1 - 0",
+      "wins": 4,
+      "losses": 1,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 361.2,
+      "avg_auto_alliance": 79.6,
+      "opr": 130.82,
+      "opr_ols": 91.94,
+      "dpr": 29.01,
+      "ccwm": 101.82,
+      "event_epa": 138.59,
+      "auto_epa_proxy": 28.83,
+      "tele_end_proxy": 101.99,
+      "avg_margin": 167.4,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 8,
+      "epa_rank": 6,
+      "auto_rank": 6,
+      "ccwm_rank": 4
+    },
+    {
+      "team": 11256,
+      "name": "Satellites",
+      "qual_rank": 9,
+      "ranking_score": 3.0,
+      "wlt": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 334.4,
+      "avg_auto_alliance": 63.4,
+      "opr": 108.21,
+      "opr_ols": 67.34,
+      "dpr": 45.32,
+      "ccwm": 62.9,
+      "event_epa": 134.0,
+      "auto_epa_proxy": 20.52,
+      "tele_end_proxy": 87.7,
+      "avg_margin": 149.2,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 13,
+      "epa_rank": 7,
+      "auto_rank": 12,
+      "ccwm_rank": 8
+    },
+    {
+      "team": 8810,
+      "name": "The Alphabots",
+      "qual_rank": 8,
+      "ranking_score": 3.4,
+      "wlt": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 370.8,
+      "avg_auto_alliance": 65.4,
+      "opr": 146.23,
+      "opr_ols": 211.24,
+      "dpr": 82.27,
+      "ccwm": 63.96,
+      "event_epa": 129.39,
+      "auto_epa_proxy": 25.79,
+      "tele_end_proxy": 120.44,
+      "avg_margin": 101.2,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 5,
+      "epa_rank": 8,
+      "auto_rank": 9,
+      "ccwm_rank": 7
+    },
+    {
+      "team": 6940,
+      "name": "Violet Z",
+      "qual_rank": 3,
+      "ranking_score": 4.5,
+      "wlt": "4 - 0 - 0",
+      "wins": 4,
+      "losses": 0,
+      "ties": 0,
+      "matches_played": 4,
+      "avg_match": 343.5,
+      "avg_auto_alliance": 95.5,
+      "opr": 137.4,
+      "opr_ols": 203.3,
+      "dpr": 52.0,
+      "ccwm": 85.4,
+      "event_epa": 123.62,
+      "auto_epa_proxy": 38.2,
+      "tele_end_proxy": 99.2,
+      "avg_margin": 164.6,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 7,
+      "epa_rank": 9,
+      "auto_rank": 2,
+      "ccwm_rank": 6
+    },
+    {
+      "team": 9635,
+      "name": "Cyber Rabbit",
+      "qual_rank": 5,
+      "ranking_score": 3.67,
+      "wlt": "5 - 1 - 0",
+      "wins": 5,
+      "losses": 1,
+      "ties": 0,
+      "matches_played": 6,
+      "avg_match": 323.17,
+      "avg_auto_alliance": 69.83,
+      "opr": 142.5,
+      "opr_ols": 233.32,
+      "dpr": 96.39,
+      "ccwm": 46.11,
+      "event_epa": 122.19,
+      "auto_epa_proxy": 30.79,
+      "tele_end_proxy": 111.71,
+      "avg_margin": 44.3,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 6,
+      "epa_rank": 10,
+      "auto_rank": 4,
+      "ccwm_rank": 11
+    },
+    {
+      "team": 6494,
+      "name": "Wings of Liberty",
+      "qual_rank": 16,
+      "ranking_score": 2.5,
+      "wlt": "3 - 3 - 0",
+      "wins": 3,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 6,
+      "avg_match": 293.67,
+      "avg_auto_alliance": 54.83,
+      "opr": 125.41,
+      "opr_ols": 183.63,
+      "dpr": 74.06,
+      "ccwm": 51.35,
+      "event_epa": 111.18,
+      "auto_epa_proxy": 23.42,
+      "tele_end_proxy": 102.0,
+      "avg_margin": 68.8,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 10,
+      "epa_rank": 11,
+      "auto_rank": 11,
+      "ccwm_rank": 9
+    },
+    {
+      "team": 10541,
+      "name": "CarbonPulse Robotics",
+      "qual_rank": 10,
+      "ranking_score": 2.8,
+      "wlt": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 362.6,
+      "avg_auto_alliance": 59.2,
+      "opr": 124.43,
+      "opr_ols": 108.55,
+      "dpr": 37.44,
+      "ccwm": 87.0,
+      "event_epa": 110.54,
+      "auto_epa_proxy": 20.32,
+      "tele_end_proxy": 104.12,
+      "avg_margin": 186.0,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 11,
+      "epa_rank": 12,
+      "auto_rank": 13,
+      "ccwm_rank": 5
+    },
+    {
+      "team": 6907,
+      "name": "The G.O.A.T",
+      "qual_rank": 11,
+      "ranking_score": 2.8,
+      "wlt": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 307.6,
+      "avg_auto_alliance": 54.8,
+      "opr": 112.84,
+      "opr_ols": 138.57,
+      "dpr": 110.82,
+      "ccwm": 2.02,
+      "event_epa": 108.36,
+      "auto_epa_proxy": 20.1,
+      "tele_end_proxy": 92.74,
+      "avg_margin": 2.6,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 12,
+      "epa_rank": 13,
+      "auto_rank": 15,
+      "ccwm_rank": 17
+    },
+    {
+      "team": 6487,
+      "name": "Clockwork Knights",
+      "qual_rank": 19,
+      "ranking_score": 2.2,
+      "wlt": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 265.0,
+      "avg_auto_alliance": 59.2,
+      "opr": 90.82,
+      "opr_ols": 105.09,
+      "dpr": 128.06,
+      "ccwm": -37.24,
+      "event_epa": 104.95,
+      "auto_epa_proxy": 20.29,
+      "tele_end_proxy": 70.53,
+      "avg_margin": -20.8,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 16,
+      "epa_rank": 14,
+      "auto_rank": 14,
+      "ccwm_rank": 32
+    },
+    {
+      "team": 9995,
+      "name": "Off-Season Demo Team 9995",
+      "qual_rank": 14,
+      "ranking_score": 2.6,
+      "wlt": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 249.6,
+      "avg_auto_alliance": 40.6,
+      "opr": 88.74,
+      "opr_ols": 44.11,
+      "dpr": 97.25,
+      "ccwm": -8.5,
+      "event_epa": 93.53,
+      "auto_epa_proxy": 14.43,
+      "tele_end_proxy": 74.31,
+      "avg_margin": -3.0,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": true,
+      "opr_rank": 18,
+      "epa_rank": 15,
+      "auto_rank": 19,
+      "ccwm_rank": 20
+    },
+    {
+      "team": 9991,
+      "name": "Off-Season Demo Team 9991",
+      "qual_rank": 24,
+      "ranking_score": 1.8,
+      "wlt": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 274.6,
+      "avg_auto_alliance": 40.2,
+      "opr": 83.64,
+      "opr_ols": 89.88,
+      "dpr": 120.6,
+      "ccwm": -36.96,
+      "event_epa": 88.88,
+      "auto_epa_proxy": 12.24,
+      "tele_end_proxy": 71.39,
+      "avg_margin": -60.8,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": true,
+      "opr_rank": 20,
+      "epa_rank": 16,
+      "auto_rank": 29,
+      "ccwm_rank": 31
+    },
+    {
+      "team": 10120,
+      "name": "Wulfa the Wolf",
+      "qual_rank": 31,
+      "ranking_score": 1.4,
+      "wlt": "1 - 4 - 0",
+      "wins": 1,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 241.0,
+      "avg_auto_alliance": 41.6,
+      "opr": 82.58,
+      "opr_ols": 79.66,
+      "dpr": 106.12,
+      "ccwm": -23.53,
+      "event_epa": 87.2,
+      "auto_epa_proxy": 14.25,
+      "tele_end_proxy": 68.33,
+      "avg_margin": -48.0,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 22,
+      "epa_rank": 17,
+      "auto_rank": 21,
+      "ccwm_rank": 27
+    },
+    {
+      "team": 6706,
+      "name": "Golem",
+      "qual_rank": 25,
+      "ranking_score": 1.8,
+      "wlt": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 243.4,
+      "avg_auto_alliance": 36.8,
+      "opr": 90.38,
+      "opr_ols": 158.54,
+      "dpr": 123.93,
+      "ccwm": -33.55,
+      "event_epa": 87.06,
+      "auto_epa_proxy": 13.66,
+      "tele_end_proxy": 76.71,
+      "avg_margin": -73.2,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 17,
+      "epa_rank": 18,
+      "auto_rank": 24,
+      "ccwm_rank": 29
+    },
+    {
+      "team": 5823,
+      "name": "ACE",
+      "qual_rank": 28,
+      "ranking_score": 1.6,
+      "wlt": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 242.0,
+      "avg_auto_alliance": 47.4,
+      "opr": 92.4,
+      "opr_ols": 108.75,
+      "dpr": 92.83,
+      "ccwm": -0.43,
+      "event_epa": 85.38,
+      "auto_epa_proxy": 18.1,
+      "tele_end_proxy": 74.3,
+      "avg_margin": -4.0,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 15,
+      "epa_rank": 19,
+      "auto_rank": 17,
+      "ccwm_rank": 18
+    },
+    {
+      "team": 11118,
+      "name": "The Baybies",
+      "qual_rank": 12,
+      "ranking_score": 2.6,
+      "wlt": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 259.0,
+      "avg_auto_alliance": 62.4,
+      "opr": 98.74,
+      "opr_ols": 135.91,
+      "dpr": 73.12,
+      "ccwm": 25.62,
+      "event_epa": 82.41,
+      "auto_epa_proxy": 23.79,
+      "tele_end_proxy": 74.95,
+      "avg_margin": 26.6,
+      "season_epa": 72.67,
+      "season_auto_epa": 11.76,
+      "season_tele_epa": 39.78,
+      "season_end_epa": 21.13,
+      "is_demo": false,
+      "opr_rank": 14,
+      "epa_rank": 20,
+      "auto_rank": 10,
+      "ccwm_rank": 14
+    },
+    {
+      "team": 5849,
+      "name": "Joker",
+      "qual_rank": 13,
+      "ranking_score": 2.6,
+      "wlt": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 258.4,
+      "avg_auto_alliance": 45.2,
+      "opr": 80.08,
+      "opr_ols": 17.33,
+      "dpr": 68.94,
+      "ccwm": 11.14,
+      "event_epa": 81.39,
+      "auto_epa_proxy": 14.01,
+      "tele_end_proxy": 66.07,
+      "avg_margin": 13.8,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 23,
+      "epa_rank": 21,
+      "auto_rank": 22,
+      "ccwm_rank": 15
+    },
+    {
+      "team": 11019,
+      "name": "X.PLORE",
+      "qual_rank": 20,
+      "ranking_score": 2.2,
+      "wlt": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 235.8,
+      "avg_auto_alliance": 31.8,
+      "opr": 84.35,
+      "opr_ols": 100.51,
+      "dpr": 41.13,
+      "ccwm": 43.22,
+      "event_epa": 78.6,
+      "auto_epa_proxy": 11.37,
+      "tele_end_proxy": 72.97,
+      "avg_margin": 59.2,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 19,
+      "epa_rank": 22,
+      "auto_rank": 30,
+      "ccwm_rank": 12
+    },
+    {
+      "team": 6941,
+      "name": "IronPulse Robotics",
+      "qual_rank": 17,
+      "ranking_score": 2.33,
+      "wlt": "4 - 2 - 0",
+      "wins": 4,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 6,
+      "avg_match": 231.0,
+      "avg_auto_alliance": 47.17,
+      "opr": 83.53,
+      "opr_ols": 116.38,
+      "dpr": 93.19,
+      "ccwm": -9.65,
+      "event_epa": 78.3,
+      "auto_epa_proxy": 17.06,
+      "tele_end_proxy": 66.48,
+      "avg_margin": -1.3,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 21,
+      "epa_rank": 23,
+      "auto_rank": 18,
+      "ccwm_rank": 21
+    },
+    {
+      "team": 10711,
+      "name": "FORMSHOP",
+      "qual_rank": 21,
+      "ranking_score": 2.2,
+      "wlt": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 207.8,
+      "avg_auto_alliance": 40.4,
+      "opr": 66.36,
+      "opr_ols": 45.83,
+      "dpr": 72.26,
+      "ccwm": -5.9,
+      "event_epa": 67.52,
+      "auto_epa_proxy": 12.9,
+      "tele_end_proxy": 53.46,
+      "avg_margin": -46.8,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 25,
+      "epa_rank": 24,
+      "auto_rank": 26,
+      "ccwm_rank": 19
+    },
+    {
+      "team": 5515,
+      "name": "Blue Power Robotics",
+      "qual_rank": 26,
+      "ranking_score": 1.8,
+      "wlt": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 201.0,
+      "avg_auto_alliance": 51.8,
+      "opr": 41.44,
+      "opr_ols": -10.38,
+      "dpr": 173.94,
+      "ccwm": -132.5,
+      "event_epa": 64.5,
+      "auto_epa_proxy": 10.68,
+      "tele_end_proxy": 30.76,
+      "avg_margin": -220.6,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 34,
+      "epa_rank": 25,
+      "auto_rank": 32,
+      "ccwm_rank": 40
+    },
+    {
+      "team": 8015,
+      "name": "The Cheetahs",
+      "qual_rank": 40,
+      "ranking_score": 0.4,
+      "wlt": "0 - 5 - 0",
+      "wins": 0,
+      "losses": 5,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 173.8,
+      "avg_auto_alliance": 47.0,
+      "opr": 52.96,
+      "opr_ols": 44.2,
+      "dpr": 147.49,
+      "ccwm": -94.53,
+      "event_epa": 60.78,
+      "auto_epa_proxy": 14.32,
+      "tele_end_proxy": 38.64,
+      "avg_margin": -212.6,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 31,
+      "epa_rank": 26,
+      "auto_rank": 20,
+      "ccwm_rank": 39
+    },
+    {
+      "team": 7002,
+      "name": "\u98ce\u4e91\u8e66\u8c46",
+      "qual_rank": 32,
+      "ranking_score": 1.4,
+      "wlt": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 155.4,
+      "avg_auto_alliance": 45.8,
+      "opr": 46.97,
+      "opr_ols": 16.12,
+      "dpr": 111.66,
+      "ccwm": -64.69,
+      "event_epa": 56.87,
+      "auto_epa_proxy": 13.84,
+      "tele_end_proxy": 33.13,
+      "avg_margin": -157.4,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 33,
+      "epa_rank": 27,
+      "auto_rank": 23,
+      "ccwm_rank": 34
+    },
+    {
+      "team": 10000,
+      "name": "Neutron Star",
+      "qual_rank": 22,
+      "ranking_score": 2.0,
+      "wlt": "3 - 3 - 0",
+      "wins": 3,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 6,
+      "avg_match": 189.67,
+      "avg_auto_alliance": 60.33,
+      "opr": 57.73,
+      "opr_ols": 13.32,
+      "dpr": 70.48,
+      "ccwm": -12.75,
+      "event_epa": 56.72,
+      "auto_epa_proxy": 18.36,
+      "tele_end_proxy": 39.37,
+      "avg_margin": -48.5,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 26,
+      "epa_rank": 28,
+      "auto_rank": 16,
+      "ccwm_rank": 23
+    },
+    {
+      "team": 6399,
+      "name": "Tinspiratio",
+      "qual_rank": 15,
+      "ranking_score": 2.6,
+      "wlt": "4 - 1 - 0",
+      "wins": 4,
+      "losses": 1,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 214.8,
+      "avg_auto_alliance": 40.8,
+      "opr": 67.92,
+      "opr_ols": 33.1,
+      "dpr": 84.72,
+      "ccwm": -16.8,
+      "event_epa": 56.06,
+      "auto_epa_proxy": 12.9,
+      "tele_end_proxy": 55.02,
+      "avg_margin": -30.6,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 24,
+      "epa_rank": 29,
+      "auto_rank": 25,
+      "ccwm_rank": 25
+    },
+    {
+      "team": 6353,
+      "name": "EFZ Robotics",
+      "qual_rank": 30,
+      "ranking_score": 1.5,
+      "wlt": "2 - 4 - 0",
+      "wins": 2,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 6,
+      "avg_match": 199.33,
+      "avg_auto_alliance": 35.0,
+      "opr": 55.62,
+      "opr_ols": 37.52,
+      "dpr": 91.33,
+      "ccwm": -35.71,
+      "event_epa": 54.57,
+      "auto_epa_proxy": 9.77,
+      "tele_end_proxy": 45.85,
+      "avg_margin": -69.2,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 28,
+      "epa_rank": 30,
+      "auto_rank": 34,
+      "ccwm_rank": 30
+    },
+    {
+      "team": 6433,
+      "name": "HZ4Z",
+      "qual_rank": 29,
+      "ranking_score": 1.6,
+      "wlt": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 196.2,
+      "avg_auto_alliance": 38.2,
+      "opr": 56.17,
+      "opr_ols": 15.78,
+      "dpr": 133.24,
+      "ccwm": -77.07,
+      "event_epa": 51.05,
+      "auto_epa_proxy": 10.94,
+      "tele_end_proxy": 45.24,
+      "avg_margin": -122.0,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 27,
+      "epa_rank": 31,
+      "auto_rank": 31,
+      "ccwm_rank": 35
+    },
+    {
+      "team": 9992,
+      "name": "Off-Season Demo Team 9992",
+      "qual_rank": 23,
+      "ranking_score": 2.0,
+      "wlt": "3 - 2 - 0",
+      "wins": 3,
+      "losses": 2,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 189.4,
+      "avg_auto_alliance": 44.0,
+      "opr": 36.94,
+      "opr_ols": -42.0,
+      "dpr": 49.28,
+      "ccwm": -12.34,
+      "event_epa": 50.83,
+      "auto_epa_proxy": 8.58,
+      "tele_end_proxy": 28.36,
+      "avg_margin": 1.4,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": true,
+      "opr_rank": 37,
+      "epa_rank": 32,
+      "auto_rank": 35,
+      "ccwm_rank": 22
+    },
+    {
+      "team": 9999,
+      "name": "Off-Season Demo Team 9999",
+      "qual_rank": 27,
+      "ranking_score": 1.67,
+      "wlt": "2 - 4 - 0",
+      "wins": 2,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 6,
+      "avg_match": 212.83,
+      "avg_auto_alliance": 47.33,
+      "opr": 55.43,
+      "opr_ols": 9.68,
+      "dpr": 81.27,
+      "ccwm": -25.83,
+      "event_epa": 50.36,
+      "auto_epa_proxy": 12.33,
+      "tele_end_proxy": 43.11,
+      "avg_margin": -81.7,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": true,
+      "opr_rank": 29,
+      "epa_rank": 33,
+      "auto_rank": 27,
+      "ccwm_rank": 28
+    },
+    {
+      "team": 9597,
+      "name": "Luban Robotics",
+      "qual_rank": 33,
+      "ranking_score": 1.2,
+      "wlt": "2 - 3 - 0",
+      "wins": 2,
+      "losses": 3,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 131.0,
+      "avg_auto_alliance": 31.6,
+      "opr": 50.99,
+      "opr_ols": 72.47,
+      "dpr": 15.6,
+      "ccwm": 35.39,
+      "event_epa": 46.87,
+      "auto_epa_proxy": 12.3,
+      "tele_end_proxy": 38.69,
+      "avg_margin": 3.8,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 32,
+      "epa_rank": 34,
+      "auto_rank": 28,
+      "ccwm_rank": 13
+    },
+    {
+      "team": 9996,
+      "name": "Off-Season Demo Team 9996",
+      "qual_rank": 37,
+      "ranking_score": 0.8,
+      "wlt": "1 - 4 - 0",
+      "wins": 1,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 171.6,
+      "avg_auto_alliance": 32.6,
+      "opr": 55.42,
+      "opr_ols": 43.74,
+      "dpr": 114.83,
+      "ccwm": -59.42,
+      "event_epa": 45.68,
+      "auto_epa_proxy": 10.53,
+      "tele_end_proxy": 44.89,
+      "avg_margin": -148.4,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": true,
+      "opr_rank": 30,
+      "epa_rank": 35,
+      "auto_rank": 33,
+      "ccwm_rank": 33
+    },
+    {
+      "team": 10016,
+      "name": "Absolute Zero",
+      "qual_rank": 41,
+      "ranking_score": 0.0,
+      "wlt": "0 - 5 - 0",
+      "wins": 0,
+      "losses": 5,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 131.2,
+      "avg_auto_alliance": 21.0,
+      "opr": 34.25,
+      "opr_ols": -2.71,
+      "dpr": 49.3,
+      "ccwm": -15.05,
+      "event_epa": 42.27,
+      "auto_epa_proxy": 5.48,
+      "tele_end_proxy": 28.77,
+      "avg_margin": -80.6,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 38,
+      "epa_rank": 36,
+      "auto_rank": 40,
+      "ccwm_rank": 24
+    },
+    {
+      "team": 5516,
+      "name": "Iron Maple",
+      "qual_rank": 34,
+      "ranking_score": 1.17,
+      "wlt": "2 - 4 - 0",
+      "wins": 2,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 6,
+      "avg_match": 130.83,
+      "avg_auto_alliance": 34.33,
+      "opr": 27.74,
+      "opr_ols": -6.21,
+      "dpr": 112.52,
+      "ccwm": -84.78,
+      "event_epa": 37.89,
+      "auto_epa_proxy": 7.28,
+      "tele_end_proxy": 20.46,
+      "avg_margin": -156.5,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 39,
+      "epa_rank": 37,
+      "auto_rank": 38,
+      "ccwm_rank": 37
+    },
+    {
+      "team": 6394,
+      "name": "MITO",
+      "qual_rank": 39,
+      "ranking_score": 0.5,
+      "wlt": "1 - 5 - 0",
+      "wins": 1,
+      "losses": 5,
+      "ties": 0,
+      "matches_played": 6,
+      "avg_match": 160.67,
+      "avg_auto_alliance": 33.0,
+      "opr": 38.89,
+      "opr_ols": 7.78,
+      "dpr": 62.24,
+      "ccwm": -23.36,
+      "event_epa": 35.41,
+      "auto_epa_proxy": 7.99,
+      "tele_end_proxy": 30.9,
+      "avg_margin": -46.8,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 35,
+      "epa_rank": 38,
+      "auto_rank": 36,
+      "ccwm_rank": 26
+    },
+    {
+      "team": 5449,
+      "name": "Prototype",
+      "qual_rank": 36,
+      "ranking_score": 1.0,
+      "wlt": "2 - 4 - 0",
+      "wins": 2,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 6,
+      "avg_match": 130.0,
+      "avg_auto_alliance": 33.5,
+      "opr": 24.79,
+      "opr_ols": -23.78,
+      "dpr": 115.16,
+      "ccwm": -90.37,
+      "event_epa": 34.65,
+      "auto_epa_proxy": 6.39,
+      "tele_end_proxy": 18.41,
+      "avg_margin": -155.8,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 40,
+      "epa_rank": 39,
+      "auto_rank": 39,
+      "ccwm_rank": 38
+    },
+    {
+      "team": 9994,
+      "name": "Off-Season Demo Team 9994",
+      "qual_rank": 35,
+      "ranking_score": 1.0,
+      "wlt": "1 - 4 - 0",
+      "wins": 1,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 136.2,
+      "avg_auto_alliance": 26.8,
+      "opr": 37.56,
+      "opr_ols": 21.99,
+      "dpr": 119.56,
+      "ccwm": -82.0,
+      "event_epa": 34.51,
+      "auto_epa_proxy": 7.39,
+      "tele_end_proxy": 30.17,
+      "avg_margin": -174.2,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": true,
+      "opr_rank": 36,
+      "epa_rank": 40,
+      "auto_rank": 37,
+      "ccwm_rank": 36
+    },
+    {
+      "team": 11352,
+      "name": "Flying Tiger",
+      "qual_rank": 38,
+      "ranking_score": 0.8,
+      "wlt": "1 - 4 - 0",
+      "wins": 1,
+      "losses": 4,
+      "ties": 0,
+      "matches_played": 5,
+      "avg_match": 105.2,
+      "avg_auto_alliance": 22.0,
+      "opr": 19.55,
+      "opr_ols": -2.94,
+      "dpr": 155.55,
+      "ccwm": -136.0,
+      "event_epa": 13.51,
+      "auto_epa_proxy": 4.09,
+      "tele_end_proxy": 15.46,
+      "avg_margin": -266.0,
+      "season_epa": null,
+      "season_auto_epa": null,
+      "season_tele_epa": null,
+      "season_end_epa": null,
+      "is_demo": false,
+      "opr_rank": 41,
+      "epa_rank": 41,
+      "auto_rank": 41,
+      "ccwm_rank": 41
+    }
+  ],
+  "team_11118": {
+    "team": 11118,
+    "name": "The Baybies",
+    "qual_rank": 12,
+    "ranking_score": 2.6,
+    "wlt": "3 - 2 - 0",
+    "wins": 3,
+    "losses": 2,
+    "ties": 0,
+    "matches_played": 5,
+    "avg_match": 259.0,
+    "avg_auto_alliance": 62.4,
+    "opr": 98.74,
+    "opr_ols": 135.91,
+    "dpr": 73.12,
+    "ccwm": 25.62,
+    "event_epa": 82.41,
+    "auto_epa_proxy": 23.79,
+    "tele_end_proxy": 74.95,
+    "avg_margin": 26.6,
+    "season_epa": 72.67,
+    "season_auto_epa": 11.76,
+    "season_tele_epa": 39.78,
+    "season_end_epa": 21.13,
+    "is_demo": false,
+    "opr_rank": 14,
+    "epa_rank": 20,
+    "auto_rank": 10,
+    "ccwm_rank": 14
+  },
+  "method": {
+    "event_epa": "Iterative residual EPA on completed QM totals (order-aware, shrinking alpha). Statbotics event EPA usually unavailable for off-season.",
+    "opr": "Ridge OPR (\u03bb=4.0) for small-sample stability; opr_ols also saved.",
+    "auto_epa_proxy": "OPR \u00d7 (FIRST ranking Auto Fuel / Match avg). Auto Fuel is alliance-average auto, not individual.",
+    "season_epa": "Optional prior from analysis/hopper_raw_data.json when present."
+  }
+}
